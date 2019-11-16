@@ -1,0 +1,1 @@
+lecturer control panel views
