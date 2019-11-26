@@ -12,6 +12,6 @@ class LecturersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Lecturer::class, 25)->create();
+        factory(Lecturer::class, 50)->create();
     }
 }

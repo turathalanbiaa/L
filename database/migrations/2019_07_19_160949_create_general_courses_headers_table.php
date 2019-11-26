@@ -16,6 +16,7 @@ class CreateGeneralCoursesHeadersTable extends Migration
         Schema::create('general_courses_headers', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
             $table->string('title');
+            $table->string('lang');
             $table->text('description')->nullable()->default(null);
         });
     }

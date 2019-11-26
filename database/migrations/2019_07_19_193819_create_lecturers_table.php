@@ -16,6 +16,7 @@ class CreateLecturersTable extends Migration
         Schema::create('lecturers', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
             $table->string('name');
+            $table->string('lang');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');

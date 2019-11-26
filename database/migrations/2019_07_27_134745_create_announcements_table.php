@@ -17,6 +17,7 @@ class CreateAnnouncementsTable extends Migration
             $table->integer('id')->autoIncrement();
             $table->string('title');
             $table->text('content')->nullable();
+            $table->string('lang');
             $table->string('image')->nullable();
             $table->string('url')->nullable();
             $table->string('youtube_video_id')->nullable();

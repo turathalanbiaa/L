@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->integer('id')->autoIncrement();
             $table->string('name');
             $table->integer('type');
+            $table->string('lang');
             $table->integer('level')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->unique();

@@ -4,6 +4,7 @@
 
 use App\Enum\Country;
 use App\Enum\Gender;
+use App\Enum\Language;
 use App\Enum\Level;
 use App\Enum\ScientificDegree;
 use App\Enum\UserType;
@@ -16,6 +17,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'type' => $type,
+        'lang' => Language::getRandomLanguage(),
         'level' => ($type==UserType::LISTENER)?null:Level::getRandomLevel(),
         'email' => $faker->email,
         'phone' => $faker->phoneNumber,

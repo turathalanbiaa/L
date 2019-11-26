@@ -18,6 +18,7 @@ class CreateGeneralCoursesTable extends Migration
             $table->string('name');
             $table->integer('general_course_header_id')->nullable()->default(null);
             $table->integer('lecturer_id');
+            $table->string('lang');
             $table->text('description')->nullable()->default(null);
         });
     }

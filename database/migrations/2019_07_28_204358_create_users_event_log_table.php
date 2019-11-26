@@ -17,6 +17,8 @@ class CreateUsersEventLogTable extends Migration
             $table->integer('id')->autoIncrement();
             $table->integer('user_id');
             $table->string('content');
+            $table->integer('target_id');
+            $table->string('target_type');
             $table->string('note');
             $table->dateTime('datetime');
         });
