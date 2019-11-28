@@ -28,6 +28,7 @@ class WebsiteServiceProvider extends ServiceProvider
     {
         $ds = DIRECTORY_SEPARATOR;
         $this->loadViewsFrom(__DIR__.$ds.'..'.$ds.'resources'.$ds.'views', 'Website');
+        $this->loadTranslationsFrom(__DIR__.$ds.'..'.$ds.'resources'.$ds.'lang', 'Website');
         $this->loadRoutesFrom(__DIR__.$ds.'..'.$ds.'routes'.$ds.'web.php');
     }
 }
