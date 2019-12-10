@@ -17,6 +17,7 @@ class CreateIssuesTable extends Migration
             $table->integer('id')->autoIncrement();
             $table->string('email');
             $table->string('phone');
+            $table->string("lang");
             $table->string('title');
             $table->text('content');
             $table->integer('type');

@@ -35,15 +35,18 @@ class Auth extends Controller
                 abort(302, '', ['Location' => "/"]);
             }
         }
-
     }
 
     private static function isLoggedIn()
     {
         if (!Cookie::has("ETA") && !session()->has("eta"))
-            abort(302, '', ['Location' => "/"]);
+        {
+            if(request()->is("create-student-account") || request()->is("create-listener-account"))
+                return "";
+            else
+                abort(302, '', ['Location' => "/"]);
+        }
 
-        if(request()->is("create-student-account") || request()->is("create-listener-account"))
-            abort(302, '', ['Location' => "/"]);
+
     }
 }

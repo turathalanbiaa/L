@@ -25,7 +25,7 @@
                                     nesciunt dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea
                                     dolor molestiae, quisquam iste, maiores. Nulla.
                                 </h6>
-                                <a class="btn btn-outline-white" href="/create-student-account">انشاء حساب طالب</a>
+                                <a class="btn btn-outline-white" href="/create-student-account">@lang("Website::visitor.title")</a>
                             </div>
                             <div class="col-12 text-center py-3">
                                 <div class="h1-responsive font-weight-light align-middle text-right">
