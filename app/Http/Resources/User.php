@@ -14,11 +14,12 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
-        //return parent::toArray($request);
-        return [
+        return parent::toArray($request);
+       /* return [
             'id' => $this->id,
             'name' => $this->name,
             'type' => $this->type,
+            'lang' => $this->lang,
             'level' => $this->level,
             'email' => $this->email,
             'phone' => $this->phone,
@@ -33,6 +34,6 @@ class User extends JsonResource
             'last_login_date' => $this->last_login_date,
             'verify_state' => $this->verify_state,
             'remember_token' => $this->remember_token,
-        ];
+        ];*/
     }
 }
