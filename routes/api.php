@@ -32,4 +32,5 @@ Route::post('credentials','UserController@credentials');
 //Course
 Route::get('general-courses','GeneralCourseController@index');
 Route::get('general-course/{id}','GeneralCourseController@show');
+//Route::get('general-course/{id}','GeneralCourseController@show');
 
