@@ -26,8 +26,10 @@ class MainController extends Controller
 
     public function createStudentAccount()
     {
-        if (!Cookie::has("ETA") && !session()->has("eta"))
-            return view("Website::visitor.create-student-account")->with([
+        if (Cookie::has("ETA") || session()->has("eta"))
+            return redirect("/");
+
+        return view("Website::visitor.create-student-account")->with([
             "genderList" => Gender::getList(),
             "scientificDegreeList" => ScientificDegree::getList(),
             "countries" => Country::getList()
@@ -52,6 +54,9 @@ class MainController extends Controller
 
     public function createListenerAccount()
     {
+        if (Cookie::has("ETA") || session()->has("eta"))
+            return redirect("/");
+
         return view("Website::visitor.create-listener-account")->with([
             "genderList" => Gender::getList(),
             "countries" => Country::getList()
