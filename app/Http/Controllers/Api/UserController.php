@@ -48,10 +48,11 @@ class UserController extends Controller
         $user = new User();
         $user->name = $request->get('name');
         $user->type = $request->get('type');
+        $user->lang =$request->get('lang');
         $user->level = $request->get('level');
         $user->email = $request->get('email');
         $user->phone =$request->get('phone');
-        $user->password = Hash::make($request->get('password'));
+        $user->password =md5($request->get('password'));
         $user->gender = $request->get('gender');
         $user->country = $request->get('country');
         $user->image = $request->get('image');
@@ -95,10 +96,11 @@ class UserController extends Controller
         if ($user){
             $user->name = $request->get('name');
             $user->type = $request->get('type');
+            $user->lang =$request->get('lang');
             $user->level = $request->get('level');
             $user->email = $request->get('email');
             $user->phone = $request->get('phone');
-            $user->password = $request->get('password');
+            $user->password = md5($request->get('password'));
             $user->gender = $request->get('gender');
             $user->country =$request->get('country');
             $user->image = $request->get('image');
@@ -143,7 +145,7 @@ class UserController extends Controller
         {
             $user = User::where('phone', $request->get('login'))->first();
             if($user){
-            if (Hash::check($request->get('password'), $user->password))
+            if (md5($request->get('password') == $user->password))
             {
                 return $this->apiResponse(new UserResource($user),200);
             }}
@@ -151,7 +153,7 @@ class UserController extends Controller
         if (filter_var($request->get('login'), FILTER_VALIDATE_EMAIL)) {
             $user = User::where('email', $request->get('login'))->first();
             if($user){
-            if (Hash::check($request->get('password'), $user->password))
+            if (md5($request->get('password')== $user->password))
             {
                 return $this->apiResponse(new UserResource($user),200);
             }
