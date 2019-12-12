@@ -153,7 +153,7 @@ class UserController extends Controller
         if (filter_var($request->get('login'), FILTER_VALIDATE_EMAIL)) {
             $user = User::where('email', $request->get('login'))->first();
             if($user){
-            if (md5($request->get('password')== $user->password))
+            if (md5($request->get('password')) == $user->password)
             {
                 return $this->apiResponse(new UserResource($user),200);
             }
