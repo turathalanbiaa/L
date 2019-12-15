@@ -31,6 +31,7 @@ Route::delete('delete-user/{id}','UserController@destroy');
 Route::post('credentials','UserController@credentials');
 //Course
 Route::get('general-courses','GeneralCourseController@index');
+Route::get('general-courses/{lang}','GeneralCourseController@getCoursesByLang');
 Route::get('general-course/{id}','GeneralCourseController@show');
-//Route::get('general-course/{id}','GeneralCourseController@show');
+
 

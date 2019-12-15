@@ -36,9 +36,25 @@
                     <a class="nav-link" href="/create-student-account">انشاء حساب طالب</a>
                     <a class="nav-link" href="/create-listener-account">انشاء حساب مستمع</a>
                     <a class="nav-link" href="/balance-account">الفرق بين الحسابين</a>
-               </div>
+                </div>
                 <a class="nav-link" href="#about">نبذة عن الحوزة والمعهد</a>
                 <a class="nav-link" href="#contact-us">تواصل معنا</a>
+
+
+
+                <!-- Basic dropdown -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link" id="dropdownLanguageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>العربية</span>
+                        <i class="fas fa-angle-down"></i>
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownLanguageMenu">
+                        <a class="dropdown-item" href="/language?locale=ar">العربية</a>
+                        <a class="dropdown-item" href="/language?locale=en">الانكليزية</a>
+                    </div>
+                </div>
+                <!-- Basic dropdown -->
             </nav>
 
             <div class="d-lg-block d-none">

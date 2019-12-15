@@ -60,6 +60,14 @@ class GeneralCourseController extends Controller
         }
         return $this->notFoundResponse();
     }
+    public function getCoursesByLang($lang)
+    {
+        $courses = GeneralCourse::where('lang', $lang)->paginate(10);
+        if ($courses){
+            return $this->apiResponse(GeneralCourseResource::collection($courses),200);
+        }
+        return $this->notFoundResponse();
+    }
 
     /**
      * Show the form for editing the specified resource.

@@ -6,7 +6,9 @@ use App\Enum\Country;
 use App\Enum\Gender;
 use App\Enum\ScientificDegree;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
+use Symfony\Component\Console\Input\Input;
 use Website\Http\Interfaces\UserRepositoryInterface;
 use Website\Http\Requests\CreateListenerRequest;
 use Website\Http\Requests\CreateStudentRequest;
@@ -22,6 +24,10 @@ class MainController extends Controller
        // User
        Auth::check();
        return view('Website::user.index');
+   }
+
+   public function changeLanguage() {
+       return redirect("/");
    }
 
     public function createStudentAccount()
