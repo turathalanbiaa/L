@@ -15,6 +15,7 @@ Route::group(['middleware' => 'web'], function () {
     $namespace = '\Website\Http\Controllers\\';
 
     Route::get('/', $namespace.'MainController@index');
+    Route::get('/language', $namespace.'MainController@changeLanguage');
     Route::post('/contact-us', $namespace.'ContactController@store');
     Route::post('/login', $namespace.'LoginController@login');
 
