@@ -22,10 +22,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  ]];
  return response($info,200);
 });*/
+//User
 Route::get('users','UserController@index');
 Route::get('user/{id}','UserController@show');
 Route::post('store-user','UserController@store');
 Route::put('update-user/{id}','UserController@update');
 Route::delete('delete-user/{id}','UserController@destroy');
 Route::post('credentials','UserController@credentials');
+//Course
+Route::get('general-courses','GeneralCourseController@index');
+Route::get('general-courses/{lang}','GeneralCourseController@getCoursesByLang');
+Route::get('general-course/{id}','GeneralCourseController@show');
+
 
