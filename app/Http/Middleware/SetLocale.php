@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enum\Language;
 use Closure;
 
 class SetLocale
@@ -16,8 +17,8 @@ class SetLocale
     public function handle($request, Closure $next)
     {
         if ($request->has('locale')) {
-            if (in_array($request->locale, []))
-            session()->put('locale', $request->locale);
+            if (array_key_exists($request->locale, Language::LANGUAGES))
+                session()->put('locale', $request->locale);
         }
 
         if(session()->has('locale')) {

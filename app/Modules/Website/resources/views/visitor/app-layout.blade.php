@@ -39,15 +39,12 @@
                 </div>
                 <a class="nav-link" href="#about">نبذة عن الحوزة والمعهد</a>
                 <a class="nav-link" href="#contact-us">تواصل معنا</a>
-                <div class="nav-item dropdown">
-                    <a class="nav-link" id="dropdownLanguageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>العربية</span>
-                        <i class="fas fa-angle-down"></i>
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownLanguageMenu">
-                        <a class="dropdown-item" href="/language?locale=ar">العربية</a>
-                        <a class="dropdown-item" href="/language?locale=en">الانكليزية</a>
+                <div class="d-lg-none">
+                    <hr class="hr-light clearfix">
+                    <div class="d-flex flex-row justify-content-around">
+                        @foreach($languages as $key => $language)
+                            <a class="btn btn-sm btn-outline-white" href="/?locale={{$key}}">{{$language}}</a>
+                        @endforeach
                     </div>
                 </div>
             </nav>
@@ -72,6 +69,18 @@
                                 <i class="fa fa-balance-scale-left"></i>
                                 <span>الفرق بين الحسابين</span>
                             </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item dropdown">
+                        <a class="nav-link" id="dropdownLanguageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-language" style="font-size: 25px"></i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-turath" aria-labelledby="dropdownLanguageMenu">
+                            @foreach($languages as $key => $language)
+                                <a class="dropdown-item" href="/?locale={{$key}}">{{$language}}</a>
+                            @endforeach
                         </div>
                     </div>
                 </nav>

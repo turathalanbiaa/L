@@ -8,7 +8,7 @@ class Language
 {
     const LANGUAGES = [
         "ar"=> "العربية",
-        "en"=> "English",
+        "en"=> "English"
     ];
 
     /**
