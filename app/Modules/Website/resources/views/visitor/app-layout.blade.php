@@ -39,10 +39,6 @@
                 </div>
                 <a class="nav-link" href="#about">نبذة عن الحوزة والمعهد</a>
                 <a class="nav-link" href="#contact-us">تواصل معنا</a>
-
-
-
-                <!-- Basic dropdown -->
                 <div class="nav-item dropdown">
                     <a class="nav-link" id="dropdownLanguageMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span>العربية</span>
@@ -54,7 +50,6 @@
                         <a class="dropdown-item" href="/language?locale=en">الانكليزية</a>
                     </div>
                 </div>
-                <!-- Basic dropdown -->
             </nav>
 
             <div class="d-lg-block d-none">
