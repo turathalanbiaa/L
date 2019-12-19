@@ -232,23 +232,23 @@
                         <iframe src="https://maps.google.com/maps?q=معهد+تراث+الانبياء&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                     <div class="row text-center">
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-sm-block d-flex align-items-baseline">
                             <a class="btn-floating turath-gradient-color">
                                 <i class="fas fa-map-marker-alt"></i>
                             </a>
-                            <p class="mb-md-0">العراق - النجف الاشرف</p>
+                            <p>العراق - النجف الاشرف</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-sm-block d-flex align-items-baseline">
                             <a class="btn-floating turath-gradient-color">
                                 <i class="fas fa-phone"></i>
                             </a>
-                            <p dir="ltr" class="mb-0">+964 77 3188 1800</p>
+                            <p dir="ltr">+964 77 3188 1800</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 d-sm-block d-flex align-items-baseline">
                             <a class="btn-floating turath-gradient-color">
                                 <i class="fas fa-envelope"></i>
                             </a>
-                            <p class="mb-0">turath.alanbiaa@gmail.com</p>
+                            <p>turath.alanbiaa@gmail.com</p>
                         </div>
                     </div>
                 </div>
