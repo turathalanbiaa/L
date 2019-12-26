@@ -21,8 +21,7 @@ class DocumentState
      */
     public static function getStateName($stateNumber)
     {
-        switch ($stateNumber)
-        {
+        switch ($stateNumber) {
             case self::ACCEPT: return "مقبولة";     break;
             case self::REJECT: return "مرفوضة";     break;
             case self::REVIEW: return "قيد المراجعة"; break;

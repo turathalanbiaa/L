@@ -18,6 +18,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/contact-us', $namespace.'ContactController@store');
     Route::post('/login', $namespace.'LoginController@login');
 
+    Route::get('/create-account', $namespace.'MainController@createAccount');
+
     Route::get('/create-student-account', $namespace.'MainController@createStudentAccount');
     Route::post('/store-student-account', $namespace.'MainController@storeStudentAccount');
 

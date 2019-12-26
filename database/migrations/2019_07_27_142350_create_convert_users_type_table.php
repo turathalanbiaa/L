@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConvertUsersTable extends Migration
+class CreateConvertUsersTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateConvertUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('convert_users', function (Blueprint $table) {
+        Schema::create('convert_users_type', function (Blueprint $table) {
             $table->integer('user_id');
             $table->text('message');
             $table->integer('state');
@@ -28,6 +28,6 @@ class CreateConvertUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('convert_users');
+        Schema::dropIfExists('convert_users_type');
     }
 }

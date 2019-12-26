@@ -4,12 +4,9 @@ namespace Website\Http\Controllers;
 
 use App\Enum\Country;
 use App\Enum\Gender;
-use App\Enum\Language;
 use App\Enum\ScientificDegree;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
-use Symfony\Component\Console\Input\Input;
 use Website\Http\Interfaces\UserRepositoryInterface;
 use Website\Http\Requests\CreateListenerRequest;
 use Website\Http\Requests\CreateStudentRequest;
@@ -17,17 +14,20 @@ use Website\Http\Requests\CreateStudentRequest;
 class MainController extends Controller
 {
     public function index()
-   {
-       // Visitor
-       if (!Cookie::has("ETA") && !session()->has("eta"))
-           return view('Website::visitor.index')->with([
-               "languages"=> Language::getList()
-           ]);
+    {
+        // Visitor
+        if (!Cookie::has("ETA") && !session()->has("eta"))
+            return view('Website::visitor.index');
 
-       // User
-       Auth::check();
-       return view('Website::user.index');
-   }
+        // User
+        Auth::check();
+        return view('Website::user.index');
+    }
+
+    public function createAccount()
+    {
+        return view("Website::visitor.create-account");
+    }
 
     public function createStudentAccount()
     {

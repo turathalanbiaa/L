@@ -4,8 +4,8 @@ namespace Website\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ConvertUser extends Model
+class ConvertUserType extends Model
 {
-    protected $table = 'convert_users';
+    protected $table = 'convert_users_type';
     public $timestamps = false;
 }

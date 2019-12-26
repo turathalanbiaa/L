@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Website\Models\ConvertUser;
+use Website\Models\ConvertUserType;
 
-class ConvertUsersTableSeeder extends Seeder
+class ConvertUsersTypeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class ConvertUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(ConvertUser::class, 75)->create();
+        factory(ConvertUserType::class, 75)->create();
     }
 }

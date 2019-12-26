@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
              DocumentsTableSeeder::class,
              NotesTableSeeder::class,
              AnnouncementsTableSeeder::class,
-             ConvertUsersTableSeeder::class
+             ConvertUsersTypeTableSeeder::class
          ]);
     }
 }

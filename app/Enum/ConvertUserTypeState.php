@@ -9,10 +9,10 @@
 namespace App\Enum;
 
 
-class ConvertUserState
+class ConvertUserTypeState
 {
-    const NOT_SEEN = 0;
-    const SEEN = 1;
+    const NOT_ACTIVE = 0;
+    const ACTIVE = 1;
 
     /**
      * @param $stateNumber
@@ -20,10 +20,9 @@ class ConvertUserState
      */
     public static function getStateName($stateNumber)
     {
-        switch ($stateNumber)
-        {
-            case self::NOT_SEEN:  return "غير مشاهد"; break;
-            case self::SEEN:     return "مشاهد";     break;
+        switch ($stateNumber) {
+            case self::NOT_ACTIVE:  return "غير مشاهد"; break;
+            case self::ACTIVE:     return "مشاهد";     break;
         }
 
         return "";

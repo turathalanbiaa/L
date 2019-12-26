@@ -17,8 +17,7 @@ class AnnouncementType
 
     public static function getStateName($stateNumber)
     {
-        switch ($stateNumber)
-        {
+        switch ($stateNumber) {
             case self::STUDENT:  return "طالب";  break;
             case self::LISTENER: return "مستمع"; break;
             case self::ALL:      return "كلاهما"; break;

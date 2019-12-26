@@ -18,6 +18,7 @@ class UserRepository implements UserRepositoryInterface
         $student = new User();
         $student->name = $request->name;
         $student->type = UserType::STUDENT;
+        $student->lang = app()->getLocale();
         $student->level = Level::BEGINNER;
         $student->email = $request->email;
         $student->phone = $request->phone;
@@ -32,7 +33,7 @@ class UserRepository implements UserRepositoryInterface
         $student->last_login_date = date("Y-m-d");
         $student->verify_state = VerifyState::NOT_ACTIVE;
         $student->remember_token = hash_hmac("sha256",md5(microtime(true).mt_Rand()),bcrypt($request->email));
-       $student->save();
+        $student->save();
 
         return $student;
     }
@@ -42,6 +43,7 @@ class UserRepository implements UserRepositoryInterface
         $listener = new User();
         $listener->name = $request->name;
         $listener->type = UserType::LISTENER;
+        $listener->lang = app()->getLocale();
         $listener->level = null;
         $listener->email = $request->email;
         $listener->phone = $request->phone;
@@ -82,8 +84,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function generateToken(User $user)
     {
-        if (is_null($user->remember_token))
-        {
+        if (is_null($user->remember_token)) {
             $user->remember_token = hash_hmac("sha256",md5(microtime(true).mt_Rand()),bcrypt($user->email));
             $user->save();
         }
@@ -96,6 +97,7 @@ class UserRepository implements UserRepositoryInterface
         session()->put('eta', $user->remember_token);
         session()->put('user.name', $user->name);
         session()->put('user.type', $user->type);
+        session()->put('user.type', $user->lang);
         session()->put('user.level', $user->level);
         session()->put('user.email', $user->email);
         session()->put('user.phone', $user->phone);
