@@ -4,7 +4,7 @@ namespace Website\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Note extends Model
+class ENotebook extends Model
 {
     protected $table = 'notes';
     protected $primaryKey = 'id';

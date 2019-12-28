@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
              GeneralCoursesHeadersTableSeeder::class,
              GeneralCoursesTableSeeder::class,
              DocumentsTableSeeder::class,
-             NotesTableSeeder::class,
+             ENotebooksTableSeeder::class,
              AnnouncementsTableSeeder::class,
              ConvertUsersTypeTableSeeder::class
          ]);

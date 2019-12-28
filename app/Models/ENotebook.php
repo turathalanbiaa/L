@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Note extends Model
+class ENotebook extends Model
 {
-    protected $table = 'notes';
+    protected $table = 'e_notebooks';
     protected $primaryKey = 'id';
     public $timestamps = false;
 }

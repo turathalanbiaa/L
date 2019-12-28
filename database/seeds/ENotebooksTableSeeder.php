@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Website\Models\Note;
+use Website\Models\ENotebook;
 
-class NotesTableSeeder extends Seeder
+class ENotebooksTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class NotesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Note::class, 100)->create();
+        factory(ENotebook::class, 100)->create();
     }
 }
