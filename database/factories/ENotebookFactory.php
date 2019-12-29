@@ -12,6 +12,6 @@ $factory->define(ENotebook::class, function (Faker $faker) {
         'user_id' => User::all()->random()->id,
         'title' => $faker->realText(20, 2),
         'content' => $faker->realText(1000, 2),
-        'date_created' => $faker->dateTimeBetween('-3 years', 'now')
+        'created_at' => $faker->dateTimeBetween('-3 years', 'now')
     ];
 });

@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->date('birthdate')->nullable();
             $table->string('address')->nullable();
             $table->integer('scientific_degree')->nullable();
-            $table->date('register_date');
+            $table->date('created_at');
             $table->date('last_login_date')->nullable();
             $table->string("verify_state")->default(VerifyState::NOT_ACTIVE);
             $table->string("remember_token")->nullable()->unique();

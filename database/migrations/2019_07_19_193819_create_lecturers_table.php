@@ -21,7 +21,7 @@ class CreateLecturersTable extends Migration
             $table->string('phone')->unique();
             $table->string('password');
             $table->text('description')->nullable()->default(null);
-            $table->date('created_date');
+            $table->date('created_at');
             $table->date('last_login_date')->nullable()->default(null);
             $table->string('remember_token')->unique()->nullable()->default(null);
         });

@@ -14,7 +14,7 @@ $factory->define(Lecturer::class, function (Faker $faker) {
         'phone' => $faker->phoneNumber,
         'password' => md5($faker->password),
         'description' => $faker->realText(1000,2),
-        'created_date' => $faker->dateTimeBetween('-3 years', 'now'),
+        'created_at' => $faker->dateTimeBetween('-3 years', 'now'),
         'last_login_date' => null,
         'remember_token' => null
     ];

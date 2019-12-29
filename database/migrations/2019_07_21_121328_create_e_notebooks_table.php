@@ -18,7 +18,7 @@ class CreateENotebooksTable extends Migration
             $table->integer('user_id');
             $table->text('title');
             $table->text('content');
-            $table->dateTime('date_created');
+            $table->dateTime('created_at');
         });
     }
 
