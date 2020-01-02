@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\ConvertUserType;
 use Illuminate\Database\Seeder;
-use Website\Models\ConvertUserType;
 
 class ConvertUsersTypeTableSeeder extends Seeder
 {

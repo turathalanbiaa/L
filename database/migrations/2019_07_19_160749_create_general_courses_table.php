@@ -14,12 +14,13 @@ class CreateGeneralCoursesTable extends Migration
     public function up()
     {
         Schema::create('general_courses', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('general_course_header_id')->nullable()->default(null);
-            $table->integer('lecturer_id');
+            $table->bigInteger('general_course_header_id')->nullable();
+            $table->bigInteger('lecturer_id');
             $table->string('lang');
-            $table->text('description')->nullable()->default(null);
+            $table->text('description')->nullable();
+            $table->date('created_at');
         });
     }
 

@@ -15,8 +15,8 @@ class CreateDocumentsTable extends Migration
     public function up()
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
-            $table->integer('user_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->string('image');
             $table->integer('type');
             $table->integer('state')->default(DocumentState::REVIEW);

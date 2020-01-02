@@ -14,10 +14,11 @@ class CreateVerifyUsersTable extends Migration
     public function up()
     {
         Schema::create('verify_users', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->bigInteger('user_id');
             $table->string('email_code');
             $table->date('email_verified_date');
             $table->date('phone_verified_date');
+            $table->date('created_at');
         });
     }
 

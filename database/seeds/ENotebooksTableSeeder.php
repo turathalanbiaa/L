@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\ENotebook;
 use Illuminate\Database\Seeder;
-use Website\Models\ENotebook;
 
 class ENotebooksTableSeeder extends Seeder
 {

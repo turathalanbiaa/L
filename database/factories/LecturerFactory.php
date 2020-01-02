@@ -3,8 +3,8 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Enum\Language;
+use App\Models\Lecturer;
 use Faker\Generator as Faker;
-use Website\Models\Lecturer;
 
 $factory->define(Lecturer::class, function (Faker $faker) {
     return [

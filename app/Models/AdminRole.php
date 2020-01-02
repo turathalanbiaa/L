@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GeneralCourse extends Model
+class AdminRole extends Model
 {
-    protected $table = 'general_courses';
+    protected $table = "admins_roles";
     protected $primaryKey = 'id';
     public $timestamps = false;
 }

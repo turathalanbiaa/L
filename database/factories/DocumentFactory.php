@@ -4,9 +4,9 @@
 
 use App\Enum\DocumentState;
 use App\Enum\DocumentType;
+use App\Models\Document;
+use App\Models\User;
 use Faker\Generator as Faker;
-use Website\Models\User;
-use Website\Models\Document;
 
 $factory->define(Document::class, function (Faker $faker) {
     return [

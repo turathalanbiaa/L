@@ -5,8 +5,8 @@
 use App\Enum\AnnouncementState;
 use App\Enum\AnnouncementType;
 use App\Enum\Language;
+use App\Models\Announcement;
 use Faker\Generator as Faker;
-use Website\Models\Announcement;
 
 $factory->define(Announcement::class, function (Faker $faker) {
     return [

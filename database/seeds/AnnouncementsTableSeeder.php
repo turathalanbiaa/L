@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Announcement;
 use Illuminate\Database\Seeder;
-use Website\Models\Announcement;
 
 class AnnouncementsTableSeeder extends Seeder
 {

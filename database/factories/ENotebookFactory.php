@@ -3,9 +3,9 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 
+use App\Models\ENotebook;
+use App\Models\User;
 use Faker\Generator as Faker;
-use Website\Models\ENotebook;
-use Website\Models\User;
 
 $factory->define(ENotebook::class, function (Faker $faker) {
     return [

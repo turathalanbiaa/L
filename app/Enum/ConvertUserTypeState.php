@@ -21,8 +21,8 @@ class ConvertUserTypeState
     public static function getStateName($stateNumber)
     {
         switch ($stateNumber) {
-            case self::NOT_ACTIVE:  return "غير مشاهد"; break;
-            case self::ACTIVE:     return "مشاهد";     break;
+            case self::NOT_ACTIVE:  return "غير فعال"; break;
+            case self::ACTIVE:     return "فعال";     break;
         }
 
         return "";

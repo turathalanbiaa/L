@@ -14,8 +14,8 @@ class CreateENotebooksTable extends Migration
     public function up()
     {
         Schema::create('e_notebooks', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
-            $table->integer('user_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->text('title');
             $table->text('content');
             $table->dateTime('created_at');

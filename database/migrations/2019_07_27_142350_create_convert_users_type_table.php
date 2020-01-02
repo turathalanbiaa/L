@@ -14,10 +14,10 @@ class CreateConvertUsersTypeTable extends Migration
     public function up()
     {
         Schema::create('convert_users_type', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->bigInteger('user_id');
             $table->text('message');
             $table->integer('state');
-            $table->date('request_date');
+            $table->date('created_at');
         });
     }
 

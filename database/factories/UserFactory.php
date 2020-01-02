@@ -9,8 +9,8 @@ use App\Enum\Level;
 use App\Enum\ScientificDegree;
 use App\Enum\UserType;
 use App\Enum\VerifyState;
+use App\Models\User;
 use Faker\Generator as Faker;
-use Website\Models\User;
 
 $factory->define(User::class, function (Faker $faker) {
     $type = UserType::getRandomType();

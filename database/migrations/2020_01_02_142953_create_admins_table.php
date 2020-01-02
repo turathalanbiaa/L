@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateStudyCoursesTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateStudyCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('study_courses', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('lang');
-            $table->integer('level');
-            $table->bigInteger('lecturer_id');
-            $table->text('description')->nullable();
+            $table->string('username')->unique();
+            $table->string('password');
             $table->date('created_at');
+            $table->date('last_login_date')->nullable();
+            $table->string("remember_token")->nullable()->unique();
         });
     }
 
@@ -31,6 +32,6 @@ class CreateStudyCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('study_courses');
+        Schema::dropIfExists('admins');
     }
 }
