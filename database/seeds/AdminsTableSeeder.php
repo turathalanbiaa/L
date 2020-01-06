@@ -12,7 +12,7 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Arabic Admin
+        // Arabic AdminRepository
         factory(Admin::class)->create([
             'name' => "عماد وهاب الكعبي",
             'lang' => "ar",
@@ -23,7 +23,7 @@ class AdminsTableSeeder extends Seeder
             'remember_token' => null
         ]);
 
-        // English Admin
+        // English AdminRepository
         factory(Admin::class)->create([
             'name' => "Emad Al-Kabi",
             'lang' => "en",

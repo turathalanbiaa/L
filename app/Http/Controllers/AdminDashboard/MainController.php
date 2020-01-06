@@ -7,18 +7,22 @@ use App\Http\Controllers\Controller;
 
 class MainController extends Controller
 {
-    public function welcome() {
-        return view("admin-dashboard.welcome");
+    public function index()
+    {
+        return view("admin-dashboard.login");
     }
 
-    public function changeLanguage() {
-        if (array_key_exists(request()->input('locale'), Language::LANGUAGES))
-            session()->put('locale', request()->input('locale'));
+    public function changeLanguage()
+    {
+        $locale = request()->input('locale');
+        if (array_key_exists($locale, Language::LANGUAGES))
+            session()->put('adminLocale', $locale);
 
         return redirect()->back();
     }
 
-    public function login() {
-        dd("login");
+    public function dashboard()
+    {
+
     }
 }
