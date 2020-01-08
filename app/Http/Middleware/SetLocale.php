@@ -16,9 +16,10 @@ class SetLocale
 
     public function handle($request, Closure $next)
     {
+        //For admin
         if ($request->is("admin*"))
-            if(session()->has('adminLocale'))
-                app()->setLocale(session('adminLocale'));
+            if(session()->has('eta.admin.lang'))
+                app()->setLocale(session('eta.admin.lang'));
 
         return $next($request);
     }

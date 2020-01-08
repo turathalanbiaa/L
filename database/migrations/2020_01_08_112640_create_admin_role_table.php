@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminsRolesTable extends Migration
+class CreateAdminRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAdminsRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins_roles', function (Blueprint $table) {
+        Schema::create('admin_role', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('admin_id');
             $table->bigInteger('role_id');
@@ -28,6 +28,6 @@ class CreateAdminsRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins_roles');
+        Schema::dropIfExists('admin_role');
     }
 }
