@@ -1,8 +1,20 @@
-@extends('admin-dashboard.layout.app')
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('title') @lang("login.title") @endsection
+    <title>@lang("login.title")</title>
 
-@section('style')
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
+    <!-- Custom Style -->
+    <link href="{{asset("css/custom.css")}}" rel="stylesheet" type="text/css">
+    <!-- Inside Page Styles -->
     <style>
         html, body {
             background-color: #f0f3f9;
@@ -18,21 +30,10 @@
             padding: 0 25px;
             font-weight: 500;
         }
-        @if(app()->getLocale() == "en")
-            body {
-            direction: ltr;
-            text-align: left;
-        }
-        @else
-            body {
-            direction: rtl;
-            text-align: right;
-        }
-        @endif
     </style>
-@endsection
-
-@section('content')
+</head>
+<body>
+    <!-- content -->
     <div class="d-flex justify-content-center align-items-center full-height position-relative">
         <div class="container">
             <div class="row justify-content-center">
@@ -89,4 +90,24 @@
             </div>
         </div>
     </div>
-@endsection
+
+    <!-- Footer -->
+    <footer class="page-footer unique-color-dark">
+        <div class="footer-copyright py-3 text-center" dir="ltr">
+            © 2016 Copyright:
+            <a href="https://www.turathalanbiaa.com" target="_blank">
+                <strong> turathalanbiaa.com</strong>
+            </a>
+        </div>
+    </footer>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+</body>
+</html>

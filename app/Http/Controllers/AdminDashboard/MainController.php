@@ -24,7 +24,7 @@ class MainController extends Controller
     {
         $locale = request()->input('locale');
         if (array_key_exists($locale, Language::LANGUAGES)) {
-            session()->put('admin.lang', $locale);
+            session()->put('eta.admin.lang', $locale);
             session()->save();
         }
 
