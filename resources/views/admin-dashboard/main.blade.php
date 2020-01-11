@@ -6,20 +6,19 @@
 
 @section("style")
     <style>
-        .light-blue-skin .navbar {
-            color: #fff;
-            background-color: #3f5c80;
+        [lang=ar] .fixed-skin nav.fixed-top,
+        [lang=ar] .fixed-skin footer.sticky-bottom,
+        [lang=ar] .fixed-skin main {
+            margin-right: 15rem;
         }
-        [lang=ar] .light-blue-skin .fixed-top {
-             margin-right: 15rem;
-         }
-        [lang=en] .light-blue-skin .fixed-top {
+        [lang=en] .fixed-skin nav.fixed-top,
+        [lang=en] .fixed-skin footer.sticky-bottom,
+        [lang=en] .fixed-skin main {
             margin-left: 15rem;
         }
         .dropdown-default {
             text-align: inherit;
         }
-
         [lang=ar] .dropdown-default {
             right: auto;
             left: 0;
@@ -28,87 +27,25 @@
             right: 0;
             left: auto;
         }
-
-
-
-        .side-nav {
-            position: fixed;
-            top: 0;
-            z-index: 1040;
-            width: 15rem;
-            height: 1000px;
-            padding: 0 0 3.75rem 0;
-            margin: 0;
-            overflow:hidden;
-            list-style-type: none;
-            background-color: #2c2f34;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-            box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-            border-bottom: 2px solid red;
+        footer.sticky-bottom {
+            position: sticky;
+            top: 100%;
         }
-        .skin {
-            background-image: url({{asset("img/sidenav.jpg")}});
-        }
-        .side-nav .sidenav-bg {
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: -1;
-            width: 15rem;
-            background-attachment: fixed;
-        }
-        .rgba-blue-strong {
-            background-color: rgba(33,150,243,0.7);
-        }
-        .light-blue-skin .side-nav .sidenav-bg:after {
-            background: rgba(87,134,180,0.8);
-        }
-        .side-nav .sidenav-bg:after {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            z-index: -1;
-            display: block;
-            width: 100%;
-            height: 100%;
-            padding-bottom: 99999px;
-            margin-bottom: -99999px;
-            content: "";
-        }
-
-        [lang=ar] .main {
-            margin-right: 15rem;
-        }
-
-        [lang=en] .main{
-            margin-left: 15rem;
-        }
-
-
 
         @media screen and (max-width: 992px) {
-            .light-blue-skin .fixed-top {
-                margin: 0!important;
-            }
-
-            .side-nav {
-                display: none;
-            }
-            .main {
-                margin: 0!important;
+            .fixed-skin nav.fixed-top,
+            .fixed-skin footer.sticky-bottom,
+            .fixed-skin main {
+                margin-right: 0!important;
             }
         }
+
+
     </style>
 @endSection
-
 @section("content")
-
-    <nav class="mb-1 navbar fixed-top scrolling-navbar navbar-dark">
+    <!-- Navigation -->
+    <nav class="mb-1 navbar fixed-top scrolling-navbar navbar-dark default-color">
         <a class="navbar-brand" href="javascript:void(0)">Turath Al-Anbiaa</a>
         <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item dropdown">
@@ -134,112 +71,80 @@
         </ul>
     </nav>
 
+    <!-- Side Navigation -->
+    <div class="side-nav" id="mySidenav">
 
-
-
-
-
-
-    <div class="side-nav skin" id="mySidenav">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 1</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 10</h3></div>
-                <div class="col-md-12 text-center"><h3>line 20</h3></div>
-                <div class="col-md-12 text-center"><h3>line 20</h3></div>
-                <div class="col-md-12 text-center"><h3>line 20</h3></div>
-                <div class="col-md-12 text-center"><h3>line 20</h3></div>
-                <div class="col-md-12 text-center"><h3>line 20</h3></div>
-                <div class="col-md-12 text-center"><h3>line 30</h3></div>
-            </div>
-        </div>
-        <div class="sidenav-bg rgba-blue-strong"></div>
     </div>
 
-
-
-    <div class="main">
+    <!-- Main -->
+    <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
-                <div class="col-md-12 text-center"><h2>this is my content of main page </h2></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is first line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is middle line</h3></div>
+                <div class="col-12"><h3 class="text-center bg-light">this is last line</h3></div>
             </div>
         </div>
+    </main>
 
-        <footer class="page-footer unique-color-dark">
-            <div class="footer-copyright py-3 text-center" dir="ltr">
-                © 2016 Copyright:
-                <a href="https://www.turathalanbiaa.com" target="_blank">
-                    <strong> turathalanbiaa.com</strong>
-                </a>
-            </div>
-        </footer>
-    </div>
+    <!-- Footer -->
+    <footer class="page-footer sticky-bottom default-color">
+        <div class="footer-copyright py-3 text-center" dir="ltr">
+            © 2016 Copyright:
+            <a href="https://www.turathalanbiaa.com" target="_blank">
+                <strong> turathalanbiaa.com</strong>
+            </a>
+        </div>
+    </footer>
 @endsection
 
 @section("script")

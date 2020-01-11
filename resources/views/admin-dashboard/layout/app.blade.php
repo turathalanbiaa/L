@@ -17,7 +17,7 @@
     <!-- Inside Page Styles -->
     @yield("style")
 </head>
-<body class="light-blue-skin">
+<body class="fixed-skin">
 
 
 
