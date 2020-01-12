@@ -6,6 +6,10 @@
 
 @section("style")
     <style>
+        .fixed-skin nav,
+        .fixed-skin footer{
+            background-color: #114861;
+        }
         [lang=ar] .fixed-skin nav.fixed-top,
         [lang=ar] .fixed-skin footer.sticky-bottom,
         [lang=ar] .fixed-skin main {
@@ -31,21 +35,56 @@
             position: sticky;
             top: 100%;
         }
-
+        footer.page-footer .footer-copyright {
+            overflow: hidden;
+            color: rgba(255, 255, 255, 0.6);
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .side-nav {
+            position: fixed;
+            z-index: 1040;
+            width: 15rem;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .side-nav-skin {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            background-attachment: fixed;
+            background-position: right;
+            background-repeat: no-repeat no-repeat;
+            background-image: url(http://localhost:8000/img/sidenav.jpg);
+        }
+        .side-nav-content {
+            color: #ffffff;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(21,78,96,0.8);
+        }
+        .side-nav-content::-webkit-scrollbar {
+            width: 1px;
+        }
         @media screen and (max-width: 992px) {
             .fixed-skin nav.fixed-top,
             .fixed-skin footer.sticky-bottom,
             .fixed-skin main {
                 margin-right: 0!important;
             }
+            .side-nav {
+                display: none;
+            }
         }
-
-
     </style>
 @endSection
 @section("content")
     <!-- Navigation -->
-    <nav class="mb-1 navbar fixed-top scrolling-navbar navbar-dark default-color">
+    <nav class="mb-1 navbar fixed-top scrolling-navbar navbar-dark rgba-cyan-dark">
         <a class="navbar-brand" href="javascript:void(0)">Turath Al-Anbiaa</a>
         <ul class="navbar-nav nav-flex-icons">
             <li class="nav-item dropdown">
@@ -73,7 +112,40 @@
 
     <!-- Side Navigation -->
     <div class="side-nav" id="mySidenav">
-
+        <div class="side-nav-skin">
+            <div class="side-nav-content">
+                <h3 class="text-center bg-transparent">first</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">line</h3>
+                <h3 class="text-center bg-transparent">last</h3>
+            </div>
+        </div>
     </div>
 
     <!-- Main -->
@@ -137,7 +209,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="page-footer sticky-bottom default-color">
+    <footer class="page-footer sticky-bottom rgba-cyan-dark">
         <div class="footer-copyright py-3 text-center" dir="ltr">
             © 2016 Copyright:
             <a href="https://www.turathalanbiaa.com" target="_blank">
