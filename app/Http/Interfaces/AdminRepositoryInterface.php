@@ -8,15 +8,15 @@ use App\Models\Admin;
 
 interface AdminRepositoryInterface
 {
-    public function getAdmin($username, $password);
+    public function get($username, $password);
 
-    public function generateToken(Admin $admin);
+    public function updateLoginDate(Admin $admin);
 
     public function generateSession(Admin $admin);
 
     public function generateCookie(Admin $admin);
 
-    public function getAdminByCookie();
+    public function getByCookie();
 
     public function removeCookie();
 }

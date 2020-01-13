@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AdminDashboard;
+namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Enum\Language;
 use App\Http\Controllers\Controller;
@@ -15,9 +15,9 @@ class MainController extends Controller
     public function index()
     {
         if (!Cookie::has("ETA-Admin"))
-            return view("admin-dashboard.login");
+            return view("dashboard.admin.login");
 
-        return redirect()->route("adminDashboard");
+        return view("dashboard.admin.main");
     }
 
     public function changeLanguage()
@@ -37,20 +37,16 @@ class MainController extends Controller
         $password = Request::input('password');
         $rememberMe = Request::input('rememberMe');
 
-        $admin = $adminRepository->getAdmin($username, $password);
+        $admin = $adminRepository->get($username, $password);
 
         if (!$admin)
-            return redirect()->route("adminIndex")
+            return redirect()->route("dashboard.admin")
                 ->withInput()
-                ->with(["error" => __('login.error-message')]);
-
-        if ($rememberMe) {
-            $admin = $adminRepository->generateToken($admin);
-            $adminRepository->generateCookie($admin);
-        }
+                ->with(["error" => __('admin-dashboard/login.error-message')]);
 
         $adminRepository->generateSession($admin);
+        $adminRepository->generateCookie($admin);
 
-        return redirect()->route("adminDashboard");
+        return redirect()->route("dashboard.admin");
     }
 }

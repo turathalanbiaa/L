@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class AdminRepository implements AdminRepositoryInterface
 {
-    public function getAdmin($username, $password)
+    public function get($username, $password)
     {
         // TODO: Implement getAdmin() method.
         $admin = Admin::where('username', $username)
@@ -20,18 +20,18 @@ class AdminRepository implements AdminRepositoryInterface
         return $admin;
     }
 
-    public function generateToken(Admin $admin)
+    public function updateLoginDate(Admin $admin)
     {
-        if (is_null($admin->remember_token)) {
+        // TODO: Implement updateLoginDate() method.
+        if (is_null($admin->remember_token))
             $admin->remember_token = hash_hmac("sha256",md5(microtime(true).mt_Rand()),bcrypt($admin->email));
-            $admin->save();
-        }
-
-        return $admin;
+        $admin->last_login_date = date("Y-m-d");
+        $admin->save();
     }
 
     public function generateSession(Admin $admin)
     {
+        $this->updateLoginDate($admin);
         session()->put('eta.admin.id', $admin->id);
         session()->put('eta.admin.name', $admin->name);
         session()->put('eta.admin.lang', $admin->lang);
@@ -47,7 +47,7 @@ class AdminRepository implements AdminRepositoryInterface
         Cookie::queue(cookie()->forever("ETA-Admin", $admin->remember_token));
     }
 
-    public function getAdminByCookie()
+    public function getByCookie()
     {
         // TODO: Implement getAdminByCookie() method.
         $admin = Admin::where("remember_token", decrypt(Cookie::get("ETA-Admin"), false))

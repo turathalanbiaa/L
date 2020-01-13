@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AdminDashboard;
+namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
@@ -18,6 +18,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view("admin-dashboard.main");
+        return view("admin.main");
     }
 }

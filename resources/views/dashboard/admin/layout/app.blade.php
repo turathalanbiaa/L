@@ -18,14 +18,22 @@
     @yield("style")
 </head>
 <body class="fixed-skin">
+    <!-- Navigation -->
+    @include("dashboard.admin.layout.navigation")
 
+    <!-- Side Navigation -->
+    @include("dashboard.admin.layout.side-navigation")
 
-
-    <!-- Content -->
-    @yield("content")
+    <!-- Main -->
+    <main>
+        @yield("content")
+    </main>
 
     <!-- Extra Content -->
     @yield("extra-content")
+
+    <!-- Footer -->
+    @include("dashboard.admin.layout.footer")
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,7 +43,24 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+    <!-- Custom Script -->
+    <script>
+        $("#showSidenav").click(function () {
+            $("#mySidenav").removeClass("fadeOutRight")
+                .addClass("d-block animated fadeInRight");
+            // document.body.style.backgroundColor = "rgba(33,150,243,0.24)";
+            $(this).addClass("d-none").removeClass("d-block");
+            $("#hideSidenav").addClass("d-block").removeClass("d-none");
+        });
 
+        $("#hideSidenav").click(function () {
+            $("#mySidenav").removeClass("fadeInRight")
+                .addClass("d-none animated fadeOutRight");
+            // document.body.style.backgroundColor = "rgb(255, 255, 255)";
+            $(this).addClass("d-none").removeClass("d-block");
+            $("#showSidenav").addClass("d-block").removeClass("d-none");
+        });
+    </script>
     <!-- Inside Page Scripts -->
     @yield("script")
 </body>

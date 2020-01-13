@@ -7,7 +7,6 @@ return [
 
     'input-username'    => 'اسم المستخدم',
     'input-password'    => 'كلمة المرور',
-    'input-remember-me' => 'تذكرني',
     'btn-login'         => 'تسجيل الدخول',
 
     'error-message' => 'اسم المستخدم او كلمة المرور خطأ.'

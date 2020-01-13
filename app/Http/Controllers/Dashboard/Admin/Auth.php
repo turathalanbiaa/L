@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AdminDashboard;
+namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\AdminRepository;
@@ -14,17 +14,17 @@ class Auth extends Controller
     public static function check()
     {
         if (!Cookie::has("ETA-Admin") && !session()->has("eta.admin.token"))
-            abort(302, '', ['Location' => "/admin"]);
+            abort(302, '', ['Location' => "/dashboard/admin"]);
 
         if (Cookie::has("ETA-Admin") && !session()->has("eta.admin.token")) {
             $adminRepository = new AdminRepository();
-            $admin = $adminRepository->getAdminByCookie();
+            $admin = $adminRepository->getByCookie();
 
             if ($admin)
                 $adminRepository->generateSession($admin);
             else {
                 $adminRepository->removeCookie();
-                abort(302, '', ['Location' => "/admin"]);
+                abort(302, '', ['Location' => "/dashboard/admin"]);
             }
         }
     }
@@ -32,6 +32,6 @@ class Auth extends Controller
     public static function hasRole($role) {
         $roles = session()->get("eta.admin.roles");
         if (!in_array($role, $roles))
-            abort(403, __('auth.error-message'));
+            abort(403, __('admin-dashboard/auth.error-message'));
     }
 }
