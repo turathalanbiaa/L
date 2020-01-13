@@ -4,6 +4,7 @@ namespace Website\Http\Controllers;
 
 use App\Enum\Country;
 use App\Enum\Gender;
+use App\Enum\Language;
 use App\Enum\ScientificDegree;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
@@ -19,15 +20,13 @@ class MainController extends Controller
    {
        // Visitor
        if (!Cookie::has("ETA") && !session()->has("eta"))
-           return view('Website::visitor.index');
+           return view('Website::visitor.index')->with([
+               "languages"=> Language::getList()
+           ]);
 
        // User
        Auth::check();
        return view('Website::user.index');
-   }
-
-   public function changeLanguage() {
-       return redirect("/");
    }
 
     public function createStudentAccount()

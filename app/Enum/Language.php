@@ -6,15 +6,33 @@ namespace App\Enum;
 
 class Language
 {
-    const ARABIC = "ar";
-    const ENGLISH = "en";
+    const LANGUAGES = [
+        "ar"=> "العربية",
+        "en"=> "English"
+    ];
 
     /**
-     * @return int
+     * @param $locale
+     * @return mixed
+     */
+    public static function getLanguageName($locale)
+    {
+        return self::LANGUAGES[$locale];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getList()
+    {
+        return self::LANGUAGES;
+    }
+
+    /**
+     * @return string
      */
     public static function getRandomLanguage()
     {
-        $arrayLangList = array(self::ARABIC, self::ENGLISH);
-        return $arrayLangList[array_rand($arrayLangList)];
+        return (string)array_rand(self::LANGUAGES);
     }
 }
