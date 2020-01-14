@@ -13,5 +13,8 @@ Route::namespace("Dashboard\\Admin")
                     ->name('login');
                 Route::get('/change-language', 'MainController@changeLanguage')
                     ->name('change-language');
+
+
+                //
         });
 });

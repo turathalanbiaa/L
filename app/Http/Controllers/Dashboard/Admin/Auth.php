@@ -32,6 +32,6 @@ class Auth extends Controller
     public static function hasRole($role) {
         $roles = session()->get("eta.admin.roles");
         if (!in_array($role, $roles))
-            abort(403, __('admin-dashboard/auth.error-message'));
+            abort(403, __('dashboard-admin/auth.error-message'));
     }
 }

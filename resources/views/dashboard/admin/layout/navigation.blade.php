@@ -1,5 +1,5 @@
-<nav class="mb-1 navbar fixed-top scrolling-navbar navbar-dark rgba-cyan-dark">
-    <a class="navbar-brand" href="javascript:void(0)">@lang("admin-dashboard/navigation.brand")</a>
+<nav class="mb-1 navbar fixed-top scrolling-navbar navbar-dark blue-gray">
+    <a class="navbar-brand" href="javascript:void(0)">@lang("dashboard-admin/navigation.brand")</a>
     <ul class="navbar-nav nav-flex-icons">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

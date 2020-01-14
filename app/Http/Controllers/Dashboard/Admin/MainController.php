@@ -42,7 +42,7 @@ class MainController extends Controller
         if (!$admin)
             return redirect()->route("dashboard.admin")
                 ->withInput()
-                ->with(["error" => __('admin-dashboard/login.error-message')]);
+                ->with(["error" => __('dashboard-admin/login.error-message')]);
 
         $adminRepository->generateSession($admin);
         $adminRepository->generateCookie($admin);

@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-4">
-                    <h4 class="text-center font-weight-bold mb-4">@lang("admin-dashboard/login.header")</h4>
+                    <h4 class="text-center font-weight-bold mb-4">@lang("dashboard-admin/login.header")</h4>
                     <div class="card mx-3 shadow-sm">
                         <div class="card-body">
                             @if(session("error"))
@@ -50,13 +50,13 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <label class="control-label" for="username">@lang('admin-dashboard/login.input-username')</label>
+                                    <label class="control-label" for="username">@lang('dashboard-admin/login.input-username')</label>
                                     <input type="text" class="form-control form-control-sm" name="username" id="username" value="">
                                     @error('username') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="password">@lang('admin-dashboard/login.input-password')</label>
+                                    <label class="control-label" for="password">@lang('dashboard-admin/login.input-password')</label>
                                     <input type="password" class="form-control form-control-sm" name="password" id="password" value="">
                                     @error('password') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
@@ -64,7 +64,7 @@
                                 <div class="form-group pt-2">
                                     <div>
                                         <button type="submit" class="btn btn-block btn-default">
-                                            @lang('admin-dashboard/login.btn-login')
+                                            @lang('dashboard-admin/login.btn-login')
                                         </button>
                                     </div>
                                 </div>
