@@ -14,7 +14,8 @@ Route::namespace("Dashboard\\Admin")
                 Route::get('/change-language', 'MainController@changeLanguage')
                     ->name('change-language');
 
-
-                //
+                Route::resources([
+                    'users' => 'UserController',
+                ]);
         });
 });

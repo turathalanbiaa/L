@@ -4,9 +4,7 @@
             <div class="d-flex justify-content-center pt-2">
                 <img src="{{asset('img/dashboard/admin/logo-white.png')}}" alt="logo for brand">
             </div>
-
             <hr class="hr-light"/>
-
             <div class="accordion main-list" id="accordion">
                 <div class="list-item">
                     <div class="list-item-header collapsed" id="heading-1" data-toggle="collapse" data-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
@@ -21,7 +19,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="list-item">
                     <div class="list-item-header collapsed" id="heading-2" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
                         <div class="d-flex align-items-baseline">
@@ -31,10 +28,10 @@
                     </div>
                     <div class="list-item-body collapse" id="collapse-2" aria-labelledby="heading-2" data-parent="#accordion">
                         <div class="sup-list">
-                            <a class="list-item">
+                            <a class="list-item" href="{{route("dashboard.admin.users.index",["type"=>App\Enum\UserType::STUDENT])}}">
                                 @lang("dashboard-admin/side-navigation.item-2-1")
                             </a>
-                            <a class="list-item">
+                            <a class="list-item" href="{{route("dashboard.admin.users.index",["type"=>App\Enum\UserType::LISTENER])}}">
                                 @lang("dashboard-admin/side-navigation.item-2-2")
                             </a>
                             <a class="list-item">

@@ -3,29 +3,38 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\UserRepository;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $userRepository;
+
     /**
      * UserController constructor.
+     * @param UserRepository $userRepository
+     * @param Auth $auth
      */
-    public function __construct()
+    public function __construct(UserRepository $userRepository, Auth $auth)
     {
-        Auth::check();
-        Auth::hasRole("User");
+        $auth->check();
+        $auth->hasRole("User");
+        $this->userRepository = $userRepository;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function index()
     {
-        $users = User::all();
-        dd($users);
+        $type = request()->input("type");
+        $users = $this->userRepository->getAllUsersByType($type);
+
+        return view("dashboard.admin.user.index")->with([
+            "users" => $users
+        ]);
     }
 
     /**

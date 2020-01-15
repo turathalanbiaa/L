@@ -8,9 +8,7 @@ use App\Models\Admin;
 
 interface AdminRepositoryInterface
 {
-    public function get($username, $password);
-
-    public function updateLoginDate(Admin $admin);
+    public function getAdmin($username, $password);
 
     public function generateSession(Admin $admin);
 
