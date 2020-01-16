@@ -23,3 +23,21 @@
         </li>
     </ul>
 </nav>
+
+<script>
+    $("#showSidenav").click(function () {
+        $("#mySidenav").removeClass("fadeOutRight")
+            .addClass("d-block animated fadeInRight");
+        // document.body.style.backgroundColor = "rgba(33,150,243,0.24)";
+        $(this).addClass("d-none").removeClass("d-block");
+        $("#hideSidenav").addClass("d-block").removeClass("d-none");
+    });
+
+    $("#hideSidenav").click(function () {
+        $("#mySidenav").removeClass("fadeInRight")
+            .addClass("d-none animated fadeOutRight");
+        // document.body.style.backgroundColor = "rgb(255, 255, 255)";
+        $(this).addClass("d-none").removeClass("d-block");
+        $("#showSidenav").addClass("d-block").removeClass("d-none");
+    });
+</script>

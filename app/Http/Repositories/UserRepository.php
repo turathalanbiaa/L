@@ -19,9 +19,9 @@ class UserRepository implements UserRepositoryInterface
         $this->user = $user;
     }
 
-    public function getAllUsersByType($type)
+    public function getUsersByType($type)
     {
-        // TODO: Implement getAllStudents() method.
+        // TODO: Implement getUsersByType() method.
         $users = $this->user
             ->where('type', $type)
             ->where('lang', $this->lang)
@@ -33,7 +33,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function getUserById($id)
     {
-        // TODO: Implement getUser() method.
+        // TODO: Implement getUserById() method.
         $user = $this->user
             ->where('id', $id)
             ->where('lang', $this->lang)

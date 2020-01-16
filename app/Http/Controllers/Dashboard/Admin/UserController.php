@@ -30,9 +30,10 @@ class UserController extends Controller
     public function index()
     {
         $type = request()->input("type");
-        $users = $this->userRepository->getAllUsersByType($type);
+        $users = $this->userRepository->getUsersByType($type);
 
         return view("dashboard.admin.user.index")->with([
+            "type"  => $type,
             "users" => $users
         ]);
     }
