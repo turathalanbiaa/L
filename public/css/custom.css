@@ -33,6 +33,7 @@
 }
 main {
     margin-top: 74px;
+    padding: 16px 0;
 }
 .dropdown-default {
     text-align: inherit;
@@ -163,4 +164,31 @@ footer.page-footer .footer-copyright {
 }
 [lang=en] .sup-list .list-item:hover {
     margin-left: 15px;
+}
+[lang="ar"] table.dataTable thead>tr>th.sorting_asc,
+[lang="ar"] table.dataTable thead>tr>th.sorting_desc,
+[lang="ar"] table.dataTable thead>tr>th.sorting,
+[lang="ar"] table.dataTable thead>tr>td.sorting_asc,
+[lang="ar"] table.dataTable thead>tr>td.sorting_desc,
+[lang="ar"] table.dataTable thead>tr>td.sorting {
+    padding-right: 12px;
+    padding-left: 30px;
+}
+[lang="ar"] table.dataTable thead .sorting:before,
+[lang="ar"] table.dataTable thead .sorting_asc:before,
+[lang="ar"] table.dataTable thead .sorting_desc:before,
+[lang="ar"] table.dataTable thead .sorting_asc_disabled:before,
+[lang="ar"] table.dataTable thead .sorting_desc_disabled:before {
+    left: 1em;
+    right: auto;
+    content: "\2191";
+}
+[lang="ar"] table.dataTable thead .sorting:after,
+[lang="ar"] table.dataTable thead .sorting_asc:after,
+[lang="ar"] table.dataTable thead .sorting_desc:after,
+[lang="ar"] table.dataTable thead .sorting_asc_disabled:after,
+[lang="ar"] table.dataTable thead .sorting_desc_disabled:after {
+    left: 0.5em;
+    right: auto;
+    content: "\2193";
 }

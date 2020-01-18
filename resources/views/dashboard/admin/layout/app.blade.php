@@ -37,7 +37,7 @@
     @include("dashboard.admin.layout.side-navigation")
 
     <!-- Main -->
-    <main class="py-3">
+    <main>
         @yield("content")
     </main>
 

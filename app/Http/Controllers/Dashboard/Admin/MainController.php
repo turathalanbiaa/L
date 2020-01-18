@@ -9,6 +9,8 @@ use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 
@@ -44,9 +46,9 @@ class MainController extends Controller
     public function changeLanguage()
     {
         $locale = request()->input('locale');
-        $languages = Language::LANGUAGES;
+        $languages = Language::getLanguages();
 
-        if (array_key_exists($locale, $languages)) {
+        if (in_array($locale, $languages)) {
             session()->put('eta.admin.lang', $locale);
             session()->save();
         }

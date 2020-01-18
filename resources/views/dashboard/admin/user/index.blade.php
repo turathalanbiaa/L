@@ -5,45 +5,27 @@
 @endsection
 
 @section("style")
-<style>
-    [lang="ar"] table.dataTable thead>tr>th.sorting_asc,
-    [lang="ar"] table.dataTable thead>tr>th.sorting_desc,
-    [lang="ar"] table.dataTable thead>tr>th.sorting,
-    [lang="ar"] table.dataTable thead>tr>td.sorting_asc,
-    [lang="ar"] table.dataTable thead>tr>td.sorting_desc,
-    [lang="ar"] table.dataTable thead>tr>td.sorting {
-        padding-right: 12px;
-        padding-left: 30px;
-    }
-
-    [lang="ar"] table.dataTable thead .sorting:before,
-    [lang="ar"] table.dataTable thead .sorting_asc:before,
-    [lang="ar"] table.dataTable thead .sorting_desc:before,
-    [lang="ar"] table.dataTable thead .sorting_asc_disabled:before,
-    [lang="ar"] table.dataTable thead .sorting_desc_disabled:before {
-        left: 1em;
-        right: auto;
-        content: "\2191";
-    }
-
-    [lang="ar"] table.dataTable thead .sorting:after,
-    [lang="ar"] table.dataTable thead .sorting_asc:after,
-    [lang="ar"] table.dataTable thead .sorting_desc:after,
-    [lang="ar"] table.dataTable thead .sorting_asc_disabled:after,
-    [lang="ar"] table.dataTable thead .sorting_desc_disabled:after {
-        left: 0.5em;
-        right: auto;
-        content: "\2193";
-    }
-</style>
 @endsection
 
 @section("content")
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-{{--                @if($type)--}}
-               @include("dashboard.admin.user.components.student-datatable")
+            <div class="col-12 align-items-center">
+                @if($type == App\Enum\UserType::STUDENT)
+                    @component("dashboard.admin.user.components.student-datatable", ["users" => $users])
+                        @slot('modelInfo')
+                            modalInfo
+                        @endslot
+
+                        @slot('modelEdit')
+                            modelEdit
+                        @endslot
+                    @endcomponent
+                @else
+                    @component("dashboard.admin.user.components.listener-datatable", ["users" => $users])
+
+                    @endcomponent
+                @endif
             </div>
         </div>
     </div>
@@ -54,9 +36,9 @@
 @endsection
 
 @section("extra-content")
-    <!-- Central Modal Medium Success -->
-    <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-notify modal-success" role="document">
+    <!-- Modal Info -->
+    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-info" role="document">
             <!--Content-->
             <div class="modal-content">
                 <!--Header-->

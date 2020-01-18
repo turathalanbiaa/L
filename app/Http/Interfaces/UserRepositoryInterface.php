@@ -6,7 +6,7 @@ namespace App\Http\Interfaces;
 
 interface UserRepositoryInterface
 {
-    public function getUsersByType($type);
+    public function getUsersByType($type, $columns = array());
 
     public function getUserById($id);
 

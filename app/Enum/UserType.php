@@ -14,10 +14,16 @@ class UserType
     const STUDENT = 1;
     const LISTENER = 2;
 
-    /**
-     * @param $typeNumber
-     * @return string
-     */
+    public static function getTypes() {
+        return array(self::STUDENT, self::LISTENER);
+    }
+
+    public static function getRandomType()
+    {
+        $arrayTypeList = self::getTypes();
+        return (integer)$arrayTypeList[array_rand($arrayTypeList)];
+    }
+
     public static function getTypeName($typeNumber)
     {
         switch ($typeNumber)
@@ -27,14 +33,5 @@ class UserType
         }
 
         return "Nothing";
-    }
-
-    /**
-     * @return int
-     */
-    public static function getRandomType()
-    {
-       $arrayTypeList = array(self::STUDENT, self::LISTENER);
-       return (integer)$arrayTypeList[array_rand($arrayTypeList)];
     }
 }
