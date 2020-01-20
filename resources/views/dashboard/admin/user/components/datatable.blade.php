@@ -16,20 +16,23 @@
     </thead>
     <tbody>
     @foreach($users as $user)
-        <tr data-row="{{base64_encode($user->id)}}">
+        <tr data-row="{{base64_encode($user->email)}}">
             <td class="text-center">{{$user->id}}</td>
             <td>{{$user->name}}</td>
-            <td>{{$user->level}}</td>
+            <td>{{$user->stage}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
-            <td>{{$user->verify_state}}</td>
+            <td>{{$user->state}}</td>
             <td class="text-center">
-                <button type="button" class="btn btn-ins btn-default btn-sm mx-1"
-                        data-toggle="modal" data-target="#{{$modelInfo}}">
-                    <i class="far fa-eye"></i>
-                </button>
-                <button type="button" class="btn btn-primary btn-sm mx-1" {{$modelEdit}}><i class="far fa-edit"></i></button>
-                <button type="button" class="btn btn-danger btn-sm mx-1"><i class="far fa-trash-alt"></i></button>
+                <div class="btn-group" role="button" aria-label="user actions">
+                    <button type="button" class="btn btn-info btn-sm mx-1"
+                            data-toggle="modal" data-target="#{{$btnInfoTargetModal}}">
+                        <i class="far fa-eye"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm mx-1"><i class="fas fa-tv"></i></button>
+                    <button type="button" class="btn btn-primary btn-sm mx-1"><i class="far fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger btn-sm mx-1"><i class="far fa-trash-alt"></i></button>
+                </div>
             </td>
         </tr>
     @endforeach

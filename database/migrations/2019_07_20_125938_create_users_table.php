@@ -1,6 +1,6 @@
 <?php
 
-use App\Enum\VerifyState;
+use App\Enum\UserState;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -17,21 +17,21 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('type');
+            $table->tinyInteger('type');
             $table->string('lang');
-            $table->integer('level')->nullable();
+            $table->tinyInteger('stage')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');
-            $table->integer('gender');
+            $table->tinyInteger('gender');
             $table->string('country');
             $table->string('image')->nullable();
-            $table->date('birthdate')->nullable();
+            $table->date('birth_date')->nullable();
             $table->string('address')->nullable();
-            $table->integer('scientific_degree')->nullable();
+            $table->tinyInteger('certificate')->nullable();
             $table->date('created_at');
-            $table->date('last_login_date')->nullable();
-            $table->string("verify_state")->default(VerifyState::NOT_ACTIVE);
+            $table->date('last_login')->nullable();
+            $table->tinyInteger("state")->default(UserState::INACTIVE);
             $table->string("remember_token")->unique()->nullable();
         });
     }

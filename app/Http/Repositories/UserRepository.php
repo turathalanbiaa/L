@@ -5,6 +5,7 @@ namespace App\Http\Repositories;
 
 use App\Http\Interfaces\UserRepositoryInterface;
 use App\Models\User;
+use phpDocumentor\Reflection\Types\Integer;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -20,16 +21,20 @@ class UserRepository implements UserRepositoryInterface
     public function getUsersByType($type, $columns = array())
     {
         // TODO: Implement getUsersByType() method.
-        $users = $this->user
-            ->where('type', $type)
-            ->where('lang', $this->lang)
-            ->orderBy('id')
-            ->get(array());
+        $users = is_null($columns)?
+            $this->user
+                ->where('type', $type)
+                ->where('lang', $this->lang)
+                ->orderBy('id')
+                ->get($columns) :
+            $this->user
+                ->where('type', $type)
+                ->where('lang', $this->lang)
+                ->orderBy('id')
+                ->get();
 
         return $users;
     }
-
-
 
     public function getUserById($id)
     {

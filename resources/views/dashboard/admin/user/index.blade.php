@@ -11,63 +11,101 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 align-items-center">
-                @if($type == App\Enum\UserType::STUDENT)
-                    @component("dashboard.admin.user.components.student-datatable", ["users" => $users])
-                        @slot('modelInfo')
-                            modalInfo
-                        @endslot
-
-                        @slot('modelEdit')
-                            modelEdit
-                        @endslot
-                    @endcomponent
-                @else
-                    @component("dashboard.admin.user.components.listener-datatable", ["users" => $users])
-
-                    @endcomponent
-                @endif
+                @component("dashboard.admin.user.components.datatable", ["users" => $users])
+                    @slot('btnInfoTargetModal') userModalInfo @endslot
+                @endcomponent
             </div>
         </div>
     </div>
-@endsection
-
-@section("script")
-
 @endsection
 
 @section("extra-content")
-    <!-- Modal Info -->
-    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-notify modal-info" role="document">
-            <!--Content-->
-            <div class="modal-content">
-                <!--Header-->
-                <div class="modal-header">
-                    <p class="heading lead">Modal Success</p>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="white-text">&times;</span>
-                    </button>
+    @component("dashboard.admin.user.components.modal")
+        @slot('id') userModalInfo @endslot
+        @slot('type') modal-info @endslot
+        @slot('header') @lang('dashboard-admin/user.index.modal.delete.header') @endslot
+        @slot('body')
+            <div class="row">
+                <div class="col-3 text-center">
+                    <img class="img-fluid z-depth-1-half rounded-circle" src="{{Storage::url($users[1]->image)}}" alt="user image" >
+                    <p class="mt-3">{{$users[1]->name}}</p>
                 </div>
 
-                <!--Body-->
-                <div class="modal-body">
-                    <div class="text-center">
-                        <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis
-                            ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim,
-                            ab officiis totam.</p>
-                    </div>
-                </div>
-
-                <!--Footer-->
-                <div class="modal-footer justify-content-center">
-                    <a type="button" class="btn btn-success">Get it now <i class="far fa-gem ml-1 text-white"></i></a>
-                    <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No, thanks</a>
+                <div class="col-9">
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.stage') : </strong>
+                        <span>{{App\Enum\Stage::getStageName($users[1]->stage)}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.email') : </strong>
+                        <span>{{$users[1]->email}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.phone') : </strong>
+                        <span>{{$users[1]->phone}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.certificate') : </strong>
+                        <span>{{App\Enum\Certificate::getCertificateName($users[1]->certificate)}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.gender') : </strong>
+                        <span>{{App\Enum\Gender::getGenderName($users[1]->gender)}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.country') : </strong>
+                        <span>{{App\Enum\Country::getCountryName($users[1]->country)}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.birth-date') : </strong>
+                        <span>{{$users[1]->birth_date}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.created-at') : </strong>
+                        <span>{{$users[1]->created_at}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.last-login') : </strong>
+                        <span>{{$users[1]->last_login}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.state') : </strong>
+                        <span>{{App\Enum\UserState::getStateName($users[1]->state)}}</span>
+                    </p>
+                    <p class="card-text">
+                        <strong>@lang('dashboard-admin/user.column.address') : </strong>
+                        <span>{{$users[1]->address}}</span>
+                    </p>
                 </div>
             </div>
-            <!--/.Content-->
-        </div>
-    </div>
-    <!-- Central Modal Medium Success-->
+        @endslot
+        @slot('footer')
+            <a type="button" class="btn btn-info">
+                @lang('dashboard-admin/user.index.modal.delete.btn-more-info')
+            </a>
+            <a type="button" class="btn btn-outline-info" data-dismiss="modal">
+                @lang('dashboard-admin/user.index.modal.delete.btn-dismiss')
+            </a>
+        @endslot
+    @endcomponent
+@endsection
+
+@section("script")
+    <script>
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'get',
+            url: '{{route("dashboard.admin.users.show",["user" => 1])}}',
+            data: {simple:true},
+            datatype: 'json',
+            success: function(data) {
+                let state = data['state'];
+                let user = data['user'];
+            },
+            error: function() {} ,
+            complete : function() {}
+        });
+    </script>
 @endsection

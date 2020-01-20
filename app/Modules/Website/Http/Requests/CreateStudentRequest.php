@@ -4,7 +4,7 @@ namespace Website\Http\Requests;
 
 use App\Enum\Country;
 use App\Enum\Gender;
-use App\Enum\ScientificDegree;
+use App\Enum\Certificate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -35,7 +35,7 @@ class CreateStudentRequest extends FormRequest
             "address" => "required",
             "birthdate" => "required|date_format:Y-m-d|before_or_equal:".date('Y-m-d', strtotime('-15 years')),
             "gender" => ["required", Rule::in(Gender::getList())],
-            "scientificDegree" => ["required", Rule::in(ScientificDegree::getList())],
+            "scientificDegree" => ["required", Rule::in(Certificate::getList())],
             "country" => ["required", Rule::in(Country::getList())],
         ];
     }

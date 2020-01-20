@@ -2,9 +2,9 @@
 
 namespace Website\Http\Repositories;
 
-use App\Enum\Level;
+use App\Enum\Stage;
 use App\Enum\UserType;
-use App\Enum\VerifyState;
+use App\Enum\UserState;
 use Illuminate\Support\Facades\Cookie;
 use Website\Http\Interfaces\UserRepositoryInterface;
 use Website\Http\Requests\CreateListenerRequest;
@@ -19,7 +19,7 @@ class UserRepository implements UserRepositoryInterface
         $student->name = $request->name;
         $student->type = UserType::STUDENT;
         $student->lang = app()->getLocale();
-        $student->level = Level::BEGINNER;
+        $student->level = Stage::BEGINNER;
         $student->email = $request->email;
         $student->phone = $request->phone;
         $student->password = md5($request->password);
@@ -31,7 +31,7 @@ class UserRepository implements UserRepositoryInterface
         $student->scientific_degree = $request->scientific_degree;
         $student->register_date = date("Y-m-d");
         $student->last_login_date = date("Y-m-d");
-        $student->verify_state = VerifyState::NOT_ACTIVE;
+        $student->verify_state = UserState::NOT_ACTIVE;
         $student->remember_token = hash_hmac("sha256",md5(microtime(true).mt_Rand()),bcrypt($request->email));
         $student->save();
 
@@ -56,7 +56,7 @@ class UserRepository implements UserRepositoryInterface
         $listener->scientific_degree = null;
         $listener->register_date = date("Y-m-d");
         $listener->last_login_date = date("Y-m-d");
-        $listener->verify_state = VerifyState::NOT_ACTIVE;
+        $listener->verify_state = UserState::NOT_ACTIVE;
         $listener->remember_token = hash_hmac("sha256",md5(microtime(true).mt_Rand()),bcrypt($request->email));
         $listener->save();
 

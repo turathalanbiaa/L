@@ -11,11 +11,11 @@ class User extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'type', 'level',
+        'name', 'type', 'stage',
         'email', 'phone', 'password',
         'gender', 'country', 'image',
-        'birthdate', 'address', 'scientific_degree',
-        'register_date', 'last_login_date', 'verify_state',
+        'birth_date', 'address', 'scientific_degree',
+        'register_date', 'last_login', 'state',
         'remember_token'
     ];
 }

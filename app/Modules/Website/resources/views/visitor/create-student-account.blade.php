@@ -82,12 +82,12 @@
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <div class="md-form dropdown">
-                                            <input type="text" name="scientificDegree" id="dropdown-scientific-degree" class="form-control" value="{{\App\Enum\ScientificDegree::getScientificDegreeName(old("scientificDegree"))}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <input type="text" name="scientificDegree" id="dropdown-scientific-degree" class="form-control" value="{{\App\Enum\Certificate::getScientificDegreeName(old("scientificDegree"))}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <label for="dropdown-scientific-degree">الشهادة العلمية</label>
                                             @error('scientificDegree') <div class="text-warning">{{ $message }}</div> @enderror
                                             <div class="dropdown-menu dropdown-turath w-100 mt-3" aria-labelledby="dropdown-scientific-degree" id="dropdown-scientific-degree-menu">
                                                 @foreach($scientificDegreeList as $scientificDegree)
-                                                    <div class="dropdown-item" data-value="{{$scientificDegree}}" data-text="{{\App\Enum\ScientificDegree::getScientificDegreeName($scientificDegree)}}">{{\App\Enum\ScientificDegree::getScientificDegreeName($scientificDegree)}}</div>
+                                                    <div class="dropdown-item" data-value="{{$scientificDegree}}" data-text="{{\App\Enum\Certificate::getScientificDegreeName($scientificDegree)}}">{{\App\Enum\Certificate::getScientificDegreeName($scientificDegree)}}</div>
                                                 @endforeach
                                             </div>
                                         </div>

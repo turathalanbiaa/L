@@ -26,6 +26,7 @@ class Language
 
     public static function getRandomLanguage()
     {
-        return (string)array_rand(self::getLanguages());
+        $languages = self::getLanguages();
+        return (string)$languages[array_rand($languages)];
     }
 }

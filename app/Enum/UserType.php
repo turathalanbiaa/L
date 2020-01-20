@@ -18,20 +18,31 @@ class UserType
         return array(self::STUDENT, self::LISTENER);
     }
 
-    public static function getRandomType()
+    public static function getTypeName($type)
     {
-        $arrayTypeList = self::getTypes();
-        return (integer)$arrayTypeList[array_rand($arrayTypeList)];
-    }
+        $locale = app()->getLocale();
+        switch ($locale) {
+            case Language::ARABIC:
+                switch ($type) {
+                    case self::STUDENT:  return "طالب";  break;
+                    case self::LISTENER: return "مستمع"; break;
+                }
+                break;
 
-    public static function getTypeName($typeNumber)
-    {
-        switch ($typeNumber)
-        {
-            case self::STUDENT:  return "طالب";  break;
-            case self::LISTENER: return "مستمع"; break;
+            case Language::ENGLISH :
+                switch ($type) {
+                    case self::STUDENT:  return "Student";  break;
+                    case self::LISTENER: return "Listener"; break;
+                }
+                break;
         }
 
-        return "Nothing";
+        return "unknown";
+    }
+
+    public static function getRandomType()
+    {
+        $types = self::getTypes();
+        return (integer)$types[array_rand($types)];
     }
 }

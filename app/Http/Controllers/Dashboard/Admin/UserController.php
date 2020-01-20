@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
+use App\Enum\UserType;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
 use App\Models\User;
+use function MongoDB\BSON\toJSON;
 
 class UserController extends Controller
 {
@@ -30,7 +32,7 @@ class UserController extends Controller
     public function index()
     {
         $type = request()->input("type");
-        $users = $this->userRepository->getUsersByType($type);
+        $users = $this->userRepository->getUsersByType($type, ['id', 'name', 'email', 'phone', 'stage', 'state']);
 
         return view("dashboard.admin.user.index")->with([
             "type"  => $type,
@@ -68,8 +70,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
-        dd("display rhe user");
+        if (request()->input('simple'))
+            return response()->json([
+                'state' => true,
+                'user' => $user
+            ]);
     }
 
     /**

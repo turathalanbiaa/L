@@ -256,26 +256,16 @@ class Country
         "WF" =>'واليس وفوتونا'
     ];
 
-    /**
-     * @param $countryKey
-     * @return mixed
-     */
-    public static function getCountryName($countryKey)
+    public static function getCountryName($country)
     {
-        return self::COUNTRIES[$countryKey];
+        return self::COUNTRIES[$country];
     }
 
-    /**
-     * @return array
-     */
-    public static function getList()
+    public static function getCountries()
     {
         return self::COUNTRIES;
     }
 
-    /**
-     * @return string
-     */
     public static function getRandomCountry()
     {
         return (string)array_rand(self::COUNTRIES);

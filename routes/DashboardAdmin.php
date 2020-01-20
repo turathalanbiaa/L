@@ -22,6 +22,5 @@ Route::namespace("Dashboard\\Admin")
                         'index'
                     ]
                 ])->middleware('filter:user-type');
-
         });
 });

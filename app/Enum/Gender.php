@@ -14,38 +14,41 @@ class Gender
     const MALE = 1;
     const FEMALE = 2;
 
-    public static function getList()
+    public static function getGenders()
     {
-        return [
+        return array(
             self::MALE,
             self::FEMALE
-        ];
+        );
     }
 
-    /**
-     * @param $genderNumber
-     * @return string
-     */
-    public static function getGenderName($genderNumber)
+    public static function getGenderName($gender)
     {
-        switch ($genderNumber)
-        {
-            case self::MALE:   return "ذكر";  break;
-            case self::FEMALE: return "انثى"; break;
+        $locale = app()->getLocale();
+        switch ($locale) {
+            case Language::ARABIC:
+                switch ($gender)
+                {
+                    case self::MALE:   return "ذكر";  break;
+                    case self::FEMALE: return "انثى"; break;
+                }
+                break;
+            case Language::ENGLISH:
+                switch ($gender)
+                {
+                    case self::MALE:   return "Male";   break;
+                    case self::FEMALE: return "Female"; break;
+                }
+                break;
         }
 
-        return "";
+        return "unknown";
     }
 
-    /**
-     * @return int
-     */
     public static function getRandomGender()
     {
-        $arrayGenderList = array(
-            self::MALE,
-            self::FEMALE);
+        $genders = self::getGenders();
 
-        return (integer)$arrayGenderList[array_rand($arrayGenderList)];
+        return (integer)$genders[array_rand($genders)];
     }
 }
