@@ -64,7 +64,7 @@ class Certificate
                 break;
         }
 
-        return "unknown";
+        return "";
     }
 
     public static function getRandomCertificate()

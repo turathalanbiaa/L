@@ -42,7 +42,7 @@ class UserRepository implements UserRepositoryInterface
         $user = $this->user
             ->where('id', $id)
             ->where('lang', $this->lang)
-            ->get();
+            ->first();
 
         return $user;
     }

@@ -47,7 +47,7 @@ class Stage
                 break;
         }
 
-        return "unknown";
+        return "";
     }
 
     public static function getStages() {

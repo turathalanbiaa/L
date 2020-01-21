@@ -2,12 +2,11 @@
     <thead class="blue-gray-darken-1 text-white">
     <tr>
         <th rowspan="2" class="align-middle text-center sorting_asc_disabled sorting_desc_disabled">رقم</th>
-        <th colspan="5" class="text-center">الطلاب المسجلين في المعهد</th>
+        <th colspan="4" class="text-center">الطلاب المسجلين في المعهد</th>
         <th colspan="1" class="text-center">اضافة طالب</th>
     </tr>
     <tr>
         <th>الاسم</th>
-        <th>المرحلة</th>
         <th>البريد الالكتروني</th>
         <th>الهاتف</th>
         <th>الحالة</th>
@@ -16,23 +15,21 @@
     </thead>
     <tbody>
     @foreach($users as $user)
-        <tr data-row="{{base64_encode($user->email)}}">
-            <td class="text-center">{{$user->id}}</td>
+        <tr>
+            <td class="text-center">{{$loop->iteration}}</td>
             <td>{{$user->name}}</td>
-            <td>{{$user->stage}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
             <td>{{$user->state}}</td>
-            <td class="text-center">
-                <div class="btn-group" role="button" aria-label="user actions">
-                    <button type="button" class="btn btn-info btn-sm mx-1"
-                            data-toggle="modal" data-target="#{{$btnInfoTargetModal}}">
-                        <i class="far fa-eye"></i>
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm mx-1"><i class="fas fa-tv"></i></button>
-                    <button type="button" class="btn btn-primary btn-sm mx-1"><i class="far fa-edit"></i></button>
-                    <button type="button" class="btn btn-danger btn-sm mx-1"><i class="far fa-trash-alt"></i></button>
-                </div>
+            <td class="text-center" data-content="{{base64_encode($user->id)}}">
+                <button type="button" class="btn btn-info btn-sm mx-1" data-action="{{$actionBtnSimpleShow}}">
+                    <i class="far fa-address-card"></i>
+                </button>
+                <a class="btn btn-secondary btn-sm mx-1" href="{{route("dashboard.admin.users.show",["user" => $user->id])}}">
+                    <i class="far fa-eye"></i>
+                </a>
+                <button type="button" class="btn btn-primary btn-sm mx-1"><i class="far fa-edit"></i></button>
+                <button type="button" class="btn btn-danger btn-sm mx-1"><i class="far fa-trash-alt"></i></button>
             </td>
         </tr>
     @endforeach
@@ -42,7 +39,7 @@
     $(document).ready( function () {
         $('#users').DataTable( {
             columnDefs: [{
-                targets: [0,6],
+                targets: [0,5],
                 orderable: false
             }],
             @if(app()->getLocale() == App\Enum\Language::ARABIC)

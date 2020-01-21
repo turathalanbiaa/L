@@ -22,5 +22,7 @@ Route::namespace("Dashboard\\Admin")
                         'index'
                     ]
                 ])->middleware('filter:user-type');
+                // Ajax
+                Route::get('users/ajax/simple-show','UserController@simpleShow');
         });
 });

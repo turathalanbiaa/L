@@ -12,21 +12,22 @@ return [
         'gender' => 'الجنس',
         'country' => 'البلد',
         'image' => 'الصورة',
-        'birth-date' => 'تاريخ الميلاد',
+        'birth_date' => 'تاريخ الميلاد',
         'address' => 'العنوان',
         'certificate' => 'الشهادة',
-        'created-at' => 'تاريخ انشاء الحساب',
-        'last-login' => 'أخر تسجيل دخول',
+        'created_at' => 'تاريخ انشاء الحساب',
+        'last_login' => 'أخر تسجيل دخول',
         'state' => 'الحالة',
-        'remember-token' => 'الرمز',
+        'remember_token' => 'الرمز',
     ],
 
     'index' => [
         'title' => 'المستخدمين',
         'modal' => [
-            'delete' => [
+            'simple-show' => [
                 'header' => 'معلومات حساب المستخدم',
-                'btn-more-info' => 'عرض ملف المستخدم',
+                'message' => 'المستخدم غير موجود',
+                'btn-show' => 'عرض ملف المستخدم',
                 'btn-dismiss' => "لا شكرا"
             ]
         ]
