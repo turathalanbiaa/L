@@ -17,12 +17,18 @@ return [
         'certificate' => 'الشهادة',
         'created_at' => 'تاريخ انشاء الحساب',
         'last_login' => 'أخر تسجيل دخول',
+        'last_login_null' => 'لم يسجل',
         'state' => 'الحالة',
         'remember_token' => 'الرمز',
+        'null' => 'لا توجد بيانات'
     ],
 
     'index' => [
         'title' => 'المستخدمين',
+        'datatable' => [
+            'title' => 'الطلاب المسجلين في المعهد',
+            'btn-create' => 'اضافة مستخدم'
+        ],
         'modal' => [
             'simple-show' => [
                 'header' => 'معلومات حساب المستخدم',

@@ -1,28 +1,37 @@
 <table class="table table-hover table-responsive-xl w-100 btn-table" id="users">
     <thead class="blue-gray-darken-1 text-white">
     <tr>
-        <th rowspan="2" class="align-middle text-center sorting_asc_disabled sorting_desc_disabled">رقم</th>
-        <th colspan="4" class="text-center">الطلاب المسجلين في المعهد</th>
-        <th colspan="1" class="text-center">اضافة طالب</th>
+        <th rowspan="2" class="align-bottom">
+            @lang("dashboard-admin/user.column.id")
+        </th>
+        <th colspan="4" class="align-middle text-center">
+            @lang("dashboard-admin/user.index.datatable.title")
+        </th>
+        <th colspan="1" class="text-center">
+            <a class="btn btn-link text-decoration-none text-white" type="button" href="{{route("dashboard.admin.users.create")}}">
+                <i class="fa fa-plus light-green-text mx-1"></i>
+                @lang("dashboard-admin/user.index.datatable.btn-create")
+            </a>
+        </th>
     </tr>
     <tr>
-        <th>الاسم</th>
-        <th>البريد الالكتروني</th>
-        <th>الهاتف</th>
-        <th>الحالة</th>
-        <th class="text-center">Actions</th>
+        <th>@lang("dashboard-admin/user.column.name")</th>
+        <th>@lang("dashboard-admin/user.column.email")</th>
+        <th>@lang("dashboard-admin/user.column.phone")</th>
+        <th>@lang("dashboard-admin/user.column.state")</th>
+        <th class="text-center"></th>
     </tr>
     </thead>
     <tbody>
     @foreach($users as $user)
         <tr>
-            <td class="text-center">{{$loop->iteration}}</td>
+            <td>{{$loop->iteration}}</td>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
             <td>{{$user->state}}</td>
             <td class="text-center" data-content="{{base64_encode($user->id)}}">
-                <button type="button" class="btn btn-info btn-sm mx-1" data-action="{{$actionBtnSimpleShow}}">
+                <button type="button" class="btn btn-info btn-sm mx-1" data-action="btnSimpleShow">
                     <i class="far fa-address-card"></i>
                 </button>
                 <a class="btn btn-secondary btn-sm mx-1" href="{{route("dashboard.admin.users.show",["user" => $user->id])}}">
@@ -39,7 +48,7 @@
     $(document).ready( function () {
         $('#users').DataTable( {
             columnDefs: [{
-                targets: [0,5],
+                targets: [5],
                 orderable: false
             }],
             @if(app()->getLocale() == App\Enum\Language::ARABIC)

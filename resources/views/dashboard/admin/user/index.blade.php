@@ -11,9 +11,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 align-items-center">
-                @component("dashboard.admin.user.components.datatable", ["users" => $users])
-                    @slot('actionBtnSimpleShow') btnSimpleShow @endslot
-                @endcomponent
+                @include("dashboard.admin.user.components.datatable", ["users" => $users])
             </div>
         </div>
     </div>
@@ -28,7 +26,7 @@
             <div class="row" id="modal-simple-show-body"></div>
         @endslot
         @slot('footer')
-            <a type="button" class="btn btn-info">
+            <a type="button" class="btn btn-info" id="modal-simple-show-btn-show">
                 @lang('dashboard-admin/user.index.modal.simple-show.btn-show')
             </a>
             <a type="button" class="btn btn-outline-info" data-dismiss="modal">
@@ -87,6 +85,7 @@
                     }
 
                     body.html(block);
+                    $("#modal-simple-show-btn-show").attr("href","/dashboard/admin/users/"+atob(content));
                 },
                 error: function() {
                     console.log("error");

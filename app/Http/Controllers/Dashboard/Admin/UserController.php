@@ -128,7 +128,9 @@ class UserController extends Controller
                     "text"  => __('dashboard-admin/user.column.name')
                 ],
                 "stage" => [
-                    "value" => Stage::getStageName($user->stage),
+                    "value" => is_null($user->stage)?
+                        __('dashboard-admin/user.column.null'):
+                        Stage::getStageName($user->stage),
                     "text"  => __('dashboard-admin/user.column.stage')
                 ],
                 "email" => [
@@ -140,7 +142,9 @@ class UserController extends Controller
                     "text"  => __('dashboard-admin/user.column.phone')
                 ],
                 "certificate" => [
-                    "value" => Certificate::getCertificateName($user->certificate),
+                    "value" => is_null($user->certificate)?
+                        __('dashboard-admin/user.column.null'):
+                        Certificate::getCertificateName($user->certificate),
                     "text"  => __('dashboard-admin/user.column.certificate')
                 ],
                 "gender" => [
@@ -156,7 +160,9 @@ class UserController extends Controller
                     "text"  => __('dashboard-admin/user.column.image')
                 ],
                 "birth_date" => [
-                    "value" => $user->birth_date,
+                    "value" => is_null($user->birth_date)?
+                        __('dashboard-admin/user.column.null'):
+                        $user->birth_date,
                     "text"  => __('dashboard-admin/user.column.birth_date')
                 ],
                 "created_at" => [
@@ -164,11 +170,15 @@ class UserController extends Controller
                     "text"  => __('dashboard-admin/user.column.created_at')
                 ],
                 "last_login" => [
-                    "value" => $user->last_login,
+                    "value" => is_null($user->last_login)?
+                        __('dashboard-admin/user.column.last_login_null'):
+                        $user->last_login,
                     "text"  => __('dashboard-admin/user.column.last_login')
                 ],
                 "address" => [
-                    "value" => $user->address,
+                    "value" => is_null($user->address)?
+                        __('dashboard-admin/user.column.null'):
+                        $user->address,
                     "text"  => __('dashboard-admin/user.column.address')
                 ],
                 "state" => [
