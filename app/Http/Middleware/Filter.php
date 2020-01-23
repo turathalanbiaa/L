@@ -17,7 +17,7 @@ class Filter
     public function handle($request, Closure $next, $parameter)
     {
         switch ($parameter) {
-            case "user-type":
+            case "userType":
                 if (!in_array(request()->input("type"), UserType::getTypes()))
                     abort(403, __('dashboard-admin/user.filter.type'));
                 break;

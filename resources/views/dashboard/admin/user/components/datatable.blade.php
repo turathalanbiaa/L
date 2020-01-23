@@ -5,12 +5,12 @@
             @lang("dashboard-admin/user.column.id")
         </th>
         <th colspan="4" class="align-middle text-center">
-            @lang("dashboard-admin/user.index.datatable.title")
+            @lang("dashboard-admin/user.index.datatable.title-$type")
         </th>
         <th colspan="1" class="text-center">
-            <a class="btn btn-link text-decoration-none text-white" type="button" href="{{route("dashboard.admin.users.create")}}">
+            <a class="btn btn-link text-decoration-none text-white" type="button" href="{{route("dashboard.admin.users.create", ["type"=>$type])}}">
                 <i class="fa fa-plus light-green-text mx-1"></i>
-                @lang("dashboard-admin/user.index.datatable.btn-create")
+                @lang("dashboard-admin/user.index.datatable.btn-create-$type")
             </a>
         </th>
     </tr>
@@ -29,7 +29,7 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
-            <td>{{$user->state}}</td>
+            <td>{{App\Enum\UserState::getStateName($user->state)}}</td>
             <td class="text-center" data-content="{{base64_encode($user->id)}}">
                 <button type="button" class="btn btn-info btn-sm mx-1" data-action="btnSimpleShow">
                     <i class="far fa-address-card"></i>

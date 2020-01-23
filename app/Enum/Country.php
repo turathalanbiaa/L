@@ -268,6 +268,7 @@ class Country
 
     public static function getRandomCountry()
     {
+
         return (string)array_rand(self::COUNTRIES);
     }
 }

@@ -17,11 +17,6 @@ Route::namespace("Dashboard\\Admin")
 
                 // Users
                 Route::resource('users', 'UserController');
-                Route::resource('users', 'UserController', [
-                    'only' => [
-                        'index'
-                    ]
-                ])->middleware('filter:user-type');
                 // Ajax
                 Route::get('users/ajax/simple-show','UserController@simpleShow');
         });

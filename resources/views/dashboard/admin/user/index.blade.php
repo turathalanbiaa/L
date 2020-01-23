@@ -1,7 +1,7 @@
 @extends("dashboard.admin.layout.app")
 
 @section("title")
-    @lang("dashboard-admin/user.index.title")
+    @lang("dashboard-admin/user.index.title-$type")
 @endsection
 
 @section("style")
@@ -10,8 +10,8 @@
 @section("content")
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 align-items-center">
-                @include("dashboard.admin.user.components.datatable", ["users" => $users])
+            <div class="col-12">
+                @include("dashboard.admin.user.components.datatable", ["users" => $users, "type" => $type])
             </div>
         </div>
     </div>
@@ -97,5 +97,3 @@
         });
     </script>
 @endsection
-
-

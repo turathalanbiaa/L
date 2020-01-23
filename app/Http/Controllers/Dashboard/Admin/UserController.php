@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Enum\Certificate;
-use App\Enum\Country;
 use App\Enum\Gender;
 use App\Enum\Stage;
 use App\Enum\UserState;
-use App\Enum\UserType;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
 use App\Models\User;
-use Illuminate\Support\Facades\Response;
+use PeterColes\Countries\CountriesFacade as Countries;
 
 class UserController extends Controller
 {
@@ -27,6 +25,8 @@ class UserController extends Controller
         $auth->check();
         $auth->hasRole("User");
         $this->userRepository = $userRepository;
+        $this->middleware('filter:userType')
+            ->only(['index', 'create']);
     }
 
     /**
@@ -37,10 +37,10 @@ class UserController extends Controller
     public function index()
     {
         $type = request()->input("type");
-        $users = $this->userRepository->getUsersByType($type, ['id', 'name', 'email', 'phone', 'stage', 'state']);
+        $users = $this->userRepository->getUsersByType($type, ['id', 'name', 'email', 'phone', 'state']);
 
         return view("dashboard.admin.user.index")->with([
-            "type"  => $type,
+            "type" => $type,
             "users" => $users
         ]);
     }
@@ -52,8 +52,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
-        dd("create new user");
+        $countries = Countries::lookup(app()->getLocale());
+        return view("dashboard.admin.user.create")->with([
+            "type" => request()->input("type")
+        ]);
     }
 
     /**
