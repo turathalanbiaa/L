@@ -9,6 +9,7 @@ use App\Enum\UserState;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
 use App\Models\User;
+use Illuminate\Http\Response;
 use PeterColes\Countries\CountriesFacade as Countries;
 
 class UserController extends Controller
@@ -17,6 +18,7 @@ class UserController extends Controller
 
     /**
      * UserController constructor.
+     *
      * @param UserRepository $userRepository
      * @param Auth $auth
      */
@@ -26,7 +28,7 @@ class UserController extends Controller
         $auth->hasRole("User");
         $this->userRepository = $userRepository;
         $this->middleware('filter:userType')
-            ->only(['index', 'create']);
+            ->only(['index', 'create', 'store']);
     }
 
     /**
@@ -37,24 +39,26 @@ class UserController extends Controller
     public function index()
     {
         $type = request()->input("type");
-        $users = $this->userRepository->getUsersByType($type, ['id', 'name', 'email', 'phone', 'state']);
 
         return view("dashboard.admin.user.index")->with([
             "type" => $type,
-            "users" => $users
+            "users" => $this->userRepository->getUsersByType($type, ['id', 'name', 'email', 'phone', 'state'])
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        $countries = Countries::lookup(app()->getLocale());
         return view("dashboard.admin.user.create")->with([
-            "type" => request()->input("type")
+            "type"         => request()->input("type"),
+            "stages"       => Stage::getStages(),
+            "genders"      => Gender::getGenders(),
+            "countries"    => Countries::lookup(app()->getLocale()),
+            "certificates" => Certificate::getCertificates()
         ]);
     }
 
@@ -62,11 +66,11 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        dd("Ok");
     }
 
     /**
@@ -86,7 +90,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(User $user)
     {
@@ -98,7 +102,7 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, User $user)
     {
@@ -109,7 +113,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(User $user)
     {
@@ -124,7 +128,7 @@ class UserController extends Controller
         if ($user)
         {
             $state = true;
-            $collect = array(
+            $collect = [
                 "name" => [
                     "value" => $user->name,
                     "text"  => __('dashboard-admin/user.column.name')
@@ -154,7 +158,7 @@ class UserController extends Controller
                     "text"  => __('dashboard-admin/user.column.gender')
                 ],
                 "country" => [
-                    "value" => Country::getCountryName($user->country),
+                    "value" => Countries::getValue(app()->getLocale(), $user->country),
                     "text"  => __('dashboard-admin/user.column.country')
                 ],
                 "image" => [
@@ -187,7 +191,7 @@ class UserController extends Controller
                     "value" => UserState::getStateName($user->state),
                     "text"  => __('dashboard-admin/user.column.state')
                 ]
-            );
+            ];
         }
 
         return response()->json([

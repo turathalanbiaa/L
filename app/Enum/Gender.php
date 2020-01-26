@@ -42,13 +42,12 @@ class Gender
                 break;
         }
 
-        return "unknown";
+        return "";
     }
 
     public static function getRandomGender()
     {
         $genders = self::getGenders();
-
         return (integer)$genders[array_rand($genders)];
     }
 }

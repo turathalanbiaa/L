@@ -11,7 +11,10 @@ class Language
 
     public static function getLanguages()
     {
-        return array(self::ARABIC, self::ENGLISH);
+        return array(
+            self::ARABIC,
+            self::ENGLISH
+        );
     }
 
     public static function getLanguageName($locale)
@@ -21,7 +24,7 @@ class Language
             case self::ENGLISH: return "English"; break;
         }
 
-        return "unknown";
+        return "";
     }
 
     public static function getRandomLanguage()

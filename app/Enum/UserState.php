@@ -35,6 +35,6 @@ class UserState
                 break;
         }
 
-        return "unknown";
+        return "";
     }
 }

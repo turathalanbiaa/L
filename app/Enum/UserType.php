@@ -28,7 +28,6 @@ class UserType
                     case self::LISTENER: return "مستمع"; break;
                 }
                 break;
-
             case Language::ENGLISH :
                 switch ($type) {
                     case self::STUDENT:  return "Student";  break;
@@ -37,7 +36,7 @@ class UserType
                 break;
         }
 
-        return "unknown";
+        return "";
     }
 
     public static function getRandomType()
