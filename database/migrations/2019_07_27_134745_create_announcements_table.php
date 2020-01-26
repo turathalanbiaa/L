@@ -14,16 +14,16 @@ class CreateAnnouncementsTable extends Migration
     public function up()
     {
         Schema::create('announcements', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
+            $table->bigIncrements('id');
+            $table->string('lang');
             $table->string('title');
             $table->text('content')->nullable();
-            $table->string('lang');
             $table->string('image')->nullable();
             $table->string('url')->nullable();
             $table->string('youtube_video_id')->nullable();
             $table->integer('type');
             $table->integer('state');
-            $table->date('publish_date');
+            $table->date('created_at');
         });
     }
 

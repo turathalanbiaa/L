@@ -21,16 +21,14 @@ class Auth extends Controller
 
     private static function ifHasCookieMakeSession()
     {
-        if (Cookie::has("ETA") && !session()->has("eta"))
-        {
+        if (Cookie::has("ETA") && !session()->has("eta")) {
             $user = null;
             $userRepository = new UserRepository();
             $user = $userRepository->getUserByCookie();
 
             if ($user)
                 $userRepository->generateSession($user);
-            else
-            {
+            else {
                 $userRepository->removeCookie();
                 abort(302, '', ['Location' => "/"]);
             }

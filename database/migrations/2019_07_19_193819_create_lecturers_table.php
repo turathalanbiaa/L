@@ -14,16 +14,16 @@ class CreateLecturersTable extends Migration
     public function up()
     {
         Schema::create('lecturers', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('lang');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');
-            $table->text('description')->nullable()->default(null);
-            $table->date('created_date');
-            $table->date('last_login_date')->nullable()->default(null);
-            $table->string('remember_token')->unique()->nullable()->default(null);
+            $table->text('description')->nullable();
+            $table->date('created_at');
+            $table->date('last_login_date')->nullable();
+            $table->string('remember_token')->unique()->nullable();
         });
     }
 

@@ -14,13 +14,13 @@ class CreateUsersEventLogTable extends Migration
     public function up()
     {
         Schema::create('users_event_log', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
-            $table->integer('user_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->string('content');
-            $table->integer('target_id');
+            $table->bigInteger('target_id');
             $table->string('target_type');
             $table->string('note');
-            $table->dateTime('datetime');
+            $table->date('created_at');
         });
     }
 

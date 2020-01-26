@@ -33,9 +33,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Website\\" : "app/Modules/Website",
-            "AdminControlPanel\\" : "app/Modules/AdminControlPanel",
-            "LecturerControlPanel\\" : "app/Modules/LecturerControlPanel"
+            "Website\\" : "app/Modules/Website"
         },
         "classmap": [
             "database/seeds",

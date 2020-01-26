@@ -14,11 +14,13 @@ class GeneralCourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $generalCourse=GeneralCourse::paginate(10);
+        $generalCourse=GeneralCourse::paginate(1);
         if ($generalCourse){
-            return $this->apiResponse(GeneralCourseResource::collection($generalCourse));
+
+
+            return $this->apiResponse($generalCourse,200,null);
         }
         else{
             return $this->notFoundResponse();
@@ -52,19 +54,26 @@ class GeneralCourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,Request $request)
     {
         $generalCourse=GeneralCourse::find($id);
         if ($generalCourse){
-            return $this->apiResponse(new GeneralCourseResource($generalCourse),200);
+            $remember_token = $request->get('remember_token');
+            $session = new SessionController();
+            $logged = $session->getToken($remember_token);
+
+            return $this->apiResponse(new GeneralCourseResource($generalCourse),200,null,$logged);
         }
         return $this->notFoundResponse();
     }
-    public function getCoursesByLang($lang)
+    public function getCoursesByLang($lang,$id)
     {
+        $session = new SessionController($id);
+        $remember_token = $session->getSessionId();
+
         $courses = GeneralCourse::where('lang', $lang)->paginate(10);
         if ($courses){
-            return $this->apiResponse(GeneralCourseResource::collection($courses),200);
+            return $this->apiResponse(GeneralCourseResource::collection($courses),200,null,$remember_token);
         }
         return $this->notFoundResponse();
     }

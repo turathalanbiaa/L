@@ -19,11 +19,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
        $users=User::paginate(10);
         if ($users){
-       return $this->apiResponse(UserResource::collection($users));
+
+
+            return $this->apiResponse(UserResource::collection($users),200,null);
         }
         else{
             return $this->notFoundResponse();
@@ -134,30 +136,40 @@ class UserController extends Controller
    }
    public function credentials(Request $request)
     {
+
         $validatedData=Validator::make($request->all(),[
             'login' => 'required',
             'password' => 'required',
         ]);
+
         if($validatedData->fails()){
             return $this->apiResponse(null,402,$validatedData->errors());
         }
+
         if (is_numeric($request->get('login')))
         {
             $user = User::where('phone', $request->get('login'))->first();
             if($user){
             if (md5($request->get('password') == $user->password))
             {
-                return $this->apiResponse(new UserResource($user),200);
+                $session = new SessionController();
+                $user->remember_token =  $session->generateSessionId($user->id);
+
+                return $this->apiResponse(new UserResource($user),200,null);
             }}
         }
+
         if (filter_var($request->get('login'), FILTER_VALIDATE_EMAIL)) {
             $user = User::where('email', $request->get('login'))->first();
+
             if($user){
 
             if (md5($request->get('password')) == $user->password)
 
             {
-                return $this->apiResponse(new UserResource($user),200);
+                $session = new SessionController();
+                $user->remember_token =  $session->generateSessionId($user->id);
+                return $this->apiResponse(new UserResource($user),200,null );
             }
             }
         }

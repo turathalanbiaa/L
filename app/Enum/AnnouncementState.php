@@ -21,8 +21,7 @@ class AnnouncementState
      */
     public static function getStateName($stateNumber)
     {
-        switch ($stateNumber)
-        {
+        switch ($stateNumber) {
             case self::NOT_ACTIVE:  return "غير فعال"; break;
             case self::ACTIVE:     return "فعال";     break;
         }

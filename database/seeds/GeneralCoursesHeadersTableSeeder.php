@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\GeneralCourseHeader;
 use Illuminate\Database\Seeder;
-use Website\Models\GeneralCourseHeader;
 
 class GeneralCoursesHeadersTableSeeder extends Seeder
 {

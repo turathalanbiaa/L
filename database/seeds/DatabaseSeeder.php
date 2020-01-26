@@ -14,15 +14,19 @@ class DatabaseSeeder extends Seeder
          $this->call([
 //             UsersTableSeeder::class
 
-             IssuesTableSeeder::class,
-             LecturersTableSeeder::class,
-             StudyCoursesTableSeeder::class,
-             GeneralCoursesHeadersTableSeeder::class,
-             GeneralCoursesTableSeeder::class,
-             DocumentsTableSeeder::class,
-             NotesTableSeeder::class,
-             AnnouncementsTableSeeder::class,
-             ConvertUsersTableSeeder::class
+//             LecturersTableSeeder::class,
+//             StudyCoursesTableSeeder::class,
+//             GeneralCoursesHeadersTableSeeder::class,
+//             GeneralCoursesTableSeeder::class,
+//             DocumentsTableSeeder::class,
+//             ENotebooksTableSeeder::class,
+//             AnnouncementsTableSeeder::class,
+//             ConvertUsersTypeTableSeeder::class,
+
+             // Hard Code
+             AdminsTableSeeder::class,
+             RolesTableSeeder::class,
+             AdminsRolesTableSeeder::class
          ]);
     }
 }

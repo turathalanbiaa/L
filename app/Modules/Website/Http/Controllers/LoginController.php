@@ -17,13 +17,12 @@ class LoginController extends Controller
                 ->withInput()
                 ->with(["error" => "اسم المستخدم اوكلمة المرور خطا"]);
 
-        if ($request->rememberMe)
+        if ($request->rememberMe) {
             $user = $userRepository->generateToken($user);
+            $userRepository->generateCookie($user);
+        }
 
         $userRepository->generateSession($user);
-
-        if ($request->rememberMe)
-            $userRepository->generateCookie($user);
 
         return redirect("/");
     }

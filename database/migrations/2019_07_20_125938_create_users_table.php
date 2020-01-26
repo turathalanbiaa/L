@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->integer('type');
             $table->string('lang');
@@ -29,10 +29,10 @@ class CreateUsersTable extends Migration
             $table->date('birthdate')->nullable();
             $table->string('address')->nullable();
             $table->integer('scientific_degree')->nullable();
-            $table->date('register_date');
+            $table->date('created_at');
             $table->date('last_login_date')->nullable();
             $table->string("verify_state")->default(VerifyState::NOT_ACTIVE);
-            $table->string("remember_token")->nullable()->unique();
+            $table->string("remember_token")->unique()->nullable();
         });
     }
 

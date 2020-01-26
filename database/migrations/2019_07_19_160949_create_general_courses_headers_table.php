@@ -14,10 +14,11 @@ class CreateGeneralCoursesHeadersTable extends Migration
     public function up()
     {
         Schema::create('general_courses_headers', function (Blueprint $table) {
-            $table->integer('id')->autoIncrement();
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('lang');
-            $table->text('description')->nullable()->default(null);
+            $table->text('description')->nullable();
+            $table->date('created_at');
         });
     }
 

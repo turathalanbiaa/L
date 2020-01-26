@@ -42,7 +42,7 @@
                 <div class="d-lg-none">
                     <hr class="hr-light clearfix">
                     <div class="d-flex flex-row justify-content-around">
-                        @foreach($languages as $key => $language)
+                        @foreach(\App\Enum\Language::getList() as $key => $language)
                             <a class="btn btn-sm btn-outline-white" href="/?locale={{$key}}">{{$language}}</a>
                         @endforeach
                     </div>
@@ -65,7 +65,7 @@
                                 <span>انشاء حساب مستمع</span>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/balance-account">
+                            <a class="dropdown-item" href="/create-account">
                                 <i class="fa fa-balance-scale-left"></i>
                                 <span>الفرق بين الحسابين</span>
                             </a>
@@ -78,7 +78,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-turath" aria-labelledby="dropdownLanguageMenu">
-                            @foreach($languages as $key => $language)
+                            @foreach(\App\Enum\Language::getList() as $key => $language)
                                 <a class="dropdown-item" href="/?locale={{$key}}">{{$language}}</a>
                             @endforeach
                         </div>
@@ -93,7 +93,7 @@
 
     <footer id="footer" class="page-footer unique-color-dark">
         <div class="footer-copyright py-3 text-center" dir="ltr">
-            © 2019 Copyright:
+            ©2016 Copyright:
             <a href="https://www.turathalanbiaa.com" target="_blank">
                 <strong> turathalanbiaa.com</strong>
             </a>

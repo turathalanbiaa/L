@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\RepositoryServiceProvider;
+
 return [
 
     /*
@@ -67,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Baghdad',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,9 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Website\Providers\WebsiteServiceProvider::class,
-        AdminControlPanel\Providers\AdminControlPanelServiceProvider::class,
-        LecturerControlPanel\Providers\LecturerControlPanelServiceProvider::class
+        Website\Providers\WebsiteServiceProvider::class
     ],
 
     /*
