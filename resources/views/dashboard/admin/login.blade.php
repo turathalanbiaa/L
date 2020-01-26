@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@lang("login.title")</title>
+    <title>@lang("admin-dashboard/login.title")</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-4">
-                    <h4 class="text-center font-weight-bold mb-4">@lang("login.header")</h4>
+                    <h4 class="text-center font-weight-bold mb-4">@lang("dashboard-admin/login.header")</h4>
                     <div class="card mx-3 shadow-sm">
                         <div class="card-body">
                             @if(session("error"))
@@ -46,36 +46,25 @@
                                     {{ session("error") }}
                                 </div>
                             @endif
-                            <form role="form" method="POST" action="{{route('adminLogin')}}">
+                            <form role="form" method="POST" action="{{route('dashboard.admin.login')}}">
                                 @csrf
 
                                 <div class="form-group">
-                                    <label class="control-label" for="username">@lang('login.input-username')</label>
+                                    <label class="control-label" for="username">@lang('dashboard-admin/login.input-username')</label>
                                     <input type="text" class="form-control form-control-sm" name="username" id="username" value="">
                                     @error('username') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="password">@lang('login.input-password')</label>
+                                    <label class="control-label" for="password">@lang('dashboard-admin/login.input-password')</label>
                                     <input type="password" class="form-control form-control-sm" name="password" id="password" value="">
                                     @error('password') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group pt-2">
                                     <div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="rememberMe">
-                                                @lang('login.input-remember-me')
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div>
-                                        <button type="submit" class="btn btn-block btn-primary">
-                                            @lang('login.btn-login')
+                                        <button type="submit" class="btn btn-block btn-default">
+                                            @lang('dashboard-admin/login.btn-login')
                                         </button>
                                     </div>
                                 </div>
@@ -83,8 +72,8 @@
                         </div>
                     </div>
                     <div class="links text-center pt-3">
-                        <a href="{{route('adminChangeLanguage')}}?locale=ar">العربية</a>
-                        <a href="{{route('adminChangeLanguage')}}?locale=en">English</a>
+                        <a href="{{route('dashboard.admin.change-language')}}?locale=ar">العربية</a>
+                        <a href="{{route('dashboard.admin.change-language')}}?locale=en">English</a>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\RepositoryServiceProvider;
 
 return [
 
@@ -227,6 +226,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Countries' => PeterColes\Countries\CountriesFacade::class,
 
     ],
 

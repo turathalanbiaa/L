@@ -4,7 +4,7 @@ namespace Website\Http\Controllers;
 
 use App\Enum\Country;
 use App\Enum\Gender;
-use App\Enum\ScientificDegree;
+use App\Enum\Certificate;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cookie;
 use Website\Http\Interfaces\UserRepositoryInterface;
@@ -36,7 +36,7 @@ class MainController extends Controller
 
         return view("Website::visitor.create-student-account")->with([
             "genderList" => Gender::getList(),
-            "scientificDegreeList" => ScientificDegree::getList(),
+            "scientificDegreeList" => Certificate::getList(),
             "countries" => Country::getList()
         ]);
     }

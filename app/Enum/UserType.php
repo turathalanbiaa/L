@@ -14,27 +14,35 @@ class UserType
     const STUDENT = 1;
     const LISTENER = 2;
 
-    /**
-     * @param $typeNumber
-     * @return string
-     */
-    public static function getTypeName($typeNumber)
-    {
-        switch ($typeNumber)
-        {
-            case self::STUDENT:  return "طالب";  break;
-            case self::LISTENER: return "مستمع"; break;
-        }
-
-        return "Nothing";
+    public static function getTypes() {
+        return array(self::STUDENT, self::LISTENER);
     }
 
-    /**
-     * @return int
-     */
+    public static function getTypeName($type)
+    {
+        $locale = app()->getLocale();
+        switch ($locale) {
+            case Language::ARABIC:
+                switch ($type) {
+                    case self::STUDENT:  return "طالب";  break;
+                    case self::LISTENER: return "مستمع"; break;
+                }
+                break;
+
+            case Language::ENGLISH :
+                switch ($type) {
+                    case self::STUDENT:  return "Student";  break;
+                    case self::LISTENER: return "Listener"; break;
+                }
+                break;
+        }
+
+        return "unknown";
+    }
+
     public static function getRandomType()
     {
-       $arrayTypeList = array(self::STUDENT, self::LISTENER);
-       return (integer)$arrayTypeList[array_rand($arrayTypeList)];
+        $types = self::getTypes();
+        return (integer)$types[array_rand($types)];
     }
 }

@@ -11,10 +11,12 @@
 |
 */
 
+
 //Route::fallback(function () {
 //    return redirect("/");
 //});
 
 
-@include("AdminDashboard.php");
+
+@include("DashboardAdmin.php");
 
