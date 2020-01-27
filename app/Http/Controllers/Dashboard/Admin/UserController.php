@@ -8,6 +8,7 @@ use App\Enum\Stage;
 use App\Enum\UserState;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Response;
 use PeterColes\Countries\CountriesFacade as Countries;
@@ -65,12 +66,18 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param CreateUserRequest $createUserRequest
+     * @return void
      */
-    public function store()
+    public function store(CreateUserRequest $request)
     {
-        dd("Ok");
+        $user = $this->userRepository->store($request);
+
+        if (!$user)
+            return redirect("")
+                ->withInput()
+                ->withErrors(["password" => "هذا الحقل مطلوب"])
+                ->with(["error" => "اضغط ارسال لاعادة المحاولة"]);
     }
 
     /**

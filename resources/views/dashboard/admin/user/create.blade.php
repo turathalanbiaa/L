@@ -15,7 +15,7 @@
 
 @section("content")
     <div class="container-fluid">
-        <div class="row justify-content-center">
+        <div class="row">
             <div class="col-12">
                 <div class="h3-responsive text-center">
                     @lang("dashboard-admin/user.create.title-$type")
@@ -172,7 +172,7 @@
                                     @lang("dashboard-admin/user.column.address")
                                 </label>
                                 <div class="md-form mt-0">
-                                    <input type="email" class="form-control" name="address" id="address" value="{{old("address")}}">
+                                    <input type="text" class="form-control" name="address" id="address" value="{{old("address")}}">
                                     @error('address') <div class="text-warning">{{ $message }}</div> @enderror
                                 </div>
                             </div>

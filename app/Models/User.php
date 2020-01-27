@@ -14,8 +14,8 @@ class User extends Model
         'name', 'type', 'stage',
         'email', 'phone', 'password',
         'gender', 'country', 'image',
-        'birth_date', 'address', 'scientific_degree',
-        'register_date', 'last_login', 'state',
+        'birth_date', 'address', 'certificate',
+        'created_at', 'last_login', 'state',
         'remember_token'
     ];
 }
