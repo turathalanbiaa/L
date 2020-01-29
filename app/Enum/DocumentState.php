@@ -16,26 +16,54 @@ class DocumentState
     const REVIEW = 3;
 
     /**
+     * Get all states.
+     *
+     * @return array
+     */
+    public static function getStates() {
+        return array(
+            self::ACCEPT,
+            self::REJECT,
+            self::REVIEW
+        );
+    }
+    /**
+     * Get the name of the state.
+     *
      * @param $stateNumber
      * @return string
      */
     public static function getStateName($stateNumber)
     {
-        switch ($stateNumber) {
-            case self::ACCEPT: return "مقبولة";     break;
-            case self::REJECT: return "مرفوضة";     break;
-            case self::REVIEW: return "قيد المراجعة"; break;
+        $locale = app()->getLocale();
+        switch ($locale) {
+            case Language::ARABIC:
+                switch ($stateNumber) {
+                    case self::ACCEPT: return "مقبولة";       break;
+                    case self::REJECT: return "مرفوضة";       break;
+                    case self::REVIEW: return "قيد المراجعة"; break;
+                }
+                break;
+            case Language::ENGLISH:
+                switch ($stateNumber) {
+                    case self::ACCEPT: return "Accept"; break;
+                    case self::REJECT: return "Reject"; break;
+                    case self::REVIEW: return "Review"; break;
+                }
+                break;
         }
 
-        return "Nothing";
+        return "";
     }
 
     /**
+     * Get the random state.
+     *
      * @return int
      */
-    public static function getRandomSate()
+    public static function getRandomState()
     {
-        $arrayStateList = array(self::ACCEPT, self::REJECT, self::REVIEW);
-        return (integer)$arrayStateList[array_rand($arrayStateList)];
+        $states = self::getStates();
+        return (integer)$states[array_rand($states)];
     }
 }

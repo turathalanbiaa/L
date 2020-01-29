@@ -15,6 +15,12 @@ class UserState
     const TRUSTED = 1;
     const DISABLE = 2;
 
+    /**
+     * Get the name of the state.
+     *
+     * @param $state
+     * @return string
+     */
     public static function getStateName($state)
     {
         $locale = app()->getLocale();

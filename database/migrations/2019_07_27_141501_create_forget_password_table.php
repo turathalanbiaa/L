@@ -14,7 +14,7 @@ class CreateForgetPasswordTable extends Migration
     public function up()
     {
         Schema::create('forget_password', function (Blueprint $table) {
-            $table->bigInteger('user_id');
+            $table->unsignedInteger('user_id');
             $table->string('code')->unique();
             $table->date('created_at');
         });

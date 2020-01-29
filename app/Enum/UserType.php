@@ -14,10 +14,21 @@ class UserType
     const STUDENT = 1;
     const LISTENER = 2;
 
+    /**
+     * Get all types.
+     *
+     * @return array
+     */
     public static function getTypes() {
         return array(self::STUDENT, self::LISTENER);
     }
 
+    /**
+     * Get the name of the type.
+     *
+     * @param $type
+     * @return string
+     */
     public static function getTypeName($type)
     {
         $locale = app()->getLocale();
@@ -39,6 +50,11 @@ class UserType
         return "";
     }
 
+    /**
+     * Get the random type.
+     *
+     * @return int
+     */
     public static function getRandomType()
     {
         $types = self::getTypes();
