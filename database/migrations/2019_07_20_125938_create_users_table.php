@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('certificate')->nullable();
             $table->date('created_at');
             $table->date('last_login')->nullable();
-            $table->tinyInteger("state")->default(UserState::INACTIVE);
+            $table->tinyInteger("state")->default(UserState::UNTRUSTED);
             $table->string("remember_token")->unique()->nullable();
         });
     }
