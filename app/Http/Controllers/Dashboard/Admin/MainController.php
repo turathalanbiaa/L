@@ -9,9 +9,8 @@ use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use PeterColes\Countries\CountriesFacade as Countries;
 
 
 class MainController extends Controller

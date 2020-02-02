@@ -15,23 +15,56 @@ class AnnouncementType
     const LISTENER = 2;
     const ALL = 3;
 
-    public static function getStateName($stateNumber)
+    /**
+     * Get all types.
+     *
+     * @return array
+     */
+    public static function getTypes() {
+        return array(
+            self::STUDENT,
+            self::LISTENER,
+            self::ALL
+        );
+    }
+
+    /**
+     * Get the name of the type.
+     *
+     * @param $type
+     * @return string
+     */
+    public static function getTypeName($type)
     {
-        switch ($stateNumber) {
-            case self::STUDENT:  return "طالب";  break;
-            case self::LISTENER: return "مستمع"; break;
-            case self::ALL:      return "كلاهما"; break;
-        }
+       $locale = app()->getLocale();
+       switch ($locale) {
+           case Language::ARABIC:
+               switch ($type) {
+                   case self::STUDENT:  return "طالب";  break;
+                   case self::LISTENER: return "مستمع"; break;
+                   case self::ALL:      return "كلاهما"; break;
+               }
+               break;
+           case Language::ENGLISH:
+               switch ($type) {
+                   case self::STUDENT:  return "Student";  break;
+                   case self::LISTENER: return "Listener"; break;
+                   case self::ALL:      return "All";      break;
+               }
+               break;
+       }
 
         return "";
     }
 
     /**
+     * Get the random type.
+     *
      * @return int
      */
     public static function getRandomType()
     {
-        $arrayTypeList = array(self::STUDENT, self::LISTENER, self::ALL);
-        return (integer)$arrayTypeList[array_rand($arrayTypeList)];
+        $types = self::getTypes();
+        return (integer)$types[array_rand($types)];
     }
 }

@@ -19,6 +19,29 @@ class Stage
     const INTRO_STAGE_THIRD_LEVEL_ONE = 6;
     const INTRO_STAGE_THIRD_LEVEL_TWO = 7;
 
+    /**
+     * Get all stages.
+     *
+     * @return array
+     */
+    public static function getStages() {
+        return array(
+            self::BEGINNER_STAGE,
+            self::INTRO_STAGE_FIRST_LEVEL_ONE,
+            self::INTRO_STAGE_FIRST_LEVEL_TWO,
+            self::INTRO_STAGE_SECOND_LEVEL_ONE,
+            self::INTRO_STAGE_SECOND_LEVEL_TWO,
+            self::INTRO_STAGE_THIRD_LEVEL_ONE,
+            self::INTRO_STAGE_THIRD_LEVEL_TWO
+        );
+    }
+
+    /**
+     * Get the name of the stage.
+     *
+     * @param $stage
+     * @return string
+     */
     public static function getStageName($stage)
     {
         $locale = app()->getLocale();
@@ -50,18 +73,11 @@ class Stage
         return "";
     }
 
-    public static function getStages() {
-        return array(
-            self::BEGINNER_STAGE,
-            self::INTRO_STAGE_FIRST_LEVEL_ONE,
-            self::INTRO_STAGE_FIRST_LEVEL_TWO,
-            self::INTRO_STAGE_SECOND_LEVEL_ONE,
-            self::INTRO_STAGE_SECOND_LEVEL_TWO,
-            self::INTRO_STAGE_THIRD_LEVEL_ONE,
-            self::INTRO_STAGE_THIRD_LEVEL_TWO
-        );
-    }
-
+    /**
+     * Get the random stage.
+     *
+     * @return int
+     */
     public static function getRandomStage()
     {
        $stages = self::getStages();

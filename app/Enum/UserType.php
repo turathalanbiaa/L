@@ -14,10 +14,21 @@ class UserType
     const STUDENT = 1;
     const LISTENER = 2;
 
+    /**
+     * Get all types.
+     *
+     * @return array
+     */
     public static function getTypes() {
         return array(self::STUDENT, self::LISTENER);
     }
 
+    /**
+     * Get the name of the type.
+     *
+     * @param $type
+     * @return string
+     */
     public static function getTypeName($type)
     {
         $locale = app()->getLocale();
@@ -28,7 +39,6 @@ class UserType
                     case self::LISTENER: return "مستمع"; break;
                 }
                 break;
-
             case Language::ENGLISH :
                 switch ($type) {
                     case self::STUDENT:  return "Student";  break;
@@ -37,9 +47,14 @@ class UserType
                 break;
         }
 
-        return "unknown";
+        return "";
     }
 
+    /**
+     * Get the random type.
+     *
+     * @return int
+     */
     public static function getRandomType()
     {
         $types = self::getTypes();

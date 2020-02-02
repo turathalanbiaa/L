@@ -20,6 +20,11 @@ class Certificate
     const PHD = 7;
     const OTHER = 8;
 
+    /**
+     * Get all certificates.
+     *
+     * @return array
+     */
     public static function getCertificates()
     {
         return array(
@@ -34,6 +39,12 @@ class Certificate
         );
     }
 
+    /**
+     * Get the name of the certificate.
+     *
+     * @param $Certificate
+     * @return string
+     */
     public static function getCertificateName($Certificate)
     {
         $locale = app()->getLocale();
@@ -67,6 +78,11 @@ class Certificate
         return "";
     }
 
+    /**
+     * Get the random of certificate.
+     *
+     * @return int
+     */
     public static function getRandomCertificate()
     {
         $certificates = self::getCertificates();

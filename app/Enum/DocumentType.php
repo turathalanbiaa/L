@@ -14,29 +14,62 @@ class DocumentType
     const PERSONAL_IDENTIFICATION = 1;
     const RELIGIOUS_RECOMMENDATION = 2;
     const CERTIFICATE = 3;
+    const PERSONAL_IMAGE = 4;
 
     /**
-     * @param $typeNumber
+     * Get all types.
+     *
+     * @return array
+     */
+    public static function getTypes() {
+        return array(
+            self::PERSONAL_IDENTIFICATION,
+            self::RELIGIOUS_RECOMMENDATION,
+            self::CERTIFICATE,
+            self::PERSONAL_IMAGE
+        );
+    }
+    /**
+     * Get the name of the type.
+     *
+     * @param $type
      * @return string
      */
-    public static function getTypeName($typeNumber)
+    public static function getTypeName($type)
     {
-        switch ($typeNumber)
-        {
-            case self::PERSONAL_IDENTIFICATION:  return "الهوية الشخصية";  break;
-            case self::RELIGIOUS_RECOMMENDATION: return "التزكية الدينية"; break;
-            case self::CERTIFICATE:              return "الشهادة العلمية"; break;
+        $locale = app()->getLocale();
+        switch ($locale) {
+            case Language::ARABIC:
+                switch ($type)
+                {
+                    case self::PERSONAL_IDENTIFICATION:  return "الهوية الشخصية";  break;
+                    case self::RELIGIOUS_RECOMMENDATION: return "التزكية الدينية"; break;
+                    case self::CERTIFICATE:              return "الشهادة العلمية"; break;
+                    case self::PERSONAL_IMAGE:           return "الصورة الشخصية";  break;
+                }
+                break;
+            case Language::ENGLISH:
+                switch ($type)
+                {
+                    case self::PERSONAL_IDENTIFICATION:  return "Personal Identification";  break;
+                    case self::RELIGIOUS_RECOMMENDATION: return "Religious Recommendation"; break;
+                    case self::CERTIFICATE:              return "Certificate";              break;
+                    case self::PERSONAL_IMAGE:           return "Personal Image";           break;
+                }
+                break;
         }
 
-        return "Nothing";
+        return "";
     }
 
     /**
+     * Get the random type.
+     *
      * @return int
      */
     public static function getRandomType()
     {
-        $arrayTypeList = array(self::PERSONAL_IDENTIFICATION, self::RELIGIOUS_RECOMMENDATION, self::CERTIFICATE);
-        return (integer)$arrayTypeList[array_rand($arrayTypeList)];
+        $types = self::getTypes();
+        return (integer)$types[array_rand($types)];
     }
 }

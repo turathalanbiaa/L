@@ -9,11 +9,25 @@ class Language
     const ARABIC = "ar";
     const ENGLISH = "en";
 
+    /**
+     * Get all languages.
+     *
+     * @return array
+     */
     public static function getLanguages()
     {
-        return array(self::ARABIC, self::ENGLISH);
+        return array(
+            self::ARABIC,
+            self::ENGLISH
+        );
     }
 
+    /**
+     * Get the name of the language.
+     *
+     * @param $locale
+     * @return string
+     */
     public static function getLanguageName($locale)
     {
         switch ($locale){
@@ -21,9 +35,14 @@ class Language
             case self::ENGLISH: return "English"; break;
         }
 
-        return "unknown";
+        return "";
     }
 
+    /**
+     * Get the random language.
+     *
+     * @return string
+     */
     public static function getRandomLanguage()
     {
         $languages = self::getLanguages();

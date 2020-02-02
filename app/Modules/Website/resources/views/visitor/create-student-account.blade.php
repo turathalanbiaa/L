@@ -223,6 +223,10 @@
             @endforeach
         ];
         autocomplete(document.getElementById("country"), countries);
+
+
+
+
         $("#dropdown-gender-menu .dropdown-item").click(function () {
             $(this).parent().parent().find("label").addClass("active");
             $("input[type='text'][name='gender']").val($(this).data("text"));

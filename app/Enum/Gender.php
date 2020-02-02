@@ -14,6 +14,11 @@ class Gender
     const MALE = 1;
     const FEMALE = 2;
 
+    /**
+     * Get all genders.
+     *
+     * @return array
+     */
     public static function getGenders()
     {
         return array(
@@ -22,6 +27,12 @@ class Gender
         );
     }
 
+    /**
+     * Get the name of the gender.
+     *
+     * @param $gender
+     * @return string
+     */
     public static function getGenderName($gender)
     {
         $locale = app()->getLocale();
@@ -42,13 +53,17 @@ class Gender
                 break;
         }
 
-        return "unknown";
+        return "";
     }
 
+    /**
+     * Get the random gender.
+     *
+     * @return int
+     */
     public static function getRandomGender()
     {
         $genders = self::getGenders();
-
         return (integer)$genders[array_rand($genders)];
     }
 }

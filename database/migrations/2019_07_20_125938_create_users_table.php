@@ -15,23 +15,22 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integerIncrements('id');
             $table->string('name');
-            $table->tinyInteger('type');
-            $table->string('lang');
-            $table->tinyInteger('stage')->nullable();
+            $table->unsignedTinyInteger('type');
+            $table->char('lang', 2);
+            $table->unsignedTinyInteger('stage')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->string('password');
-            $table->tinyInteger('gender');
-            $table->string('country');
-            $table->string('image')->nullable();
+            $table->char('password', 32);
+            $table->unsignedTinyInteger('gender');
+            $table->char('country', 2);
             $table->date('birth_date')->nullable();
             $table->string('address')->nullable();
-            $table->tinyInteger('certificate')->nullable();
+            $table->unsignedTinyInteger('certificate')->nullable();
             $table->date('created_at');
             $table->date('last_login')->nullable();
-            $table->tinyInteger("state")->default(UserState::INACTIVE);
+            $table->unsignedTinyInteger("state")->default(UserState::UNTRUSTED);
             $table->string("remember_token")->unique()->nullable();
         });
     }
