@@ -12,11 +12,23 @@ class AdminRepository implements AdminRepositoryInterface
 {
     private $admin;
 
+    /**
+     * AdminRepository constructor.
+     *
+     * @param Admin $admin
+     */
     public function __construct(Admin $admin)
     {
         $this->admin = $admin;
     }
 
+    /**
+     * Get admin by username and password.
+     *
+     * @param $username
+     * @param $password
+     * @return mixed
+     */
     public function getAdmin($username, $password)
     {
         // TODO: Implement getAdmin() method.
@@ -28,6 +40,11 @@ class AdminRepository implements AdminRepositoryInterface
         return $admin;
     }
 
+    /**
+     * Make sessions to the admin.
+     *
+     * @param Admin $admin
+     */
     public function generateSession(Admin $admin)
     {
         // TODO: Implement generateSession() method.
@@ -44,12 +61,22 @@ class AdminRepository implements AdminRepositoryInterface
         session()->save();
     }
 
+    /**
+     * Make cookie to the admin.
+     *
+     * @param Admin $admin
+     */
     public function generateCookie(Admin $admin)
     {
         // TODO: Implement generateCookie() method.
         Cookie::queue(cookie()->forever("ETA-Admin", $admin->remember_token));
     }
 
+    /**
+     * Get the admin by cookie.
+     *
+     * @return mixed
+     */
     public function getByCookie()
     {
         // TODO: Implement getAdminByCookie() method.
@@ -60,17 +87,25 @@ class AdminRepository implements AdminRepositoryInterface
         return $admin;
     }
 
+    /**
+     * Delete cookie for the admin.
+     */
     public function removeCookie()
     {
         // TODO: Implement removeCookie() method.
         Cookie::queue(cookie()->forget("ETA-Admin"));
     }
 
+    /**
+     * Update the admin.
+     *
+     * @param Admin $admin
+     */
     public function updateLoginDate(Admin $admin)
     {
         if (is_null($admin->remember_token))
             $admin->remember_token = hash_hmac("sha256",md5(microtime(true).mt_Rand()),bcrypt($admin->email));
-        $admin->last_login_date = date("Y-m-d");
+        $admin->last_login = date("Y-m-d");
         $admin->save();
     }
 }

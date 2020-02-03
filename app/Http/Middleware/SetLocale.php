@@ -16,10 +16,21 @@ class SetLocale
 
     public function handle($request, Closure $next)
     {
+
         //For admin
         if ($request->is("dashboard/admin*"))
-            if(session()->has('eta.admin.lang'))
-                app()->setLocale(session('eta.admin.lang'));
+        {
+            $locale = request()->input('locale');
+            $languages = Language::getLanguages();
+            if (in_array($locale, $languages))
+            {
+                session()->put('eta.admin.lang', $locale);
+                session()->save();
+            }
+
+            if (session()->has('eta.admin.lang'))
+                app()->setLocale(session()->get('eta.admin.lang'));
+        }
 
         return $next($request);
     }

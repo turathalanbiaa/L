@@ -26,6 +26,8 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+    <!-- Toaster JavaScript -->
+    <script type="text/javascript" src="{{asset("js/toaster.js")}}"></script>
     <!-- Inside Page Styles -->
     @yield("style")
 </head>

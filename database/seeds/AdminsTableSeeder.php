@@ -12,25 +12,25 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Arabic AdminRepository
+        // Arabic Admin
         factory(Admin::class)->create([
             'name' => "عماد وهاب الكعبي",
             'lang' => "ar",
             'username' => "emad.ar@gmail.com",
             'password' => md5("12341234"),
             'created_at' => date("Y-m-d"),
-            'last_login_date' => null,
+            'last_login' => null,
             'remember_token' => null
         ]);
 
-        // English AdminRepository
+        // English Admin
         factory(Admin::class)->create([
             'name' => "Emad Al-Kabi",
             'lang' => "en",
             'username' => "emad.en@gmail.com",
             'password' => md5("12341234"),
             'created_at' => date("Y-m-d"),
-            'last_login_date' => null,
+            'last_login' => null,
             'remember_token' => null
         ]);
     }

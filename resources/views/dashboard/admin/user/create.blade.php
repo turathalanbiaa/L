@@ -15,9 +15,9 @@
 
 @section("content")
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="h3-responsive text-center">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-sm-12">
+                <div class="h3-responsive text-center mb-4">
                     @lang("dashboard-admin/user.create.title-$type")
                 </div>
 
@@ -55,15 +55,12 @@
                                 @error('phone') <div class="text-warning">{{ $message }}</div> @enderror
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-group row">
                         <div class="col-sm-3">
                             <label class="col-form-label" for="password" >
                                 @lang("dashboard-admin/user.column.password")
                             </label>
                             <div class="md-form mt-0">
-                                <input type="text" class="form-control" name="password" id="password">
+                                <input type="password" class="form-control" name="password" id="password">
                                 @error('password') <div class="text-warning">{{ $message }}</div> @enderror
                             </div>
                         </div>
@@ -72,7 +69,7 @@
                                 @lang("dashboard-admin/user.column.re_password")
                             </label>
                             <div class="md-form mt-0">
-                                <input type="text" class="form-control" name="password_confirmation" id="password-confirmation">
+                                <input type="password" class="form-control" name="password_confirmation" id="password-confirmation">
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -114,11 +111,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Just for student -->
-                    @if($type == App\Enum\UserType::STUDENT)
-                        <div class="form-group row">
+                        <!-- Just for student -->
+                        @if($type == App\Enum\UserType::STUDENT)
                             <div class="col-sm-3">
                                 <label class="col-form-label" for="stage" >
                                     @lang("dashboard-admin/user.column.stage")
@@ -176,8 +171,8 @@
                                     @error('address') <div class="text-warning">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
 
                     <div class="text-center mt-4">
                         <button class="btn btn-outline-primary">
@@ -191,6 +186,18 @@
 @endsection
 
 @section("extra-content")
+
+{{--        <div style="position: absolute; top: 0; left:0; z-index:2000; background-color: #0c5460; padding: 20px;">--}}
+{{--            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true">--}}
+{{--                <div class="toast-body text-white bg-success px-3">--}}
+{{--                    {{session()->get("message")}}--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--        </div>--}}
+{{--    @endif--}}
+
+
 
 @endsection
 
@@ -226,5 +233,12 @@
                }
             });
         });
+        @if(session()->has("message"))
+            $.toast({
+                title: '{{session()->get("message")}}',
+                type:  '{{session()->get("type")}}',
+                delay: 5000
+            });
+        @endif
     </script>
 @endsection

@@ -67,25 +67,19 @@
                     {
                         let column = "";
                         Object.entries(user).forEach(([key , value]) => {
-                            if ((key !== "name") && (key !== "image"))
-                                column +=
-                                    '<p class="card-text">' +
-                                    '   <strong> '+ value.text +': </strong>' +
-                                    '   <span>'+    value.value +'</span>' +
-                                    '</p>';
+                            column +=
+                                '<p class="card-text">' +
+                                '   <strong> '+ value.text +': </strong>' +
+                                '   <span>'+    value.value +'</span>' +
+                                '</p>';
                         });
                         block =
-                            '<div class="col-3 text-center">' +
-                            '   <img class="img-fluid z-depth-1-half rounded-circle" src="/storage/'+ user.image.value +'" alt="user image" >' +
-                            '   <p class="mt-3">'+ user.name.value +'</p>' +
-                            '</div>' +
-                            '<div class="col-9">' +
+                            '<div class="col-12">' +
                                 column +
                             '</div>';
+                        $("#modal-simple-show-btn-show").attr("href","/dashboard/admin/users/"+atob(content));
                     }
-
                     body.html(block);
-                    $("#modal-simple-show-btn-show").attr("href","/dashboard/admin/users/"+atob(content));
                 },
                 error: function() {
                     console.log("error");

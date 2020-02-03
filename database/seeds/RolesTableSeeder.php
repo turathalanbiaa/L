@@ -12,7 +12,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        // AdminRepository role
+        // Admin role
         factory(Role::class)->create([
             "name" => "Admin",
             "description" => "Manage admins",

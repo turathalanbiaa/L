@@ -12,12 +12,10 @@ Route::namespace("Dashboard\\Admin")
             ->group(function () {
                 Route::post('login', 'MainController@login')
                     ->name('login');
-                Route::get('change-language', 'MainController@changeLanguage')
-                    ->name('change-language');
 
                 // Users
                 Route::resource('users', 'UserController');
-                // Ajax
+                // Users Ajax
                 Route::get('users/ajax/simple-show','UserController@simpleShow');
         });
 });

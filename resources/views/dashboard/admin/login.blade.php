@@ -72,8 +72,8 @@
                         </div>
                     </div>
                     <div class="links text-center pt-3">
-                        <a href="{{route('dashboard.admin.change-language')}}?locale=ar">العربية</a>
-                        <a href="{{route('dashboard.admin.change-language')}}?locale=en">English</a>
+                        <a href="{{route('dashboard.admin')}}?locale=ar">العربية</a>
+                        <a href="{{route('dashboard.admin')}}?locale=en">English</a>
                     </div>
                 </div>
             </div>
