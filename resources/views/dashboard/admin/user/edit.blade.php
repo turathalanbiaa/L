@@ -37,6 +37,7 @@
                                             @csrf()
                                             @method("put")
                                             <input type="hidden" name="type" value="{{$user->type}}">
+                                            <input type="hidden" name="update" value="info">
                                             <div class="form-group row">
                                                 <div class="col-sm-4">
                                                     <label class="col-form-label" for="name" >
@@ -169,7 +170,6 @@
                                                     </div>
                                                 @endif
                                             </div>
-
                                             <div class="text-center mt-4">
                                                 <button class="btn btn-outline-primary">
                                                     @lang("dashboard-admin/user.edit.btn")
@@ -196,7 +196,7 @@
                                         <form method="post" action="{{route("dashboard.admin.users.update",["user" => $user->id])}}">
                                             @csrf()
                                             @method("put")
-                                            <input type="hidden" name="type" value="{{$user->type}}">
+                                            <input type="hidden" name="update" value="pass">
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
                                                     <label class="col-form-label" for="password" >
@@ -216,7 +216,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="text-center mt-4">
                                                 <button class="btn btn-outline-primary">
                                                     @lang("dashboard-admin/user.edit.btn")

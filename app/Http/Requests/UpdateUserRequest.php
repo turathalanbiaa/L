@@ -21,16 +21,17 @@ class UpdateUserRequest extends FormRequest
         return true;
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array|void
      */
     public function rules()
     {
         return [
-            "name"        => "required",
-            "email"       => "required|email|unique:users,email",
+            "name"        => "required_if:update,==,info",
+            "email"       => "required_if:update,==,info|email|unique:users,email,$this->input('email')",
             "phone"       => "required|unique:users,phone",
             "password"    => "required|min:6|confirmed",
             "gender"      => ["required", Rule::in(Gender::getGenders())],
