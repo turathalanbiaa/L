@@ -13,7 +13,8 @@ class DocumentType
 {
     const PERSONAL_IDENTIFICATION = 1;
     const RELIGIOUS_RECOMMENDATION = 2;
-    const CERTIFICATE = 3;
+    const CERTIFICATE =
+        3;
     const PERSONAL_IMAGE = 4;
 
     /**

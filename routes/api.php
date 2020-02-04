@@ -33,5 +33,7 @@ Route::post('credentials','UserController@credentials');
 Route::get('general-courses','GeneralCourseController@index');
 Route::get('general-courses/{lang}','GeneralCourseController@getCoursesByLang');
 Route::get('general-course/{id}','GeneralCourseController@show');
+Route::post('image-store','ImageController@store');
+Route::post('image-update','ImageController@updateimage');
 
 
