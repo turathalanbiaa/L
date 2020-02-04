@@ -5,12 +5,11 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Enum\Language;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\AdminRepository;
-use App\Http\Requests\AdminLoginRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\View\View;
-use PeterColes\Countries\CountriesFacade as Countries;
 
 
 class MainController extends Controller
@@ -19,15 +18,19 @@ class MainController extends Controller
 
     /**
      * MainController constructor.
+     *
      * @param AdminRepository $adminRepository
      */
     public function __construct(AdminRepository $adminRepository)
     {
         $this->adminRepository = $adminRepository;
+        $this->middleware('setLocale')->only('index');
     }
+
 
     /**
      * Display the login or admin home page.
+     *
      * @return Factory|View
      */
     public function index()
@@ -39,31 +42,16 @@ class MainController extends Controller
     }
 
     /**
-     * Change the local application language.
+     * Login.
+     *
+     * @param LoginRequest $request
      * @return RedirectResponse
      */
-    public function changeLanguage()
+    public function login(LoginRequest $request)
     {
-        $locale = request()->input('locale');
-        $languages = Language::getLanguages();
+        $username = $request->input('username');
+        $password = $request->input('password');
 
-        if (in_array($locale, $languages)) {
-            session()->put('eta.admin.lang', $locale);
-            session()->save();
-        }
-
-        return redirect()->back();
-    }
-
-    /**
-     * Admin login to the dashboard.
-     * @param AdminLoginRequest $adminLoginRequest
-     * @return RedirectResponse
-     */
-    public function login(AdminLoginRequest $adminLoginRequest)
-    {
-        $username = request()->input('username');
-        $password = request()->input('password');
         $admin = $this->adminRepository->getAdmin($username, $password);
 
         if (!$admin)

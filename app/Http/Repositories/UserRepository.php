@@ -14,12 +14,23 @@ class UserRepository implements UserRepositoryInterface
 {
     private $user;
 
+    /**
+     * UserRepository constructor.
+     *
+     * @param User $user
+     */
     public function __construct(User $user)
     {
-        $this->lang = app()->getLocale();
         $this->user = $user;
     }
 
+    /**
+     * Get users by the type.
+     *
+     * @param $type
+     * @param array $columns
+     * @return mixed
+     */
     public function getUsersByType($type, $columns = array())
     {
         // TODO: Implement getUsersByType() method.
@@ -38,6 +49,12 @@ class UserRepository implements UserRepositoryInterface
         return $users;
     }
 
+    /**
+     * Get the user by id.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getUserById($id)
     {
         // TODO: Implement getUserById() method.
@@ -49,6 +66,12 @@ class UserRepository implements UserRepositoryInterface
         return $user;
     }
 
+    /**
+     * Save a new user.
+     *
+     * @param CreateUserRequest $request
+     * @return User
+     */
     public function store(CreateUserRequest $request)
     {
         // TODO: Implement store() method.
@@ -60,10 +83,9 @@ class UserRepository implements UserRepositoryInterface
         $this->user->stage          = ($type == UserType::STUDENT)? $request->input('stage'):null;
         $this->user->email          = $request->input('email');
         $this->user->phone          = $request->input('phone');
-        $this->user->password       = $request->input('password');
+        $this->user->password       = md5($request->input('password'));
         $this->user->gender         = $request->input('gender');
         $this->user->country        = $request->input('country');
-        $this->user->image          = "user/default.png";
         $this->user->birth_date     = ($type == UserType::STUDENT)? $request->input('birth_date'):null;
         $this->user->address        = ($type == UserType::STUDENT)? $request->input('address'):null;
         $this->user->certificate    = ($type == UserType::STUDENT)? $request->input('certificate'):null;
