@@ -11,9 +11,9 @@ namespace App\Enum;
 
 class UserState
 {
-    const UNTRUSTED = 0;
-    const TRUSTED = 1;
-    const DISABLE = 2;
+    const UNTRUSTED = 1;
+    const TRUSTED = 2;
+    const DISABLE = 3;
 
     /**
      * Get the name of the state.

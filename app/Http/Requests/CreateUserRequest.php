@@ -29,7 +29,6 @@ class CreateUserRequest extends FormRequest
      */
     public function rules()
     {
-//        $type = (integer)$this->input('type');
         return [
             "name"        => "required",
             "email"       => "required|email|unique:users,email",

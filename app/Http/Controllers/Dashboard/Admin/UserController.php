@@ -9,6 +9,7 @@ use App\Enum\UserState;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UserRepository;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -111,6 +112,9 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param User $user
+     * @return Factory|View
      */
     public function edit(User $user)
     {
@@ -126,11 +130,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param UpdateUserRequest $request
      * @param User $user
-     * @return Response
+     * @return void
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         //
     }
