@@ -17,9 +17,13 @@ class Filter
     public function handle($request, Closure $next, $parameter)
     {
         switch ($parameter) {
-            case "userType":
+            case "user-type":
                 if (!in_array(request()->input("type"), UserType::getTypes()))
                     abort(403, __('dashboard-admin/user.filter.type'));
+                break;
+            case "user-update":
+                if (!in_array(request()->input("update"), array("info", "pass")))
+                    abort(403, __('dashboard-admin/user.filter.update'));
                 break;
             default: return "OK";
         }

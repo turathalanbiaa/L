@@ -7,6 +7,7 @@ use App\Enum\UserState;
 use App\Enum\UserType;
 use App\Http\Interfaces\UserRepositoryInterface;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
@@ -96,5 +97,32 @@ class UserRepository implements UserRepositoryInterface
         $this->user->save();
 
         return $this->user;
+    }
+
+
+    public function update(UpdateUserRequest $request, User $user)
+    {
+        // TODO: Implement update() method.
+        switch ($request->input('update')) {
+            case "info":
+                $type = $request->input('type');
+                $user->name           = $request->input('name');
+                $user->stage          = ($type == UserType::STUDENT)? $request->input('stage'):null;
+                $user->email          = $request->input('email');
+                $user->phone          = $request->input('phone');
+                $user->gender         = $request->input('gender');
+                $user->country        = $request->input('country');
+                $user->birth_date     = ($type == UserType::STUDENT)? $request->input('birth_date'):null;
+                $user->address        = ($type == UserType::STUDENT)? $request->input('address'):null;
+                $user->certificate    = ($type == UserType::STUDENT)? $request->input('certificate'):null;
+                break;
+            case "pass":
+                $user->password       = md5($request->input('password'));
+                break;
+        }
+
+        $user->save();
+
+        return $user;
     }
 }

@@ -36,6 +36,7 @@
                                         <form method="post" action="{{route("dashboard.admin.users.update",["user" => $user->id])}}">
                                             @csrf()
                                             @method("put")
+                                            <input type="hidden" name="id" value="{{$user->id}}">
                                             <input type="hidden" name="type" value="{{$user->type}}">
                                             <input type="hidden" name="update" value="info">
                                             <div class="form-group row">
