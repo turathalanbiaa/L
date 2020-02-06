@@ -182,6 +182,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Change pass -->
                     <div class="card shadow-none">
                         <div class="card-header bg-transparent" role="tab" id="headingTwo">
                             <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -190,6 +191,7 @@
                                 </h5>
                             </a>
                         </div>
+
                         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordionUser">
                             <div class="card-body">
                                 <div class="row justify-content-center">
@@ -229,13 +231,15 @@
                         </div>
                     </div>
                 </div>
-                <!--Accordion wrapper-->
             </div>
         </div>
     </div>
 @endsection
 
 @section("extra-content")
+    <p class="p-5 text-danger">
+        {{request()->input('name')}}
+    </p>
 @endsection
 
 @section("script")
@@ -277,5 +281,6 @@
                 delay: 5000
             });
         @endif
+        console.log();
     </script>
 @endsection

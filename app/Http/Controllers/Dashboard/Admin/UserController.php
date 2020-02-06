@@ -32,6 +32,7 @@ class UserController extends Controller
     {
         $auth->check();
         $auth->hasRole("User");
+
         $this->userRepository = $userRepository;
         $this->middleware('filter:user-type')->only(['index', 'create', 'store']);
         $this->middleware('filter:user-update')->only(['update']);
@@ -70,31 +71,48 @@ class UserController extends Controller
         ]);
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
      * @param CreateUserRequest $request
-     * @return RedirectResponse|Redirector
+     * @return RedirectResponse
      */
     public function store(CreateUserRequest $request)
     {
-        $user = $this->userRepository->store($request);
+        $user = $this->userRepository->store([
+            "name"           => $request->input('name'),
+            "type"           => $request->input('type'),
+            "lang"           => app()->getLocale(),
+            "stage"          => $request->input('stage', null),
+            "email"          => $request->input('email'),
+            "phone"          => $request->input('phone'),
+            "password"       => md5($request->input('password')),
+            "gender"         => $request->input('gender'),
+            "country"        => $request->input('country'),
+            "birth_date"     => $request->input('birth_date', null),
+            "address"        => $request->input('address', null),
+            "certificate"    => $request->input('certificate', null),
+            "created_at"     => date("Y-m-d"),
+            "last_login"     => null,
+            "state"          => UserState::UNTRUSTED,
+            "remember_token" => null
+        ]);
 
         if (!$user)
             return redirect()
                 ->back()
-                ->withInput()
                 ->with([
-                    "message" => __("dashboard-admin/user.create.failed"),
+                    "message" => __("dashboard-admin/user.store.failed"),
                     "type" => "warning"
                 ]);
-
-        return redirect()
-            ->back()
-            ->with([
-                "message" => __("dashboard-admin/user.create.success"),
-                "type" => "success"
-            ]);
+        else
+            return redirect()
+                ->back()
+                ->with([
+                    "message" => __("dashboard-admin/user.store.success"),
+                    "type" => "success"
+                ]);
     }
 
     /**
@@ -109,6 +127,7 @@ class UserController extends Controller
 
         dd("gtuyhui");
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -132,11 +151,51 @@ class UserController extends Controller
      *
      * @param UpdateUserRequest $request
      * @param User $user
-     * @return void
+     * @return RedirectResponse
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $this->userRepository->update($request, $user);
+        $data = array();
+        switch ($request->input('update')) {
+            case "info":
+                $data = [
+                    "id"          => $user->id,
+                    "name"        => $request->input("name"),
+                    "stage"       => $request->input("stage", null),
+                    "email"       => $request->input("email"),
+                    "phone"       => $request->input("phone"),
+                    "gender"      => $request->input("gender"),
+                    "country"     => $request->input("country"),
+                    "birth_date"  => $request->input("birth_date", null),
+                    "address"     => $request->input("address", null),
+                    "certificate" => $request->input("certificate", null),
+                ];
+                break;
+            case "pass":
+                $data = [
+                    "id"          => $user->id,
+                    "password" => md5($request->input('password'))
+                ];
+                break;
+        }
+
+        $state = $this->userRepository->update($data);
+
+        if ($state == false)
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    "message" => __("dashboard-admin/user.update.failed"),
+                    "type" => "warning"
+                ]);
+        else
+            return redirect()
+                ->back()
+                ->with([
+                    "message" => __("dashboard-admin/user.update.success"),
+                    "type" => "success"
+                ]);
     }
 
     /**

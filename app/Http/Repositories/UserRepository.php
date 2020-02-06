@@ -73,56 +73,16 @@ class UserRepository implements UserRepositoryInterface
      * @param CreateUserRequest $request
      * @return User
      */
-    public function store(CreateUserRequest $request)
+    public function store($data)
     {
         // TODO: Implement store() method.
-        $type = $request->input('type');
-
-        $this->user->name           = $request->input('name');
-        $this->user->type           = $request->input('type');
-        $this->user->lang           = app()->getLocale();
-        $this->user->stage          = ($type == UserType::STUDENT)? $request->input('stage'):null;
-        $this->user->email          = $request->input('email');
-        $this->user->phone          = $request->input('phone');
-        $this->user->password       = md5($request->input('password'));
-        $this->user->gender         = $request->input('gender');
-        $this->user->country        = $request->input('country');
-        $this->user->birth_date     = ($type == UserType::STUDENT)? $request->input('birth_date'):null;
-        $this->user->address        = ($type == UserType::STUDENT)? $request->input('address'):null;
-        $this->user->certificate    = ($type == UserType::STUDENT)? $request->input('certificate'):null;
-        $this->user->created_at     = date("Y-m-d");
-        $this->user->last_login     = null;
-        $this->user->state          = UserState::UNTRUSTED;
-        $this->user->remember_token = null;
-        $this->user->save();
-
-        return $this->user;
+        return $this->user->create($data);
     }
 
 
-    public function update(UpdateUserRequest $request, User $user)
+    public function update($data)
     {
         // TODO: Implement update() method.
-        switch ($request->input('update')) {
-            case "info":
-                $type = $request->input('type');
-                $user->name           = $request->input('name');
-                $user->stage          = ($type == UserType::STUDENT)? $request->input('stage'):null;
-                $user->email          = $request->input('email');
-                $user->phone          = $request->input('phone');
-                $user->gender         = $request->input('gender');
-                $user->country        = $request->input('country');
-                $user->birth_date     = ($type == UserType::STUDENT)? $request->input('birth_date'):null;
-                $user->address        = ($type == UserType::STUDENT)? $request->input('address'):null;
-                $user->certificate    = ($type == UserType::STUDENT)? $request->input('certificate'):null;
-                break;
-            case "pass":
-                $user->password       = md5($request->input('password'));
-                break;
-        }
-
-        $user->save();
-
-        return $user;
+        return $this->user->where("id", $data["id"])->update($data);
     }
 }
