@@ -19,18 +19,36 @@
 
 @section("extra-content")
     @component("dashboard.admin.user.components.modal")
-        @slot('id') modalSimpleShow @endslot
+        @slot('id') modalInfo @endslot
         @slot('type') modal-info @endslot
-        @slot('header') @lang('dashboard-admin/user.index.modal.simple-show.header') @endslot
+        @slot('header') @lang('dashboard-admin/user.index.modal.info.header') @endslot
         @slot('body')
-            <div class="row" id="modal-simple-show-body"></div>
+            <div class="row" id="modal-info-body"></div>
         @endslot
         @slot('footer')
-            <a type="button" class="btn btn-info" id="modal-simple-show-btn-show">
-                @lang('dashboard-admin/user.index.modal.simple-show.btn-show')
+            <a type="button" class="btn btn-info" id="modal-info-btn">
+                @lang('dashboard-admin/user.index.modal.info.btn')
             </a>
             <a type="button" class="btn btn-outline-info" data-dismiss="modal">
-                @lang('dashboard-admin/user.index.modal.simple-show.btn-dismiss')
+                @lang('dashboard-admin/user.index.modal.btn-dismiss')
+            </a>
+        @endslot
+    @endcomponent
+
+    @component("dashboard.admin.user.components.modal")
+        @slot('id') modalDestroy @endslot
+        @slot('type') modal-danger @endslot
+        @slot('header') @lang('dashboard-admin/user.index.modal.destroy.header') @endslot
+        @slot('body')
+            <div class="row" id="modal-destroy-body">
+            </div>
+        @endslot
+        @slot('footer')
+            <a type="button" class="btn btn-danger" id="modal-destroy-btn">
+                @lang('dashboard-admin/user.index.modal.destroy.btn')
+            </a>
+            <a type="button" class="btn btn-outline-danger" data-dismiss="modal">
+                @lang('dashboard-admin/user.index.modal.btn-dismiss')
             </a>
         @endslot
     @endcomponent
@@ -38,16 +56,16 @@
 
 @section("script")
     <script>
-        $("button[data-action='btnSimpleShow']").click(function () {
+        $("button[data-action='btnModalInfo']").click(function () {
             let content = $(this).parent().data('content');
-            let body = $('#modal-simple-show-body');
+            let body = $('#modal-info-body');
             body.html('');
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'get',
-                url: '/dashboard/admin/users/ajax/simple-show',
+                url: '/dashboard/admin/users/ajax/info',
                 data: {content: content},
                 datatype: 'json',
                 encode: true,
@@ -77,7 +95,7 @@
                             '<div class="col-12">' +
                                 column +
                             '</div>';
-                        $("#modal-simple-show-btn-show").attr("href","/dashboard/admin/users/"+atob(content));
+                        $("#modal-info-btn").attr("href","/dashboard/admin/users/"+atob(content));
                     }
                     body.html(block);
                 },
@@ -85,7 +103,53 @@
                     console.log("error");
                 } ,
                 complete : function() {
-                    $("#modalSimpleShow").modal('show');
+                    $("#modalInfo").modal('show');
+                }
+            });
+        });
+
+        $("button[data-action='btnModalDestroy']").click(function () {
+            let content = $(this).parent().data('content');
+            let body = $('#modal-destroy-body');
+            body.html('');
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/dashboard/admin/users/ajax/destroy',
+                data: {content: content},
+                datatype: 'json',
+                encode: true,
+                success: function (result) {
+                    let block = "";
+                    if (result.state === false)
+                        block =
+                            '<div class="col-12">' +
+                            '   <div class="d-flex justify-content-center p-4">' +
+                            '       <div class="h5-responsive">' +
+                                        result.message +
+                            '       </div>' +
+                            '   </div>' +
+                            '</div>';
+                    else
+                        block =
+                            '<div class="col-12">' +
+                            '   <div class="d-flex justify-content-center p-4">' +
+                            '       <div class="h5-responsive">' +
+                            result.user +
+                            '       </div>' +
+                            '   </div>' +
+                            '</div>';
+
+                    $("#modal-info-btn").attr("href","/dashboard/admin/users/"+atob(content));
+                    body.html(block);
+                },
+                error: function () {
+                    console.log("error");
+                },
+                complete: function () {
+                    $("#modalDestroy").modal('show');
                 }
             });
         });

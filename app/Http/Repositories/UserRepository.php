@@ -70,8 +70,8 @@ class UserRepository implements UserRepositoryInterface
     /**
      * Save a new user.
      *
-     * @param CreateUserRequest $request
-     * @return User
+     * @param $data
+     * @return mixed
      */
     public function store($data)
     {
@@ -80,9 +80,15 @@ class UserRepository implements UserRepositoryInterface
     }
 
 
-    public function update($data)
+    /**
+     * update the user.
+     *
+     * @param $data
+     * @return mixed
+     */
+    public function update($id, $data)
     {
         // TODO: Implement update() method.
-        return $this->user->where("id", $data["id"])->update($data);
+        return $this->user->where("id", $id)->update($data);
     }
 }

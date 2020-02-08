@@ -31,7 +31,7 @@
             <td>{{$user->phone}}</td>
             <td>{{App\Enum\UserState::getStateName($user->state)}}</td>
             <td class="text-center" data-content="{{base64_encode($user->id)}}">
-                <button type="button" class="btn btn-info btn-sm mx-1" data-action="btnSimpleShow">
+                <button type="button" class="btn btn-info btn-sm mx-1" data-action="btnModalInfo">
                     <i class="far fa-address-card"></i>
                 </button>
                 <a class="btn btn-secondary btn-sm mx-1" href="{{route("dashboard.admin.users.show",["user" => $user->id])}}">
@@ -40,7 +40,9 @@
                 <a class="btn btn-primary btn-sm mx-1" href="{{route("dashboard.admin.users.edit",["user" => $user->id])}}">
                     <i class="far fa-edit"></i>
                 </a>
-                <button type="button" class="btn btn-danger btn-sm mx-1"><i class="far fa-trash-alt"></i></button>
+                <button type="button" class="btn btn-danger btn-sm mx-1" data-action="btnModalDestroy">
+                    <i class="far fa-trash-alt"></i>
+                </button>
             </td>
         </tr>
     @endforeach

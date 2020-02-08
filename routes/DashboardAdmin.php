@@ -14,8 +14,9 @@ Route::namespace("Dashboard\\Admin")
                     ->name('login');
 
                 // Users
-                Route::resource('users', 'UserController');
+                Route::resource('users', 'UserController')->except('destroy');
                 // Users Ajax
-                Route::get('users/ajax/simple-show','UserController@simpleShow');
+                Route::get('users/ajax/info','UserController@info');
+                Route::get('users/ajax/destroy','UserController@destroy');
         });
 });

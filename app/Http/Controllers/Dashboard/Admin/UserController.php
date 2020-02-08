@@ -159,7 +159,6 @@ class UserController extends Controller
         switch ($request->input('update')) {
             case "info":
                 $data = [
-                    "id"          => $user->id,
                     "name"        => $request->input("name"),
                     "stage"       => $request->input("stage", null),
                     "email"       => $request->input("email"),
@@ -173,13 +172,12 @@ class UserController extends Controller
                 break;
             case "pass":
                 $data = [
-                    "id"          => $user->id,
                     "password" => md5($request->input('password'))
                 ];
                 break;
         }
 
-        $state = $this->userRepository->update($data);
+        $state = $this->userRepository->update($user->id, $data);
 
         if ($state == false)
             return redirect()
@@ -199,29 +197,16 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param User $user
-     * @return Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
-
-    /**
-     * Display the user info.
+     * Display the user.
      *
      * @return JsonResponse
      */
-    public function simpleShow()
+    public function info()
     {
         $id = base64_decode(request()->input('content'));
         $user = $this->userRepository->getUserById($id);
 
         if ($user)
-        {
-            $state = true;
             $collect = [
                 "name" => [
                     "value" => $user->name,
@@ -282,12 +267,27 @@ class UserController extends Controller
                     "text"  => __('dashboard-admin/user.column.state')
                 ]
             ];
-        }
 
         return response()->json([
-            'state' => $state ?? false,
-            'user' => $collect ?? null,
-            'message' => __('dashboard-admin/user.index.modal.simple-show.message')
+            'state'   => ($user)? true:false,
+            'user'    => $collect ?? null,
+            'message' => __('dashboard-admin/user.index.modal.message')
+        ]);
+    }
+
+    public function destroy()
+    {
+        $id = base64_decode(request()->input('content'));
+
+        $user = $this->userRepository->getUserById($id);
+        $data = ["state" => UserState::DISABLE];
+
+        $user = $this->userRepository->update($id, $data);
+
+        return response()->json([
+            'state'   => ($user)? true:false,
+            'user'    => $user->name ?? null,
+            'message' => __('dashboard-admin/user.index.modal.message')
         ]);
     }
 }
