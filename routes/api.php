@@ -35,5 +35,9 @@ Route::get('general-courses/{lang}','GeneralCourseController@getCoursesByLang');
 Route::get('general-course/{id}','GeneralCourseController@show');
 Route::post('image-store','ImageController@store');
 Route::post('image-update','ImageController@updateimage');
+Route::post('my-images','ImageController@allimages');
+Route::get('users','UserController@index');
+Route::post('get-countries','UserController@countries');
+Route::post('get-certificates','UserController@certificate');
 
 
