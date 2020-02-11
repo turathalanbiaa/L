@@ -14,7 +14,6 @@ use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 use PeterColes\Countries\CountriesFacade as Countries;
 
@@ -123,9 +122,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-
-
-        dd("gtuyhui");
+        dd("show user");
     }
 
 
@@ -271,23 +268,7 @@ class UserController extends Controller
         return response()->json([
             'state'   => ($user)? true:false,
             'user'    => $collect ?? null,
-            'message' => __('dashboard-admin/user.index.modal.message')
-        ]);
-    }
-
-    public function destroy()
-    {
-        $id = base64_decode(request()->input('content'));
-
-        $user = $this->userRepository->getUserById($id);
-        $data = ["state" => UserState::DISABLE];
-
-        $user = $this->userRepository->update($id, $data);
-
-        return response()->json([
-            'state'   => ($user)? true:false,
-            'user'    => $user->name ?? null,
-            'message' => __('dashboard-admin/user.index.modal.message')
+            'message' => __('dashboard-admin/user.index.modal-info.message')
         ]);
     }
 }

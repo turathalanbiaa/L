@@ -25,7 +25,6 @@ class Filter
                 if (!in_array(request()->input("update"), array("info", "pass")))
                     abort(403, __('dashboard-admin/user.filter.update'));
                 break;
-            default: return "OK";
         }
 
         return $next($request);

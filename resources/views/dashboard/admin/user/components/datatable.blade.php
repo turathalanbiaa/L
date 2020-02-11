@@ -40,9 +40,6 @@
                 <a class="btn btn-primary btn-sm mx-1" href="{{route("dashboard.admin.users.edit",["user" => $user->id])}}">
                     <i class="far fa-edit"></i>
                 </a>
-                <button type="button" class="btn btn-danger btn-sm mx-1" data-action="btnModalDestroy">
-                    <i class="far fa-trash-alt"></i>
-                </button>
             </td>
         </tr>
     @endforeach
