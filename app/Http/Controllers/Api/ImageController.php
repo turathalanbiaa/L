@@ -18,16 +18,40 @@ class ImageController extends Controller
         $id = $request->get('id');
         $type = $request->get('type');
         $file = $request->file('image');
-        $document = new Document();
-        $document->user_id = $id;
-        $document->image = Storage::put('public/user/' . $id, $file);
-        $document->type = $type;
-        $document->state = 3;
-        if ($document->save()) {
-            return $this->apiResponse();
-        } else {
-            return $this->apiResponse(null, 400, true);
-        }
+        $document = Document::where("user_id", $id)->where("type", $type)->first();
+      if($document)
+      {
+          $document->image=Storage::put('public/user/' . $id, $file, 'public');
+          $document->state = 3;
+
+          if ($document->save()) {
+              $url = Storage::url($document->image);
+              $document = Document::find($id);
+              $document->image = $url;
+              return $this->apiResponse($document);
+          } else {
+              return $this->apiResponse(null, 404, true);
+          }
+      }else{
+          $document = new Document();
+          $document->user_id = $id;
+          $document->image = Storage::put('public/user/' . $id, $file, 'public');
+          $document->type = $type;
+          $document->state = 3;
+          if ($document->save()) {
+              $url = Storage::url($document->image);
+              $document = Document::find($id);
+              $document->image = $url;
+
+              return $this->apiResponse($document);
+          } else {
+              return $this->apiResponse(null, 404, true);
+          }
+      }
+
+
+
+
 
 
     }
@@ -37,7 +61,6 @@ class ImageController extends Controller
         $id = $request->get('id');
         $type = $request->get('type');
         $file = $request->file('image');
-
         $document = Document::where("user_id", $id)->where("type", $type)->first();
         if ($document->state != 1 || $document->type != 4) {
             $document->image = Storage::put('public/user/' . $id, $file);
@@ -50,10 +73,23 @@ class ImageController extends Controller
         }else{
             return $this->apiResponse("", 600, true);
         }
-
-
-
     }
+    public function allimages(Request $request)
+{
+    $id = $request->get('id');
+
+    $document = Document::where("user_id", $id)->get();
+    if ($document) {
+
+            return $this->apiResponse($document, 200, false);
+
+    }else{
+        return $this->apiResponse("", 404, true);
+    }
+
+
+
+}
 
     public function deleteimage(Request $request)
     {
