@@ -31,7 +31,6 @@ class UserController extends Controller
     {
         $auth->check();
         $auth->hasRole("User");
-
         $this->userRepository = $userRepository;
         $this->middleware('filter:user-type')->only(['index', 'create', 'store']);
         $this->middleware('filter:user-update')->only(['update']);

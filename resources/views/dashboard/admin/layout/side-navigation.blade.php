@@ -34,7 +34,7 @@
                             <a class="list-item" href="{{route("dashboard.admin.users.index",["type"=>App\Enum\UserType::LISTENER])}}">
                                 @lang("dashboard-admin/side-navigation.item-2-2")
                             </a>
-                            <a class="list-item">
+                            <a class="list-item" href="{{route("dashboard.admin.documents.index")}}">
                                 @lang("dashboard-admin/side-navigation.item-2-3")
                             </a>
                             <a class="list-item">

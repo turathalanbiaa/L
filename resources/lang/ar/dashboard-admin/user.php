@@ -1,4 +1,5 @@
 <?php
+
 return [
     'column' => [
         'id'             => 'رقم',

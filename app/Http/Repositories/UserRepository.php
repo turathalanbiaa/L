@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class UserRepository implements UserRepositoryInterface
 {
-    private $user;
+    protected $user;
 
     /**
      * UserRepository constructor.
