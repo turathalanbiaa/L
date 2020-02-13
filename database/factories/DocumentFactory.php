@@ -11,9 +11,10 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Document::class, function (Faker $faker) {
     return [
-        'user_id' => User::all()->random()->id,
-        'image'   => $faker->imageUrl(),
-        'type'    => DocumentType::getRandomType(),
-        'state'   => DocumentState::getRandomState(),
+        'user_id'    => User::all()->random()->id,
+        'image'      => $faker->imageUrl(),
+        'type'       => DocumentType::getRandomType(),
+        'state'      => DocumentState::getRandomState(),
+        'created_at' => date('Y-m-d')
     ];
 });

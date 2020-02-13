@@ -20,6 +20,7 @@ class CreateDocumentsTable extends Migration
             $table->string('image');
             $table->unsignedTinyInteger('type');
             $table->unsignedTinyInteger('state')->default(DocumentState::REVIEW);
+            $table->date('created_at');
         });
     }
 

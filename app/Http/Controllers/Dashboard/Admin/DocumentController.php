@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Enum\DocumentState;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\DocumentRepository;
+use App\Models\Document;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -23,12 +24,22 @@ class DocumentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Factory|View
+     * @param Request $request
+     * @return Factory|\Illuminate\Http\JsonResponse|View
+     * @throws \Throwable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("dashboard.admin.document.index")->with([
-           "documents"   =>  $this->documentRepository->getDocumentsByState(DocumentState::REVIEW)
+//        dd(Document::where('state', DocumentState::REVIEW)->count());
+        $documents = Document::paginate(50);
+
+        if ($request->ajax()) {
+            $view = view('dashboard.admin.document.components.documents',compact('documents'))->render();
+            return response()->json(['html'=>$view]);
+        }
+
+        return view('dashboard.admin.document.index')->with([
+            "documents" => $documents
         ]);
     }
 

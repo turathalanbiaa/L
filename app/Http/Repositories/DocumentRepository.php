@@ -22,12 +22,12 @@ class DocumentRepository implements DocumentRepositoryInterface
         // TODO: Implement getDocuments() method.
     }
 
-    public function getDocumentsByState($state)
+    public function getDocumentsByState($state, $itemsPerPage)
     {
         // TODO: Implement getDocumentsByState() method.
         $documents = $this->document
             ->where('state', $state)
-            ->get();
+            ->paginate($itemsPerPage);
 
         return $documents;
     }
