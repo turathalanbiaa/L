@@ -79,7 +79,6 @@ class UserRepository implements UserRepositoryInterface
         return $this->user->create($data);
     }
 
-
     /**
      * update the user.
      *
@@ -90,5 +89,11 @@ class UserRepository implements UserRepositoryInterface
     {
         // TODO: Implement update() method.
         return $this->user->where("id", $id)->update($data);
+    }
+
+    public function getDocuments(User $user)
+    {
+        // TODO: Implement getDocuments() method.
+        return $user->documents();
     }
 }

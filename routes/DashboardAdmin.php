@@ -13,15 +13,22 @@ Route::namespace("Dashboard\\Admin")
                 Route::post('login', 'MainController@login')
                     ->name('login');
 
-                // Users Resources
-                Route::resource('users', 'UserController')->except('destroy');
-                // Users Ajax
-                Route::get('ajax/users/info','UserController@info');
+                // Users
+                Route::namespace('User')
+                    ->group(function (){
+                        // Resources
+                        Route::resource('users', 'UserController')->except('destroy');
+                        // Api
+                        Route::get('api/users/info','ApiUserController@info');
+                    });
+
+
+
 
                 // Documents Resources
                 Route::resource('documents', 'DocumentController')->except(['show', 'edit', 'update', 'destroy']);
                 // Documents Ajax
                 Route::post('ajax/documents/accept','DocumentController@accept');
                 Route::post('ajax/documents/reject','DocumentController@reject');
-        });
-});
+            });
+    });

@@ -47,7 +47,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'get',
-                url: '/dashboard/admin/ajax/users/info',
+                url: '/dashboard/admin/api/users/info',
                 data: {content: content},
                 datatype: 'json',
                 encode: true,

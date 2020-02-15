@@ -18,7 +18,6 @@
     <div class="container-fluid">
         <div class="row" id="update-selector">
             <div class="col-12">
-                {{is_null(old('update'))}}
                 <div class="p-2 h5-responsive">
                     <a data-toggle="collapse" data-target=".collapse.one" aria-expanded="false" aria-controls=".collapse.one">
                         @lang("dashboard-admin/user.edit.change-info")

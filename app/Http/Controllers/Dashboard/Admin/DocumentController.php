@@ -31,7 +31,7 @@ class DocumentController extends Controller
     public function index(Request $request)
     {
 //        dd(Document::where('state', DocumentState::REVIEW)->count());
-        $documents = Document::paginate(50);
+        $documents = Document::paginate(20);
 
         if ($request->ajax()) {
             $view = view('dashboard.admin.document.components.documents',compact('documents'))->render();
@@ -46,11 +46,13 @@ class DocumentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.document.create')->with([
+
+        ]);
     }
 
     /**

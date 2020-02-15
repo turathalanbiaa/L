@@ -43,7 +43,14 @@
 @section("script")
     <script>
         var page = 1;
+        $(document).ready(function() {
+            loadMore();
+        });
         $(window).scroll(function() {
+            loadMore();
+        });
+
+        function loadMore() {
             if($(window).scrollTop() === $(window).innerHeight() - $(window).outerHeight()) {
                 page++;
                 $('.ajax-load').show();
@@ -63,7 +70,6 @@
                         {
                             $("#post-data").append(result.html);
                         }
-
                     },
                     error: function() {
                         alert('server not responding...');
@@ -73,7 +79,7 @@
                     }
                 });
             }
-        });
+        }
     </script>
 @endsection
 
