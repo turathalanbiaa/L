@@ -176,7 +176,7 @@
 
                     <div class="text-center mt-4">
                         <button class="btn btn-outline-primary">
-                            @lang("dashboard-admin/user.create.btn")
+                            @lang("dashboard-admin/user.create.btn-send")
                         </button>
                     </div>
                 </form>
@@ -186,18 +186,6 @@
 @endsection
 
 @section("extra-content")
-
-{{--        <div style="position: absolute; top: 0; left:0; z-index:2000; background-color: #0c5460; padding: 20px;">--}}
-{{--            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true">--}}
-{{--                <div class="toast-body text-white bg-success px-3">--}}
-{{--                    {{session()->get("message")}}--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--        </div>--}}
-{{--    @endif--}}
-
-
 
 @endsection
 

@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="text-center mt-4">
                                     <button class="btn btn-outline-primary">
-                                        @lang("dashboard-admin/user.edit.btn")
+                                        @lang("dashboard-admin/user.edit.btn-save")
                                     </button>
                                 </div>
                             </form>
@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="text-center mt-4">
                                     <button class="btn btn-outline-primary">
-                                        @lang("dashboard-admin/user.edit.btn")
+                                        @lang("dashboard-admin/user.edit.btn-save")
                                     </button>
                                 </div>
                             </form>

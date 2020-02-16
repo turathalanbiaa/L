@@ -11,18 +11,10 @@ use App\Http\Controllers\Dashboard\Admin\Auth;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use PeterColes\Countries\CountriesFacade as Countries;
 
 class UserController extends Controller
 {
-    /**
-     * UserController constructor.
-     *
-     * @param Auth $auth
-     */
     public function __construct(Auth $auth)
     {
         $auth->check();
@@ -31,11 +23,6 @@ class UserController extends Controller
         $this->middleware('filter:user-update')->only(['update']);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Factory|View
-     */
     public function index()
     {
         $type = request()->input("type");
@@ -50,11 +37,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Factory|View
-     */
     public function create()
     {
         return view("dashboard.admin.user.create")->with([
@@ -66,12 +48,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param CreateUserRequest $request
-     * @return RedirectResponse
-     */
     public function store(CreateUserRequest $request)
     {
         $user = User::create([
@@ -109,12 +85,6 @@ class UserController extends Controller
                 ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param User $user
-     * @return Factory|View
-     */
     public function show(User $user)
     {
         return view("dashboard.admin.user.show")->with([
@@ -123,14 +93,11 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param User $user
-     * @return Factory|View
-     */
     public function edit(User $user)
     {
+        if ($user->lang != app()->getLocale())
+            return abort(404);
+
         return view("dashboard.admin.user.edit")->with([
             "user"         => $user,
             "stages"       => Stage::getStages(),
@@ -140,16 +107,8 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateUserRequest $request
-     * @param User $user
-     * @return RedirectResponse
-     */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $data = array();
         switch ($request->input('update')) {
             case "info":
                 $data = [
@@ -169,7 +128,9 @@ class UserController extends Controller
                     "password" => md5($request->input('password'))
                 ];
                 break;
+            default: $data = array();
         }
+
         $state = User::where("id", $user->id)->update($data);
 
         if ($state == false)

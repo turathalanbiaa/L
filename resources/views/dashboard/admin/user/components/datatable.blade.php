@@ -10,7 +10,7 @@
         <th colspan="1" class="text-center">
             <a class="btn btn-link text-decoration-none text-white" type="button" href="{{route("dashboard.admin.users.create", ["type"=>$type])}}">
                 <i class="fa fa-plus light-green-text mx-1"></i>
-                @lang("dashboard-admin/user.index.datatable.btn-create-$type")
+                @lang("dashboard-admin/user.index.datatable.btn-add-$type")
             </a>
         </th>
     </tr>

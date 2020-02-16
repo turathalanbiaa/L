@@ -7,33 +7,17 @@ use App\Enum\Gender;
 use App\Enum\Stage;
 use App\Enum\UserState;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\UserRepository;
-use Illuminate\Http\JsonResponse;
+use App\Models\User;
 use PeterColes\Countries\CountriesFacade as Countries;
 
 class ApiUserController extends Controller
 {
-    protected $userRepository;
-
-    /**
-     * ApiUserController constructor.
-     *
-     * @param UserRepository $userRepository
-     */
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
-    /**
-     * Display the specified user.
-     *
-     * @return JsonResponse
-     */
     public function info()
     {
         $id = base64_decode(request()->input('content'));
-        $user = $this->userRepository->getUserById($id);
+        $user = User::where('id', $id)
+            ->where('lang', app()->getLocale())
+            ->first();
 
         if ($user)
             $collect = [

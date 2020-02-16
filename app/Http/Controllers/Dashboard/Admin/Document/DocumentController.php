@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Admin;
+namespace App\Http\Controllers\Dashboard\Admin\Document;
 
 use App\Enum\DocumentState;
+use App\Enum\DocumentType;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashboard\Admin\Auth;
 use App\Http\Repositories\DocumentRepository;
 use App\Models\Document;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class DocumentController extends Controller
 {
     protected $documentRepository;
+
     public function __construct(DocumentRepository $documentRepository, Auth $auth)
     {
         $auth->check();
@@ -20,17 +21,8 @@ class DocumentController extends Controller
         $this->documentRepository = $documentRepository;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return Factory|\Illuminate\Http\JsonResponse|View
-     * @throws \Throwable
-     */
     public function index(Request $request)
     {
-//        dd(Document::where('state', DocumentState::REVIEW)->count());
         $documents = Document::paginate(20);
 
         if ($request->ajax()) {
@@ -43,34 +35,16 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Factory|View
-     */
     public function create()
     {
         return view('dashboard.admin.document.create')->with([
-
+            "types"  => DocumentType::getTypes(),
+            "states" => DocumentState::getStates()
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
-
-    public function accept() {
-
-    }
-
-    public function reject() {
 
     }
 }
