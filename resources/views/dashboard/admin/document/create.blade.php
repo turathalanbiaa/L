@@ -73,7 +73,7 @@
                         <div class="d-flex justify-content-center">
                             <div class="btn btn-mdb-color btn-block">
                                 <span>@lang('dashboard-admin/document.placeholder.image')</span>
-                                <input type="file" name="image">
+                                <input type="file" name="file" id="file">
                             </div>
                         </div>
                     </div>
@@ -97,11 +97,6 @@
     $("#dropdown-state .dropdown-item").click(function () {
         $("input#state").val($(this).html().trim());
         $("input[name='state']").val($(this).data('value'));
-    });
-
-
-    $("input[type='file']").change(function () {
-        $('form#upload').submit();
     });
 
     $('form#upload').on('submit', function () {
@@ -129,8 +124,6 @@
             }
         });
     });
-
-
 </script>
 @endsection
 
