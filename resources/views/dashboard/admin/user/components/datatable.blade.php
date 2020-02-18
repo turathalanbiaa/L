@@ -31,13 +31,13 @@
             <td>{{$user->phone}}</td>
             <td>{{App\Enum\UserState::getStateName($user->state)}}</td>
             <td class="text-center" data-content="{{base64_encode($user->id)}}">
-                <button type="button" class="btn btn-info btn-sm mx-1" data-action="btnModalInfo">
+                <a class="btn btn-info btn-sm m-2" data-action="btnModalInfo">
                     <i class="far fa-address-card"></i>
-                </button>
-                <a class="btn btn-secondary btn-sm mx-1" href="{{route("dashboard.admin.users.show",["user" => $user->id])}}">
+                </a>
+                <a class="btn btn-secondary btn-sm m-2" href="{{route("dashboard.admin.users.show",["user" => $user->id])}}">
                     <i class="far fa-eye"></i>
                 </a>
-                <a class="btn btn-primary btn-sm mx-1" href="{{route("dashboard.admin.users.edit",["user" => $user->id])}}">
+                <a class="btn btn-primary btn-sm m-2" href="{{route("dashboard.admin.users.edit",["user" => $user->id])}}">
                     <i class="far fa-edit"></i>
                 </a>
             </td>

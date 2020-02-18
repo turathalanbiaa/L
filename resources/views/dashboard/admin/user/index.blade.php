@@ -38,7 +38,7 @@
 
 @section("script")
     <script>
-        $("button[data-action='btnModalInfo']").click(function () {
+        $("[data-action='btnModalInfo']").click(function () {
             let content = $(this).parent().data('content');
             let body = $('#modal-info-body');
             body.html('');

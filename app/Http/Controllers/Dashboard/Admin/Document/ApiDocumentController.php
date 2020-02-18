@@ -16,12 +16,12 @@ class ApiDocumentController extends Controller
 
 
         $validation = Validator::make($request->all(), [
-            'file' => 'required|image'
+            'image' => 'required|image'
         ]);
 
         if ($validation->passes())
         {
-            $path = Storage::put("public/user/temp", $request->file('file'));
+            $path = Storage::put("public/user/temp", $request->file('image'));
             return response()->json([
                 "message" => $path,
                 "image_path" => ""
