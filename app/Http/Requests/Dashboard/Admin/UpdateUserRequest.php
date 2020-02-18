@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Dashboard\Admin;
 
 use App\Enum\Certificate;
 use App\Enum\Gender;
@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use PeterColes\Countries\CountriesFacade as Countries;
 
-class CreateUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,24 +22,25 @@ class CreateUserRequest extends FormRequest
         return true;
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array|void
      */
     public function rules()
     {
         return [
-            "name"        => "required",
-            "email"       => "required|email|unique:users,email",
-            "phone"       => "required|unique:users,phone",
-            "password"    => "required|min:6|confirmed",
-            "gender"      => ["required", Rule::in(Gender::getGenders())],
-            "country"     => ["required", Rule::in(array_keys((Countries::lookup(app()->getLocale()))->toArray()))],
-            "stage"       => ["required_if:type,==,1", "nullable", Rule::in(Stage::getStages())],
-            "certificate" => ["required_if:type,==,1", "nullable", Rule::in(Certificate::getCertificates())],
-            "birth_date"  => "required_if:type,==,1|nullable|date_format:Y-m-d|before_or_equal:".date('Y-m-d', strtotime('-15 years')),
-            "address"     => "required_if:type,==,1"
+            "name"        => ["required_if:update,==,info"],
+            "email"       => ["required_if:update,==,info", "email", Rule::unique('users')->ignore($this->input('id'))],
+            "phone"       => ["required_if:update,==,info", Rule::unique('users')->ignore($this->input('id'))],
+            "password"    => ["required_if:update,==,pass", "min:6", "confirmed"],
+            "gender"      => ["required_if:update,==,info", Rule::in(Gender::getGenders())],
+            "country"     => ["required_if:update,==,info", Rule::in(array_keys((Countries::lookup(app()->getLocale()))->toArray()))],
+            "stage"       => ["required_if:update,==,info", "required_if:type,==,1", "nullable", Rule::in(Stage::getStages())],
+            "certificate" => ["required_if:update,==,info", "required_if:type,==,1", "nullable", Rule::in(Certificate::getCertificates())],
+            "birth_date"  => ["required_if:update,==,info", "required_if:type,==,1", "nullable", "date_format:Y-m-d", "before_or_equal:".date('Y-m-d', strtotime('-15 years'))],
+            "address"     => ["required_if:update,==,info", "required_if:type,==,1"]
         ];
     }
 
@@ -52,18 +53,18 @@ class CreateUserRequest extends FormRequest
     {
         if(app()->getLocale() == Language::ARABIC)
             return [
-                "name.required"           => "الاسم الرباعي واللقب مطلوب",
-                "email.required"          => "البريد الالكتروني مطلوب",
+                "name.required_if"        => "الاسم الرباعي واللقب مطلوب",
+                "email.required_if"       => "البريد الالكتروني مطلوب",
                 "email.email"             => "البريد الالكتروني غير مقبول",
                 "email.unique"            => "البريد الالكتروني محجوز",
-                "phone.required"          => "الهاتف مطلوب",
+                "phone.required_if"       => "الهاتف مطلوب",
                 "phone.unique"            => "الهاتف محجوز",
-                "password.required"       => "كلمة المرور مطلوبة",
+                "password.required_if"       => "كلمة المرور مطلوبة",
                 "password.min"            => "كلمة المرور اصغر من 6 حروف",
                 "password.confirmed"      => "كلمتا المرور غير متطابقتان",
-                "gender.required"         => "اختيار الجنس مطلوب",
+                "gender.required_if"         => "اختيار الجنس مطلوب",
                 "gender.in"               => "الجنس غير مقبول",
-                "country.required"        => "اختيار البلد مطلوب",
+                "country.required_if"        => "اختيار البلد مطلوب",
                 "country.in"              => "البلد غير مقبول",
                 "stage.required_if"       => "اختيار المرحلة مطلوب",
                 "stage.in"                => "المرحلة غير مقبولة",

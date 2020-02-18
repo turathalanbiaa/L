@@ -19,15 +19,20 @@
                             <div class="file-field d-flex justify-content-center">
                                 <div class="btn btn-mdb-color btn-block">
                                     <span>@lang('dashboard-admin/document.placeholder.image')</span>
-                                    <input type="file" name="image" id="image">
+                                    <input type="file" name="file" id="image">
                                 </div>
                             </div>
+                            <input type="hidden" name="prev_image" value="{{old('image')}}" id="prev-image">
+                            @error('image') <div class="text-center text-warning mt-1" id="error">{{ $message }}</div> @enderror
                             <input class="d-none" type="submit" id="submit">
                         </form>
                     </div>
                     <div class="col-sm-12">
                         <form method="post" action="{{route("dashboard.admin.documents.store")}}">
                             @csrf
+                            <input type="hidden" name="user" value="{{old('user', $user)}}">
+                            @error('user') <div class="text-warning">{{ $message }}</div> @enderror
+                            <input type="hidden" name="image" value="{{old('image')}}" id="image-path">
                             <div class="row">
                                 <label class="col-sm-2 col-form-label" for="type" >
                                     @lang("dashboard-admin/document.column.type")
@@ -79,10 +84,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="z-depth-1-half">
-                    <img src="{{asset("img/dashboard/admin/image-placeholder.jpg")}}" class="img-fluid" alt="Document Image">
+            <div class="col-sm-5">
+                <div class="z-depth-1-half text-center">
+                    <img src="{{is_null(old('image'))?asset("img/dashboard/admin/image-placeholder.jpg"):Storage::url(old('image'))}}" id="image-url" class="img-fluid" alt="Document Image">
                 </div>
+                <div class="text-center mt-2">
+                    <i class="fa fa-star text-danger"></i>
+                    @lang('dashboard-admin/document.placeholder.image-type')
+                </div>
+                <div class="text-center mt-2 text-warning d-none" id="message"></div>
             </div>
         </div>
     </div>
@@ -102,10 +112,11 @@
         $("input#state").val($(this).html().trim());
         $("input[name='state']").val($(this).data('value'));
     });
-    $('input#image').change(function () {
+    $('#image').change(function () {
+        $('#error').addClass('d-none');
         $('#submit').click();
     });
-    $('form#upload').on('submit', function () {
+    $('#upload').on('submit', function () {
         event.preventDefault();
         $.ajax({
             method: 'post',
@@ -116,16 +127,31 @@
             cache: false,
             processData: false,
             success: function(result) {
-                console.log(result)
+                let message = $('#message');
+                message.removeClass('d-block').addClass('d-none');
+                if(result.error === true)
+                {
+                    message.html(result.data.message);
+                    message.removeClass('d-none').addClass('d-block');
+                }
+
+                $('img#image-url').attr('src', result.data.image_url);
+                $('input#image-path').val(result.data.image_path);
+                $('input#prev-image').val(result.data.image_path);
             },
             error: function() {
-
             } ,
             complete : function() {
-
             }
         });
     });
+    @if(session()->has("message"))
+        $.toast({
+            title: '{{session()->get("message")}}',
+            type:  '{{session()->get("type")}}',
+            delay: 5000
+        });
+    @endif
 </script>
 @endsection
 

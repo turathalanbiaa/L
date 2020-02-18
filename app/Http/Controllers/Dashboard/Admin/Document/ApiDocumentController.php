@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard\Admin\Document;
 
+use App\Enum\Language;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\ApiResponseTrait;
 use App\Http\Requests\Request;
@@ -13,27 +14,38 @@ class ApiDocumentController extends Controller
     use ApiResponseTrait;
 
     public function store(Request $request) {
-
-
-        $validation = Validator::make($request->all(), [
-            'image' => 'required|image'
-        ]);
-
-        if ($validation->passes())
-        {
-            $path = Storage::put("public/user/temp", $request->file('image'));
-            return response()->json([
-                "message" => $path,
-                "image_path" => ""
-            ]);
+        $rules = ['file' => 'required|image'];
+        switch (app()->getLocale()) {
+            case Language::ARABIC:
+                $messages = [
+                    'file.required' => 'يجب رفع الصورة',
+                    'file.image'    => 'الملف المرفوع ليس صورة'
+                ]
+                ;break;
+            case Language::ENGLISH:
+                $messages = [
+                    'file.required' => 'The field image is required.',
+                    'file.image'    => 'The file must be an image.'
+                ];
+                break;
+            default: $messages = [];
         }
-        else
-        {
-            return response()->json([
-                "message" => $validation->errors()->all(),
-                "image_path" => ""
-            ]);
-        }
+
+        $validation = Validator::make($request->all(), $rules, $messages);
+
+        if (!$validation->passes())
+            return $this->apiResponse([
+                "message" => $validation->errors()->all()
+            ], 200, true);
+
+        Storage::delete($request->input('prev_image'));
+
+        $image = Storage::put("public/user/temp", $request->file('file'));
+
+        return $this->apiResponse([
+            "image_url"  => Storage::url($image),
+            "image_path" => $image,
+        ], 200, false);
     }
 
     public function accept() {

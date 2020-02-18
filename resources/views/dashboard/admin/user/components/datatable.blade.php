@@ -30,7 +30,7 @@
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
             <td>{{App\Enum\UserState::getStateName($user->state)}}</td>
-            <td class="text-center" data-content="{{base64_encode($user->id)}}">
+            <td class="text-center" data-content="{{$user->id}}">
                 <a class="btn btn-info btn-sm m-2" data-action="btnModalInfo">
                     <i class="far fa-address-card"></i>
                 </a>

@@ -89,32 +89,27 @@
 
                     <!-- Documents Tab Content -->
                     <div class="tab-pane fade pt-4" id="documents" role="tabpanel" aria-labelledby="documents-tab">
-                        <a class="btn btn-outline-primary" href="{{route("dashboard.admin.documents.create")}}">
-                            @lang("dashboard-admin/user.show.documents-tab.btn-add")
-                        </a>
-                        <div class="clearfix row pt-3">
-                            @foreach($documents as $document)
-                                <div class="col-sm-3">
-                                    <p class="text-center">{{\App\Enum\DocumentType::getTypeName($document->type)}}</p>
-                                    <div class="view overlay zoom">
-                                        <img src="https://lorempixel.com/640/480/?48425" class="img-fluid " alt="smaple image">
-                                        <div class="mask flex-center">
-                                            <p class="white-text">Zoom effect</p>
+                        @if($user->type == \App\Enum\UserType::STUDENT)
+                            <a class="btn btn-outline-primary" href="{{route("dashboard.admin.documents.create", ["user" => $user->id])}}">
+                                @lang("dashboard-admin/user.show.documents-tab.btn-add")
+                            </a>
+                            <div class="clearfix row pt-3">
+                                @foreach($documents as $document)
+                                    <div class="col-sm-3">
+                                        <p class="text-center">{{\App\Enum\DocumentType::getTypeName($document->type)}}</p>
+                                        <div class="img-thumbnail">
+                                            <img src="{{Storage::url($document->image)}}" class="img-fluid " alt="document image">
                                         </div>
                                     </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="d-flex justify-content-center">
+                                <div class="h3-responsive p-5">
+                                    @lang('dashboard-admin/user.show.documents-tab.message')
                                 </div>
-
-                                <div class="col-sm-3">
-                                    <p class="text-center">{{\App\Enum\DocumentType::getTypeName($document->type)}}</p>
-                                    <div class="view overlay zoom">
-                                        <img src="https://lorempixel.com/640/480/?48425" class="img-fluid" alt="smaple image">
-                                        <div class="mask flex-center">
-                                            <p class="white-text">Zoom effect</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

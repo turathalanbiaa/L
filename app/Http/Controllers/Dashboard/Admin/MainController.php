@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Enum\Language;
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\AdminRepository;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Dashboard\Admin\LoginRequest;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cookie;

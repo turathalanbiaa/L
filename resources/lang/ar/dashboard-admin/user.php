@@ -21,7 +21,6 @@ return [
         'remember_token' => 'الرمز',
 
         'last_login_null' => 'لم يسجل',
-        'null'            => 'لا توجد بيانات',
         're_password'     => 'اعد كلمة المرور'
     ],
 
@@ -76,7 +75,8 @@ return [
         ],
 
         'documents-tab' => [
-            'btn-add' => 'اضافة مستمسك'
+            'btn-add' => 'اضافة مستمسك',
+            'message' => 'حساب المستمع لايحتوي على اي مستمسك'
         ],
     ],
 

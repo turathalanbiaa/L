@@ -8,8 +8,8 @@ use App\Enum\Stage;
 use App\Enum\UserState;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Admin\Auth;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\Dashboard\Admin\CreateUserRequest;
+use App\Http\Requests\Dashboard\Admin\UpdateUserRequest;
 use App\Models\User;
 use PeterColes\Countries\CountriesFacade as Countries;
 
@@ -87,6 +87,9 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        if ($user->lang != app()->getLocale())
+            return abort(404);
+
         return view("dashboard.admin.user.show")->with([
             "user"      => $user,
             "documents" => $user->documents
@@ -131,9 +134,9 @@ class UserController extends Controller
             default: $data = array();
         }
 
-        $state = User::where("id", $user->id)->update($data);
+        User::where("id", $user->id)->update($data);
 
-        if ($state == false)
+        if (!$user)
             return redirect()
                 ->back()
                 ->withInput()
