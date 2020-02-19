@@ -85,9 +85,7 @@
                 </div>
             </div>
             <div class="col-sm-5">
-                <div class="z-depth-1-half text-center">
-                    <img src="{{is_null(old('image'))?asset("img/dashboard/admin/image-placeholder.jpg"):Storage::url(old('image'))}}" id="image-url" class="img-fluid" alt="Document Image">
-                </div>
+                <img src="{{is_null(old('image'))?asset("img/dashboard/admin/image-placeholder.jpg"):Storage::url(old('image'))}}" id="image-url" class="w-100 z-depth-1" height="250" alt="Document Image">
                 <div class="text-center mt-2">
                     <i class="fa fa-star text-danger"></i>
                     @lang('dashboard-admin/document.placeholder.image-type')

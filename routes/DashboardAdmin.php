@@ -28,8 +28,10 @@ Route::namespace("Dashboard\\Admin")
                         Route::resource('documents', 'DocumentController')->except(['show', 'edit', 'update', 'destroy']);
                         // Apis
                         Route::post('api/documents/store','ApiDocumentController@store');
+                        Route::get('api/documents/build-modal','ApiDocumentController@buildModal');
                         Route::get('api/documents/accept','ApiDocumentController@accept');
                         Route::get('api/documents/reject','ApiDocumentController@reject');
+                        Route::get('api/documents/delete','ApiDocumentController@delete');
                     });
             });
     });

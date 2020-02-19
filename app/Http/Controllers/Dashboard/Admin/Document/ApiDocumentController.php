@@ -6,6 +6,7 @@ use App\Enum\Language;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\ApiResponseTrait;
 use App\Http\Requests\Request;
+use App\Models\Document;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,11 +50,26 @@ class ApiDocumentController extends Controller
         ], 200, false);
     }
 
+    public function buildModal(Request $request){
+        $document = Document::find($request->input('document'));
+        $action = $request->input('action');
+
+        $view = view('dashboard.admin.document.components.modal')
+            ->with(['document'=> $document, 'action'  => $action])
+            ->render();
+
+        return $this->apiResponse(['html' => $view], 200, false);
+    }
+
     public function accept() {
 
     }
 
     public function reject() {
+
+    }
+
+    public function destroy() {
 
     }
 }

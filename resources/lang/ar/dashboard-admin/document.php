@@ -13,9 +13,6 @@ return [
         'image-type' => 'يجب أن تكون صورة (jpeg أو png أو bmp أو gif أو svg أو webp)',
     ],
 
-
-
-
     //
     'index' => [
         'title' => 'المستمسكات'
@@ -29,5 +26,12 @@ return [
     'store' => [
         'success' => 'تم رفع المستمسك بنجاح',
         'failed'  => 'لم يتم رفع المستمسك، اعد المحاولة',
+    ],
+
+    'share' => [
+        'documents-tab-content' => [
+            'btn-add' => 'اضافة مستمسك',
+            'message' => 'حساب المستمع لايحتوي على اي مستمسك'
+        ],
     ]
 ];

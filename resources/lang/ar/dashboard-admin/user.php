@@ -75,11 +75,6 @@ return [
         'profile-tab' => [
             'btn-edit' => 'تحرير الحساب'
         ],
-
-        'documents-tab' => [
-            'btn-add' => 'اضافة مستمسك',
-            'message' => 'حساب المستمع لايحتوي على اي مستمسك'
-        ],
     ],
 
     'edit' => [
