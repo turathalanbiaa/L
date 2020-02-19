@@ -95,10 +95,35 @@
                             </a>
                             <div class="clearfix row pt-3">
                                 @foreach($documents as $document)
-                                    <div class="col-sm-3">
-                                        <p class="text-center">{{\App\Enum\DocumentType::getTypeName($document->type)}}</p>
-                                        <div class="img-thumbnail">
-                                            <img src="{{Storage::url($document->image)}}" class="img-fluid " alt="document image">
+                                    <div class="col-sm-3 text-center">
+                                        <p>
+                                            {{\App\Enum\DocumentType::getTypeName($document->type)}}
+                                            @switch($document->state)
+                                                @case(\App\Enum\DocumentState::ACCEPT)
+                                                <span class="badge badge-success">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
+                                                @break
+                                                @case(\App\Enum\DocumentState::REJECT)
+                                                <span class="badge badge-danger">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
+                                                @break
+                                                @case(\App\Enum\DocumentState::REVIEW)
+                                                <span class="badge badge-info">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
+                                                @break
+                                            @endswitch
+                                        </p>
+                                        <img src="{{Storage::url($document->image)}}" class="w-100 z-depth-1" height="250" alt="document image">
+                                        <div class="d-block mt-2">
+                                            <a class="btn btn-sm btn-outline-info" id="document-info">
+                                                <i class="fa fa-eye text-info"></i>
+                                            </a>
+                                            <a class="btn btn-sm btn-outline-success">
+                                                <i class="fa fa-check text-success"></i>
+                                            </a>
+                                            <a class="btn btn-sm btn-outline-warning">
+                                                <i class="fa fa-times text-warning"></i>
+                                            </a>
+                                            <a class="btn btn-sm btn-outline-danger">
+                                                <i class="fa fa-trash text-danger"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -118,10 +143,21 @@
 @endsection
 
 @section("extra-content")
-
+    <div class="modal fade" id="modal-document-info" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <img src="{{\Illuminate\Support\Facades\Storage::url($document->image)}}">
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section("script")
-
+    <script>
+        $('#document-info').click(function () {
+            let src = $(this).parent().parent().find('img').attr('src');
+            console.log(src)
+        });
+    </script>
 @endsection
 

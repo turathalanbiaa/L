@@ -15,6 +15,7 @@ class ApiDocumentController extends Controller
 
     public function store(Request $request) {
         $rules = ['file' => 'required|image'];
+
         switch (app()->getLocale()) {
             case Language::ARABIC:
                 $messages = [

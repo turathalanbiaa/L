@@ -35,7 +35,7 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    $('#extra').html(result.html)
+                    $('#extra').html(result.data.html)
                 },
                 error: function() {
                     console.log("error");

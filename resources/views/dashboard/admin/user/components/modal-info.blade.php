@@ -3,20 +3,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <p class="heading lead">
-                    @lang('dashboard-admin/user.index.modal-info.header')
+                    @if($user)
+                        @lang("dashboard-admin/user.index.modal-info.header-$user->type")
+                    @else
+                        @lang("dashboard-admin/user.index.modal-info.header")
+                    @endif
+
                 </p>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    @if(!$user)
-                        <div class="col-12">
-                            <div class="d-flex justify-content-center p-4">
-                                <div class="h5-responsive">
-                                    @lang('dashboard-admin/user.index.modal-info.message')
-                                </div>
-                            </div>
-                        </div>
-                    @else
+                    @if($user)
                         <div class="col-12">
                             <p class="card-text">
                                 <strong> @lang('dashboard-admin/user.column.name'): </strong>
@@ -69,13 +66,23 @@
                                 <span>{{\App\Enum\UserState::getStateName($user->state)}}</span>
                             </p>
                         </div>
+                    @else
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center p-4">
+                                <div class="h5-responsive">
+                                    @lang('dashboard-admin/user.index.modal-info.message')
+                                </div>
+                            </div>
+                        </div>
                     @endif
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <a type="button" class="btn btn-info" href="{{route("dashboard.admin.users.show",["user" => $user->id])}}">
-                    @lang('dashboard-admin/user.index.modal-info.btn-info')
-                </a>
+                @if($user)
+                    <a type="button" class="btn btn-info" href="{{route("dashboard.admin.users.show", ["user" => $user->id])}}">
+                        @lang('dashboard-admin/user.index.modal-info.btn-info')
+                    </a>
+                @endif
                 <a type="button" class="btn btn-outline-info" data-dismiss="modal">
                     @lang('dashboard-admin/user.index.modal-info.btn-dismiss')
                 </a>
