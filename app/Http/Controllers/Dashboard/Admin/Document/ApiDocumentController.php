@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard\Admin\Document;
 
+use App\Enum\DocumentType;
 use App\Enum\Language;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\ApiResponseTrait;
@@ -54,22 +55,49 @@ class ApiDocumentController extends Controller
         $document = Document::find($request->input('document'));
         $action = $request->input('action');
 
-        $view = view('dashboard.admin.document.components.modal')
-            ->with(['document'=> $document, 'action'  => $action])
-            ->render();
+        if ($document && in_array($action, array("accept", "reject", "delete")))
+            switch ($action) {
+                case "accept":
+                    $modal = array(
+                        "type"       => "modal-success",
+                        'header'     => DocumentType::getTypeName($document->type),
+                        'body'       => __("dashboard-admin/document.share.documents-tab-content.modal-accept-body"),
+                        'btn'        => "btn-success",
+                        'btnOutline' => "btn-outline-success"
+                    );
+                    break;
+                case "reject":
+                    $modal = array(
+                        "type"       => "modal-warning",
+                        'header'     => DocumentType::getTypeName($document->type),
+                        'body'       => __("dashboard-admin/document.share.documents-tab-content.modal-reject-body"),
+                        'btn'        => "btn-warning",
+                        'btnOutline' => "btn-outline-warning"
+                    );
+                    break;
+                case "delete":
+                    $modal = array(
+                        "type"       => "modal-danger",
+                        'header'     => DocumentType::getTypeName($document->type),
+                        'body'       => __("dashboard-admin/document.share.documents-tab-content.modal-delete-body"),
+                        'btn'        => "btn-danger",
+                        'btnOutline' => "btn-outline-danger"
+                    );
+                    break;
+            }
+        else
+            $modal = array(
+                "type"       => "modal-info",
+                'header'     => __("dashboard-admin/document.share.documents-tab-content.modal-error-header"),
+                'body'       => __("dashboard-admin/document.share.documents-tab-content.modal-error-body"),
+                'btn'        => "btn-info",
+                'btnOutline' => "btn-outline-info"
+            );
 
-        return $this->apiResponse(['html' => $view], 200, false);
+        return $this->apiResponse(['modal' => $modal], 200, false);
     }
 
-    public function accept() {
-
-    }
-
-    public function reject() {
-
-    }
-
-    public function destroy() {
-
+    public function action(Request $request) {
+        return $this->apiResponse([$request->input()], 200, false);
     }
 }

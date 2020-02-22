@@ -29,9 +29,7 @@ Route::namespace("Dashboard\\Admin")
                         // Apis
                         Route::post('api/documents/store','ApiDocumentController@store');
                         Route::get('api/documents/build-modal','ApiDocumentController@buildModal');
-                        Route::get('api/documents/accept','ApiDocumentController@accept');
-                        Route::get('api/documents/reject','ApiDocumentController@reject');
-                        Route::get('api/documents/delete','ApiDocumentController@delete');
+                        Route::get('api/documents/action','ApiDocumentController@action');
                     });
             });
     });
