@@ -40,8 +40,14 @@ return [
             'modal-accept-body' => 'هل توافق على قبول المستمسك؟',
             'modal-reject-body' => 'هل توافق على رفض المستمسك؟',
             'modal-delete-body' => 'هل توافق على حذف المستمسك؟',
+
             'modal-btn-yes' => 'نعم',
             'modal-btn-no'  => 'لا',
+
+            'toast-title-accept' => 'تم قبول مستمسك ',
+            'toast-title-reject' => 'تم رفض مستمسك ',
+            'toast-title-delete' => 'تم حذف مستمسك ',
+            'toast-title-error'  => 'لا يوجد مستمسك.',
         ],
     ]
 ];

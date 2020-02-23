@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard\Admin\Document;
 
+use App\Enum\DocumentState;
 use App\Enum\DocumentType;
 use App\Enum\Language;
 use App\Http\Controllers\Controller;
@@ -98,6 +99,39 @@ class ApiDocumentController extends Controller
     }
 
     public function action(Request $request) {
-        return $this->apiResponse([$request->input()], 200, false);
+        $document = Document::find($request->input('document'));
+        $action = $request->input('action');
+
+        if ($document && in_array($action, array("accept", "reject", "delete"))) {
+            switch ($action) {
+                case "accept":
+                    $document->state = DocumentState::ACCEPT;
+                    $document->save();
+                    break;
+                case "reject":
+                    $document->state = DocumentState::REJECT;
+                    $document->save();
+                    break;
+                case "delete":
+                    Storage::delete($document->image);
+                    $document->delete();
+                    break;
+            }
+
+            $toast = array(
+                "title"         => __("dashboard-admin/document.share.documents-tab-content.toast-title-$action") . DocumentType::getTypeName($document->type) . ".",
+                'type'          => "success",
+            );
+        }
+        else
+            $toast = array(
+                "title" => __("dashboard-admin/document.share.documents-tab-content.toast-title-error"),
+                'type'  => "warning"
+            );
+
+        return $this->apiResponse([
+            "toast" => $toast,
+            'documentState' => DocumentState::getStateName($document->state ?? '')
+        ], 200, false);
     }
 }

@@ -4,7 +4,7 @@
     </a>
     <div class="clearfix row pt-3">
         @foreach($documents as $document)
-            <div class="col-md-4 col-sm-3 text-center mb-5">
+            <div class="col-md-4 col-sm-3 text-center mb-5" id="{{$document->id}}">
                 <p>
                     {{\App\Enum\DocumentType::getTypeName($document->type)}}
                     @switch($document->state)
@@ -12,7 +12,7 @@
                         <span class="badge badge-success">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
                         @break
                         @case(\App\Enum\DocumentState::REJECT)
-                        <span class="badge badge-danger">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
+                        <span class="badge badge-warning">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
                         @break
                         @case(\App\Enum\DocumentState::REVIEW)
                         <span class="badge badge-info">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
@@ -67,6 +67,10 @@
                 <div class="modal-body"></div>
                 <div class="modal-footer justify-content-center">
                     <button class="btn" data-action="document">
+                        <form class="d-none">
+                            <input type="hidden" name="document" value="">
+                            <input type="hidden" name="action"   value="">
+                        </form>
                         @lang("dashboard-admin/document.share.documents-tab-content.modal-btn-yes")
                     </button>
                     <button class="btn" data-dismiss="modal">
@@ -92,6 +96,7 @@
             let document = $(this).parent().data('content');
             let action = $(this).data('content');
             let modal = $('#modal-document-action');
+
             $.ajax({
                 type: 'get',
                 url: '/dashboard/admin/api/documents/build-modal',
@@ -104,6 +109,8 @@
                     modal.find('.modal-body').html(result.data.modal.body);
                     modal.find('.btn:first-child').removeClass().addClass("btn " + result.data.modal.btn);
                     modal.find('.btn:last-child').removeClass().addClass("btn " + result.data.modal.btnOutline);
+                    $("input[name='document']").val(document);
+                    $("input[name='action']").val(action);
                 },
                 error: function() {
                     console.log("error");
@@ -115,9 +122,9 @@
         });
 
         $('[data-action="document"]').click(function () {
-            let document = $(this).data('content');
-            let action = $(this).data('action');
-            console.log(document, action);
+            let document = $(this).find("input[name='document']").val();
+            let action = $(this).find("input[name='action']").val();
+
             $.ajax({
                 type: 'get',
                 url: '/dashboard/admin/api/documents/action',
@@ -125,12 +132,33 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    console.log(result)
+                    $('#modal-document-action').modal('hide');
+                    setTimeout(function () {
+                        $.toast({
+                            title: result.data.toast.title,
+                            type:  result.data.toast.type,
+                            delay: 5000
+                        });
+                    }, 500);
+                    if (result.data.toast.type === "success") {
+                        if(action === 'accept')
+                            $("#"+document).find('p .badge').removeClass().addClass('badge badge-success').html(result.data.documentState);
+
+                        if(action === 'reject')
+                            $("#"+document).find('p .badge').removeClass().addClass('badge badge-warning').html(result.data.documentState);
+
+                        if (action === "delete") {
+                            $("#"+document).fadeOut(1500);
+                            setTimeout(function () {
+                                $("#"+document).remove();
+                            }, 1500);
+                        }
+                    }
                 },
                 error: function() {
 
                 } ,
-                complete : function() {
+                complete: function() {
 
                 }
             });
