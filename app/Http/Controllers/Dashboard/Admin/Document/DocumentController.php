@@ -23,12 +23,14 @@ class DocumentController extends Controller
 
     public function index(Request $request)
     {
-        $documents = Document::paginate(20);
+        $documents = Document::where('state', DocumentState::REVIEW)
+            ->take(20)
+            ->get();
 
-        if ($request->ajax()) {
-            $view = view('dashboard.admin.document.components.documents',compact('documents'))->render();
-            return response()->json(['html'=>$view]);
-        }
+//        if ($request->ajax()) {
+//            $view = view('dashboard.admin.document.components.documents',compact('documents'))->render();
+//            return response()->json(['html'=>$view]);
+//        }
 
         return view('dashboard.admin.document.index')->with([
             "documents" => $documents

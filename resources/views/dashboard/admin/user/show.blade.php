@@ -89,7 +89,7 @@
 
                     <!-- Documents Tab Content -->
                     <div class="tab-pane fade pt-4" id="documents" role="tabpanel" aria-labelledby="documents-tab">
-                        @include('dashboard.admin.document.share.documents-tap-content', ["use" => $user, "documents" => $documents])
+                        @include('dashboard.admin.document.share.user-document', ["user" => $user, "documents" => $documents])
                     </div>
                 </div>
             </div>

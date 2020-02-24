@@ -1,54 +1,43 @@
-@if($user->type == \App\Enum\UserType::STUDENT)
-    <a class="btn btn-outline-primary" href="{{route("dashboard.admin.documents.create", ["user" => $user->id])}}">
-        @lang("dashboard-admin/document.share.documents-tab-content.btn-add")
-    </a>
-    <div class="clearfix row pt-3">
-        @foreach($documents as $document)
-            <div class="col-md-4 col-sm-3 text-center mb-5" id="{{$document->id}}">
-                <p>
-                    {{\App\Enum\DocumentType::getTypeName($document->type)}}
-                    @switch($document->state)
-                        @case(\App\Enum\DocumentState::ACCEPT)
-                        <span class="badge badge-success">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
-                        @break
-                        @case(\App\Enum\DocumentState::REJECT)
-                        <span class="badge badge-warning">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
-                        @break
-                        @case(\App\Enum\DocumentState::REVIEW)
-                        <span class="badge badge-info">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
-                        @break
-                    @endswitch
-                </p>
-                <div class="view overlay z-depth-1-half">
-                    <img src="{{Storage::url($document->image)}}" class="w-100" height="250" alt="Document Image">
-                    <div class="mask flex-center waves-effect waves-light rgba-black-strong" data-action="document-view">
-                        <button class="btn btn-outline-info btn-sm">
-                            <i class="fa fa-eye text-white mx-1"></i>
-                            <span class="text-white">@lang("dashboard-admin/document.share.documents-tab-content.btn-view")</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="d-block mt-2" data-content="{{$document->id}}">
-                    <button class="btn btn-sm btn-outline-success" data-action="build-modal" data-content="accept">
-                        <i class="fa fa-check text-success"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-warning" data-action="build-modal" data-content="reject">
-                        <i class="fa fa-times text-warning"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger"  data-action="build-modal" data-content="delete">
-                        <i class="fa fa-trash text-danger"></i>
-                    </button>
-                </div>
+@foreach($documents as $document)
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-3 text-center mb-5" id="{{$document->id}}">
+        <p>
+            {{\App\Enum\DocumentType::getTypeName($document->type)}}
+            @switch($document->state)
+                @case(\App\Enum\DocumentState::ACCEPT)
+                <span class="badge badge-success">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
+                @break
+                @case(\App\Enum\DocumentState::REJECT)
+                <span class="badge badge-warning">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
+                @break
+                @case(\App\Enum\DocumentState::REVIEW)
+                <span class="badge badge-info">{{\App\Enum\DocumentState::getStateName($document->state)}}</span>
+                @break
+            @endswitch
+        </p>
+        <div class="view overlay z-depth-1-half">
+            <img src="{{asset("images/medium/".Storage::url($document->image))}}" class="w-100" alt="Document Image">
+            <div class="mask flex-center waves-effect waves-light rgba-black-strong" data-action="document-view">
+                <button class="btn btn-outline-info btn-sm">
+                    <i class="fa fa-eye text-white mx-1"></i>
+                    <span class="text-white">
+                        @lang("dashboard-admin/document.component.documents.btn-view")
+                    </span>
+                </button>
             </div>
-        @endforeach
-    </div>
-@else
-    <div class="d-flex justify-content-center">
-        <div class="h3-responsive p-5">
-            @lang('dashboard-admin/document.share.documents-tab-content.message')
+        </div>
+        <div class="d-block mt-2" data-content="{{$document->id}}">
+            <button class="btn btn-sm btn-outline-success" data-action="build-modal" data-content="accept">
+                <i class="fa fa-check text-success"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-warning" data-action="build-modal" data-content="reject">
+                <i class="fa fa-times text-warning"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-danger"  data-action="build-modal" data-content="delete">
+                <i class="fa fa-trash text-danger"></i>
+            </button>
         </div>
     </div>
-@endif
+@endforeach
 
 @section("extra-content")
     @parent
@@ -71,10 +60,10 @@
                             <input type="hidden" name="document" value="">
                             <input type="hidden" name="action"   value="">
                         </form>
-                        @lang("dashboard-admin/document.share.documents-tab-content.modal-btn-yes")
+                        @lang("dashboard-admin/document.component.documents.modal-btn-yes")
                     </button>
                     <button class="btn" data-dismiss="modal">
-                        @lang("dashboard-admin/document.share.documents-tab-content.modal-btn-no")
+                        @lang("dashboard-admin/document.component.documents.modal-btn-no")
                     </button>
                 </div>
             </div>
@@ -88,6 +77,7 @@
         $('[data-action="document-view"]').click(function () {
             let src = $(this).parent().find('img').attr('src');
             let modal = $('#modal-document-info');
+            src = src.replace("medium", "original");
             modal.find('img').attr('src', src);
             modal.modal('show')
         });
@@ -137,9 +127,9 @@
                         $.toast({
                             title: result.data.toast.title,
                             type:  result.data.toast.type,
-                            delay: 5000
+                            delay: 2000
                         });
-                    }, 500);
+                    }, 250);
                     if (result.data.toast.type === "success") {
                         if(action === 'accept')
                             $("#"+document).find('p .badge').removeClass().addClass('badge badge-success').html(result.data.documentState);
@@ -148,10 +138,10 @@
                             $("#"+document).find('p .badge').removeClass().addClass('badge badge-warning').html(result.data.documentState);
 
                         if (action === "delete") {
-                            $("#"+document).fadeOut(1500);
+                            $("#"+document).fadeOut(1000);
                             setTimeout(function () {
                                 $("#"+document).remove();
-                            }, 1500);
+                            }, 1000);
                         }
                     }
                 },
