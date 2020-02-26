@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enum\DocumentType;
 use App\Enum\UserType;
 use Closure;
 
@@ -24,6 +25,10 @@ class Filter
             case "user-update":
                 if (!in_array(request()->input("update"), array("info", "pass")))
                     abort(403, __('dashboard-admin/user.filter.update'));
+                break;
+            case "document-type":
+                if (!is_null(request()->input("type")) && !in_array(request()->input("type"), DocumentType::getTypes()))
+                    abort(403, __('dashboard-admin/document.filter.type'));
                 break;
         }
 

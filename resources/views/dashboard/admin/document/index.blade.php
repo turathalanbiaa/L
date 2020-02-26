@@ -11,6 +11,30 @@
 @section("content")
     <div class="container-fluid">
         <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseDocumentFilter" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa fa-filter"></i>
+                </button>
+
+                <div class="collapse" id="collapseDocumentFilter">
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index")}}">
+                        ---
+                    </a>
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IDENTIFICATION])}}">
+                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IDENTIFICATION)}}
+                    </a>
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION])}}">
+                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION)}}
+                    </a>
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::CERTIFICATE])}}">
+                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::CERTIFICATE)}}
+                    </a>
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IMAGE])}}">
+                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IMAGE)}}
+                    </a>
+                </div>
+            </div>
+
             @if($documents->isEmpty())
                 <div class="col-sm-12 text-center">
                     <div class="h3-responsive p-5">
@@ -19,6 +43,12 @@
                 </div>
             @else
                 @include('dashboard.admin.document.component.documents', ["documents" => $documents])
+
+                <div class="col-sm-12 text-center">
+                    <a class="btn btn-flat shadow-none" href="{{route("dashboard.admin.documents.index")}}">
+                        @lang("dashboard-admin/document.index.btn-loadMore")
+                    </a>
+                </div>
             @endif
         </div>
     </div>
@@ -29,6 +59,7 @@
 @endsection
 
 @section("script")
-
+    <script>
+    </script>
 @endsection
 

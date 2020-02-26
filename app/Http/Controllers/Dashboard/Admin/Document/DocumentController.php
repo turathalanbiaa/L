@@ -19,18 +19,25 @@ class DocumentController extends Controller
     {
         $auth->check();
         $auth->hasRole("Document");
+        $this->middleware('filter:document-type')->only(['index']);
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $documents = Document::where('state', DocumentState::REVIEW)
-            ->take(20)
-            ->get();
+        $users = User::where('type', UserType::STUDENT)
+            ->where('lang', app()->getLocale())
+            ->get(['id']);
 
-//        if ($request->ajax()) {
-//            $view = view('dashboard.admin.document.components.documents',compact('documents'))->render();
-//            return response()->json(['html'=>$view]);
-//        }
+        $documents = is_null(\request()->input('type'))?
+            Document::whereIn('user_id', $users->pluck('id')->toArray())
+                ->where('state', DocumentState::REVIEW)
+                ->take(20)
+                ->get():
+            Document::whereIn('user_id', $users->pluck('id')->toArray())
+                ->where('type', \request()->input('type'))
+                ->where('state', DocumentState::REVIEW)
+                ->take(20)
+                ->get();
 
         return view('dashboard.admin.document.index')->with([
             "documents" => $documents

@@ -109,6 +109,7 @@ footer.page-footer .footer-copyright {
     .fixed-skin footer.sticky-bottom,
     .fixed-skin main {
         margin-right: 0!important;
+        margin-left: 0!important;
     }
     .side-nav {
         display: none;

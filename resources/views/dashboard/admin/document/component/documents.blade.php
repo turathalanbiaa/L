@@ -14,9 +14,9 @@
                 @break
             @endswitch
         </p>
-        <div class="view overlay z-depth-1-half">
-            <img src="{{asset("images/medium/".Storage::url($document->image))}}" class="w-100" alt="Document Image">
-            <div class="mask flex-center waves-effect waves-light rgba-black-strong" data-action="document-view">
+        <div class="view overlay z-depth-1 img-thumbnail">
+            <img src="{{asset("images/medium".Storage::url($document->image))}}" class="w-100" alt="Document Image">
+            <div class="mask flex-center rgba-black-strong" data-action="document-view">
                 <button class="btn btn-outline-info btn-sm">
                     <i class="fa fa-eye text-white mx-1"></i>
                     <span class="text-white">
@@ -77,7 +77,7 @@
         $('[data-action="document-view"]').click(function () {
             let src = $(this).parent().find('img').attr('src');
             let modal = $('#modal-document-info');
-            src = src.replace("medium", "original");
+            src = src.replace("medium", "large");
             modal.find('img').attr('src', src);
             modal.modal('show')
         });
