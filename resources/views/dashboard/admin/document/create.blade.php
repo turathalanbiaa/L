@@ -11,7 +11,12 @@
 @section("content")
     <div class="container-fluid">
         <div class="row align-items-center justify-content-center">
-            <div class="col-sm-4">
+            <div class="col-12">
+                <a class="btn btn-outline-primary" href="{{route('dashboard.admin.users.show', ['user' => $user])}}">
+                    @lang("dashboard-admin/document.create.btn-back")
+                </a>
+            </div>
+            <div class="col-xl-3 col-lg-5 col-md-5 col-sm-12">
                 <div class="row">
                     <div class="col-sm-12">
                         <form method="post" id="upload" enctype="multipart/form-data">
@@ -82,15 +87,21 @@
                             </div>
                         </form>
                     </div>
+                    <div class="col-sm-12">
+                        <div class="alert alert-warning">
+                            <i class="fa fa-star text-danger"></i>
+                            @lang('dashboard-admin/document.create.note-after-upload-image')
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-5">
-                <img src="{{is_null(old('image'))?asset("img/dashboard/admin/image-placeholder.jpg"):Storage::url(old('image'))}}" id="image-url" class="w-100 z-depth-1" height="250" alt="Document Image">
-                <div class="text-center mt-2">
+            <div class="col-xl-4 col-lg-7 col-md-7 col-sm-12 text-center">
+                <img src="{{is_null(old('image'))?asset("images/large/img/dashboard/admin/image-placeholder.jpg"):asset("images/large/".Storage::url(old('image')))}}" id="image-url" class="w-100 z-depth-1" alt="Document Image">
+                <div class="mt-2 alert alert-warning">
                     <i class="fa fa-star text-danger"></i>
-                    @lang('dashboard-admin/document.placeholder.image-type')
+                    @lang('dashboard-admin/document.create.note-image-type')
                 </div>
-                <div class="text-center mt-2 text-warning d-none" id="message"></div>
+                <div class="mt-2 text-warning d-none" id="message"></div>
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@ Route::namespace("Dashboard\\Admin")
         Route::get('', 'MainController@index');
         Route::name('.')
             ->group(function () {
-                Route::post('login', 'MainController@login')
+                Route::post('login', 'LoginController@login')
                     ->name('login');
 
                 // Users
@@ -26,7 +26,7 @@ Route::namespace("Dashboard\\Admin")
                     ->group(function () {
                         // Resources
                         Route::resource('documents', 'DocumentController')->except(['show', 'edit', 'update', 'destroy']);
-                        // Apis
+                        // Api
                         Route::post('api/documents/store','ApiDocumentController@store');
                         Route::get('api/documents/build-modal','ApiDocumentController@buildModal');
                         Route::get('api/documents/action','ApiDocumentController@action');

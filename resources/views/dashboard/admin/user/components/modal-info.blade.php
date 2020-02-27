@@ -2,13 +2,12 @@
     <div class="modal-dialog modal-notify modal-info" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="heading lead">
+                <p class="heading lead text-capitalize">
                     @if($user)
-                        @lang("dashboard-admin/user.index.modal-info.header-$user->type")
+                        @lang("dashboard-admin/user.components.modal-info.header-$user->type")
                     @else
-                        @lang("dashboard-admin/user.index.modal-info.header")
+                        @lang("dashboard-admin/user.components.modal-info.header")
                     @endif
-
                 </p>
             </div>
             <div class="modal-body">
@@ -70,7 +69,7 @@
                         <div class="col-12">
                             <div class="d-flex justify-content-center p-4">
                                 <div class="h5-responsive">
-                                    @lang('dashboard-admin/user.index.modal-info.message')
+                                    @lang('dashboard-admin/user.components.modal-info.error-message')
                                 </div>
                             </div>
                         </div>
@@ -80,11 +79,11 @@
             <div class="modal-footer justify-content-center">
                 @if($user)
                     <a type="button" class="btn btn-info" href="{{route("dashboard.admin.users.show", ["user" => $user->id])}}">
-                        @lang('dashboard-admin/user.index.modal-info.btn-info')
+                        @lang('dashboard-admin/user.components.modal-info.btn-info')
                     </a>
                 @endif
                 <a type="button" class="btn btn-outline-info" data-dismiss="modal">
-                    @lang('dashboard-admin/user.index.modal-info.btn-dismiss')
+                    @lang('dashboard-admin/user.components.modal-info.btn-dismiss')
                 </a>
             </div>
         </div>

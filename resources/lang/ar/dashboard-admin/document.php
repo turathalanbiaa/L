@@ -10,17 +10,21 @@ return [
         'type'       => 'اختر نوع المستمسك',
         'state'      => 'اختر حالة المستمسك',
         'image'      => 'اختر صورة المستمسك',
-        'image-type' => 'يجب أن تكون صورة (jpeg أو png أو bmp أو gif أو svg أو webp)',
     ],
 
-    //
     'index' => [
-        'title' => 'المستمسكات'
+        'title'        => 'المستمسكات',
+        'message'      => 'لا يوجد مستمسكات لمراجعتها',
+        'btn-loadMore' => 'تحميل المزيد'
     ],
 
     'create' => [
-        'title' => 'انشاء مستمسك',
-        'btn-send' => "ارسال"
+        'title'    => 'انشاء مستمسك',
+        'btn-back' => 'رجوع الى ملف الطالب',
+        'btn-send' => "ارسال",
+
+        'note-after-upload-image' => 'سوف يتم تقليل جودة الصورة بعدالرفع لغرض العرض فقط.',
+        'note-image-type'         => 'يجب أن تكون صورة (jpeg أو png أو bmp أو gif أو svg أو webp).',
     ],
 
     'store' => [
@@ -29,9 +33,14 @@ return [
     ],
 
     'share' => [
-        'documents-tab-content' => [
+        'user-document' => [
             'btn-add'  => 'اضافة مستمسك',
             'message'  => 'حساب المستمع لايحتوي على اي مستمسك',
+        ],
+    ],
+
+    'component' => [
+        'documents' => [
             'btn-view' => 'انقر لعرض المستمسك',
 
             'modal-error-header' => 'تحذير !!!',
@@ -48,6 +57,6 @@ return [
             'toast-title-reject' => 'تم رفض مستمسك ',
             'toast-title-delete' => 'تم حذف مستمسك ',
             'toast-title-error'  => 'لا يوجد مستمسك.',
-        ],
-    ]
+        ]
+    ],
 ];

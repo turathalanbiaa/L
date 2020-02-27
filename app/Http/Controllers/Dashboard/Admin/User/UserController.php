@@ -7,7 +7,6 @@ use App\Enum\Gender;
 use App\Enum\Stage;
 use App\Enum\UserState;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dashboard\Admin\Auth;
 use App\Http\Requests\Dashboard\Admin\CreateUserRequest;
 use App\Http\Requests\Dashboard\Admin\UpdateUserRequest;
 use App\Models\User;
@@ -15,10 +14,10 @@ use PeterColes\Countries\CountriesFacade as Countries;
 
 class UserController extends Controller
 {
-    public function __construct(Auth $auth)
+    public function __construct()
     {
-        $auth->check();
-        $auth->hasRole("User");
+        $this->middleware('dashboard.auth');
+        $this->middleware('dashboard.role:User');
         $this->middleware('filter:user-type')->only(['index', 'create', 'store']);
         $this->middleware('filter:user-update')->only(['update']);
     }

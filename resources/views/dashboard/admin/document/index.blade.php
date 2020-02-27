@@ -10,28 +10,46 @@
 
 @section("content")
     <div class="container-fluid">
-        <div class="row" id="post-data">
-            @forelse($documents as $document)
-                <div class="col-4">
-                    <div class="view overlay zoom">
-                        <img src="" class="img-fluid " alt="smaple image">
-                        <div class="mask flex-center">
-                            <p class="white-text">Zoom effect</p>
-                        </div>
-                        <h2>{{$document->id}}</h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseDocumentFilter" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa fa-filter"></i>
+                </button>
+
+                <div class="collapse" id="collapseDocumentFilter">
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index")}}">
+                        ---
+                    </a>
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IDENTIFICATION])}}">
+                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IDENTIFICATION)}}
+                    </a>
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION])}}">
+                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION)}}
+                    </a>
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::CERTIFICATE])}}">
+                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::CERTIFICATE)}}
+                    </a>
+                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IMAGE])}}">
+                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IMAGE)}}
+                    </a>
+                </div>
+            </div>
+
+            @if($documents->isEmpty())
+                <div class="col-sm-12 text-center">
+                    <div class="h3-responsive p-5">
+                        @lang("dashboard-admin/document.index.message")
                     </div>
                 </div>
-            @empty
-                <div class="col-12">
-                    no think
-                </div>
-            @endforelse
-        </div>
+            @else
+                @include('dashboard.admin.document.components.documents', ["documents" => $documents])
 
-        <div class="row justify-content-center m-4 d-none ajax-load">
-            <div class="spinner-border text-blue-gray-darken-1" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
+                <div class="col-sm-12 text-center">
+                    <a class="btn btn-flat shadow-none" href="{{route("dashboard.admin.documents.index")}}">
+                        @lang("dashboard-admin/document.index.btn-loadMore")
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
@@ -42,44 +60,6 @@
 
 @section("script")
     <script>
-        var page = 1;
-        $(document).ready(function() {
-            loadMore();
-        });
-        $(window).scroll(function() {
-            loadMore();
-        });
-
-        function loadMore() {
-            if($(window).scrollTop() === $(window).innerHeight() - $(window).outerHeight()) {
-                page++;
-                $('.ajax-load').show();
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'get',
-                    url: '/dashboard/admin/documents',
-                    data: {page: page},
-                    datatype: 'json',
-                    encode: true,
-                    success: function(result) {
-                        if (result.html === "")
-                            $('.ajax-load').html("No more records found");
-                        else
-                        {
-                            $("#post-data").append(result.html);
-                        }
-                    },
-                    error: function() {
-                        alert('server not responding...');
-                    } ,
-                    complete : function() {
-                        $('.ajax-load').hide();
-                    }
-                });
-            }
-        }
     </script>
 @endsection
 

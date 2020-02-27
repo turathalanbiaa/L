@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Dashboard;
 
 use App\Enum\Language;
 use Closure;
@@ -18,7 +18,7 @@ class SetLocale
     {
 
         //For admin
-        if ($request->is("dashboard/admin*"))
+        if (request()->is("dashboard/admin*"))
         {
             $locale = request()->input('locale');
             $languages = Language::getLanguages();
