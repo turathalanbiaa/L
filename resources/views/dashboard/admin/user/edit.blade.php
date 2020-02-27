@@ -1,7 +1,6 @@
 @extends("dashboard.admin.layout.app")
 
 @section("title")
-    @lang("dashboard-admin/user.edit.title")
     {{$user->name}}
 @endsection
 
@@ -19,7 +18,7 @@
         <div class="row" id="update-selector">
             <div class="col-12">
                 <div class="p-2 h5-responsive">
-                    <a data-toggle="collapse" data-target=".collapse.one" aria-expanded="false" aria-controls=".collapse.one">
+                    <a class="text-capitalize" data-toggle="collapse" data-target=".collapse.one" aria-expanded="false" aria-controls=".collapse.one">
                         @lang("dashboard-admin/user.edit.change-info")
                     </a>
                 </div>
@@ -177,7 +176,7 @@
             </div>
             <div class="col-12">
                 <div class="p-2 h5-responsive">
-                    <a data-toggle="collapse" data-target=".collapse.two" aria-expanded="false" aria-controls=".collapse.two">
+                    <a class="text-capitalize" data-toggle="collapse" data-target=".collapse.two" aria-expanded="false" aria-controls=".collapse.two">
                         @lang("dashboard-admin/user.edit.change-password")
                     </a>
                 </div>

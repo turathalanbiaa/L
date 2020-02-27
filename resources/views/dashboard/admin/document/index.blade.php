@@ -42,7 +42,7 @@
                     </div>
                 </div>
             @else
-                @include('dashboard.admin.document.component.documents', ["documents" => $documents])
+                @include('dashboard.admin.document.components.documents', ["documents" => $documents])
 
                 <div class="col-sm-12 text-center">
                     <a class="btn btn-flat shadow-none" href="{{route("dashboard.admin.documents.index")}}">

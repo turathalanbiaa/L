@@ -6,19 +6,17 @@ use App\Enum\DocumentState;
 use App\Enum\DocumentType;
 use App\Enum\UserType;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dashboard\Admin\Auth;
 use App\Http\Requests\Dashboard\Admin\CreateDocumentRequest;
 use App\Models\Document;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
-    public function __construct(Auth $auth)
+    public function __construct()
     {
-        $auth->check();
-        $auth->hasRole("Document");
+        $this->middleware('dashboard.auth');
+        $this->middleware('dashboard.role:Document');
         $this->middleware('filter:document-type')->only(['index']);
     }
 

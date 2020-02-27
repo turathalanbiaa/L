@@ -15,7 +15,7 @@
                 <ul class="nav nav-tabs p-0" id="myTab" role="tablist">
                     <!-- Profile Tab -->
                     <li class="nav-item">
-                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                        <a class="nav-link active text-capitalize" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
                            aria-selected="true">
                             @lang("dashboard-admin/user.show.tab.profile")
                         </a>
@@ -23,7 +23,7 @@
 
                     <!-- Documents Tab -->
                     <li class="nav-item">
-                        <a class="nav-link" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
+                        <a class="nav-link text-capitalize" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents"
                            aria-selected="false">
                             @lang("dashboard-admin/user.show.tab.documents")
                         </a>
