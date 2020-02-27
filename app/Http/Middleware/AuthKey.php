@@ -3,14 +3,14 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use PhpParser\Node\Stmt\If_;
+use Illuminate\Http\Request;
 
 class AuthKey
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  \Closure  $next
      * @return mixed
      */
