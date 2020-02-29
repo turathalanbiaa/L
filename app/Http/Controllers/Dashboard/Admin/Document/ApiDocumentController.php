@@ -62,7 +62,7 @@ class ApiDocumentController extends Controller
                     $modal = array(
                         "type"       => "modal-success",
                         'header'     => DocumentType::getTypeName($document->type),
-                        'body'       => __("dashboard-admin/document.component.documents.modal-accept-body"),
+                        'body'       => __("dashboard-admin/document.components.documents.modal-accept-body"),
                         'btn'        => "btn-success",
                         'btnOutline' => "btn-outline-success"
                     );
@@ -71,7 +71,7 @@ class ApiDocumentController extends Controller
                     $modal = array(
                         "type"       => "modal-warning",
                         'header'     => DocumentType::getTypeName($document->type),
-                        'body'       => __("dashboard-admin/document.component.documents.modal-reject-body"),
+                        'body'       => __("dashboard-admin/document.components.documents.modal-reject-body"),
                         'btn'        => "btn-warning",
                         'btnOutline' => "btn-outline-warning"
                     );
@@ -80,7 +80,7 @@ class ApiDocumentController extends Controller
                     $modal = array(
                         "type"       => "modal-danger",
                         'header'     => DocumentType::getTypeName($document->type),
-                        'body'       => __("dashboard-admin/document.component.documents.modal-delete-body"),
+                        'body'       => __("dashboard-admin/document.components.documents.modal-delete-body"),
                         'btn'        => "btn-danger",
                         'btnOutline' => "btn-outline-danger"
                     );
@@ -89,8 +89,8 @@ class ApiDocumentController extends Controller
         else
             $modal = array(
                 "type"       => "modal-info",
-                'header'     => __("dashboard-admin/document.component.documents.modal-error-header"),
-                'body'       => __("dashboard-admin/document.component.documents.modal-error-body"),
+                'header'     => __("dashboard-admin/document.components.documents.modal-error-header"),
+                'body'       => __("dashboard-admin/document.components.documents.modal-error-body"),
                 'btn'        => "btn-info",
                 'btnOutline' => "btn-outline-info"
             );
@@ -119,13 +119,13 @@ class ApiDocumentController extends Controller
             }
 
             $toast = array(
-                "title" => __("dashboard-admin/document.component.documents.toast-title-$action") . DocumentType::getTypeName($document->type) . ".",
+                "title" => __("dashboard-admin/document.components.documents.toast-title-$action") . DocumentType::getTypeName($document->type) . ".",
                 'type'  => "success",
             );
         }
         else
             $toast = array(
-                "title" => __("dashboard-admin/document.component.documents.toast-title-error"),
+                "title" => __("dashboard-admin/document.components.documents.toast-title-error"),
                 'type'  => "warning"
             );
 

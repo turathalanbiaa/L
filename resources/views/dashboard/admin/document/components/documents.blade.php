@@ -20,7 +20,7 @@
                 <button class="btn btn-outline-info btn-sm">
                     <i class="fa fa-eye text-white mx-1"></i>
                     <span class="text-white">
-                        @lang("dashboard-admin/document.component.documents.btn-view")
+                        @lang("dashboard-admin/document.components.documents.btn-view")
                     </span>
                 </button>
             </div>
@@ -60,10 +60,10 @@
                             <input type="hidden" name="document" value="">
                             <input type="hidden" name="action"   value="">
                         </form>
-                        @lang("dashboard-admin/document.component.documents.modal-btn-yes")
+                        @lang("dashboard-admin/document.components.documents.modal-btn-yes")
                     </button>
                     <button class="btn" data-dismiss="modal">
-                        @lang("dashboard-admin/document.component.documents.modal-btn-no")
+                        @lang("dashboard-admin/document.components.documents.modal-btn-no")
                     </button>
                 </div>
             </div>
