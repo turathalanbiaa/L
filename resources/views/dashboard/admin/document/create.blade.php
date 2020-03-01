@@ -11,12 +11,12 @@
 @section("content")
     <div class="container-fluid">
         <div class="row align-items-center justify-content-center">
-            <div class="col-12">
+            <div class="col-12 mb-3">
                 <a class="btn btn-outline-primary" href="{{route('dashboard.admin.users.show', ['user' => $user])}}">
                     @lang("dashboard-admin/document.create.btn-back")
                 </a>
             </div>
-            <div class="col-xl-3 col-lg-5 col-md-5 col-sm-12">
+            <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12">
                 <div class="row">
                     <div class="col-sm-12">
                         <form method="post" id="upload" enctype="multipart/form-data">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-7 col-md-7 col-sm-12 text-center">
+            <div class="col-xl-5 col-lg-7 col-md-7 col-sm-12 text-center">
                 <img src="{{is_null(old('image'))?asset("images/large/img/dashboard/admin/image-placeholder.jpg"):asset("images/large/".Storage::url(old('image')))}}" id="image-url" class="w-100 z-depth-1" alt="Document Image">
                 <div class="mt-2 alert alert-warning">
                     <i class="fa fa-star text-danger"></i>

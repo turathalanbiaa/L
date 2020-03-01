@@ -2,61 +2,61 @@
 
 return [
     'column' => [
-        'type'  => 'النوع',
-        'state' => 'الحالة',
+        'type'  => 'Type',
+        'state' => 'State',
     ],
 
     'placeholder' => [
-        'type'       => 'اختر نوع المستمسك',
-        'state'      => 'اختر حالة المستمسك',
-        'image'      => 'اختر صورة المستمسك',
+        'type'       => 'Select Document Type',
+        'state'      => 'Select Document State',
+        'image'      => 'Select Document Image',
     ],
 
     'index' => [
-        'title'        => 'المستمسكات',
-        'message'      => 'لا يوجد مستمسكات لمراجعتها',
-        'btn-loadMore' => 'تحميل المزيد'
+        'title'        => 'Documents',
+        'message'      => 'There are no documents to review.',
+        'btn-loadMore' => 'Load More'
     ],
 
     'create' => [
-        'title'    => 'اضافة مستمسك',
-        'btn-back' => 'رجوع الى ملف الطالب',
-        'btn-send' => "ارسال",
+        'title'    => 'Add Document',
+        'btn-back' => 'Back To The Student\'s File',
+        'btn-send' => "Send",
 
-        'note-after-upload-image' => 'سوف يتم تقليل جودة الصورة بعدالرفع لغرض العرض فقط.',
-        'note-image-type'         => 'يجب أن تكون صورة (jpeg أو png أو bmp أو gif أو svg أو webp).',
+        'note-after-upload-image' => 'Image quality will be reduced after uploading for display purpose only.',
+        'note-image-type'         => 'It should be an image (jpeg, png, bmp, gif, svg, or webp).',
     ],
 
     'store' => [
-        'success' => 'تم رفع المستمسك بنجاح',
-        'failed'  => 'لم يتم رفع المستمسك، اعد المحاولة',
+        'success' => 'Document successfully created.',
+        'failed'  => 'The document was not created, try again.',
     ],
 
     'share' => [
         'user-documents' => [
-            'btn-add'  => 'اضافة مستمسك',
-            'message'  => 'حساب المستمع لايحتوي على اي مستمسك',
+            'btn-add'  => 'Add Document',
+            'message'  => 'The listener account does not contain any document.',
         ],
     ],
 
     'components' => [
         'documents' => [
-            'btn-view' => 'انقر لعرض المستمسك',
+            'btn-view' => 'Click To View Document',
 
-            'modal-error-header' => 'تحذير !!!',
-            'modal-error-body'   => 'لا يوجد مستمسك، برجى اعادة تحميل الصفحة.',
+            'modal-error-header' => 'Warning !!!',
+            'modal-error-body'   => 'There is no document, please reload the page.',
 
-            'modal-accept-body' => 'هل توافق على قبول المستمسك؟',
-            'modal-reject-body' => 'هل توافق على رفض المستمسك؟',
-            'modal-delete-body' => 'هل توافق على حذف المستمسك؟',
+            'modal-accept-body' => 'Do you agree to accept the document?',
+            'modal-reject-body' => 'Do you agree to reject the document?',
+            'modal-delete-body' => 'Do you agree to delete the document?',
 
-            'modal-btn-yes' => 'نعم',
-            'modal-btn-no'  => 'لا',
+            'modal-btn-yes' => 'Yes',
+            'modal-btn-no'  => 'No',
 
-            'toast-title-accept' => 'تم قبول مستمسك ',
-            'toast-title-reject' => 'تم رفض مستمسك ',
-            'toast-title-delete' => 'تم حذف مستمسك ',
-            'toast-title-error'  => 'لا يوجد مستمسك.',
+            'toast-title-accept' => 'Document accepted ',
+            'toast-title-reject' => 'Document rejected ',
+            'toast-title-delete' => 'Document deleted ',
+            'toast-title-error'  => 'Document not found.',
         ]
     ],
 ];

@@ -45,7 +45,7 @@
                 @include('dashboard.admin.document.components.documents', ["documents" => $documents])
 
                 <div class="col-sm-12 text-center">
-                    <a class="btn btn-flat shadow-none" href="{{route("dashboard.admin.documents.index")}}">
+                    <a class="btn btn-flat shadow-none text-lowercase" href="{{route("dashboard.admin.documents.index")}}">
                         @lang("dashboard-admin/document.index.btn-loadMore")
                     </a>
                 </div>
