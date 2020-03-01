@@ -6,6 +6,21 @@ return [
     ],
 
     'side-nav' => [
+        'block-admins' => [
+            'header' => 'إدارة المسؤولين'
+        ],
 
+        'block-users' => [
+            'header'         => 'إدارة المستخدمين',
+            'students'       => 'الطلاب',
+            'listeners'      => 'المستمعين',
+            'documents'      => 'المستمسكات',
+            'change-account' => 'Change Account',
+        ],
+
+        'block-other' => [
+            'header'        => 'آخرى',
+            'announcements' => 'الإعلانات'
+        ]
     ]
 ];

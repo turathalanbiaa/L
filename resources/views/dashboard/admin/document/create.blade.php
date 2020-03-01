@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="col-xl-5 col-lg-7 col-md-7 col-sm-12 text-center">
-                <img src="{{is_null(old('image'))?asset("images/large/img/dashboard/admin/image-placeholder.jpg"):asset("images/large/".Storage::url(old('image')))}}" id="image-url" class="w-100 z-depth-1" alt="Document Image">
+                <img src="{{is_null(old('image'))?asset("images/large/img/dashboard/admin/image-placeholder.jpg"):asset("images/large/".Storage::url(old('image')))}}" id="image-url" class="w-100 img-thumbnail z-depth-1" alt="Document Image">
                 <div class="mt-2 alert alert-warning">
                     <i class="fa fa-star text-danger"></i>
                     @lang('dashboard-admin/document.create.note-image-type')

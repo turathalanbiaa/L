@@ -31,5 +31,14 @@ Route::namespace("Dashboard\\Admin")
                         Route::get('api/documents/build-modal','ApiDocumentController@buildModal');
                         Route::get('api/documents/action','ApiDocumentController@action');
                     });
+
+                // Announcements
+                Route::namespace('Announcement')
+                    ->group(function () {
+                        // Resources
+                        Route::resource('announcements', 'AnnouncementController');
+                        // Api
+                        Route::get('api/announcements/i','ApiAnnouncementController@i');
+                    });
             });
     });

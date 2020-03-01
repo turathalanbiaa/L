@@ -40,9 +40,9 @@ class RolesTableSeeder extends Seeder
             "created_at" => date("Y-m-d")
         ]);
 
-        // Announcement role
+        // announcement role
         factory(Role::class)->create([
-            "name" => "Announcement",
+            "name" => "announcement",
             "description" => "Manage announcements",
             "created_at" => date("Y-m-d")
         ]);
