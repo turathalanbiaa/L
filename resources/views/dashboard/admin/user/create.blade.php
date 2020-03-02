@@ -5,12 +5,12 @@
 @endsection
 
 @section("style")
-<style>
-    #dropdown-country {
-        max-height: 250px;
-        overflow: hidden auto;
-    }
-</style>
+    <style>
+        #dropdown-country {
+            max-height: 250px;
+            overflow: hidden auto;
+        }
+    </style>
 @endsection
 
 @section("content")

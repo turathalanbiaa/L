@@ -12,6 +12,7 @@ class AnnouncementController extends Controller
     {
         $this->middleware('dashboard.auth');
         $this->middleware('dashboard.role:Announcement');
+        $this->middleware('filter:announcement-type')->only(['index']);
     }
 
     /**
@@ -21,7 +22,8 @@ class AnnouncementController extends Controller
     {
         $announcements = Announcement::where('lang', app()->getLocale())->get();
         return view("dashboard.admin.announcement.index")->with([
-           "announcements" => $announcements
+            "type" => \request()->input('type') ?? '',
+            "announcements" => $announcements
         ]);
     }
 

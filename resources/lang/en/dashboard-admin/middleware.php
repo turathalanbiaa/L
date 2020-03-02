@@ -2,9 +2,10 @@
 
 return [
     'filter' => [
-        'user-type'     => 'invalid user type',
-        'user-update'   => 'invalid user update',
-        'document-type' => 'invalid document type'
+        'user-type'         => 'incorrect user type',
+        'user-update'       => 'incorrect user update',
+        'document-type'     => 'incorrect document type',
+        'announcement-type' => 'incorrect announcement type'
     ],
 
     'auth' => 'Unauthorized action.'

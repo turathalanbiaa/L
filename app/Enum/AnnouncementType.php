@@ -11,9 +11,9 @@ namespace App\Enum;
 
 class AnnouncementType
 {
-    const STUDENT = 1;
-    const LISTENER = 2;
-    const ALL = 3;
+    const STUDENTS = 1;
+    const LISTENERS = 2;
+    const BOTH = 3;
 
     /**
      * Get all types.
@@ -22,9 +22,9 @@ class AnnouncementType
      */
     public static function getTypes() {
         return array(
-            self::STUDENT,
-            self::LISTENER,
-            self::ALL
+            self::STUDENTS,
+            self::LISTENERS,
+            self::BOTH
         );
     }
 
@@ -40,16 +40,16 @@ class AnnouncementType
        switch ($locale) {
            case Language::ARABIC:
                switch ($type) {
-                   case self::STUDENT:  return "طالب";  break;
-                   case self::LISTENER: return "مستمع"; break;
-                   case self::ALL:      return "كلاهما"; break;
+                   case self::STUDENTS:  return "للطلاب";  break;
+                   case self::LISTENERS: return "للمستمعين"; break;
+                   case self::BOTH:       return "كلاهما"; break;
                }
                break;
            case Language::ENGLISH:
                switch ($type) {
-                   case self::STUDENT:  return "Student";  break;
-                   case self::LISTENER: return "Listener"; break;
-                   case self::ALL:      return "All";      break;
+                   case self::STUDENTS:  return "For Students";  break;
+                   case self::LISTENERS: return "For Listeners"; break;
+                   case self::BOTH:       return "For Both";      break;
                }
                break;
        }

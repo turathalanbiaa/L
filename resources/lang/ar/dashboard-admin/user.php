@@ -15,7 +15,7 @@ return [
         'birth_date'     => 'تاريخ الميلاد',
         'address'        => 'العنوان',
         'certificate'    => 'الشهادة',
-        'created_at'     => 'تاريخ انشاء الحساب',
+        'created_at'     => 'تاريخ الانشاء',
         'last_login'     => 'أخر تسجيل دخول',
         'state'          => 'الحالة',
         'remember_token' => 'الرمز',

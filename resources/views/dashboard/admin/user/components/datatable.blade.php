@@ -45,18 +45,51 @@
     @endforeach
     </tbody>
 </table>
-<script>
-    $(document).ready( function () {
-        $('#users').DataTable( {
-            columnDefs: [{
-                targets: [5],
-                orderable: false
-            }],
-            @if(app()->getLocale() == App\Enum\Language::ARABIC)
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json"
-            },
-            @endif
+
+@section("extra-content")
+    @parent
+    <div id="extra"></div>
+@endsection
+
+@section('script')
+    @parent
+    <script>
+        $(document).ready( function () {
+            $('#users').DataTable( {
+                columnDefs: [{
+                    targets: [5],
+                    orderable: false
+                }],
+                @if(app()->getLocale() == App\Enum\Language::ARABIC)
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json"
+                },
+                @endif
+            } );
         } );
-    } );
-</script>
+
+        $("[data-action='btnModalInfo']").click(function () {
+            let content = $(this).parent().data('content');
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'get',
+                url: '/dashboard/admin/api/users/info',
+                data: {user: content},
+                datatype: 'json',
+                encode: true,
+                success: function(result) {
+                    $('#extra').html(result.data.html)
+                },
+                error: function() {
+                    console.log("error");
+                } ,
+                complete : function() {
+                    $(".modal").modal('show');
+                }
+            });
+        });
+    </script>
+@endsection
+

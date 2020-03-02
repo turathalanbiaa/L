@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Dashboard;
 
+use App\Enum\AnnouncementType;
 use App\Enum\DocumentType;
 use App\Enum\UserType;
 use Closure;
@@ -32,6 +33,10 @@ class Filter
                 case "document-type":
                     if (!is_null(request()->input("type")) && !in_array(request()->input("type"), DocumentType::getTypes()))
                         abort(403, __('dashboard-admin/middleware.filter.document-type'));
+                    break;
+                case "announcement-type":
+                    if (!is_null(request()->input("type")) && !in_array(request()->input("type"), AnnouncementType::getTypes()))
+                        abort(403, __('dashboard-admin/middleware.filter.announcement-type'));
                     break;
             }
         }

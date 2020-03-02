@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Announcement::class, function (Faker $faker) {
     return [
         'lang' => Language::getRandomLanguage(),
-        'title' => $faker->title,
+        'title' => $faker->sentence(12),
         'content' => $faker->randomElement(array(null, $faker->realText(2000, 2))),
         'image' => $faker->randomElement(array(null, $faker->imageUrl())),
         'url' => $faker->randomElement(array(null, $faker->url)),

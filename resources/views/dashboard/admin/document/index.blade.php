@@ -12,24 +12,24 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseDocumentFilter" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseDocumentTypeFilter" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa fa-filter"></i>
                 </button>
 
-                <div class="collapse" id="collapseDocumentFilter">
-                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index")}}">
+                <div class="collapse" id="collapseDocumentTypeFilter">
+                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index")}}">
                         ---
                     </a>
-                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IDENTIFICATION])}}">
+                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IDENTIFICATION])}}">
                         {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IDENTIFICATION)}}
                     </a>
-                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION])}}">
+                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION])}}">
                         {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION)}}
                     </a>
-                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::CERTIFICATE])}}">
+                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::CERTIFICATE])}}">
                         {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::CERTIFICATE)}}
                     </a>
-                    <a class="badge badge-pill badge-light m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IMAGE])}}">
+                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IMAGE])}}">
                         {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IMAGE)}}
                     </a>
                 </div>
