@@ -18,9 +18,7 @@
 @endsection
 
 @section("extra-content")
-
 @endsection
 
 @section("script")
-
 @endsection

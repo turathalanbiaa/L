@@ -5,7 +5,6 @@
 @endsection
 
 @section("style")
-
 @endsection
 
 @section("content")
