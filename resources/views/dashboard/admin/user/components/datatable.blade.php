@@ -31,7 +31,7 @@
             <td>{{$user->phone}}</td>
             <td>{{App\Enum\UserState::getStateName($user->state)}}</td>
             <td class="text-center" data-content="{{$user->id}}">
-                <a class="btn btn-outline-info btn-sm m-2" data-action="btnModalInfo">
+                <a class="btn btn-outline-info btn-sm m-2" data-action="btn-modal-info">
                     <i class="far fa-address-card"></i>
                 </a>
                 <a class="btn btn-outline-secondary btn-sm m-2" href="{{route("dashboard.admin.users.show",["user" => $user->id])}}">
@@ -68,7 +68,7 @@
             } );
         } );
 
-        $("[data-action='btnModalInfo']").click(function () {
+        $("[data-action='btn-modal-info']").on('click', function () {
             let content = $(this).parent().data('content');
             $.ajax({
                 headers: {

@@ -218,7 +218,7 @@
             $.toast({
                 title: '{{session()->get("message")}}',
                 type:  '{{session()->get("type")}}',
-                delay: 5000
+                delay: 2500
             });
         @endif
     </script>
