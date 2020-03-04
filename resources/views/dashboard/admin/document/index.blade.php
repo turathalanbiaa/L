@@ -5,7 +5,6 @@
 @endsection
 
 @section("style")
-
 @endsection
 
 @section("content")
@@ -55,11 +54,7 @@
 @endsection
 
 @section("extra-content")
-
 @endsection
 
 @section("script")
-    <script>
-    </script>
 @endsection
-

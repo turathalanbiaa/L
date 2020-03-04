@@ -5,7 +5,6 @@
 @endsection
 
 @section("style")
-
 @endsection
 
 @section("content")
@@ -108,7 +107,6 @@
 @endsection
 
 @section("extra-content")
-
 @endsection
 
 @section("script")
@@ -158,7 +156,7 @@
         $.toast({
             title: '{{session()->get("message")}}',
             type:  '{{session()->get("type")}}',
-            delay: 5000
+            delay: 2500
         });
     @endif
 </script>

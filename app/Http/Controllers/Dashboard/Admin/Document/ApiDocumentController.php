@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\ApiResponseTrait;
 use App\Http\Requests\Request;
 use App\Models\Document;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,6 +18,12 @@ class ApiDocumentController extends Controller
 {
     use ApiResponseTrait;
 
+    /**
+     * Store the document image in the storage disk.
+     *
+     * @param Request $request
+     * @return ResponseFactory|Response
+     */
     public function store(Request $request) {
         $rules = ['file' => 'required|image'];
 
@@ -52,6 +60,12 @@ class ApiDocumentController extends Controller
         ], 200, false);
     }
 
+    /**
+     * Build a model as per the event.
+     *
+     * @param Request $request
+     * @return ResponseFactory|Response
+     */
     public function buildModal(Request $request){
         $document = Document::find($request->input('document'));
         $action = $request->input('action');
@@ -98,6 +112,12 @@ class ApiDocumentController extends Controller
         return $this->apiResponse(['modal' => $modal], 200, false);
     }
 
+    /**
+     * Document status update by event.
+     *
+     * @param Request $request
+     * @return ResponseFactory|Response
+     */
     public function action(Request $request) {
         $document = Document::find($request->input('document'));
         $action = $request->input('action');

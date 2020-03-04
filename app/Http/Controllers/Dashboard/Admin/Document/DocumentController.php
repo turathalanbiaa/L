@@ -9,10 +9,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\CreateDocumentRequest;
 use App\Models\Document;
 use App\Models\User;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class DocumentController extends Controller
 {
+    /**
+     * DocumentController constructor.
+     */
     public function __construct()
     {
         $this->middleware('dashboard.auth');
@@ -20,6 +25,11 @@ class DocumentController extends Controller
         $this->middleware('filter:document-type')->only(['index']);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Factory|View
+     */
     public function index()
     {
         $users = User::where('type', UserType::STUDENT)
@@ -42,6 +52,11 @@ class DocumentController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Factory|View
+     */
     public function create()
     {
         $user = $this->getUser(request()->input("user"));
@@ -53,6 +68,12 @@ class DocumentController extends Controller
         ]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param CreateDocumentRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateDocumentRequest $request)
     {
         $user = $this->getUser($request->input("user"));
@@ -86,6 +107,11 @@ class DocumentController extends Controller
                 ]);
     }
 
+    /**
+     * Get the user.
+     *
+     * @param $id
+     */
     private function getUser($id) {
         $user = User::where('id', $id)
             ->where('type', UserType::STUDENT)

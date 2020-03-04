@@ -15,7 +15,7 @@
             @endswitch
         </p>
         <div class="view overlay z-depth-1 img-thumbnail">
-            <img src="{{asset("images/medium".Storage::url($document->image))}}" class="w-100" alt="Document Image">
+            <img src="{{asset("images/large".Storage::url($document->image))}}" class="w-100" alt="Document Image">
             <div class="mask flex-center rgba-black-strong" data-action="document-view">
                 <button class="btn btn-outline-info btn-sm">
                     <i class="fa fa-eye text-white mx-1"></i>
@@ -42,9 +42,11 @@
 @section("extra-content")
     @parent
     <div class="modal fade" id="modal-document-info" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <img src="" alt="Document Image">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="d-flex justify-content-center w-100">
+                <div class="modal-content w-auto">
+                    <img src="" class="img-fluid" alt="Document Image">
+                </div>
             </div>
         </div>
     </div>
@@ -74,15 +76,15 @@
 @section("script")
     @parent
     <script>
-        $('[data-action="document-view"]').click(function () {
+        $('[data-action="document-view"]').on('click', function () {
             let src = $(this).parent().find('img').attr('src');
             let modal = $('#modal-document-info');
-            src = src.replace("medium", "large");
+            src = src.replace("large", "original");
             modal.find('img').attr('src', src);
-            modal.modal('show')
+            modal.modal('show');
         });
 
-        $('[data-action="build-modal"]').click(function () {
+        $('[data-action="build-modal"]').on('click', function () {
             let document = $(this).parent().data('content');
             let action = $(this).data('content');
             let modal = $('#modal-document-action');
@@ -123,13 +125,13 @@
                 encode: true,
                 success: function(result) {
                     $('#modal-document-action').modal('hide');
-                    setTimeout(function () {
-                        $.toast({
-                            title: result.data.toast.title,
-                            type:  result.data.toast.type,
-                            delay: 2000
-                        });
-                    }, 250);
+
+                    $.toast({
+                        title: result.data.toast.title,
+                        type:  result.data.toast.type,
+                        delay: 2500
+                    });
+
                     if (result.data.toast.type === "success") {
                         if(action === 'accept')
                             $("#"+document).find('p .badge').removeClass().addClass('badge badge-success').html(result.data.documentState);
@@ -137,12 +139,12 @@
                         if(action === 'reject')
                             $("#"+document).find('p .badge').removeClass().addClass('badge badge-warning').html(result.data.documentState);
 
-                        if (action === "delete") {
-                            $("#"+document).fadeOut(1000);
-                            setTimeout(function () {
-                                $("#"+document).remove();
-                            }, 1000);
-                        }
+                        if (action === "delete")
+                            $("#"+document).fadeOut(1000, function () {
+                                setTimeout(function () {
+                                    $("#"+document).remove();
+                                }, 1000);
+                            });
                     }
                 },
                 error: function() {
