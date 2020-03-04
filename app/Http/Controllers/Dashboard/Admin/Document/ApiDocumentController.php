@@ -32,8 +32,8 @@ class ApiDocumentController extends Controller
                 $messages = [
                     'file.required' => 'يجب رفع الصورة',
                     'file.image'    => 'الملف المرفوع ليس صورة'
-                ]
-                ;break;
+                ];
+                break;
             case Language::ENGLISH:
                 $messages = [
                     'file.required' => 'The field image is required.',

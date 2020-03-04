@@ -125,7 +125,6 @@
                 encode: true,
                 success: function(result) {
                     $('#modal-document-action').modal('hide');
-
                     $.toast({
                         title: result.data.toast.title,
                         type:  result.data.toast.type,
@@ -148,7 +147,7 @@
                     }
                 },
                 error: function() {
-
+                    console.log("error");
                 } ,
                 complete: function() {
 
