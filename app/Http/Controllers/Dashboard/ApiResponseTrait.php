@@ -15,8 +15,4 @@ trait ApiResponseTrait
 
         return response($array, $code);
     }
-
-    public function notFoundResponse() {
-        return $this->apiResponse(null,404,'Not found!');
-    }
 }

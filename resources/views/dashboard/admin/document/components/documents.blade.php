@@ -41,7 +41,7 @@
 
 @section("extra-content")
     @parent
-    <div class="modal fade" id="modal-document-info" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modal-document-view" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="d-flex justify-content-center w-100">
                 <div class="modal-content w-auto">
@@ -78,7 +78,7 @@
     <script>
         $('[data-action="document-view"]').on('click', function () {
             let src = $(this).parent().find('img').attr('src');
-            let modal = $('#modal-document-info');
+            let modal = $('#modal-document-view');
             src = src.replace("large", "original");
             modal.find('img').attr('src', src);
             modal.modal('show');
@@ -96,11 +96,12 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    modal.find('.modal-dialog').removeClass().addClass("modal-dialog modal-notify " + result.data.modal.type);
-                    modal.find('.modal-header').html(result.data.modal.header);
-                    modal.find('.modal-body').html(result.data.modal.body);
-                    modal.find('.btn:first-child').removeClass().addClass("btn " + result.data.modal.btn);
-                    modal.find('.btn:last-child').removeClass().addClass("btn " + result.data.modal.btnOutline);
+                    let mod = result.data.modal;
+                    modal.find('.modal-dialog').removeClass().addClass("modal-dialog modal-notify " + mod.type);
+                    modal.find('.modal-header').html(mod.header);
+                    modal.find('.modal-body').html(mod.body);
+                    modal.find('.btn:first-child').removeClass().addClass("btn " + mod.button);
+                    modal.find('.btn:last-child').removeClass().addClass("btn " + mod.closeButton);
                     $("input[name='document']").val(document);
                     $("input[name='action']").val(action);
                 },
@@ -125,13 +126,14 @@
                 encode: true,
                 success: function(result) {
                     $('#modal-document-action').modal('hide');
+                    let toast = result.data.toast;
                     $.toast({
-                        title: result.data.toast.title,
-                        type:  result.data.toast.type,
+                        title: toast.title,
+                        type:  toast.type,
                         delay: 2500
                     });
 
-                    if (result.data.toast.type === "success") {
+                    if (toast.type === "success") {
                         if(action === 'accept')
                             $("#"+document).find('p .badge').removeClass().addClass('badge badge-success').html(result.data.documentState);
 

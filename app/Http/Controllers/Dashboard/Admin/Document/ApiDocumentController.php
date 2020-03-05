@@ -27,23 +27,14 @@ class ApiDocumentController extends Controller
     public function store(Request $request) {
         $rules = ['file' => 'required|image'];
 
-        switch (app()->getLocale()) {
-            case Language::ARABIC:
-                $messages = [
-                    'file.required' => 'يجب رفع الصورة',
-                    'file.image'    => 'الملف المرفوع ليس صورة'
-                ];
-                break;
-            case Language::ENGLISH:
-                $messages = [
-                    'file.required' => 'The field image is required.',
-                    'file.image'    => 'The file must be an image.'
-                ];
-                break;
-            default: $messages = [];
-        }
+        if (app()->getLocale() == Language::ARABIC)
+            $messages = [
+                'file.required' => 'يجب رفع الصورة.',
+                'file.image'    => 'الملف المرفوع ليس صورة.',
+                'uploaded'      => 'فشل في التحميل.'
+            ];
 
-        $validation = Validator::make($request->all(), $rules, $messages);
+        $validation = Validator::make($request->all(), $rules, $messages ?? []);
 
         if (!$validation->passes())
             return $this->apiResponse([
@@ -55,8 +46,10 @@ class ApiDocumentController extends Controller
         $image = Storage::put("public/user/temp", $request->file('file'));
 
         return $this->apiResponse([
-            "image_url"  => asset("images/large/" . Storage::url($image)),
-            "image_path" => $image,
+            "image" => [
+                "url"  => asset("images/large" . Storage::url($image)),
+                "path" => $image
+            ]
         ], 200, false);
     }
 
@@ -70,43 +63,52 @@ class ApiDocumentController extends Controller
         $document = Document::find($request->input('document'));
         $action = $request->input('action');
 
-        if ($document && in_array($action, array("accept", "reject", "delete")))
+        if ($document)
             switch ($action) {
                 case "accept":
                     $modal = array(
-                        "type"       => "modal-success",
-                        'header'     => DocumentType::getTypeName($document->type),
-                        'body'       => __("dashboard-admin/document.components.documents.modal-accept-body"),
-                        'btn'        => "btn-success",
-                        'btnOutline' => "btn-outline-success"
+                        "type"        => "modal-success",
+                        'header'      => DocumentType::getTypeName($document->type),
+                        'body'        => __("dashboard-admin/document.components.documents.modal-accept-body"),
+                        'button'      => "btn-success",
+                        'closeButton' => "btn-outline-success"
                     );
                     break;
                 case "reject":
                     $modal = array(
-                        "type"       => "modal-warning",
-                        'header'     => DocumentType::getTypeName($document->type),
-                        'body'       => __("dashboard-admin/document.components.documents.modal-reject-body"),
-                        'btn'        => "btn-warning",
-                        'btnOutline' => "btn-outline-warning"
+                        "type"        => "modal-warning",
+                        'header'      => DocumentType::getTypeName($document->type),
+                        'body'        => __("dashboard-admin/document.components.documents.modal-reject-body"),
+                        'button'      => "btn-warning",
+                        'closeButton' => "btn-outline-warning"
                     );
                     break;
                 case "delete":
                     $modal = array(
-                        "type"       => "modal-danger",
-                        'header'     => DocumentType::getTypeName($document->type),
-                        'body'       => __("dashboard-admin/document.components.documents.modal-delete-body"),
-                        'btn'        => "btn-danger",
-                        'btnOutline' => "btn-outline-danger"
+                        "type"        => "modal-danger",
+                        'header'      => DocumentType::getTypeName($document->type),
+                        'body'        => __("dashboard-admin/document.components.documents.modal-delete-body"),
+                        'button'      => "btn-danger",
+                        'closeButton' => "btn-outline-danger"
+                    );
+                    break;
+                default:
+                    $modal = array(
+                        "type"        => "modal-info",
+                        'header'      => __("dashboard-admin/document.components.documents.modal-error-header"),
+                        'body'        => __("dashboard-admin/document.components.documents.modal-error-body"),
+                        'button'      => "btn-info",
+                        'closeButton' => "btn-outline-info"
                     );
                     break;
             }
         else
             $modal = array(
-                "type"       => "modal-info",
-                'header'     => __("dashboard-admin/document.components.documents.modal-error-header"),
-                'body'       => __("dashboard-admin/document.components.documents.modal-error-body"),
-                'btn'        => "btn-info",
-                'btnOutline' => "btn-outline-info"
+                "type"        => "modal-info",
+                'header'      => __("dashboard-admin/document.components.documents.modal-error-header"),
+                'body'        => __("dashboard-admin/document.components.documents.modal-error-body"),
+                'button'      => "btn-info",
+                'closeButton' => "btn-outline-info"
             );
 
         return $this->apiResponse(['modal' => $modal], 200, false);

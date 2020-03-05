@@ -15,7 +15,7 @@ return [
             'students'       => 'الطلاب',
             'listeners'      => 'المستمعين',
             'documents'      => 'المستمسكات',
-            'change-account' => 'Change Account',
+            'change-account' => 'تغير الحساب',
         ],
 
         'block-other' => [

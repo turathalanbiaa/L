@@ -39,13 +39,11 @@ class DocumentController extends Controller
         $documents = is_null(\request()->input('type'))?
             Document::whereIn('user_id', $users->pluck('id')->toArray())
                 ->where('state', DocumentState::REVIEW)
-                ->take(20)
-                ->get():
+                ->simplePaginate(20) :
             Document::whereIn('user_id', $users->pluck('id')->toArray())
                 ->where('type', \request()->input('type'))
                 ->where('state', DocumentState::REVIEW)
-                ->take(20)
-                ->get();
+                ->simplePaginate(20);
 
         return view('dashboard.admin.document.index')->with([
             "documents" => $documents

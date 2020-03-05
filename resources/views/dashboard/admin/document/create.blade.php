@@ -119,10 +119,12 @@
         $("input#state").val($(this).html().trim());
         $("input[name='state']").val($(this).data('value'));
     });
+
     $('#image').change(function () {
         $('#error').addClass('d-none');
         $('#submit').click();
     });
+
     $('#upload').on('submit', function () {
         event.preventDefault();
         $.ajax({
@@ -140,13 +142,17 @@
                 {
                     message.html(result.data.message);
                     message.removeClass('d-none').addClass('d-block');
+                    return "";
                 }
 
-                $('img#image-url').attr('src', result.data.image_url);
-                $('input#image-path').val(result.data.image_path);
-                $('input#prev-image').val(result.data.image_path);
+                let image = result.data.image;
+
+                $('img#image-url').attr('src', image.url);
+                $('input#image-path').val(image.path);
+                $('input#prev-image').val(image.path);
             },
             error: function() {
+                console.log("error");
             } ,
             complete : function() {
             }
