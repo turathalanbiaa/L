@@ -69,12 +69,19 @@ return [
 
     'show' => [
         'tab' => [
-            'profile'   => 'الملف الشخصي',
-            'documents' => 'المستمسكات'
+            'profile'       => 'الملف الشخصي',
+            'documents'     => 'المستمسكات',
+            'account-state' => 'حالة الحساب'
         ],
 
         'profile-tab' => [
             'btn-edit' => 'تحرير الحساب'
+        ],
+
+        'account-state-tab' => [
+            'header-info'      => 'ملئ جميع معلومات الحساب.',
+            'header-auth'      => 'توثيق الحساب عن طريق (البريد او الهاتف).',
+            'header-documents' => 'قبول جميع المستمسكات المطلوبة.',
         ]
     ],
 

@@ -69,12 +69,19 @@ return [
 
     'show' => [
         'tab' => [
-            'profile'   => 'Profile',
-            'documents' => 'Documents'
+            'profile'       => 'Profile',
+            'documents'     => 'Documents',
+            'account-state' => 'Account State'
         ],
 
         'profile-tab' => [
             'btn-edit' => 'Edit Account'
+        ],
+
+        'account-state-tab' => [
+            'header-info'      => 'Fill out all account information.',
+            'header-auth'      => 'Authenticating the account by (mail or phone).',
+            'header-documents' => 'Accept all required documents.',
         ]
     ],
 

@@ -18,7 +18,7 @@
         <th>@lang("dashboard-admin/user.column.name")</th>
         <th>@lang("dashboard-admin/user.column.email")</th>
         <th>@lang("dashboard-admin/user.column.phone")</th>
-        <th>@lang("dashboard-admin/user.column.state")</th>
+        <th>@lang("dashboard-admin/user.column.last_login")</th>
         <th class="text-center"></th>
     </tr>
     </thead>
@@ -29,7 +29,7 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
-            <td>{{App\Enum\UserState::getStateName($user->state)}}</td>
+            <td>{{is_null($user->last_login)?__('dashboard-admin/user.column.last_login_null'):$user->last_login}}</td>
             <td class="text-center" data-content="{{$user->id}}">
                 <a class="btn btn-outline-info btn-sm m-2" data-action="btn-modal-info">
                     <i class="far fa-address-card"></i>
