@@ -32,16 +32,20 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $users = User::where('type', UserType::STUDENT)
+        $users = User::select('id')
+            ->where('type', UserType::STUDENT)
             ->where('lang', app()->getLocale())
-            ->get(['id']);
+            ->get()
+            ->pluck('id')
+            ->toArray();
 
-        $documents = is_null(\request()->input('type'))?
-            Document::whereIn('user_id', $users->pluck('id')->toArray())
+        $type = request()->input('type');
+        $documents = is_null($type)?
+            Document::whereIn('user_id', $users)
                 ->where('state', DocumentState::REVIEW)
                 ->simplePaginate(20) :
-            Document::whereIn('user_id', $users->pluck('id')->toArray())
-                ->where('type', \request()->input('type'))
+            Document::whereIn('user_id', $users)
+                ->where('type', $type)
                 ->where('state', DocumentState::REVIEW)
                 ->simplePaginate(20);
 

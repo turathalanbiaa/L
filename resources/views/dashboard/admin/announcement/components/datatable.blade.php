@@ -4,8 +4,8 @@
         <th rowspan="2" class="align-bottom">
             @lang("dashboard-admin/announcement.column.id")
         </th>
-        <th colspan="3" class="align-middle text-center text-capitalize">
-            <button class="btn btn-sm btn-outline-blue-grey" type="button" data-toggle="collapse" data-target="#collapseAnnouncementTypeFilter" aria-expanded="false" aria-controls="collapseExample">
+        <th colspan="4" class="align-middle text-center text-capitalize">
+            <button class="btn btn-sm btn-outline-white" type="button" data-toggle="collapse" data-target="#collapseAnnouncementTypeFilter" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa fa-filter"></i>
             </button>
 
@@ -37,6 +37,7 @@
         <th>@lang("dashboard-admin/announcement.column.title")</th>
         <th>@lang("dashboard-admin/announcement.column.type")</th>
         <th>@lang("dashboard-admin/announcement.column.state")</th>
+        <th>@lang("dashboard-admin/announcement.column.created_at")</th>
         <th class="text-center"></th>
     </tr>
     </thead>
@@ -54,15 +55,16 @@
                     </label>
                 </div>
             </td>
+            <td>{{$announcement->created_at}}</td>
             <td class="text-center" data-content="{{$announcement->id}}">
-                <a class="btn btn-outline-info btn-sm m-2" data-action="btnModalInfo">
-                    <i class="far fa-address-card"></i>
-                </a>
                 <a class="btn btn-outline-secondary btn-sm m-2" href="">
                     <i class="far fa-eye"></i>
                 </a>
                 <a class="btn btn-outline-primary btn-sm m-2" href="">
                     <i class="far fa-edit"></i>
+                </a>
+                <a class="btn btn-outline-danger btn-sm m-2" href="">
+                    <i class="far fa-trash-alt"></i>
                 </a>
             </td>
         </tr>
@@ -76,7 +78,7 @@
         $(document).ready( function () {
             $('#announcements').DataTable( {
                 columnDefs: [{
-                    targets: [4],
+                    targets: [5],
                     orderable: false
                 }],
                 @if(app()->getLocale() == App\Enum\Language::ARABIC)
