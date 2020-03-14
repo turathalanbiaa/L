@@ -119,12 +119,10 @@
         $("input#state").val($(this).html().trim());
         $("input[name='state']").val($(this).data('value'));
     });
-
     $('#image').change(function () {
         $('#error').addClass('d-none');
         $('#submit').click();
     });
-
     $('#upload').on('submit', function () {
         event.preventDefault();
         $.ajax({

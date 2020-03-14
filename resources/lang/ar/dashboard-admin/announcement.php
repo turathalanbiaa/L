@@ -1,19 +1,6 @@
 <?php
 
 return [
-    'column' => [
-        'id'               => 'رقم',
-        'lang'             => 'اللغة',
-        'title'            => 'العنوان',
-        'content'          => 'المحتوى',
-        'image'            => 'الصورة',
-        'url'              => 'رابط خارجي',
-        'youtube_video_id' => 'يوتيوب فديو',
-        'type'             => 'النوع',
-        'state'            => 'الحالة',
-        'created_at'       => 'تاريخ الانشاء',
-    ],
-
     'components' => [
         'datatable' => [
             'title-'  => 'جميع الإعلانات',
@@ -27,5 +14,30 @@ return [
 
     'index' => [
         'title' => 'الإعلانات'
+    ],
+
+    'label' => [
+        'title'            => 'العنوان',
+        'description'      => 'الوصف',
+        'image'            => 'الصورة',
+        'url'              => 'رابط خارجي',
+        'youtube_video_id' => 'يوتيوب',
+        'type'             => 'النوع',
+        'state'            => 'الحالة'
+    ],
+
+    'placeholder' => [
+        'title'            => 'عنوان الإعلان',
+        'description'      => 'وصف عن الإعلان',
+        'image'            => 'اختر صورة للإعلان',
+        'url'              => 'URL',
+        'youtube_video_id' => 'Youtube Video Id',
+        'type'             => 'النوع',
+        'state'            => 'الحالة'
+    ],
+
+    'create' => [
+        'title'    => 'اضافة إعلان',
+        'btn-send' => 'ارسال'
     ],
 ];

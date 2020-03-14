@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard\Admin\Announcement;
 
+use App\Enum\AnnouncementState;
+use App\Enum\AnnouncementType;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class AnnouncementController extends Controller
 {
@@ -40,11 +44,14 @@ class AnnouncementController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return void
+     * @return Factory|View
      */
     public function create()
     {
-        //
+        return view("dashboard.admin.announcement.create")->with([
+            "types" => AnnouncementType::getTypes(),
+            "states" => AnnouncementState::getStates()
+        ]);
     }
 
     /**
