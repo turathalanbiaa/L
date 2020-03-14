@@ -33,10 +33,10 @@
 </head>
 <body class="fixed-skin">
     <!-- Navigation -->
-    @include("dashboard.admin.layout.navigation")
+    @include("dashboard.admin.layout.nav")
 
     <!-- Side Navigation -->
-    @include("dashboard.admin.layout.side-navigation")
+    @include("dashboard.admin.layout.side-nav")
 
     <!-- Main -->
     <main>

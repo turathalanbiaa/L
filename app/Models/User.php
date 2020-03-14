@@ -28,4 +28,9 @@ class User extends Model
         'state',
         'remember_token'
     ];
+
+    public function documents()
+    {
+        return $this->hasMany('App\Models\Document')->orderBy('type');
+    }
 }

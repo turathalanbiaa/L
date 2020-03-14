@@ -5,18 +5,12 @@
 @endsection
 
 @section("style")
-<style>
-    #dropdown-country {
-        max-height: 250px;
-        overflow: hidden auto;
-    }
-</style>
 @endsection
 
 @section("content")
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-xl-8 col-sm-12">
+            <div class="col-sm-12">
                 <div class="h3-responsive text-center mb-4">
                     @lang("dashboard-admin/user.create.title-$type")
                 </div>
@@ -25,7 +19,7 @@
                     @csrf()
                     <input type="hidden" name="type" value="{{$type}}">
                     <div class="form-group row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <label class="col-form-label" for="name" >
                                 @lang("dashboard-admin/user.column.name")
                             </label>
@@ -35,7 +29,7 @@
                                 @error('name') <div class="text-warning">{{ $message }}</div> @enderror
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <label class="col-form-label" for="email" >
                                 @lang("dashboard-admin/user.column.email")
                             </label>
@@ -45,7 +39,7 @@
                                 @error('email') <div class="text-warning">{{ $message }}</div> @enderror
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <label class="col-form-label" for="phone" >
                                 @lang("dashboard-admin/user.column.phone")
                             </label>
@@ -55,7 +49,7 @@
                                 @error('phone') <div class="text-warning">{{ $message }}</div> @enderror
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <label class="col-form-label" for="password" >
                                 @lang("dashboard-admin/user.column.password")
                             </label>
@@ -64,7 +58,7 @@
                                 @error('password') <div class="text-warning">{{ $message }}</div> @enderror
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <label class="col-form-label" for="password-confirmation" >
                                 @lang("dashboard-admin/user.column.re_password")
                             </label>
@@ -72,7 +66,7 @@
                                 <input type="password" class="form-control" name="password_confirmation" id="password-confirmation">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <label class="col-form-label" for="gender" >
                                 @lang("dashboard-admin/user.column.gender")
                             </label>
@@ -91,7 +85,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6">
                             <label class="col-form-label" for="country" >
                                 @lang("dashboard-admin/user.column.country")
                             </label>
@@ -114,7 +108,7 @@
 
                         <!-- Just for student -->
                         @if($type == App\Enum\UserType::STUDENT)
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <label class="col-form-label" for="stage" >
                                     @lang("dashboard-admin/user.column.stage")
                                 </label>
@@ -133,7 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <label class="col-form-label" for="certificate" >
                                     @lang("dashboard-admin/user.column.certificate")
                                 </label>
@@ -153,7 +147,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <label class="col-form-label" for="birth-date" >
                                     @lang("dashboard-admin/user.column.birth_date")
                                 </label>
@@ -162,7 +156,7 @@
                                     @error('birth_date') <div class="text-warning">{{ $message }}</div> @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <label class="col-form-label" for="address" >
                                     @lang("dashboard-admin/user.column.address")
                                 </label>
@@ -176,7 +170,7 @@
 
                     <div class="text-center mt-4">
                         <button class="btn btn-outline-primary">
-                            @lang("dashboard-admin/user.create.btn")
+                            @lang("dashboard-admin/user.create.btn-send")
                         </button>
                     </div>
                 </form>
@@ -186,19 +180,6 @@
 @endsection
 
 @section("extra-content")
-
-{{--        <div style="position: absolute; top: 0; left:0; z-index:2000; background-color: #0c5460; padding: 20px;">--}}
-{{--            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true">--}}
-{{--                <div class="toast-body text-white bg-success px-3">--}}
-{{--                    {{session()->get("message")}}--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--        </div>--}}
-{{--    @endif--}}
-
-
-
 @endsection
 
 @section("script")
@@ -237,7 +218,7 @@
             $.toast({
                 title: '{{session()->get("message")}}',
                 type:  '{{session()->get("type")}}',
-                delay: 5000
+                delay: 2500
             });
         @endif
     </script>

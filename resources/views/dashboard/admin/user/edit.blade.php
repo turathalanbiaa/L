@@ -1,33 +1,25 @@
 @extends("dashboard.admin.layout.app")
 
 @section("title")
-    @lang("dashboard-admin/user.edit.title")
     {{$user->name}}
 @endsection
 
 @section("style")
-    <style>
-        #dropdown-country {
-            max-height: 250px;
-            overflow: hidden auto;
-        }
-    </style>
 @endsection
 
 @section("content")
     <div class="container-fluid">
-        <div class="row" id="update-selector">
+        <div class="row" id="change-selector">
             <div class="col-12">
-                {{is_null(old('update'))}}
-                <div class="p-2 h5-responsive">
-                    <a data-toggle="collapse" data-target=".collapse.one" aria-expanded="false" aria-controls=".collapse.one">
+                <div class="h5-responsive py-2">
+                    <a class="text-capitalize" data-toggle="collapse" data-target="#collapse-change-info" aria-expanded="false" aria-controls="#collapse-change-info">
                         @lang("dashboard-admin/user.edit.change-info")
                     </a>
                 </div>
 
-                <div class="collapse @if(is_null(old('update')) || old('update')=="info") show @endif one border-top" data-parent="#update-selector">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-8 col-sm-12">
+                <div class="collapse @if(is_null(old('update'))||old('update') == "info") show @endif border-top border-info" id="collapse-change-info" data-parent="#change-selector">
+                    <div class="row mt-4">
+                        <div class="col-sm-12">
                             <form method="post" action="{{route("dashboard.admin.users.update",["user" => $user->id])}}">
                                 @csrf()
                                 @method("put")
@@ -35,7 +27,7 @@
                                 <input type="hidden" name="type" value="{{$user->type}}">
                                 <input type="hidden" name="update" value="info">
                                 <div class="form-group row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label class="col-form-label" for="name" >
                                             @lang("dashboard-admin/user.column.name")
                                         </label>
@@ -45,7 +37,7 @@
                                             @error('name') <div class="text-warning">{{ $message }}</div> @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label class="col-form-label" for="email" >
                                             @lang("dashboard-admin/user.column.email")
                                         </label>
@@ -55,7 +47,7 @@
                                             @error('email') <div class="text-warning">{{ $message }}</div> @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label class="col-form-label" for="phone" >
                                             @lang("dashboard-admin/user.column.phone")
                                         </label>
@@ -65,7 +57,7 @@
                                             @error('phone') <div class="text-warning">{{ $message }}</div> @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label class="col-form-label" for="gender" >
                                             @lang("dashboard-admin/user.column.gender")
                                         </label>
@@ -84,7 +76,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <label class="col-form-label" for="country" >
                                             @lang("dashboard-admin/user.column.country")
                                         </label>
@@ -107,7 +99,7 @@
 
                                     <!-- Just for student -->
                                     @if($user->type == App\Enum\UserType::STUDENT)
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <label class="col-form-label" for="stage" >
                                                 @lang("dashboard-admin/user.column.stage")
                                             </label>
@@ -126,7 +118,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <label class="col-form-label" for="certificate" >
                                                 @lang("dashboard-admin/user.column.certificate")
                                             </label>
@@ -146,7 +138,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <label class="col-form-label" for="birth-date" >
                                                 @lang("dashboard-admin/user.column.birth_date")
                                             </label>
@@ -155,7 +147,7 @@
                                                 @error('birth_date') <div class="text-warning">{{ $message }}</div> @enderror
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <label class="col-form-label" for="address" >
                                                 @lang("dashboard-admin/user.column.address")
                                             </label>
@@ -168,7 +160,7 @@
                                 </div>
                                 <div class="text-center mt-4">
                                     <button class="btn btn-outline-primary">
-                                        @lang("dashboard-admin/user.edit.btn")
+                                        @lang("dashboard-admin/user.edit.btn-save")
                                     </button>
                                 </div>
                             </form>
@@ -177,15 +169,15 @@
                 </div>
             </div>
             <div class="col-12">
-                <div class="p-2 h5-responsive">
-                    <a data-toggle="collapse" data-target=".collapse.two" aria-expanded="false" aria-controls=".collapse.two">
+                <div class="h5-responsive py-2">
+                    <a class="text-capitalize" data-toggle="collapse" data-target="#collapse-change-pass" aria-expanded="false" aria-controls="#collapse-change-pass">
                         @lang("dashboard-admin/user.edit.change-password")
                     </a>
                 </div>
 
-                <div class="collapse @if(old('update')=="pass") show @endif two border-top" data-parent="#update-selector">
-                    <div class="row justify-content-center">
-                        <div class="col-xl-8 col-sm-12">
+                <div class="collapse @if(old('update')=="pass") show @endif border-top border-info" id="collapse-change-pass" data-parent="#change-selector">
+                    <div class="row mt-4">
+                        <div class="col-sm-12">
                             <form method="post" action="{{route("dashboard.admin.users.update",["user" => $user->id])}}">
                                 @csrf()
                                 @method("put")
@@ -211,7 +203,7 @@
                                 </div>
                                 <div class="text-center mt-4">
                                     <button class="btn btn-outline-primary">
-                                        @lang("dashboard-admin/user.edit.btn")
+                                        @lang("dashboard-admin/user.edit.btn-save")
                                     </button>
                                 </div>
                             </form>
@@ -224,7 +216,6 @@
 @endsection
 
 @section("extra-content")
-
 @endsection
 
 @section("script")
@@ -261,7 +252,7 @@
             $.toast({
                 title: '{{session()->get("message")}}',
                 type:  '{{session()->get("type")}}',
-                delay: 5000
+                delay: 2500
             });
         @endif
     </script>

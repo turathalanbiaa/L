@@ -17,7 +17,7 @@ class CreateAnnouncementsTable extends Migration
             $table->integerIncrements('id');
             $table->char('lang', 2);
             $table->string('title');
-            $table->text('content')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('url')->nullable();
             $table->string('youtube_video_id')->nullable();
