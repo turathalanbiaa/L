@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 trait ApiResponseTrait{
-    public function apiResponse($data=null,$code=200,$error=false){
+    public function apiResponse($data=null,$code=200,$error=""){
 $array=[
     'data' => $data,
     'status' =>in_array($code,$this->successCode())? true : false,
