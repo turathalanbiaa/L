@@ -85,7 +85,6 @@ return [
     ],
 
     'edit' => [
-        'title'           => 'حساب: ',
         'change-info'     => 'تغيير معلومات الحساب',
         'change-password' => 'تغيير كلمة المرور',
         'btn-save'        => 'حفظ'

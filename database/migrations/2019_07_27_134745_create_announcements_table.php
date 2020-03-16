@@ -20,7 +20,7 @@ class CreateAnnouncementsTable extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('url')->nullable();
-            $table->string('youtube_video_id')->nullable();
+            $table->string('youtube_video')->nullable();
             $table->unsignedTinyInteger('type');
             $table->unsignedTinyInteger('state');
             $table->date('created_at');

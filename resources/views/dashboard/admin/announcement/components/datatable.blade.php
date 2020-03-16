@@ -1,8 +1,8 @@
-<table class="table table-hover table-responsive-xl w-100 btn-table" id="announcements">
+<table class="table table-sm table-hover table-responsive-xl w-100 btn-table" id="announcements">
     <thead class="blue-gray-darken-4 text-white">
     <tr>
         <th rowspan="2" class="align-bottom">
-            @lang("dashboard-admin/announcement.column.id")
+            @lang("dashboard-admin/announcement.components.datatable.column.sequence")
         </th>
         <th colspan="4" class="align-middle text-center text-capitalize">
             <button class="btn btn-sm btn-outline-white" type="button" data-toggle="collapse" data-target="#collapseAnnouncementTypeFilter" aria-expanded="false" aria-controls="collapseExample">
@@ -34,10 +34,10 @@
         </th>
     </tr>
     <tr>
-        <th>@lang("dashboard-admin/announcement.column.title")</th>
-        <th>@lang("dashboard-admin/announcement.column.type")</th>
-        <th>@lang("dashboard-admin/announcement.column.state")</th>
-        <th>@lang("dashboard-admin/announcement.column.created_at")</th>
+        <th>@lang("dashboard-admin/announcement.components.datatable.column.title")</th>
+        <th>@lang("dashboard-admin/announcement.components.datatable.column.type")</th>
+        <th>@lang("dashboard-admin/announcement.components.datatable.column.state")</th>
+        <th>@lang("dashboard-admin/announcement.components.datatable.column.created_at")</th>
         <th class="text-center"></th>
     </tr>
     </thead>
@@ -56,11 +56,11 @@
                 </div>
             </td>
             <td>{{$announcement->created_at}}</td>
-            <td class="text-center" data-content="{{$announcement->id}}">
+            <td class="text-center">
                 <a class="btn btn-outline-secondary btn-sm m-2" href="">
                     <i class="far fa-eye"></i>
                 </a>
-                <a class="btn btn-outline-primary btn-sm m-2" href="">
+                <a class="btn btn-outline-primary btn-sm m-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
                     <i class="far fa-edit"></i>
                 </a>
                 <a class="btn btn-outline-danger btn-sm m-2" href="">
