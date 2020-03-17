@@ -3,11 +3,12 @@ namespace App\Http\Controllers\Api;
 trait ApiResponseTrait{
 
     function apiResponse($data=null,$code=200,$error=""){
-$array=[
-    'data' => $data,
-    'status' =>in_array($code,$this->successCode())? true : false,
-    'error'=> $error
-];
+	$array=[
+    	'data' => $data,
+    	'status' =>in_array($code,$this->successCode())? true : false,
+    	'error'=> $error
+	];
+    }
 
     function apiResponse($data=null,$code=200,$error=false){
         $array=[
