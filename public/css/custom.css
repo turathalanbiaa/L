@@ -248,11 +248,22 @@ footer.page-footer .footer-copyright {
     filter: alpha(opacity=0);
     opacity: 0;
 }
-
 [lang="ar"] .custom-file-label::after {
     left: 0;
     right: auto;
     border-radius: .25rem 0 0 .25rem;
     border-right: inherit;
     border-left: 0;
+}
+[lang="ar"] .custom-control {
+    padding-left: 0;
+    padding-right: 1.5rem;
+}
+[lang="ar"] .custom-control-label::before {
+    right: -1.5rem;
+    left: 0;
+}
+[lang="ar"] .custom-control-label::after {
+    right: -1.5rem;
+    left: 0;
 }

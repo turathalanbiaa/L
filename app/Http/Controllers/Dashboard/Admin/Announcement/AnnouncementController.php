@@ -6,6 +6,7 @@ use App\Enum\AnnouncementState;
 use App\Enum\AnnouncementType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\CreateAnnouncementRequest;
+use App\Http\Requests\Dashboard\Admin\UpdateContentAnnouncementRequest;
 use App\Models\Announcement;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -97,7 +98,7 @@ class AnnouncementController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Announcement  $announcement
+     * @param Announcement $announcement
      * @return Response
      */
     public function show(Announcement $announcement)
@@ -124,19 +125,19 @@ class AnnouncementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Announcement  $announcement
-     * @return Response
+     * @param UpdateContentAnnouncementRequest $request
+     * @param Announcement $announcement
+     * @return void
      */
-    public function update(Request $request, Announcement $announcement)
+    public function update(UpdateContentAnnouncementRequest $request, Announcement $announcement)
     {
-        //
+        dd($request->input());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Announcement  $announcement
+     * @param Announcement $announcement
      * @return Response
      */
     public function destroy(Announcement $announcement)

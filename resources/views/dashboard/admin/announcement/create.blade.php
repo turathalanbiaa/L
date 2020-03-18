@@ -46,9 +46,9 @@
                             </label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" name="image" id="image" value="">
-                                <span class="custom-file-label">
+                                <div class="custom-file-label">
                                     @lang('dashboard-admin/announcement.placeholder.image')
-                                </span>
+                                </div>
                             </div>
                             @error('image') <div class="text-warning">{{ $message }}</div> @enderror
                         </div>
@@ -94,10 +94,10 @@
                                 <span class="text-danger">*</span>
                             </label>
                             <div class="dropdown">
-                                <input type="text" class="form-control" id="state" value="{{App\Enum\AnnouncementState::getStateName(old('state', \App\Enum\AnnouncementState::INACTIVE))}}"
+                                <input type="text" class="form-control" id="state" value="{{App\Enum\AnnouncementState::getStateName(old('state', \App\Enum\AnnouncementState::ACTIVE))}}"
                                        placeholder="@lang('dashboard-admin/announcement.placeholder.state')"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <input type="hidden" name="state" value="{{old('state', \App\Enum\AnnouncementState::INACTIVE)}}">
+                                <input type="hidden" name="state" value="{{old('state', \App\Enum\AnnouncementState::ACTIVE)}}">
                                 @error('state') <div class="text-warning">{{ $message }}</div> @enderror
                                 <div class="dropdown-menu dropdown-default w-100" aria-labelledby="state" id="dropdown-state">
                                     @foreach($states as $state)

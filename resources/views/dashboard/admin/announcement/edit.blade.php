@@ -9,8 +9,8 @@
 
 @section("content")
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-sm-6">
+        <div class="row justify-content-center" id="change-selector">
+            <div class="col-lg-6">
                 <div class="h3-responsive text-center mb-4">
                     @lang("dashboard-admin/announcement.edit.header")
                 </div>
@@ -20,6 +20,130 @@
                     @lang("dashboard-admin/announcement.edit.note")
                 </div>
 
+                <div class="col-12">
+                    <div class="h5-responsive py-2">
+                        <a class="text-capitalize" data-toggle="collapse" data-target="#collapse-change-content" aria-expanded="false" aria-controls="#collapse-change-content">
+                            @lang("dashboard-admin/announcement.edit.change-content")
+                        </a>
+                    </div>
+
+                    <div class="collapse @if(is_null(old('update'))||old('update') == "content") show @endif border-top border-info" id="collapse-change-content" data-parent="#change-selector">
+                        <form class="pt-3 pb-5" method="post" action="{{route("dashboard.admin.announcements.update", ["announcement" => $announcement->id])}}" enctype="multipart/form-data">
+                            @csrf()
+                            @method("PUT")
+                            <input type="hidden" name="update" value="content">
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label class="col-form-label" for="title">
+                                        @lang("dashboard-admin/announcement.label.title")
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="title" id="title" value="{{$announcement->title}}"
+                                           placeholder="@lang('dashboard-admin/announcement.placeholder.title')">
+                                    @error('title') <div class="text-warning">{{ $message }}</div> @enderror
+                                </div>
+                                <div class="col-12">
+                                    <label class="col-form-label" for="description">
+                                        @lang("dashboard-admin/announcement.label.description")
+                                    </label>
+                                    <textarea class="form-control" name="description" rows="10" id="description"
+                                              placeholder="@lang('dashboard-admin/announcement.placeholder.description')">{{$announcement->description}}</textarea>
+                                    @error('description') <div class="text-warning">{{ $message }}</div> @enderror
+                                </div>
+                                <div class="col-12">
+                                    <label class="col-form-label" for="url">
+                                        @lang("dashboard-admin/announcement.label.url")
+                                    </label>
+                                    <input type="text" class="form-control" name="url" id="url" value="{{$announcement->url}}"
+                                           placeholder="@lang('dashboard-admin/announcement.placeholder.url')">
+                                    @error('url') <div class="text-warning">{{ $message }}</div> @enderror
+                                </div>
+                                <div class="col-12">
+                                    <label class="col-form-label" for="youtube-video">
+                                        @lang("dashboard-admin/announcement.label.youtube_video")
+                                    </label>
+                                    <input type="text" class="form-control" name="youtube_video" id="youtube-video" value="{{$announcement->youtube_video}}"
+                                           placeholder="@lang('dashboard-admin/announcement.placeholder.youtube_video')">
+                                    @error('youtube_video') <div class="text-warning">{{ $message }}</div> @enderror
+                                </div>
+                                <div class="col-12">
+                                    <label class="col-form-label" for="type">
+                                        @lang("dashboard-admin/announcement.label.type")
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="dropdown">
+                                        <input type="text" class="form-control" id="type" value="{{App\Enum\AnnouncementType::getTypeName($announcement->type)}}"
+                                               placeholder="@lang('dashboard-admin/announcement.placeholder.type')"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <input type="hidden" name="type" value="{{$announcement->type}}">
+                                        @error('type') <div class="text-warning">{{ $message }}</div> @enderror
+                                        <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
+                                            @foreach($types as $type)
+                                                <div class="dropdown-item" data-value="{{$type}}">
+                                                    {{App\Enum\AnnouncementType::getTypeName($type)}}
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="col-form-label" for="state">
+                                        @lang("dashboard-admin/announcement.label.state")
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="dropdown">
+                                        <input type="text" class="form-control" id="state" value="{{App\Enum\AnnouncementState::getStateName($announcement->state)}}"
+                                               placeholder="@lang('dashboard-admin/announcement.placeholder.state')"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <input type="hidden" name="state" value="{{$announcement->state}}">
+                                        @error('state') <div class="text-warning">{{ $message }}</div> @enderror
+                                        <div class="dropdown-menu dropdown-default w-100" aria-labelledby="state" id="dropdown-state">
+                                            @foreach($states as $state)
+                                                <div class="dropdown-item" data-value="{{$state}}">
+                                                    {{App\Enum\AnnouncementState::getStateName($state)}}
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" name="checkImage" id="check-image">
+                                        <label class="custom-control-label" for="check-image">
+                                            @lang("dashboard-admin/announcement.label.check-image")
+                                        </label>
+                                        <small class="form-text text-muted">
+                                            @lang("dashboard-admin/announcement.placeholder.check-image")
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-outline-primary">
+                                    @lang("dashboard-admin/announcement.create.btn-send")
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="h5-responsive py-2">
+                        <a class="text-capitalize" data-toggle="collapse" data-target="#collapse-change-image" aria-expanded="false" aria-controls="#collapse-change-image">
+                            @lang("dashboard-admin/announcement.edit.change-image")
+                        </a>
+                    </div>
+
+                    <div class="collapse @if(old('update') == "image") show @endif border-top border-info" id="collapse-change-image" data-parent="#change-selector">
+                        image
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center" style="padding-top: 1000px;">
+            <div class="col-sm-6">
                 <form method="post" action="{{route("dashboard.admin.announcements.update", ["announcement" => $announcement->id])}}" enctype="multipart/form-data">
                     @csrf()
                     @method("PUT")
@@ -45,40 +169,33 @@
                             <label class="col-form-label" for="image">
                                 @lang("dashboard-admin/announcement.label.image")
                             </label>
-                            @if(!$announcement->image)
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="image" id="image" value="">
-                                    <div class="custom-file-label">
-                                        @lang('dashboard-admin/announcement.placeholder.image')
-                                    </div>
-                                </div>
-                            @else
-                                <div class="row align-items-center">
-                                    <div class="col-sm-6">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="image" id="image" value="">
-                                            <div class="custom-file-label">
-                                                @lang('dashboard-admin/announcement.placeholder.image')
-                                            </div>
+                            <div class="row align-items-center">
+                                <div class="{{(is_null($announcement->image)?"col-sm-12":"col-sm-6")}}">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="image" id="image" value="">
+                                        <input type="hidden" name="delete" value="0">
+                                        <div class="custom-file-label">
+                                            @lang('dashboard-admin/announcement.placeholder.image')
                                         </div>
                                     </div>
+                                    @error('image') <div class="text-warning">{{ $message }}</div> @enderror
+                                </div>
+                                @if($announcement->image)
                                     <div class="col-sm-6">
                                         <div class="view overlay z-depth-1 img-thumbnail">
                                             <img src="{{asset("images/large".Storage::url($announcement->image))}}" class="w-100" alt="Announcement Image">
-                                            <div class="mask flex-center rgba-black-strong" data-action="document-view">
-                                                <div class="btn btn-outline-info btn-sm">
-                                                    <div class="text-white">
-                                                        <i class="fa fa-eye mx-1"></i>
-                                                        @lang("dashboard-admin/document.components.documents.btn-view")
-                                                    </div>
+                                            <div class="mask flex-center rgba-black-strong">
+                                                <div class="btn btn-outline-info btn-sm" id="view">
+                                                    <i class="fa fa-eye"></i>
+                                                </div>
+                                                <div class="btn btn-outline-danger btn-sm" id="delete">
+                                                    <i class="fa fa-trash"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
-
-                            @error('image') <div class="text-warning">{{ $message }}</div> @enderror
+                                @endif
+                            </div>
                         </div>
                         <div class="col-12">
                             <label class="col-form-label" for="url">
@@ -139,7 +256,7 @@
                     </div>
 
                     <div class="text-center mt-4">
-                        <button class="btn btn-outline-primary">
+                        <button type="submit" class="btn btn-outline-primary">
                             @lang("dashboard-admin/announcement.create.btn-send")
                         </button>
                     </div>
@@ -150,11 +267,11 @@
 @endsection
 
 @section("extra-content")
-    <div class="modal fade" id="modal-document-view" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modal-announcement-view" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="d-flex justify-content-center w-100">
                 <div class="modal-content w-auto">
-                    <img src="" class="img-fluid" alt="Document Image">
+                    <img src="" class="img-fluid" alt="Announcement Image">
                 </div>
             </div>
         </div>
@@ -172,12 +289,17 @@
             $("input[name='state']").val($(this).data('value'));
         });
 
-        $('[data-action="document-view"]').on('click', function () {
-            let src = $(this).parent().find('img').attr('src');
-            let modal = $('#modal-document-view');
+        $('#view').on('click', function () {
+            let src = $(this).parent().parent().find('img').attr('src');
+            let modal = $('#modal-announcement-view');
             // src = src.replace("large", "original");
             modal.find('img').attr('src', src);
             modal.modal('show');
+        });
+
+        $('#delete').on('click', function () {
+            $(this).parent().parent().parent().addClass("d-none");
+            $("input[name='delete']").val(1);
         });
 
 
