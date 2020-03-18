@@ -35,7 +35,8 @@ class ImageController extends Controller
       }else{
           $document = new Document();
           $document->user_id = $id;
-          $document->image = Storage::put('public/user/' . $id, $file, 'public');
+          $document->image = Storage::put('public/user/' . $id, $file,
+               'public');
           $document->type = $type;
           $document->state = 3;
           if ($document->save()) {
