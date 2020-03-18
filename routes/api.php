@@ -41,5 +41,6 @@ Route::get('users','UserController@index');
 Route::post('get-countries','UserController@countries');
 Route::post('get-certificates','UserController@certificate');
 Route::post('last-announcement','AnnouncementController@last_one');
-
+Route::post('get-all-announcment','AnnouncementController@getallAnnouncment');
+Route::post('singl-announcment','AnnouncementController@show');
 
