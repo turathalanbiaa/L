@@ -38,6 +38,10 @@ class Filter
                     if (!is_null(request()->input("type")) && !in_array(request()->input("type"), AnnouncementType::getTypes()))
                         abort(403, __('dashboard-admin/middleware.filter.announcement-type'));
                     break;
+                case "announcement-update":
+                    if (!in_array(request()->input("update"), array("content", "image")))
+                        abort(403, __('dashboard-admin/middleware.filter.announcement-update'));
+                    break;
             }
         }
 

@@ -6,7 +6,7 @@ use App\Enum\AnnouncementState;
 use App\Enum\AnnouncementType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\CreateAnnouncementRequest;
-use App\Http\Requests\Dashboard\Admin\UpdateContentAnnouncementRequest;
+use App\Http\Requests\Dashboard\Admin\UpdateAnnouncementRequest;
 use App\Models\Announcement;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -22,6 +22,7 @@ class AnnouncementController extends Controller
         $this->middleware('dashboard.auth');
         $this->middleware('dashboard.role:Announcement');
         $this->middleware('filter:announcement-type')->only(['index']);
+        $this->middleware('filter:announcement-update')->only(['update']);
     }
 
     /**
@@ -125,13 +126,54 @@ class AnnouncementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateContentAnnouncementRequest $request
+     * @param UpdateAnnouncementRequest $request
      * @param Announcement $announcement
-     * @return void
+     * @return RedirectResponse
      */
-    public function update(UpdateContentAnnouncementRequest $request, Announcement $announcement)
+    public function update(UpdateAnnouncementRequest $request, Announcement $announcement)
     {
-        dd($request->input());
+        switch ($request->input('update')) {
+            case "content":
+                $data = [
+                    "title"         => $request->input("title"),
+                    "description"   => $request->input("description"),
+                    "url"           => $request->input("url"),
+                    "youtube_video" => $request->input("youtube_video"),
+                    "type"          => $request->input("type"),
+                    "state"         => $request->input("state"),
+                    "created_at"    => $request->input("created_at"),
+                ];
+                break;
+            case "image":
+                $image = $announcement->image;
+                if($request->input('deleted') || $request->file('image')) {
+                    Storage::delete($image);
+                    $image  = null;
+                }
+                $data = [
+                    "image" => is_null($request->file('image'))?$image:Storage::put("public/announcement", $request->file('image')),
+                ];
+                break;
+            default: $data = array();
+        }
+
+        Announcement::where("id", $announcement->id)->update($data);
+
+        if (!$announcement)
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    "message" => __("dashboard-admin/announcement.update.failed"),
+                    "type" => "warning"
+                ]);
+        else
+            return redirect()
+                ->back()
+                ->with([
+                    "message" => __("dashboard-admin/announcement.update.success"),
+                    "type" => "success"
+                ]);
     }
 
     /**
