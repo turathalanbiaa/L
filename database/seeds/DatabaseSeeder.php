@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 //             StudyCoursesTableSeeder::class,
 //             GeneralCoursesHeadersTableSeeder::class,
 //             GeneralCoursesTableSeeder::class,
+
 //             DocumentsTableSeeder::class,
 //             AnnouncementsTableSeeder::class,
 //             ConvertUsersTypeTableSeeder::class,

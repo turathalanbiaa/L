@@ -1,10 +1,10 @@
-<table class="table table-sm table-hover table-responsive-xl w-100 btn-table" id="announcements">
+<table class="table table-hover w-100 table-responsive-xl btn-table" id="announcements">
     <thead class="blue-gray-darken-4 text-white">
     <tr>
         <th rowspan="2" class="align-bottom">
-            @lang("dashboard-admin/announcement.components.datatable.column.sequence")
+            @lang("dashboard-admin/announcement.components.datatable.column.id")
         </th>
-        <th colspan="4" class="align-middle text-center text-capitalize">
+        <th colspan="3" class="align-middle text-center text-capitalize">
             <button class="btn btn-sm btn-outline-white" type="button" data-toggle="collapse" data-target="#collapseAnnouncementTypeFilter" aria-expanded="false" aria-controls="collapseExample">
                 <i class="fa fa-filter"></i>
             </button>
@@ -26,7 +26,7 @@
                 </a>
             </div>
         </th>
-        <th colspan="1" class="text-center">
+        <th colspan="2" class="text-center">
             <a class="btn btn-link text-decoration-none text-white" type="button" href="{{route("dashboard.admin.announcements.create")}}">
                 <i class="fa fa-plus light-green-text mx-1"></i>
                 @lang("dashboard-admin/announcement.components.datatable.btn-add")
@@ -34,17 +34,17 @@
         </th>
     </tr>
     <tr>
-        <th>@lang("dashboard-admin/announcement.components.datatable.column.title")</th>
-        <th>@lang("dashboard-admin/announcement.components.datatable.column.type")</th>
-        <th>@lang("dashboard-admin/announcement.components.datatable.column.state")</th>
-        <th>@lang("dashboard-admin/announcement.components.datatable.column.created_at")</th>
-        <th class="text-center"></th>
+        <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.title")</th>
+        <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.type")</th>
+        <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.state")</th>
+        <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.created_at")</th>
+        <th class="th-sm text-center"></th>
     </tr>
     </thead>
     <tbody>
     @foreach($announcements as $announcement)
         <tr>
-            <td>{{$loop->iteration}}</td>
+            <td>{{$announcement->id}}</td>
             <td>{{$announcement->title}}</td>
             <td>{{\App\Enum\AnnouncementType::getTypeName($announcement->type)}}</td>
             <td>
@@ -56,16 +56,18 @@
                 </div>
             </td>
             <td>{{$announcement->created_at}}</td>
-            <td class="text-center">
-                <a class="btn btn-outline-secondary btn-sm m-2" href="">
-                    <i class="far fa-eye"></i>
-                </a>
-                <a class="btn btn-outline-primary btn-sm m-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
-                    <i class="far fa-edit"></i>
-                </a>
-                <a class="btn btn-outline-danger btn-sm m-2" href="">
-                    <i class="far fa-trash-alt"></i>
-                </a>
+            <td class="align-middle">
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-outline-secondary btn-sm m-2" href="{{route("dashboard.admin.announcements.show", ["announcement" => $announcement->id])}}">
+                        <i class="far fa-eye"></i>
+                    </a>
+                    <a class="btn btn-outline-primary btn-sm m-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
+                        <i class="far fa-edit"></i>
+                    </a>
+                    <a class="btn btn-outline-danger btn-sm m-2" href="">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </div>
             </td>
         </tr>
     @endforeach

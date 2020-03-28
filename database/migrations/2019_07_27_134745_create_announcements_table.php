@@ -19,7 +19,6 @@ class CreateAnnouncementsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('url')->nullable();
             $table->string('youtube_video')->nullable();
             $table->unsignedTinyInteger('type');
             $table->unsignedTinyInteger('state');

@@ -16,7 +16,6 @@ class Announcement extends Model
         'title',
         'description',
         'image',
-        'url',
         'youtube_video',
         'type',
         'state',

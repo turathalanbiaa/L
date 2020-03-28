@@ -15,7 +15,6 @@ $factory->define(Announcement::class, function (Faker $faker) {
         'title' => $faker->sentence(12),
         'description' => $faker->randomElement(array(null, $faker->realText(2000, 2))),
         'image' => $faker->randomElement(array(null, $faker->imageUrl())),
-        'url' => $faker->randomElement(array(null, $faker->url)),
         'youtube_video' => $faker->randomElement(array(null, "C4kxS1ksqtw")),
         'type' => AnnouncementType::getRandomType(),
         'state' => AnnouncementState::getRandomState(),

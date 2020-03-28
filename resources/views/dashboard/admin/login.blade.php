@@ -13,7 +13,7 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
     <!-- Custom Style -->
-    <link href="{{asset("css/custom.css")}}" rel="stylesheet" type="text/css">
+    <link href="{{asset("css/custom-ltr.css")}}" rel="stylesheet" type="text/css">
     <!-- Inside Page Styles -->
     <style>
         html, body {

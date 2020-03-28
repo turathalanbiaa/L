@@ -73,7 +73,6 @@ class AnnouncementController extends Controller
             "title"         => $request->input('title'),
             "description"   => $request->input('description'),
             "image"         => is_null($request->file('image'))?null:Storage::put("public/announcement", $request->file('image')),
-            "url"           => $request->input('url'),
             "youtube_video" => $request->input('youtube_video'),
             "type"          => $request->input('type'),
             "state"         => $request->input('state'),
@@ -96,15 +95,18 @@ class AnnouncementController extends Controller
                 ]);
     }
 
+
     /**
      * Display the specified resource.
      *
      * @param Announcement $announcement
-     * @return Response
+     * @return Factory|View
      */
     public function show(Announcement $announcement)
     {
-        //
+        return view("dashboard.admin.announcement.show")->with([
+            "announcement" => $announcement
+        ]);
     }
 
 
@@ -137,7 +139,6 @@ class AnnouncementController extends Controller
                 $data = [
                     "title"         => $request->input("title"),
                     "description"   => $request->input("description"),
-                    "url"           => $request->input("url"),
                     "youtube_video" => $request->input("youtube_video"),
                     "type"          => $request->input("type"),
                     "state"         => $request->input("state"),

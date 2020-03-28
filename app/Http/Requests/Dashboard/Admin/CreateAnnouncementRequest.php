@@ -26,10 +26,9 @@ class CreateAnnouncementRequest extends FormRequest
     {
         return [
             "title"         => "required",
-            "description"   => "required_without_all:image,url,youtube_video",
-            "image"         => "required_without_all:description,url,youtube_video|mimes:jpeg,jpg,bmp,png",
-            "url"           => "required_without_all:description,image,youtube_video",
-            "youtube_video" => "required_without_all:description,image,url",
+            "description"   => "required_without_all:image,youtube_video",
+            "image"         => "required_without_all:description,youtube_video|mimes:jpeg,jpg,bmp,png",
+            "youtube_video" => "required_without_all:description,image",
             "type"          => "required",
             "state"         => "required",
         ];
@@ -45,11 +44,10 @@ class CreateAnnouncementRequest extends FormRequest
         if(app()->getLocale() == Language::ARABIC)
             return [
                 "title.required"                     => "حقل العنوان مطلوب.",
-                "description.required_without_all"   => "حقل الوصف مطلوب عندما لا يكون أي من الصورة / الرابط الخارجي / يوتيوب فيديو موجودة.",
-                "image.required_without_all"         => "حقل الصورة مطلوب عندما لا يكون أي من الوصف / الرابط الخارجي / يوتيوب فيديو موجودة.",
+                "description.required_without_all"   => "حقل الوصف مطلوب عندما لا يكون أي من الصورة / يوتيوب فيديو موجودة.",
+                "image.required_without_all"         => "حقل الصورة مطلوب عندما لا يكون أي من الوصف / يوتيوب فيديو موجودة.",
                 "image.mimes"                        => "يجب أن تكون الصورة ملفًا من النوع: jpeg ، jpg ، bmp ، png.",
-                "url.required_without_all"           => "حقل الرابط الخارجي مطلوب عندما لا يكون أي من الوصف / الصورة / يوتيوب فيديو موجودة.",
-                "youtube_video.required_without_all" => "حقل يوتيوب فيديو مطلوب عندما لا يكون أي من الوصف / الصورة / الرابط الخارجي موجودة.",
+                "youtube_video.required_without_all" => "حقل يوتيوب فيديو مطلوب عندما لا يكون أي من الوصف / الصورة موجودة.",
                 "type.required"                      => "حقل النوع مطلوب.",
                 "state.required"                     => "حقل الحالة مطلوب.",
             ];

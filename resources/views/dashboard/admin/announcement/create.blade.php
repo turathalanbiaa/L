@@ -4,13 +4,14 @@
     @lang("dashboard-admin/announcement.create.title")
 @endsection
 
-@section("style")
+@section("head")
+    @include('dashboard.admin.layout.head.summer-note')
 @endsection
 
 @section("content")
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="h3-responsive text-center mb-4">
                     @lang("dashboard-admin/announcement.create.title")
                 </div>
@@ -36,8 +37,7 @@
                             <label class="col-form-label" for="description">
                                 @lang("dashboard-admin/announcement.label.description")
                             </label>
-                            <textarea class="form-control" name="description" rows="10" id="description"
-                                      placeholder="@lang('dashboard-admin/announcement.placeholder.description')">{{old("description")}}</textarea>
+                            <textarea class="form-control" name="description" id="description">{{old("description")}}</textarea>
                             @error('description') <div class="text-warning">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-12">
@@ -51,14 +51,6 @@
                                 </div>
                             </div>
                             @error('image') <div class="text-warning">{{ $message }}</div> @enderror
-                        </div>
-                        <div class="col-12">
-                            <label class="col-form-label" for="url">
-                                @lang("dashboard-admin/announcement.label.url")
-                            </label>
-                            <input type="text" class="form-control" name="url" id="url" value="{{old("url")}}"
-                                   placeholder="@lang('dashboard-admin/announcement.placeholder.url')">
-                            @error('url') <div class="text-warning">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-12">
                             <label class="col-form-label" for="youtube-video">
@@ -121,16 +113,27 @@
     </div>
 @endsection
 
-@section("extra-content")
-@endsection
-
 @section("script")
     <script>
-        $("#dropdown-type .dropdown-item").click(function () {
+        $("#description").summernote({
+            placeholder: "@lang('dashboard-admin/announcement.placeholder.description')",
+            tabsize: 4,
+            height: 100,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+        $("#dropdown-type .dropdown-item").on("click", function () {
             $("input#type").val($(this).html().trim());
             $("input[name='type']").val($(this).data('value'));
         });
-        $("#dropdown-state .dropdown-item").click(function () {
+        $("#dropdown-state .dropdown-item").on("click", function () {
             $("input#state").val($(this).html().trim());
             $("input[name='state']").val($(this).data('value'));
         });

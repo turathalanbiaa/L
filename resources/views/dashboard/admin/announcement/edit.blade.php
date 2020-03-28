@@ -4,13 +4,14 @@
     {{$announcement->title}}
 @endsection
 
-@section("style")
+@section("head")
+    @include('dashboard.admin.layout.head.summer-note')
 @endsection
 
 @section("content")
     <div class="container-fluid">
         <div class="row justify-content-center" id="change-selector">
-            <div class="col-lg-6">
+            <div class="col-sm-8">
                 <div class="h3-responsive text-center mb-4">
                     @lang("dashboard-admin/announcement.edit.header")
                 </div>
@@ -46,17 +47,8 @@
                                     <label class="col-form-label" for="description">
                                         @lang("dashboard-admin/announcement.label.description")
                                     </label>
-                                    <textarea class="form-control" name="description" rows="10" id="description"
-                                              placeholder="@lang('dashboard-admin/announcement.placeholder.description')">{{$announcement->description}}</textarea>
+                                    <textarea class="form-control" name="description" id="description">{{$announcement->description}}</textarea>
                                     @error('description') <div class="text-warning">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-12">
-                                    <label class="col-form-label" for="url">
-                                        @lang("dashboard-admin/announcement.label.url")
-                                    </label>
-                                    <input type="text" class="form-control" name="url" id="url" value="{{$announcement->url}}"
-                                           placeholder="@lang('dashboard-admin/announcement.placeholder.url')">
-                                    @error('url') <div class="text-warning">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="col-12">
                                     <label class="col-form-label" for="youtube-video">
@@ -218,6 +210,20 @@
 
 @section("script")
     <script>
+        $("#description").summernote({
+            placeholder: "@lang('dashboard-admin/announcement.placeholder.description')",
+            tabsize: 4,
+            height: 100,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
         $("#dropdown-type .dropdown-item").on("click", function () {
             $("input#type").val($(this).html().trim());
             $("input[name='type']").val($(this).data('value'));
@@ -226,7 +232,6 @@
             $("input#state").val($(this).html().trim());
             $("input[name='state']").val($(this).data('value'));
         });
-
         $("#view").on("click", function () {
             let src = $(this).parent().parent().find('img').attr('src');
             let modal = $('#modal-announcement-view');
@@ -234,12 +239,10 @@
             modal.find('img').attr('src', src);
             modal.modal('show');
         });
-
         $("#delete").on("click", function () {
             $(this).parent().parent().parent().addClass("d-none");
             $("input[name='deleted']").val(1);
         });
-
         @if(session()->has("message"))
             $.toast({
                 title: '{{session()->get("message")}}',
