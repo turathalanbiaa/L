@@ -38,7 +38,8 @@ Route::namespace("Dashboard\\Admin")
                         // Resources
                         Route::resource('announcements', 'AnnouncementController');
                         // Api
-                        Route::get('api/announcements/i','ApiAnnouncementController@i');
+                        Route::post('api/announcements/show','ApiAnnouncementController@show');
+                        Route::post('api/announcements/destroy','ApiAnnouncementController@desroy');
                     });
             });
     });

@@ -59,7 +59,6 @@ class AnnouncementController extends Controller
         ]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -95,20 +94,15 @@ class AnnouncementController extends Controller
                 ]);
     }
 
-
     /**
      * Display the specified resource.
      *
      * @param Announcement $announcement
-     * @return Factory|View
      */
     public function show(Announcement $announcement)
     {
-        return view("dashboard.admin.announcement.show")->with([
-            "announcement" => $announcement
-        ]);
+        abort(404);
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -181,10 +175,9 @@ class AnnouncementController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Announcement $announcement
-     * @return Response
      */
     public function destroy(Announcement $announcement)
     {
-        //
+        abort(404);
     }
 }

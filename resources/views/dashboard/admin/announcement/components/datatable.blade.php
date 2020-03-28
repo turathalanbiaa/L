@@ -57,8 +57,8 @@
             </td>
             <td>{{$announcement->created_at}}</td>
             <td class="align-middle">
-                <div class="d-flex justify-content-center">
-                    <a class="btn btn-outline-secondary btn-sm m-2" href="{{route("dashboard.admin.announcements.show", ["announcement" => $announcement->id])}}">
+                <div class="d-flex justify-content-center" data-content="{{$announcement->id}}">
+                    <a class="btn btn-outline-secondary btn-sm m-2" data-action="btn-modal-show">
                         <i class="far fa-eye"></i>
                     </a>
                     <a class="btn btn-outline-primary btn-sm m-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
@@ -73,6 +73,11 @@
     @endforeach
     </tbody>
 </table>
+
+@section("extra-content")
+    @parent
+    <div id="extra"></div>
+@endsection
 
 @section('script')
     @parent
@@ -90,5 +95,28 @@
                 @endif
             } );
         } );
+
+        $("[data-action='btn-modal-show']").on("click", function () {
+            let content = $(this).parent().data('content');
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: '/dashboard/admin/api/announcements/show',
+                data: {announcement: content},
+                datatype: 'json',
+                encode: true,
+                success: function(result) {
+                    $('#extra').html(result.data.html)
+                },
+                error: function() {
+                    console.log("error");
+                } ,
+                complete : function() {
+                    $(".modal").modal('show');
+                }
+            });
+        });
     </script>
 @endsection
