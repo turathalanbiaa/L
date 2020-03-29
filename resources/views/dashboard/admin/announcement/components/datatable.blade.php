@@ -5,23 +5,22 @@
             @lang("dashboard-admin/announcement.components.datatable.column.id")
         </th>
         <th colspan="3" class="align-middle text-center text-capitalize">
-            <button class="btn btn-sm btn-outline-white" type="button" data-toggle="collapse" data-target="#collapseAnnouncementTypeFilter" aria-expanded="false" aria-controls="collapseExample">
+            <a class="text-white" type="button" data-toggle="collapse" href="#collapse-announcement-type-filter" aria-expanded="false" aria-controls="collapse-announcement-type-filter">
                 <i class="fa fa-filter"></i>
-            </button>
+                @lang("dashboard-admin/announcement.components.datatable.title-$type")
+            </a>
 
-            @lang("dashboard-admin/announcement.components.datatable.title-$type")
-
-            <div class="collapse" id="collapseAnnouncementTypeFilter">
-                <a class="badge badge-pill blue-gray p-2 m-2" href="{{route("dashboard.admin.announcements.index")}}">
-                    ---
+            <div class="collapse" id="collapse-announcement-type-filter">
+                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index")}}">
+                    <small><i class="fa fa-star"></i></small>
                 </a>
-                <a class="badge badge-pill blue-gray p-2 m-2" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::STUDENTS])}}">
+                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::STUDENTS])}}">
                     {{\App\Enum\AnnouncementType::getTypeName(\App\Enum\AnnouncementType::STUDENTS)}}
                 </a>
-                <a class="badge badge-pill blue-gray p-2 m-2" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::LISTENERS])}}">
+                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::LISTENERS])}}">
                     {{\App\Enum\AnnouncementType::getTypeName(\App\Enum\AnnouncementType::LISTENERS)}}
                 </a>
-                <a class="badge badge-pill blue-gray p-2 m-2" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::BOTH])}}">
+                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::BOTH])}}">
                     {{\App\Enum\AnnouncementType::getTypeName(\App\Enum\AnnouncementType::BOTH)}}
                 </a>
             </div>
@@ -58,7 +57,7 @@
             <td>{{$announcement->created_at}}</td>
             <td class="align-middle">
                 <div class="d-flex justify-content-center" data-content="{{$announcement->id}}">
-                    <a class="btn btn-outline-secondary btn-sm m-2" data-action="btn-modal-show">
+                    <a class="btn btn-outline-info btn-sm m-2" data-action="btn-modal-show">
                         <i class="far fa-eye"></i>
                     </a>
                     <a class="btn btn-outline-primary btn-sm m-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
