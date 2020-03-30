@@ -40,6 +40,7 @@ Route::namespace("Dashboard\\Admin")
                         // Api
                         Route::post('api/announcements/show','ApiAnnouncementController@show');
                         Route::post('api/announcements/destroy','ApiAnnouncementController@destroy');
+                        Route::post('api/announcements/change-state','ApiAnnouncementController@changeState');
                     });
             });
     });

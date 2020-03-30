@@ -47,9 +47,9 @@
             <td>{{$announcement->title}}</td>
             <td>{{\App\Enum\AnnouncementType::getTypeName($announcement->type)}}</td>
             <td>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="custom-switch-{{$announcement->id}}" {{($announcement->state == \App\Enum\AnnouncementState::ACTIVE)?'checked':''}}>
-                    <label class="custom-control-label" for="custom-switch-{{$announcement->id}}">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="checkbox-{{$announcement->id}}" {{($announcement->state == \App\Enum\AnnouncementState::ACTIVE)?'checked':''}}>
+                    <label class="custom-control-label" for="checkbox-{{$announcement->id}}">
                         {{\App\Enum\AnnouncementState::getStateName($announcement->state)}}
                     </label>
                 </div>
@@ -82,7 +82,8 @@
 @section('script')
     @parent
     <script>
-        $('#announcements').DataTable( {
+        $("#announcements").DataTable( {
+            order: [],
             columnDefs: [{
                 targets: [5],
                 orderable: false
@@ -93,15 +94,54 @@
             },
             @endif
         } );
+        $("input[type='checkbox']").on("click", function () {
+            let input = $(this);
+            let announcement = input.attr("id").split('-')[1];
+            let state;
+            if (input.attr("checked")) {
+                input.removeAttr("checked");
+                state = 0;
+            }
+            else {
+                input.attr("checked", "");
+                state = 1;
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: '/dashboard/admin/api/announcements/change-state',
+                data: {announcement: announcement, state:state},
+                datatype: 'json',
+                encode: true,
+                success: function(result) {
+                    let toast = result.data.toast;
+                    $.toast({
+                        title: toast.title,
+                        type:  toast.type,
+                        delay: 2500
+                    });
+
+                    if (toast.type === "success")
+                      input.parent().find('label').html(result.data.newState);
+                },
+                error: function() {
+                    console.log("error");
+                } ,
+                complete : function() {
+                }
+            });
+        });
         $("[data-action='btn-modal-show']").on("click", function () {
-            let content = $(this).parent().data('content');
+            let announcement = $(this).parent().data('content');
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/show',
-                data: {announcement: content},
+                data: {announcement: announcement},
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
@@ -116,14 +156,14 @@
             });
         });
         $("[data-action='btn-modal-delete']").on("click", function () {
-            let content = $(this).parent().data('content');
+            let announcement = $(this).parent().data('content');
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/destroy',
-                data: {announcement: content},
+                data: {announcement: announcement},
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
