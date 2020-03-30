@@ -104,6 +104,7 @@ class AnnouncementController extends Controller
         abort(404);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -112,6 +113,8 @@ class AnnouncementController extends Controller
      */
     public function edit(Announcement $announcement)
     {
+        self::checkView($announcement);
+
         return view("dashboard.admin.announcement.edit")->with([
             "announcement" => $announcement,
             "types" => AnnouncementType::getTypes(),
@@ -128,6 +131,8 @@ class AnnouncementController extends Controller
      */
     public function update(UpdateAnnouncementRequest $request, Announcement $announcement)
     {
+        self::checkView($announcement);
+
         switch ($request->input('update')) {
             case "content":
                 $data = [
@@ -175,9 +180,39 @@ class AnnouncementController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Announcement $announcement
+     * @return RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Announcement $announcement)
     {
-        abort(404);
+        self::checkView($announcement);
+        Storage::delete($announcement->image);
+        $announcement->delete();
+
+        if (!$announcement)
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    "message" => __("dashboard-admin/announcement.destroy.failed"),
+                    "type" => "warning"
+                ]);
+        else
+            return redirect()
+                ->back()
+                ->with([
+                    "message" => __("dashboard-admin/announcement.destroy.success"),
+                    "type" => "success"
+                ]);
+    }
+
+    /**
+     * Check permission to view the specified resource.
+     *
+     * @param Announcement $announcement
+     */
+    public static function checkView(Announcement $announcement) {
+        if ($announcement->lang != app()->getLocale())
+            abort(404);
     }
 }

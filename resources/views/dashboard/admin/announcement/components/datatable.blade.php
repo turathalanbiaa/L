@@ -63,7 +63,7 @@
                     <a class="btn btn-outline-primary btn-sm m-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
                         <i class="far fa-edit"></i>
                     </a>
-                    <a class="btn btn-outline-danger btn-sm m-2" href="">
+                    <a class="btn btn-outline-danger btn-sm m-2" data-action="btn-modal-delete">
                         <i class="far fa-trash-alt"></i>
                     </a>
                 </div>
@@ -75,26 +75,24 @@
 
 @section("extra-content")
     @parent
-    <div id="extra"></div>
+    <div id="modal-show"></div>
+    <div id="modal-delete"></div>
 @endsection
 
 @section('script')
     @parent
     <script>
-        $(document).ready( function () {
-            $('#announcements').DataTable( {
-                columnDefs: [{
-                    targets: [5],
-                    orderable: false
-                }],
-                @if(app()->getLocale() == App\Enum\Language::ARABIC)
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json"
-                },
-                @endif
-            } );
+        $('#announcements').DataTable( {
+            columnDefs: [{
+                targets: [5],
+                orderable: false
+            }],
+            @if(app()->getLocale() == App\Enum\Language::ARABIC)
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json"
+            },
+            @endif
         } );
-
         $("[data-action='btn-modal-show']").on("click", function () {
             let content = $(this).parent().data('content');
             $.ajax({
@@ -107,15 +105,44 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    $('#extra').html(result.data.html)
+                    $('#modal-show').html(result.data.html)
                 },
                 error: function() {
                     console.log("error");
                 } ,
                 complete : function() {
-                    $(".modal").modal('show');
+                    $("#modal-show .modal").modal('show');
                 }
             });
         });
+        $("[data-action='btn-modal-delete']").on("click", function () {
+            let content = $(this).parent().data('content');
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: '/dashboard/admin/api/announcements/destroy',
+                data: {announcement: content},
+                datatype: 'json',
+                encode: true,
+                success: function(result) {
+                    $('#modal-delete').html(result.data.html)
+                },
+                error: function() {
+                    console.log("error");
+                } ,
+                complete : function() {
+                    $("#modal-delete .modal").modal('show');
+                }
+            });
+        });
+        @if(session()->has("message"))
+            $.toast({
+                title: '{{session()->get("message")}}',
+                type:  '{{session()->get("type")}}',
+                delay: 2500
+            });
+        @endif
     </script>
 @endsection

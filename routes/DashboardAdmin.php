@@ -39,7 +39,7 @@ Route::namespace("Dashboard\\Admin")
                         Route::resource('announcements', 'AnnouncementController');
                         // Api
                         Route::post('api/announcements/show','ApiAnnouncementController@show');
-                        Route::post('api/announcements/destroy','ApiAnnouncementController@desroy');
+                        Route::post('api/announcements/destroy','ApiAnnouncementController@destroy');
                     });
             });
     });

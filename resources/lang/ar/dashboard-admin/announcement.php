@@ -28,6 +28,11 @@ return [
         'failed'  => 'لم يتم تحديث الإعلان.'
     ],
 
+    'destroy' => [
+        'success' => 'تم حذف الإعلان بنجاح.',
+        'failed'  => 'لم يتم حذف الإعلان، اعد المحاولة.'
+    ],
+
     'components' => [
         'datatable' => [
             'title-'  => 'جميع الإعلانات',
@@ -43,12 +48,21 @@ return [
                 'created_at' => 'تاريخ الإنشاء',
             ]
         ],
+
         'modal-show' => [
             'header'        => 'تفاصيل الإعلان',
             'btn-edit'      => 'تحرير الإعلان',
-            'btn-dismiss'   => "لا شكرا",
+            'btn-dismiss'   => 'لا شكرا',
             'error-message' => 'الإعلان غير موجود'
-        ]
+        ],
+
+        'modal-delete' => [
+            'header'        => 'حذف الإعلان',
+            'message'       => 'هل تريد حذف الإعلان رقم ',
+            'btn-yes'       => 'نعم',
+            'btn-no'        => 'لا',
+            'error-message' => 'الإعلان غير موجود'
+        ],
     ],
 
     'label' => [

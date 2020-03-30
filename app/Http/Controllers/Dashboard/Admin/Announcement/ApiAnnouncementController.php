@@ -32,11 +32,16 @@ class ApiAnnouncementController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Announcement $announcement
-     * @return void
+     * @return ResponseFactory|Response
+     * @throws Throwable
      */
-    public function destroy(Announcement $announcement)
+    public function destroy()
     {
-        //
+        $announcement = Announcement::where('id', request()->input('announcement'))
+            ->where('lang', app()->getLocale())
+            ->first();
+
+        $view = view('dashboard.admin.announcement.components.modal-delete', compact('announcement'))->render();
+        return $this->apiResponse(['html' => $view]);
     }
 }
