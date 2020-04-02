@@ -1,8 +1,6 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title")
-    @lang('dashboard-admin/announcement.index.title')
-@endsection
+@section("title", __('dashboard-admin/announcement.index.title'))
 
 @section("head")
     @include('dashboard.admin.layout.head.data-tables')

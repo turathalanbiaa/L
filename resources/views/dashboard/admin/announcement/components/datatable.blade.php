@@ -1,11 +1,11 @@
 <table class="table table-hover w-100 table-responsive-xl btn-table" id="announcements">
     <thead class="blue-gray-darken-4 text-white">
     <tr>
-        <th rowspan="2" class="align-bottom">
-            @lang("dashboard-admin/announcement.components.datatable.column.id")
+        <th rowspan="2">
+            @lang("dashboard-admin/announcement.components.datatable.column.number")
         </th>
-        <th colspan="3" class="align-middle text-center text-capitalize">
-            <a class="text-white" type="button" data-toggle="collapse" href="#collapse-announcement-type-filter" aria-expanded="false" aria-controls="collapse-announcement-type-filter">
+        <th colspan="4" class="align-middle text-center text-capitalize">
+            <a class="text-white mb-1" type="button" data-toggle="collapse" href="#collapse-announcement-type-filter" aria-expanded="false" aria-controls="collapse-announcement-type-filter">
                 <i class="fa fa-filter"></i>
                 @lang("dashboard-admin/announcement.components.datatable.title-$type")
             </a>
@@ -25,8 +25,8 @@
                 </a>
             </div>
         </th>
-        <th colspan="2" class="text-center">
-            <a class="btn btn-link text-decoration-none text-white" type="button" href="{{route("dashboard.admin.announcements.create")}}">
+        <th colspan="1" class="text-center">
+            <a class="btn btn-flat waves-effect waves-light" type="button" href="{{route("dashboard.admin.announcements.create")}}">
                 <i class="fa fa-plus light-green-text mx-1"></i>
                 @lang("dashboard-admin/announcement.components.datatable.btn-add")
             </a>
@@ -37,7 +37,7 @@
         <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.type")</th>
         <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.state")</th>
         <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.created_at")</th>
-        <th class="th-sm text-center"></th>
+        <th class="th-sm"></th>
     </tr>
     </thead>
     <tbody>
@@ -55,15 +55,15 @@
                 </div>
             </td>
             <td>{{$announcement->created_at}}</td>
-            <td class="align-middle">
+            <td>
                 <div class="d-flex justify-content-center" data-content="{{$announcement->id}}">
-                    <a class="btn btn-outline-info btn-sm m-2" data-action="btn-modal-show">
+                    <a class="btn btn-outline-info px-3 mx-2" data-action="btn-modal-show">
                         <i class="far fa-eye"></i>
                     </a>
-                    <a class="btn btn-outline-primary btn-sm m-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
+                    <a class="btn btn-outline-primary px-3 mx-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
                         <i class="far fa-edit"></i>
                     </a>
-                    <a class="btn btn-outline-danger btn-sm m-2" data-action="btn-modal-delete">
+                    <a class="btn btn-outline-danger px-3 mx-2" data-action="btn-modal-delete">
                         <i class="far fa-trash-alt"></i>
                     </a>
                 </div>
@@ -72,7 +72,6 @@
     @endforeach
     </tbody>
 </table>
-
 @section("extra-content")
     @parent
     <div id="modal-show"></div>

@@ -42,7 +42,7 @@ class AnnouncementType
                switch ($type) {
                    case self::STUDENTS:  return "للطلاب";  break;
                    case self::LISTENERS: return "للمستمعين"; break;
-                   case self::BOTH:       return "كلاهما"; break;
+                   case self::BOTH:       return "لكلاهما"; break;
                }
                break;
            case Language::ENGLISH:

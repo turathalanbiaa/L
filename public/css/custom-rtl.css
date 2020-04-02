@@ -166,6 +166,8 @@ footer.page-footer .footer-copyright {
 .sup-list .list-item:hover {
     margin-right: 15px;
 }
+
+/* dataTables */
 table.dataTable thead>tr>th.sorting_asc,
 table.dataTable thead>tr>th.sorting_desc,
 table.dataTable thead>tr>th.sorting,
@@ -181,7 +183,7 @@ table.dataTable thead .sorting_desc:before,
 table.dataTable thead .sorting_asc_disabled:before,
 table.dataTable thead .sorting_desc_disabled:before {
     left: 1em;
-    right: auto;
+    right: unset;
     content: "\2191";
 }
 table.dataTable thead .sorting:after,
@@ -190,8 +192,48 @@ table.dataTable thead .sorting_desc:after,
 table.dataTable thead .sorting_asc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:after {
     left: 0.5em;
-    right: auto;
+    right: unset;
     content: "\2193";
+}
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before,
+table.dataTable thead .sorting_desc_disabled:after {
+    position: absolute;
+    bottom: 1.0em;
+    display: block;
+    opacity: 0.3;
+}
+/* Button */
+.btn.btn-flat {
+    font-weight: 500;
+    color: inherit;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/* custom-control */
+.custom-control {
+    padding-left: 0;
+    padding-right: 1.5rem;
+}
+.custom-control-input {
+    right: 0;
+    left: unset;
+}
+.custom-control-label::before {
+    right: -1.5rem;
+    left: unset;
+}
+.custom-control-label::after {
+    right: -1.5rem;
+    left: unset;
 }
 .file-field input[type="file"] {
     position: absolute;
@@ -212,16 +254,4 @@ table.dataTable thead .sorting_desc_disabled:after {
     border-radius: .25rem 0 0 .25rem;
     border-right: inherit;
     border-left: 0;
-}
-.custom-control.custom-checkbox {
-    padding-left: 0;
-    padding-right: 1.5rem;
-}
-.custom-checkbox .custom-control-label::before {
-    right: -1.5rem;
-    left: 0;
-}
-.custom-checkbox .custom-control-label::after {
-    right: -1.5rem;
-    left: 0;
 }

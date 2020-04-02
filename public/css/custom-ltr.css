@@ -166,6 +166,34 @@ footer.page-footer .footer-copyright {
 .sup-list .list-item:hover {
     margin-left: 15px;
 }
+/* dataTables */
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before,
+table.dataTable thead .sorting_desc_disabled:after {
+    position: absolute;
+    bottom: 1.2em;
+    display: block;
+    opacity: 0.3;
+}
+/* Button */
+.btn.btn-flat {
+    font-weight: 500;
+    color: inherit;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/* custom control */
+.custom-control-label {
+    line-height: 1.5rem;
+}
 .file-field input[type="file"] {
     position: absolute;
     top: 0;
@@ -179,3 +207,4 @@ footer.page-footer .footer-copyright {
     filter: alpha(opacity=0);
     opacity: 0;
 }
+

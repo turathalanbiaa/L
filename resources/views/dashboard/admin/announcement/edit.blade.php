@@ -12,10 +12,6 @@
     <div class="container-fluid">
         <div class="row justify-content-center" id="change-selector">
             <div class="col-sm-8">
-                <div class="h3-responsive text-center mb-4">
-                    @lang("dashboard-admin/announcement.edit.header")
-                </div>
-
                 <div class="alert alert-info">
                     <i class="far fa-star text-danger"></i>
                     @lang("dashboard-admin/announcement.edit.note")
@@ -23,16 +19,16 @@
 
                 <div class="col-12">
                     <div class="h5-responsive py-2">
-                        <a class="text-capitalize" data-toggle="collapse" data-target="#collapse-change-content" aria-expanded="false" aria-controls="#collapse-change-content">
+                        <a data-toggle="collapse" data-target="#collapse-change-content" aria-expanded="false" aria-controls="#collapse-change-content">
                             @lang("dashboard-admin/announcement.edit.change-content")
                         </a>
                     </div>
 
-                    <div class="collapse @if(old('update') == "content") show @endif border-top border-info" id="collapse-change-content" data-parent="#change-selector">
+                    <div class="collapse @if(old('update') == "info") show @endif border-top border-info" id="collapse-change-content" data-parent="#change-selector">
                         <form class="pt-3 pb-5" method="post" action="{{route("dashboard.admin.announcements.update", ["announcement" => $announcement->id])}}">
                             @csrf()
                             @method("PUT")
-                            <input type="hidden" name="update" value="content">
+                            <input type="hidden" name="update" value="info">
                             <div class="form-group row">
                                 <div class="col-12">
                                     <label class="col-form-label" for="title">
@@ -120,7 +116,7 @@
                             </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-outline-primary">
-                                    @lang("dashboard-admin/announcement.create.btn-send")
+                                    @lang("dashboard-admin/announcement.edit.btn-save")
                                 </button>
                             </div>
                         </form>
@@ -128,7 +124,7 @@
                 </div>
                 <div class="col-12">
                     <div class="h5-responsive py-2">
-                        <a class="text-capitalize" data-toggle="collapse" data-target="#collapse-change-image" aria-expanded="false" aria-controls="#collapse-change-image">
+                        <a data-toggle="collapse" data-target="#collapse-change-image" aria-expanded="false" aria-controls="#collapse-change-image">
                             @lang("dashboard-admin/announcement.edit.change-image")
                         </a>
                     </div>
@@ -185,7 +181,7 @@
                             </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-outline-primary">
-                                    @lang("dashboard-admin/announcement.create.btn-send")
+                                    @lang("dashboard-admin/announcement.edit.btn-save")
                                 </button>
                             </div>
                         </form>

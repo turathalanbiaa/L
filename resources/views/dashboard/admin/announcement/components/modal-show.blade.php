@@ -60,11 +60,11 @@
             </div>
             <div class="modal-footer justify-content-center">
                 @if($announcement)
-                    <a type="button" class="btn btn-info" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
+                    <a class="btn btn-info" type="button" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
                         @lang('dashboard-admin/announcement.components.modal-show.btn-edit')
                     </a>
                 @endif
-                <a type="button" class="btn btn-outline-info" data-dismiss="modal">
+                <a class="btn btn-outline-info" type="button" data-dismiss="modal">
                     @lang('dashboard-admin/announcement.components.modal-show.btn-dismiss')
                 </a>
             </div>

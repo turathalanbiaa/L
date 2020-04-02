@@ -25,7 +25,7 @@ class UpdateAnnouncementRequest extends FormRequest
     public function rules()
     {
        switch ($this->input('update')) {
-           case "content":
+           case "info":
                return [
                    "title"         => "required",
                    "description"   => "exclude_if:checkImage,on|required_without:youtube_video",
@@ -53,7 +53,7 @@ class UpdateAnnouncementRequest extends FormRequest
     {
         if(app()->getLocale() == Language::ARABIC)
            switch ($this->input('update')) {
-               case "content":
+               case "info":
                    return [
                        "title.required"                 => "حقل العنوان مطلوب.",
                        "description.required_without"   => "حقل الوصف مطلوب عندما لا يكون يوتيوب فيديو موجودة.",

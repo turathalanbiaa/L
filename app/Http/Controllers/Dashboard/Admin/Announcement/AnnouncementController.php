@@ -17,6 +17,9 @@ use Illuminate\View\View;
 
 class AnnouncementController extends Controller
 {
+    /**
+     * AnnouncementController constructor.
+     */
     public function __construct()
     {
         $this->middleware('dashboard.auth');
@@ -104,7 +107,6 @@ class AnnouncementController extends Controller
         abort(404);
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -134,7 +136,7 @@ class AnnouncementController extends Controller
         self::checkView($announcement);
 
         switch ($request->input('update')) {
-            case "content":
+            case "info":
                 $data = [
                     "title"         => $request->input("title"),
                     "description"   => $request->input("description"),

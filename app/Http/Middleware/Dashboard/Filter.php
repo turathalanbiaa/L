@@ -39,7 +39,7 @@ class Filter
                         abort(403, __('dashboard-admin/middleware.filter.announcement-type'));
                     break;
                 case "announcement-update":
-                    if (!in_array(request()->input("update"), array("content", "image")))
+                    if (!in_array(request()->input("update"), array("info", "image")))
                         abort(403, __('dashboard-admin/middleware.filter.announcement-update'));
                     break;
             }

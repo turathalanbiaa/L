@@ -57,8 +57,7 @@ class ApiAnnouncementController extends Controller
             $announcement->save();
 
             $toast = array(
-                "title" => __("dashboard-admin/announcement.change-state.title-$announcement->state")
-                    . " (" . $announcement->id .")" . ".",
+                "title" => __("dashboard-admin/announcement.change-state.title-$announcement->state", ["number" => $announcement->id]),
                 'type'  => "success",
             );
         }

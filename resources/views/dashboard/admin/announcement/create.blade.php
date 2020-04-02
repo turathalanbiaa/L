@@ -1,8 +1,6 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title")
-    @lang("dashboard-admin/announcement.create.title")
-@endsection
+@section("title", __("dashboard-admin/announcement.create.title"))
 
 @section("head")
     @include('dashboard.admin.layout.head.summer-note')
@@ -12,10 +10,6 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-sm-8">
-                <div class="h3-responsive text-center mb-4">
-                    @lang("dashboard-admin/announcement.create.title")
-                </div>
-
                 <div class="alert alert-info">
                     <i class="far fa-star text-danger"></i>
                     @lang("dashboard-admin/announcement.create.note")
@@ -103,7 +97,7 @@
                     </div>
 
                     <div class="text-center mt-4">
-                        <button class="btn btn-outline-primary">
+                        <button type="submit" class="btn btn-outline-primary">
                             @lang("dashboard-admin/announcement.create.btn-send")
                         </button>
                     </div>

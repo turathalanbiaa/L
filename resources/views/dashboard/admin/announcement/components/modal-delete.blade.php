@@ -12,8 +12,7 @@
                         <div class="d-flex justify-content-center p-4">
                             <div class="h5-responsive">
                                 @if($announcement)
-                                    @lang('dashboard-admin/announcement.components.modal-delete.message')
-                                    {{'(' . $announcement->id . ')'}}
+                                    @lang('dashboard-admin/announcement.components.modal-delete.message', ['number' => $announcement->id])
                                 @else
                                     @lang('dashboard-admin/announcement.components.modal-delete.error-message')
                                 @endif
@@ -24,7 +23,7 @@
             </div>
             <div class="modal-footer justify-content-center">
                 @if($announcement)
-                    <a type="button" class="btn btn-danger" onclick="$('#delete').submit();">
+                    <a class="btn btn-danger" type="button"  onclick="$('#delete').submit();">
                         @lang('dashboard-admin/announcement.components.modal-delete.btn-yes')
                     </a>
                     <form id="delete" class="d-none" method="post" action="{{route("dashboard.admin.announcements.destroy", ["announcement" => $announcement->id])}}">
@@ -32,7 +31,7 @@
                         @method("delete")
                     </form>
                 @endif
-                <a type="button" class="btn btn-outline-danger" data-dismiss="modal">
+                <a class="btn btn-outline-danger" type="button" data-dismiss="modal">
                     @lang('dashboard-admin/announcement.components.modal-delete.btn-no')
                 </a>
             </div>
