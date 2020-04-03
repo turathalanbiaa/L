@@ -41,12 +41,12 @@ return [
 
     'components' => [
         'datatable' => [
-            'title-'  => 'All announcements',
-            'title-1' => 'All announcements are announced to students',
-            'title-2' => 'All announcements are announced to listeners',
-            'title-3' => 'All announcements are announced to students and listeners',
-            'btn-add' => 'Add Announcement',
-            'column'  => [
+            'header-'  => 'All announcements',
+            'header-1' => 'All announcements are announced to students',
+            'header-2' => 'All announcements are announced to listeners',
+            'header-3' => 'All announcements are announced to students and listeners',
+            'btn-add'  => 'Add Announcement',
+            'column'   => [
                 'number'     => 'No.',
                 'title'      => 'Title',
                 'type'       => 'Type',

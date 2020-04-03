@@ -7,7 +7,7 @@
         <th colspan="4" class="align-middle text-center text-capitalize">
             <a class="text-white mb-1" type="button" data-toggle="collapse" href="#collapse-announcement-type-filter" aria-expanded="false" aria-controls="collapse-announcement-type-filter">
                 <i class="fa fa-filter"></i>
-                @lang("dashboard-admin/announcement.components.datatable.title-$type")
+                @lang("dashboard-admin/announcement.components.datatable.header-$type")
             </a>
 
             <div class="collapse" id="collapse-announcement-type-filter">
@@ -57,13 +57,13 @@
             <td>{{$announcement->created_at}}</td>
             <td>
                 <div class="d-flex justify-content-center" data-content="{{$announcement->id}}">
-                    <a class="btn btn-outline-info px-3 mx-2" data-action="btn-modal-show">
+                    <a class="btn-floating btn-sm info-color mx-2" data-action="btn-modal-show">
                         <i class="far fa-eye"></i>
                     </a>
-                    <a class="btn btn-outline-primary px-3 mx-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
+                    <a class="btn-floating btn-sm primary-color mx-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
                         <i class="far fa-edit"></i>
                     </a>
-                    <a class="btn btn-outline-danger px-3 mx-2" data-action="btn-modal-delete">
+                    <a class="btn-floating btn-sm danger-color mx-2" data-action="btn-modal-delete">
                         <i class="far fa-trash-alt"></i>
                     </a>
                 </div>
