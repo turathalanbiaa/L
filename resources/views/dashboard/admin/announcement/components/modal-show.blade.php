@@ -51,7 +51,7 @@
                         <div class="col-12">
                             <div class="d-flex justify-content-center p-4">
                                 <div class="h5-responsive">
-                                    @lang('dashboard-admin/announcement.components.modal-show.error-message')
+                                    @lang("dashboard-admin/announcement.components.modal-show.error-message")
                                 </div>
                             </div>
                         </div>
@@ -61,11 +61,11 @@
             <div class="modal-footer justify-content-center">
                 @if($announcement)
                     <a class="btn btn-info" type="button" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
-                        @lang('dashboard-admin/announcement.components.modal-show.btn-edit')
+                        @lang("dashboard-admin/announcement.components.modal-show.btn-edit")
                     </a>
                 @endif
                 <a class="btn btn-outline-info" type="button" data-dismiss="modal">
-                    @lang('dashboard-admin/announcement.components.modal-show.btn-dismiss')
+                    @lang("dashboard-admin/announcement.components.modal-show.btn-dismiss")
                 </a>
             </div>
         </div>

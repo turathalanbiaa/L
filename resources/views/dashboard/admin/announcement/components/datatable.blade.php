@@ -14,13 +14,13 @@
                 <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index")}}">
                     <small><i class="fa fa-star"></i></small>
                 </a>
-                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::STUDENTS])}}">
+                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ["type" => \App\Enum\AnnouncementType::STUDENTS])}}">
                     {{\App\Enum\AnnouncementType::getTypeName(\App\Enum\AnnouncementType::STUDENTS)}}
                 </a>
-                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::LISTENERS])}}">
+                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ["type" => \App\Enum\AnnouncementType::LISTENERS])}}">
                     {{\App\Enum\AnnouncementType::getTypeName(\App\Enum\AnnouncementType::LISTENERS)}}
                 </a>
-                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ['type' => \App\Enum\AnnouncementType::BOTH])}}">
+                <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ["type" => \App\Enum\AnnouncementType::BOTH])}}">
                     {{\App\Enum\AnnouncementType::getTypeName(\App\Enum\AnnouncementType::BOTH)}}
                 </a>
             </div>
@@ -48,7 +48,7 @@
             <td>{{\App\Enum\AnnouncementType::getTypeName($announcement->type)}}</td>
             <td>
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="checkbox-{{$announcement->id}}" {{($announcement->state == \App\Enum\AnnouncementState::ACTIVE)?'checked':''}}>
+                    <input type="checkbox" class="custom-control-input" id="checkbox-{{$announcement->id}}" {{($announcement->state == \App\Enum\AnnouncementState::ACTIVE)?"checked":""}}>
                     <label class="custom-control-label" for="checkbox-{{$announcement->id}}">
                         {{\App\Enum\AnnouncementState::getStateName($announcement->state)}}
                     </label>
@@ -78,7 +78,7 @@
     <div id="modal-delete"></div>
 @endsection
 
-@section('script')
+@section("script")
     @parent
     <script>
         $("#announcements").DataTable( {
@@ -88,26 +88,26 @@
                 orderable: false
             }],
             @if(app()->getLocale() == App\Enum\Language::ARABIC)
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json"
+            'language': {
+                'url': '//cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'
             },
             @endif
         } );
-        $("input[type='checkbox']").on("click", function () {
+        $("input[type='checkbox']").on('click', function () {
             let input = $(this);
-            let announcement = input.attr("id").split('-')[1];
+            let announcement = input.attr('id').split('-')[1];
             let state;
-            if (input.attr("checked")) {
-                input.removeAttr("checked");
+            if (input.attr('checked')) {
+                input.removeAttr('checked');
                 state = 0;
             }
             else {
-                input.attr("checked", "");
+                input.attr('checked', '');
                 state = 1;
             }
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/change-state',
@@ -132,11 +132,11 @@
                 }
             });
         });
-        $("[data-action='btn-modal-show']").on("click", function () {
+        $("[data-action='btn-modal-show']").on('click', function () {
             let announcement = $(this).parent().data('content');
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/show',
@@ -144,7 +144,7 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    $('#modal-show').html(result.data.html)
+                    $("#modal-show").html(result.data.html)
                 },
                 error: function() {
                     console.log("error");
@@ -154,11 +154,11 @@
                 }
             });
         });
-        $("[data-action='btn-modal-delete']").on("click", function () {
+        $("[data-action='btn-modal-delete']").on('click', function () {
             let announcement = $(this).parent().data('content');
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/destroy',
@@ -166,7 +166,7 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    $('#modal-delete').html(result.data.html)
+                    $("#modal-delete").html(result.data.html)
                 },
                 error: function() {
                     console.log("error");

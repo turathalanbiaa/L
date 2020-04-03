@@ -1,9 +1,9 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title", __('dashboard-admin/announcement.index.title'))
+@section("title", __("dashboard-admin/announcement.index.title"))
 
 @section("head")
-    @include('dashboard.admin.layout.head.data-tables')
+    @include("dashboard.admin.layout.head.data-tables")
 @endsection
 
 @section("content")

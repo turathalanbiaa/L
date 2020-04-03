@@ -3,7 +3,7 @@
 @section("title", $announcement->title)
 
 @section("head")
-    @include('dashboard.admin.layout.head.summer-note')
+    @include("dashboard.admin.layout.head.summer-note")
 @endsection
 
 @section("content")
@@ -22,7 +22,7 @@
                         </a>
                     </div>
 
-                    <div class="collapse @if(old('update') == "info") show @endif border-top border-info" id="collapse-change-content" data-parent="#change-selector">
+                    <div class="collapse @if(old("update") == "info") show @endif border-top border-info" id="collapse-change-content" data-parent="#change-selector">
                         <form class="pt-3 pb-5" method="post" action="{{route("dashboard.admin.announcements.update", ["announcement" => $announcement->id])}}">
                             @csrf()
                             @method("PUT")
@@ -34,23 +34,23 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <input type="text" class="form-control" name="title" id="title" value="{{$announcement->title}}"
-                                           placeholder="@lang('dashboard-admin/announcement.placeholder.title')">
-                                    @error('title') <div class="text-warning">{{ $message }}</div> @enderror
+                                           placeholder="@lang("dashboard-admin/announcement.placeholder.title")">
+                                    @error("title") <div class="text-warning">{{$message}}</div> @enderror
                                 </div>
                                 <div class="col-12">
                                     <label class="col-form-label" for="description">
                                         @lang("dashboard-admin/announcement.label.description")
                                     </label>
                                     <textarea class="form-control" name="description" id="description">{{$announcement->description}}</textarea>
-                                    @error('description') <div class="text-warning">{{ $message }}</div> @enderror
+                                    @error("description") <div class="text-warning">{{$message}}</div> @enderror
                                 </div>
                                 <div class="col-12">
                                     <label class="col-form-label" for="youtube-video">
                                         @lang("dashboard-admin/announcement.label.youtube_video")
                                     </label>
                                     <input type="text" class="form-control" name="youtube_video" id="youtube-video" value="{{$announcement->youtube_video}}"
-                                           placeholder="@lang('dashboard-admin/announcement.placeholder.youtube_video')">
-                                    @error('youtube_video') <div class="text-warning">{{ $message }}</div> @enderror
+                                           placeholder="@lang("dashboard-admin/announcement.placeholder.youtube_video")">
+                                    @error("youtube_video") <div class="text-warning">{{$message}}</div> @enderror
                                 </div>
                                 <div class="col-12">
                                     <label class="col-form-label" for="type">
@@ -59,10 +59,10 @@
                                     </label>
                                     <div class="dropdown">
                                         <input type="text" class="form-control" id="type" value="{{App\Enum\AnnouncementType::getTypeName($announcement->type)}}"
-                                               placeholder="@lang('dashboard-admin/announcement.placeholder.type')"
+                                               placeholder="@lang("dashboard-admin/announcement.placeholder.type")"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <input type="hidden" name="type" value="{{$announcement->type}}">
-                                        @error('type') <div class="text-warning">{{ $message }}</div> @enderror
+                                        @error("type") <div class="text-warning">{{$message}}</div> @enderror
                                         <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
                                             @foreach($types as $type)
                                                 <div class="dropdown-item" data-value="{{$type}}">
@@ -79,10 +79,10 @@
                                     </label>
                                     <div class="dropdown">
                                         <input type="text" class="form-control" id="state" value="{{App\Enum\AnnouncementState::getStateName($announcement->state)}}"
-                                               placeholder="@lang('dashboard-admin/announcement.placeholder.state')"
+                                               placeholder="@lang("dashboard-admin/announcement.placeholder.state")"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <input type="hidden" name="state" value="{{$announcement->state}}">
-                                        @error('state') <div class="text-warning">{{ $message }}</div> @enderror
+                                        @error("state") <div class="text-warning">{{$message}}</div> @enderror
                                         <div class="dropdown-menu dropdown-default w-100" aria-labelledby="state" id="dropdown-state">
                                             @foreach($states as $state)
                                                 <div class="dropdown-item" data-value="{{$state}}">
@@ -98,7 +98,7 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <input type="date" class="form-control" name="created_at" id="created-at" value="{{$announcement->created_at}}">
-                                    @error('created_at') <div class="text-warning">{{ $message }}</div> @enderror
+                                    @error("created_at") <div class="text-warning">{{$message}}</div> @enderror
                                 </div>
                                 <div class="col-12">
                                     <div class="custom-control custom-checkbox mt-3">
@@ -127,7 +127,7 @@
                         </a>
                     </div>
 
-                    <div class="collapse @if(old('update') == "image") show @endif border-top border-info" id="collapse-change-image" data-parent="#change-selector">
+                    <div class="collapse @if(old("update") == "image") show @endif border-top border-info" id="collapse-change-image" data-parent="#change-selector">
                         <form class="pt-3 pb-5" method="post" action="{{route("dashboard.admin.announcements.update", ["announcement" => $announcement->id])}}" enctype="multipart/form-data">
                             @csrf()
                             @method("PUT")
@@ -143,10 +143,10 @@
                                                 <input type="file" class="custom-file-input" name="image" id="image" value="">
                                                 <input type="hidden" name="deleted" value="0">
                                                 <div class="custom-file-label">
-                                                    @lang('dashboard-admin/announcement.placeholder.image')
+                                                    @lang("dashboard-admin/announcement.placeholder.image")
                                                 </div>
                                             </div>
-                                            @error('image') <div class="text-warning">{{ $message }}</div> @enderror
+                                            @error("image") <div class="text-warning">{{$message}}</div> @enderror
                                         </div>
                                         @if($announcement->image)
                                             <div class="col-sm-6">
@@ -205,7 +205,7 @@
 @section("script")
     <script>
         $("#description").summernote({
-            placeholder: "@lang('dashboard-admin/announcement.placeholder.description')",
+            placeholder: '@lang("dashboard-admin/announcement.placeholder.description")',
             tabsize: 4,
             height: 100,
             toolbar: [
@@ -218,23 +218,23 @@
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-        $("#dropdown-type .dropdown-item").on("click", function () {
+        $("#dropdown-type .dropdown-item").on('click', function () {
             $("input#type").val($(this).html().trim());
             $("input[name='type']").val($(this).data('value'));
         });
-        $("#dropdown-state .dropdown-item").on("click", function () {
+        $("#dropdown-state .dropdown-item").on('click', function () {
             $("input#state").val($(this).html().trim());
             $("input[name='state']").val($(this).data('value'));
         });
-        $("#view").on("click", function () {
+        $("#view").on('click', function () {
             let src = $(this).parent().parent().find('img').attr('src');
             let modal = $('#modal-announcement-view');
-            // src = src.replace("large", "original");
+            // src = src.replace('large", 'original");
             modal.find('img').attr('src', src);
             modal.modal('show');
         });
-        $("#delete").on("click", function () {
-            $(this).parent().parent().parent().addClass("d-none");
+        $("#delete").on('click', function () {
+            $(this).parent().parent().parent().addClass('d-none');
             $("input[name='deleted']").val(1);
         });
         @if(session()->has("message"))
