@@ -1,8 +1,6 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title")
-    {{$announcement->title}}
-@endsection
+@section("title", $announcement->title)
 
 @section("head")
     @include('dashboard.admin.layout.head.summer-note')
