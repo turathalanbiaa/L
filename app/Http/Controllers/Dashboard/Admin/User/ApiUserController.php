@@ -13,18 +13,18 @@ class ApiUserController extends Controller
     use ApiResponseTrait;
 
     /**
-     * Display the user.
+     * Display the specified user.
      *
      * @return ResponseFactory|Response
      * @throws \Throwable
      */
-    public function info()
+    public function show()
     {
-        $user = User::where('id', request()->input('user'))
-            ->where('lang', app()->getLocale())
+        $user = User::where("id", request()->input('user'))
+            ->where("lang", app()->getLocale())
             ->first();
 
-        $view = view('dashboard.admin.user.components.modal-info', compact('user'))->render();
-        return $this->apiResponse(['html' => $view], 200, false);
+        $view = view("dashboard.admin.user.components.modal-show", compact("user"))->render();
+        return $this->apiResponse(["html" => $view]);
     }
 }

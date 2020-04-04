@@ -22,10 +22,10 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('dashboard.auth');
-        $this->middleware('dashboard.role:User');
-        $this->middleware('filter:user-type')->only(['index', 'create', 'store']);
-        $this->middleware('filter:user-update')->only(['update']);
+        $this->middleware("dashboard.auth");
+        $this->middleware("dashboard.role:User");
+        $this->middleware("filter:user-type")->only(["index", "create", "store"]);
+        $this->middleware("filter:user-update")->only(["update"]);
     }
 
     /**
@@ -36,10 +36,11 @@ class UserController extends Controller
     public function index()
     {
         $type = request()->input("type");
-        $users = User::where('type', $type)
-                ->where('lang', app()->getLocale())
-                ->orderBy('id')
-                ->get(['id', 'name', 'email', 'phone', 'state']);
+        $users = User::select(["id", "name", "email", "phone", "last_login"])
+            ->where("type", $type)
+            ->where("lang", app()->getLocale())
+            ->latest()
+            ->get();
 
         return view("dashboard.admin.user.index")->with([
             "type" => $type,
@@ -72,18 +73,18 @@ class UserController extends Controller
     public function store(CreateUserRequest $request)
     {
         $user = User::create([
-            "name"           => $request->input('name'),
-            "type"           => $request->input('type'),
+            "name"           => $request->input("name"),
+            "type"           => $request->input("type"),
             "lang"           => app()->getLocale(),
-            "stage"          => $request->input('stage', null),
-            "email"          => $request->input('email'),
-            "phone"          => $request->input('phone'),
-            "password"       => md5($request->input('password')),
-            "gender"         => $request->input('gender'),
-            "country"        => $request->input('country'),
-            "birth_date"     => $request->input('birth_date', null),
-            "address"        => $request->input('address', null),
-            "certificate"    => $request->input('certificate', null),
+            "stage"          => $request->input("stage", null),
+            "email"          => $request->input("email"),
+            "phone"          => $request->input("phone"),
+            "password"       => md5($request->input("password")),
+            "gender"         => $request->input("gender"),
+            "country"        => $request->input("country"),
+            "birth_date"     => $request->input("birth_date", null),
+            "address"        => $request->input("address", null),
+            "certificate"    => $request->input("certificate", null),
             "created_at"     => date("Y-m-d"),
             "last_login"     => null,
             "state"          => UserState::UNTRUSTED,
@@ -152,7 +153,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        switch ($request->input('update')) {
+        switch ($request->input("update")) {
             case "info":
                 $data = [
                     "name"        => $request->input("name"),
@@ -168,7 +169,7 @@ class UserController extends Controller
                 break;
             case "pass":
                 $data = [
-                    "password" => md5($request->input('password'))
+                    "password" => md5($request->input("password"))
                 ];
                 break;
             default: $data = array();

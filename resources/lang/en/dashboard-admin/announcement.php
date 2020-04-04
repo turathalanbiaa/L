@@ -17,10 +17,10 @@ return [
     ],
 
     'edit' => [
-        'note'           => 'The announcement must contain one of the fields (description, image, YouTube video)..',
-        'change-content' => 'Change announcement info',
-        'change-image'   => 'Change announcement image',
-        'btn-save'       => 'Save'
+        'note'         => 'The announcement must contain one of the fields (description, image, YouTube video)..',
+        'change-info'  => 'Change announcement info',
+        'change-image' => 'Change announcement image',
+        'btn-save'     => 'Save'
     ],
 
     'update' => [
@@ -51,7 +51,7 @@ return [
                 'title'      => 'Title',
                 'type'       => 'Type',
                 'state'      => 'State',
-                'created_at' => 'Created At'
+                'created-at' => 'Created at'
             ]
         ],
 

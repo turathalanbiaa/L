@@ -182,6 +182,10 @@ table.dataTable thead .sorting_desc_disabled:after {
     display: block;
     opacity: 0.3;
 }
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_desc:after {
+    opacity: 1;
+}
 /* Button *//* Button */
 .btn.btn-flat {
     font-weight: 500;

@@ -1,59 +1,9 @@
 <?php
 
 return [
-    'column' => [
-        'id'             => 'No.',
-        'name'           => 'Name',
-        'type'           => 'Type',
-        'lang'           => 'Language',
-        'stage'          => 'Stage',
-        'email'          => 'E-mail',
-        'phone'          => 'Phone',
-        'password'       => 'Password',
-        'gender'         => 'Gender',
-        'country'        => 'Country',
-        'birth_date'     => 'Birth Date',
-        'address'        => 'Address',
-        'certificate'    => 'Certificate',
-        'created_at'     => 'Created At',
-        'last_login'     => 'Last Login',
-        'state'          => 'State',
-        'remember_token' => 'Token',
-
-        're_password'     => 'Re-Password',
-        'last_login_null' => 'Not Login'
-    ],
-
-    'placeholder' => [
-        'name'        => 'Full Name and Surname',
-        'stage'       => 'Select Stage',
-        'email'       => 'E-mail',
-        'phone'       => 'Phone',
-        'gender'      => 'Select Gender',
-        'country'     => 'Select Country',
-        'certificate' => 'Select Certificate'
-    ],
-
-    'components' => [
-        'datatable' => [
-            'title-1'   => 'Students Enrolled In The Institute',
-            'title-2'   => 'Listeners Enrolled In The Institute',
-            'btn-add-1' => 'Add Student',
-            'btn-add-2' => 'Add Listener'
-        ],
-
-        'modal-info' => [
-            'header-1'      => 'Student Account Information',
-            'header-2'      => 'Listener Account Information',
-            'btn-info'      => 'Show File',
-            'btn-dismiss'   => 'No, Thanks',
-            'error-message' => 'User Not Found'
-        ]
-    ],
-
     'index' => [
-        'title-1'   => 'Students',
-        'title-2'   => 'Listeners'
+        'title-1' => 'Students',
+        'title-2' => 'Listeners'
     ],
 
     'create' => [
@@ -63,9 +13,14 @@ return [
     ],
 
     'store' => [
-        'success' => 'Account successfully created.',
-        'failed'  => 'The account was not created, try again.'
+        'success' => 'The user was created successfully.',
+        'failed'  => 'The user was not created, Try again.'
     ],
+
+
+
+
+
 
     'show' => [
         'tab' => [
@@ -85,14 +40,72 @@ return [
         ]
     ],
 
+
+
+
+
+
     'edit' => [
-        'change-info'     => 'Change Account Information',
-        'change-password' => 'Change Account Password',
+        'change-info'     => 'Change user information',
+        'change-password' => 'Change user password',
         'btn-save'        => 'Save'
     ],
 
     'update' => [
-        'success' => 'The account was successfully updated.',
-        'failed'  => 'The account has not been updated.'
+        'success' => 'The user was updated successfully.',
+        'failed'  => 'The user was not updated, Try again.'
+    ],
+
+    'components' => [
+        'datatable' => [
+            'header-1'  => 'Students enrolled in the institute',
+            'header-2'  => 'Listeners enrolled in the institute',
+            'btn-add-1' => 'Add student',
+            'btn-add-2' => 'Add listener',
+            'column'    => [
+                'number'     => 'No.',
+                'name'       => 'Name',
+                'email'      => 'Email',
+                'phone'      => 'Phone',
+                'last-login' => 'Last login date'
+            ]
+        ],
+
+        'modal-show' => [
+            'header'        => 'Account information',
+            'btn-info'      => 'Show account',
+            'btn-dismiss'   => 'No, thanks',
+            'error-message' => 'The user dose not exist.'
+        ]
+    ],
+
+    'label' => [
+        'name'        => 'Name',
+        'type'        => 'Type',
+        'stage'       => 'Stage',
+        'email'       => 'Email',
+        'phone'       => 'Phone',
+        'password'    => 'Password',
+        're-password' => 'Re-Password',
+        'gender'      => 'Gender',
+        'country'     => 'Country',
+        'birth-date'  => 'Birth Date',
+        'address'     => 'Address',
+        'certificate' => 'Certificate',
+        'created-at'  => 'Created At',
+        'last-login'  => 'Last Login',
+        'state'       => 'State',
+    ],
+
+    'placeholder' => [
+        'name'        => 'Full Name and Surname',
+        'stage'       => 'Select Stage',
+        'email'       => 'Email',
+        'phone'       => 'Phone',
+        'gender'      => 'Select Gender',
+        'country'     => 'Select Country',
+        'certificate' => 'Select Certificate',
+        'birth-date'  => 'Birth Date',
+        'address'     => 'Full Address'
     ]
 ];

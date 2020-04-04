@@ -18,7 +18,7 @@ Route::namespace("Dashboard\\Admin")
                         // Resources
                         Route::resource('users', 'UserController')->except('destroy');
                         // Api
-                        Route::get('api/users/info','ApiUserController@info');
+                        Route::post('api/users/show','ApiUserController@show');
                     });
 
                 // Documents

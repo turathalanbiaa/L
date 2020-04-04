@@ -1,10 +1,10 @@
-<table class="table table-hover w-100 table-responsive-xl btn-table" id="announcements">
+<table class="table table-hover text-center w-100 table-responsive-xl" id="announcements">
     <thead class="blue-gray-darken-4 text-white">
     <tr>
         <th rowspan="2">
             @lang("dashboard-admin/announcement.components.datatable.column.number")
         </th>
-        <th colspan="4" class="align-middle text-center text-capitalize">
+        <th colspan="4" class="align-middle text-capitalize">
             <a class="text-white mb-1" type="button" data-toggle="collapse" href="#collapse-announcement-type-filter" aria-expanded="false" aria-controls="collapse-announcement-type-filter">
                 <i class="fa fa-filter"></i>
                 @lang("dashboard-admin/announcement.components.datatable.header-$type")
@@ -25,7 +25,7 @@
                 </a>
             </div>
         </th>
-        <th colspan="1" class="text-center">
+        <th colspan="1">
             <a class="btn btn-flat waves-effect waves-light" type="button" href="{{route("dashboard.admin.announcements.create")}}">
                 <i class="fa fa-plus light-green-text mx-1"></i>
                 @lang("dashboard-admin/announcement.components.datatable.btn-add")
@@ -36,7 +36,7 @@
         <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.title")</th>
         <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.type")</th>
         <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.state")</th>
-        <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.created_at")</th>
+        <th class="th-sm">@lang("dashboard-admin/announcement.components.datatable.column.created-at")</th>
         <th class="th-sm"></th>
     </tr>
     </thead>
@@ -89,7 +89,7 @@
             }],
             @if(app()->getLocale() == App\Enum\Language::ARABIC)
             'language': {
-                'url': '//cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'
+                'url': 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'
             },
             @endif
         } );

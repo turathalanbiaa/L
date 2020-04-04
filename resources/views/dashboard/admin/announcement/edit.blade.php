@@ -17,12 +17,12 @@
 
                 <div class="col-12">
                     <div class="h5-responsive py-2">
-                        <a data-toggle="collapse" data-target="#collapse-change-content" aria-expanded="false" aria-controls="#collapse-change-content">
-                            @lang("dashboard-admin/announcement.edit.change-content")
+                        <a data-toggle="collapse" data-target="#collapse-change-info" aria-expanded="false" aria-controls="#collapse-change-info">
+                            @lang("dashboard-admin/announcement.edit.change-info")
                         </a>
                     </div>
 
-                    <div class="collapse @if(old("update") == "info") show @endif border-top border-info" id="collapse-change-content" data-parent="#change-selector">
+                    <div class="collapse @if(old("update") == "info") show @endif border-top border-info" id="collapse-change-info" data-parent="#change-selector">
                         <form class="pt-3 pb-5" method="post" action="{{route("dashboard.admin.announcements.update", ["announcement" => $announcement->id])}}">
                             @csrf()
                             @method("PUT")
@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-outline-primary">
+                                <button class="btn btn-outline-primary" type="submit">
                                     @lang("dashboard-admin/announcement.edit.btn-save")
                                 </button>
                             </div>
@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                             <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-outline-primary">
+                                <button class="btn btn-outline-primary" type="submit">
                                     @lang("dashboard-admin/announcement.edit.btn-save")
                                 </button>
                             </div>

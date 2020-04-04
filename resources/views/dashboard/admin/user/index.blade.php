@@ -1,10 +1,9 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title")
-    @lang("dashboard-admin/user.index.title-$type")
-@endsection
+@section("title", __("dashboard-admin/user.index.title-$type"))
 
-@section("style")
+@section("head")
+    @include("dashboard.admin.layout.head.data-tables")
 @endsection
 
 @section("content")
@@ -15,10 +14,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section("extra-content")
-@endsection
-
-@section("script")
 @endsection
