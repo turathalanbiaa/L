@@ -1,11 +1,6 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title")
-    {{$user->name}}
-@endsection
-
-@section("style")
-@endsection
+@section("title", $user->name)
 
 @section("content")
     <div class="container-fluid">

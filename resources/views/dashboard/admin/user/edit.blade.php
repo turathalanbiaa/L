@@ -18,13 +18,16 @@
                             <form method="post" action="{{route("dashboard.admin.users.update",["user" => $user->id])}}">
                                 @csrf()
                                 @method("put")
+
                                 <input type="hidden" name="id" value="{{$user->id}}">
                                 <input type="hidden" name="type" value="{{$user->type}}">
+
                                 <input type="hidden" name="update" value="info">
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="name" >
                                             @lang("dashboard-admin/user.label.name")
+                                            <span class="text-danger">*</span>
                                         </label>
                                         <div class="md-form mt-0">
                                             <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}"
@@ -35,6 +38,7 @@
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="email" >
                                             @lang("dashboard-admin/user.label.email")
+                                            <span class="text-danger">*</span>
                                         </label>
                                         <div class="md-form mt-0">
                                             <input type="email" class="form-control" name="email" id="email" value="{{$user->email}}"
@@ -45,6 +49,7 @@
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="phone" >
                                             @lang("dashboard-admin/user.label.phone")
+                                            <span class="text-danger">*</span>
                                         </label>
                                         <div class="md-form mt-0">
                                             <input type="text" class="form-control" name="phone" id="phone" value="{{$user->phone}}"
@@ -55,6 +60,7 @@
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="gender" >
                                             @lang("dashboard-admin/user.label.gender")
+                                            <span class="text-danger">*</span>
                                         </label>
                                         <div class="md-form mt-0">
                                             <input type="text" class="form-control" id="gender" value="{{App\Enum\Gender::getGenderName($user->gender)}}"
@@ -74,6 +80,7 @@
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="country" >
                                             @lang("dashboard-admin/user.label.country")
+                                            <span class="text-danger">*</span>
                                         </label>
                                         <div class="md-form mt-0">
                                             <input type="text" class="form-control" id="country"
@@ -97,6 +104,7 @@
                                         <div class="col-sm-6">
                                             <label class="col-form-label" for="stage" >
                                                 @lang("dashboard-admin/user.label.stage")
+                                                <span class="text-danger">*</span>
                                             </label>
                                             <div class="md-form mt-0">
                                                 <input type="text" class="form-control" id="stage" value="{{App\Enum\Stage::getStageName($user->stage)}}"
@@ -116,6 +124,7 @@
                                         <div class="col-sm-6">
                                             <label class="col-form-label" for="certificate" >
                                                 @lang("dashboard-admin/user.label.certificate")
+                                                <span class="text-danger">*</span>
                                             </label>
                                             <div class="md-form mt-0">
                                                 <input type="text" class="form-control" id="certificate"
@@ -136,6 +145,7 @@
                                         <div class="col-sm-6">
                                             <label class="col-form-label" for="birth-date" >
                                                 @lang("dashboard-admin/user.label.birth-date")
+                                                <span class="text-danger">*</span>
                                             </label>
                                             <div class="md-form mt-0">
                                                 <input type="date" class="form-control" name="birth_date" id="birth-date" value="{{$user->birth_date}}"
@@ -146,6 +156,7 @@
                                         <div class="col-sm-6">
                                             <label class="col-form-label" for="address" >
                                                 @lang("dashboard-admin/user.label.address")
+                                                <span class="text-danger">*</span>
                                             </label>
                                             <div class="md-form mt-0">
                                                 <input type="text" class="form-control" name="address" id="address" value="{{$user->address}}"
@@ -183,6 +194,7 @@
                                     <div class="col-sm-6">
                                         <label class="col-form-label" for="password" >
                                             @lang("dashboard-admin/user.label.password")
+                                            <span class="text-danger">*</span>
                                         </label>
                                         <div class="md-form mt-0">
                                             <input type="password" class="form-control" name="password" id="password">
@@ -212,37 +224,34 @@
     </div>
 @endsection
 
-@section("extra-content")
-@endsection
-
 @section("script")
     <script>
-        $("#dropdown-gender .dropdown-item").click(function () {
+        $("#dropdown-gender .dropdown-item").on('click', function () {
             $("input#gender").val($(this).html().trim());
             $("input[name='gender']").val($(this).data('value'));
         });
-        $("#dropdown-country .dropdown-item").click(function () {
+        $("#dropdown-country .dropdown-item").on('click', function () {
             $("input#country").val($(this).html().trim());
             $("input[name='country']").val($(this).data('value'));
         });
-        $("#dropdown-stage .dropdown-item").click(function () {
+        $("#dropdown-stage .dropdown-item").on('click', function () {
             $("input#stage").val($(this).html().trim());
             $("input[name='stage']").val($(this).data('value'));
         });
-        $("#dropdown-certificate .dropdown-item").click(function () {
+        $("#dropdown-certificate .dropdown-item").on('click', function () {
             $("input#certificate").val($(this).html().trim());
             $("input[name='certificate']").val($(this).data('value'));
         });
-        $("input#country").keyup(function () {
+        $("input#country").on('keyup', function () {
             let value = $(this).val();
             let items = $("#dropdown-country .dropdown-item");
 
             $.each(items, function(index, item) {
-                item.classList.add("d-none");
+                item.classList.add('d-none');
                 item.classList.remove('d-block');
                 str = item.textContent.trim();
                 if(str.includes(value))
-                    item.classList.add("d-block");
+                    item.classList.add('d-block');
             });
         });
         @if(session()->has("message"))

@@ -115,8 +115,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        if ($user->lang != app()->getLocale())
-            return abort(404);
+        self::checkView($user);
 
         return view("dashboard.admin.user.show")->with([
             "user"      => $user,
@@ -132,8 +131,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if ($user->lang != app()->getLocale())
-            return abort(404);
+        self::checkView($user);
 
         return view("dashboard.admin.user.edit")->with([
             "user"         => $user,
@@ -153,6 +151,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        self::checkView($user);
+
         switch ($request->input("update")) {
             case "info":
                 $data = [
@@ -192,5 +192,15 @@ class UserController extends Controller
                     "message" => __("dashboard-admin/user.update.success"),
                     "type" => "success"
                 ]);
+    }
+
+    /**
+     * Check permission to view the specified resource.
+     *
+     * @param User $user
+     */
+    public static function checkView(User $user) {
+        if ($user->lang != app()->getLocale())
+            abort(404);
     }
 }
