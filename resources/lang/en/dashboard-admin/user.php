@@ -17,33 +17,23 @@ return [
         'failed'  => 'The user was not created, Try again.'
     ],
 
-
-
-
-
-
     'show' => [
         'tab' => [
             'profile'       => 'Profile',
             'documents'     => 'Documents',
-            'account-state' => 'Account State'
+            'account-state' => 'Account state'
         ],
 
         'profile-tab' => [
-            'btn-edit' => 'Edit Account'
+            'btn-edit' => 'Edit account'
         ],
 
         'account-state-tab' => [
             'header-info'      => 'Fill out all account information.',
-            'header-auth'      => 'Authenticating the account by (mail or phone).',
+            'header-auth'      => 'Authenticating the account by (email or phone).',
             'header-documents' => 'Accept all required documents.',
         ]
     ],
-
-
-
-
-
 
     'edit' => [
         'change-info'     => 'Change user information',
