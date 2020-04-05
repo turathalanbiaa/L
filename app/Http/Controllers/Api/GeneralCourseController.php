@@ -16,7 +16,7 @@ class GeneralCourseController extends Controller
      */
     public function index(Request $request)
     {
-        $generalCourse=GeneralCourse::paginate(1);
+        $generalCourse=GeneralCourse::paginate(5);
         if ($generalCourse){
 
 

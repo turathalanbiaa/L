@@ -27,7 +27,7 @@ class  UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
 
         $users = User::paginate(10);
@@ -168,7 +168,7 @@ class  UserController extends Controller
         //  $user->image = $request->get('image');
         //  $user->remember_token = $request->get('remember_token');
         $user->save();
-        return $this->apiResponse(new UserResource($user), 201);
+        return $this->apiResponse(new UserResource($user), 200);
     }
 
     /**

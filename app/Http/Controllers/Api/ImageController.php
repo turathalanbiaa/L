@@ -44,7 +44,7 @@ class ImageController extends Controller
               $document = Document::find($id);
               $document->image = $url;
 
-              return $this->apiResponse($document);
+              return $this->apiResponse($document,200);
           } else {
               return $this->apiResponse(null, 404, true);
           }
@@ -69,10 +69,10 @@ class ImageController extends Controller
             if ($document->save()) {
                 return $this->apiResponse();
             } else {
-                return $this->apiResponse("", 400, true);
+                return $this->apiResponse("", 404, true);
             }
         }else{
-            return $this->apiResponse("", 600, true);
+            return $this->apiResponse("", 404, true);
         }
     }
     public function allimages(Request $request)
@@ -104,12 +104,12 @@ class ImageController extends Controller
                 $document->image = "";
                 $document->state = 3;
                 if ($document->save()) {
-                    return $this->apiResponse($document);
+                    return $this->apiResponse($document,200);
                 } else {
-                    return $this->apiResponse("", 400, true);
+                    return $this->apiResponse("", 404, true);
                 }
             } else {
-                return $this->apiResponse("", 600, true);
+                return $this->apiResponse("", 404, true);
             }
 
         }
