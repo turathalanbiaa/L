@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\CreateAnnouncementRequest;
 use App\Http\Requests\Dashboard\Admin\UpdateAnnouncementRequest;
 use App\Models\Announcement;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -178,12 +179,13 @@ class AnnouncementController extends Controller
                 ]);
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
      * @param Announcement $announcement
      * @return RedirectResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Announcement $announcement)
     {

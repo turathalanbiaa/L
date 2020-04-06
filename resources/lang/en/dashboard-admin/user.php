@@ -29,6 +29,7 @@ return [
         ],
 
         'account-state-tab' => [
+            'archived-message' => 'Archived account',
             'header-info'      => 'Fill out all account information.',
             'header-auth'      => 'Authenticating the account by (email or phone).',
             'header-documents' => 'Accept all required documents.',
@@ -44,6 +45,11 @@ return [
     'update' => [
         'success' => 'The user was updated successfully.',
         'failed'  => 'The user was not updated, Try again.'
+    ],
+
+    'destroy' => [
+        'success' => 'The user was archived successfully.',
+        'failed'  => 'The user was not archived, Try again.'
     ],
 
     'components' => [
@@ -62,10 +68,19 @@ return [
         ],
 
         'modal-show' => [
-            'header'        => 'Account information',
-            'btn-info'      => 'Show account',
+            'header'        => 'User information',
+            'btn-info'      => 'Show user',
             'btn-dismiss'   => 'No, thanks',
             'error-message' => 'The user dose not exist.'
+        ],
+
+        'modal-delete' => [
+            'header'        => 'Archive user',
+            'archive-message'  => 'Do you want to archive user No. (:number)?',
+            'archived-message' => 'User previously archived',
+            'error-message'    => 'The user dose not exist.',
+            'btn-yes'       => 'Yes',
+            'btn-no'        => 'NO'
         ]
     ],
 

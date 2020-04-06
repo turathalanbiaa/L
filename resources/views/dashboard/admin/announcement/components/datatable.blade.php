@@ -147,7 +147,7 @@
                     $("#modal-show").html(result.data.html)
                 },
                 error: function() {
-                    console.log("error");
+                    console.log('error');
                 } ,
                 complete : function() {
                     $("#modal-show .modal").modal('show');
@@ -169,7 +169,7 @@
                     $("#modal-delete").html(result.data.html)
                 },
                 error: function() {
-                    console.log("error");
+                    console.log('error');
                 } ,
                 complete : function() {
                     $("#modal-delete .modal").modal('show');

@@ -87,7 +87,13 @@
                     </div>
 
                     <div class="tab-pane fade pt-4" id="account-state" role="tabpanel" aria-labelledby="account-state-tab">
-                        <div class="h5-responsive mb-4">
+                        @if($user->state == \App\Enum\UserState::DISABLE)
+                            <div class="alert alert-danger text-center">
+                                @lang("dashboard-admin/user.show.account-state-tab.archived-message")
+                            </div>
+                        @endif
+
+                        <div class="h5-responsive mb-3">
                             @if($user->type == \App\Enum\UserType::STUDENT)
                                 <i class="far fa-check-square mx-1 text-success"></i>
                             @else
@@ -96,7 +102,7 @@
                             @lang("dashboard-admin/user.show.account-state-tab.header-info")
                         </div>
 
-                        <div class="h5-responsive mb-4">
+                        <div class="h5-responsive mb-3">
                             @if($user->state == \App\Enum\UserState::TRUSTED)
                                 <i class="far fa-check-square mx-1 text-success"></i>
                             @else
@@ -105,7 +111,7 @@
                             @lang("dashboard-admin/user.show.account-state-tab.header-auth")
                         </div>
 
-                        <div class="h5-responsive mb-4">
+                        <div class="h5-responsive mb-3">
                             @if($user->documents->filter(function ($document) {
                                 return ($document->type != \App\Enum\DocumentType::PERSONAL_IMAGE) &&
                                     ($document->state == \App\Enum\DocumentState::ACCEPT);

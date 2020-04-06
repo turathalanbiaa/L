@@ -111,7 +111,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param User $user
-     * @return Factory|View|void
+     * @return Factory|View
      */
     public function show(User $user)
     {
@@ -127,7 +127,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return Factory|View|void
+     * @return Factory|View
      */
     public function edit(User $user)
     {
@@ -190,6 +190,34 @@ class UserController extends Controller
                 ->back()
                 ->with([
                     "message" => __("dashboard-admin/user.update.success"),
+                    "type" => "success"
+                ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param User $user
+     * @return RedirectResponse
+     */
+    public function destroy(User $user) {
+        self::checkView($user);
+        User::where("id", $user->id)->update([
+            "state" => UserState::DISABLE
+        ]);
+
+        if (!$user)
+            return redirect()
+                ->back()
+                ->with([
+                    "message" => __("dashboard-admin/user.destroy.failed"),
+                    "type" => "warning"
+                ]);
+        else
+            return redirect()
+                ->back()
+                ->with([
+                    "message" => __("dashboard-admin/user.destroy.success"),
                     "type" => "success"
                 ]);
     }
