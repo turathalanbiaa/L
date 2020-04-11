@@ -9,7 +9,6 @@
                 <i class="fa fa-filter"></i>
                 @lang("dashboard-admin/announcement.components.datatable.header-$type")
             </a>
-
             <div class="collapse" id="collapse-announcement-type-filter">
                 <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index")}}">
                     <small><i class="fa fa-star"></i></small>
@@ -72,6 +71,7 @@
     @endforeach
     </tbody>
 </table>
+
 @section("extra-content")
     @parent
     <div id="modal-show"></div>
@@ -126,7 +126,7 @@
                       input.parent().find('label').html(result.data.newState);
                 },
                 error: function() {
-                    console.log("error");
+                    console.log('error');
                 } ,
                 complete : function() {
                 }

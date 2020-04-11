@@ -94,6 +94,7 @@ class UserController extends Controller
         if (!$user)
             return redirect()
                 ->back()
+                ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/user.store.failed"),
                     "type" => "warning"
@@ -175,7 +176,8 @@ class UserController extends Controller
             default: $data = array();
         }
 
-        User::where("id", $user->id)->update($data);
+        User::where("id", $user->id)
+            ->update($data);
 
         if (!$user)
             return redirect()
@@ -202,9 +204,10 @@ class UserController extends Controller
      */
     public function destroy(User $user) {
         self::checkView($user);
-        User::where("id", $user->id)->update([
-            "state" => UserState::DISABLE
-        ]);
+        User::where("id", $user->id)
+            ->update([
+                "state" => UserState::DISABLE
+            ]);
 
         if (!$user)
             return redirect()

@@ -21,8 +21,8 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer justify-content-center">
-                @if($announcement)
+            @if($announcement)
+                <div class="modal-footer justify-content-center">
                     <a class="btn btn-danger" type="button"  onclick="$('#delete').submit();">
                         @lang("dashboard-admin/announcement.components.modal-delete.btn-yes")
                     </a>
@@ -30,11 +30,12 @@
                         @csrf
                         @method("delete")
                     </form>
-                @endif
-                <a class="btn btn-outline-danger" type="button" data-dismiss="modal">
-                    @lang("dashboard-admin/announcement.components.modal-delete.btn-no")
-                </a>
-            </div>
+
+                    <a class="btn btn-outline-danger" type="button" data-dismiss="modal">
+                        @lang("dashboard-admin/announcement.components.modal-delete.btn-no")
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 </div>
