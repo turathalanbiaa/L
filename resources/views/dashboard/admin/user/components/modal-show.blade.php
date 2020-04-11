@@ -11,53 +11,53 @@
                     @if($user)
                         <div class="col-12">
                             <p class="card-text">
-                                <strong> @lang("dashboard-admin/user.label.name"): </strong>
+                                <strong>@lang("dashboard-admin/user.label.name"): </strong>
                                 <span>{{$user->name}}</span>
                             </p>
                             <p class="card-text">
-                                <strong> @lang("dashboard-admin/user.label.email"): </strong>
+                                <strong>@lang("dashboard-admin/user.label.email"): </strong>
                                 <span>{{$user->email}}</span>
                             </p>
                             <p class="card-text">
-                                <strong> @lang("dashboard-admin/user.label.phone"): </strong>
+                                <strong>@lang("dashboard-admin/user.label.phone"): </strong>
                                 <span>{{$user->phone}}</span>
                             </p>
                             <p class="card-text">
-                                <strong> @lang("dashboard-admin/user.label.gender"): </strong>
+                                <strong>@lang("dashboard-admin/user.label.gender"): </strong>
                                 <span>{{\App\Enum\Gender::getGenderName($user->gender)}}</span>
                             </p>
                             <p class="card-text">
-                                <strong> @lang("dashboard-admin/user.label.country"): </strong>
+                                <strong>@lang("dashboard-admin/user.label.country"): </strong>
                                 <span>{{Countries::getValue(app()->getLocale(), $user->country)}}</span>
                             </p>
                             @if($user->type == \App\Enum\UserType::STUDENT)
                                 <p class="card-text">
-                                    <strong> @lang("dashboard-admin/user.label.stage"): </strong>
+                                    <strong>@lang("dashboard-admin/user.label.stage"): </strong>
                                     <span>{{\App\Enum\Stage::getStageName($user->stage)}}</span>
                                 </p>
                                 <p class="card-text">
-                                    <strong> @lang("dashboard-admin/user.label.certificate"): </strong>
+                                    <strong>@lang("dashboard-admin/user.label.certificate"): </strong>
                                     <span>{{\App\Enum\Certificate::getCertificateName($user->certificate)}}</span>
                                 </p>
                                 <p class="card-text">
-                                    <strong> @lang("dashboard-admin/user.label.birth-date"): </strong>
+                                    <strong>@lang("dashboard-admin/user.label.birth-date"): </strong>
                                     <span>{{$user->birth_date}}</span>
                                 </p>
                                 <p class="card-text">
-                                    <strong> @lang("dashboard-admin/user.label.address"): </strong>
+                                    <strong>@lang("dashboard-admin/user.label.address"): </strong>
                                     <span>{{$user->address}}</span>
                                 </p>
                             @endif
                             <p class="card-text">
-                                <strong> @lang("dashboard-admin/user.label.created-at"): </strong>
+                                <strong>@lang("dashboard-admin/user.label.created-at"): </strong>
                                 <span>{{$user->created_at}}</span>
                             </p>
                             <p class="card-text">
-                                <strong> @lang("dashboard-admin/user.label.last-login"): </strong>
+                                <strong>@lang("dashboard-admin/user.label.last-login"): </strong>
                                 <span>{{$user->last_login ?? "---"}}</span>
                             </p>
                             <p class="card-text">
-                                <strong> @lang("dashboard-admin/user.label.state"): </strong>
+                                <strong>@lang("dashboard-admin/user.label.state"): </strong>
                                 <span>{{\App\Enum\UserState::getStateName($user->state)}}</span>
                             </p>
                         </div>
@@ -72,16 +72,16 @@
                     @endif
                 </div>
             </div>
-            <div class="modal-footer justify-content-center">
-                @if($user)
+            @if($user)
+                <div class="modal-footer justify-content-center">
                     <a class="btn btn-secondary" type="button" href="{{route("dashboard.admin.users.show", ["user" => $user->id])}}">
                         @lang('dashboard-admin/user.components.modal-show.btn-info')
                     </a>
-                @endif
-                <a class="btn btn-outline-secondary" type="button" data-dismiss="modal">
-                    @lang('dashboard-admin/user.components.modal-show.btn-dismiss')
-                </a>
-            </div>
+                    <a class="btn btn-outline-secondary" type="button" data-dismiss="modal">
+                        @lang('dashboard-admin/user.components.modal-show.btn-dismiss')
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 </div>

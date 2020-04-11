@@ -94,6 +94,7 @@ class UserController extends Controller
         if (!$user)
             return redirect()
                 ->back()
+                ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/user.store.failed"),
                     "type" => "warning"
@@ -111,12 +112,11 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param User $user
-     * @return Factory|View|void
+     * @return Factory|View
      */
     public function show(User $user)
     {
-        if ($user->lang != app()->getLocale())
-            return abort(404);
+        self::checkView($user);
 
         return view("dashboard.admin.user.show")->with([
             "user"      => $user,
@@ -128,12 +128,11 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return Factory|View|void
+     * @return Factory|View
      */
     public function edit(User $user)
     {
-        if ($user->lang != app()->getLocale())
-            return abort(404);
+        self::checkView($user);
 
         return view("dashboard.admin.user.edit")->with([
             "user"         => $user,
@@ -153,6 +152,8 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        self::checkView($user);
+
         switch ($request->input("update")) {
             case "info":
                 $data = [
@@ -175,7 +176,8 @@ class UserController extends Controller
             default: $data = array();
         }
 
-        User::where("id", $user->id)->update($data);
+        User::where("id", $user->id)
+            ->update($data);
 
         if (!$user)
             return redirect()
@@ -192,5 +194,44 @@ class UserController extends Controller
                     "message" => __("dashboard-admin/user.update.success"),
                     "type" => "success"
                 ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param User $user
+     * @return RedirectResponse
+     */
+    public function destroy(User $user) {
+        self::checkView($user);
+        User::where("id", $user->id)
+            ->update([
+                "state" => UserState::DISABLE
+            ]);
+
+        if (!$user)
+            return redirect()
+                ->back()
+                ->with([
+                    "message" => __("dashboard-admin/user.destroy.failed"),
+                    "type" => "warning"
+                ]);
+        else
+            return redirect()
+                ->back()
+                ->with([
+                    "message" => __("dashboard-admin/user.destroy.success"),
+                    "type" => "success"
+                ]);
+    }
+
+    /**
+     * Check permission to view the specified resource.
+     *
+     * @param User $user
+     */
+    public static function checkView(User $user) {
+        if ($user->lang != app()->getLocale())
+            abort(404);
     }
 }

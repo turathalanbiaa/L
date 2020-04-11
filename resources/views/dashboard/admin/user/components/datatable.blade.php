@@ -41,6 +41,9 @@
                     <a class="btn-floating btn-sm primary-color mx-2" href="{{route("dashboard.admin.users.edit",["user" => $user->id])}}">
                         <i class="far fa-edit"></i>
                     </a>
+                    <a class="btn-floating btn-sm danger-color mx-2" data-action="btn-modal-destroy">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
                 </div>
             </td>
         </tr>
@@ -51,6 +54,7 @@
 @section("extra-content")
     @parent
     <div id="modal-show"></div>
+    <div id="modal-destroy"></div>
 @endsection
 
 @section("script")
@@ -83,12 +87,41 @@
                     $("#modal-show").html(result.data.html)
                 },
                 error: function() {
-                    console.log("error");
+                    console.log('error');
                 } ,
                 complete : function() {
                     $("#modal-show .modal").modal('show');
                 }
             });
         });
+        $("[data-action='btn-modal-destroy']").on('click', function () {
+            let user = $(this).parent().data('content');
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
+                },
+                type: 'post',
+                url: '/dashboard/admin/api/users/destroy',
+                data: {user: user},
+                datatype: 'json',
+                encode: true,
+                success: function(result) {
+                    $("#modal-destroy").html(result.data.html)
+                },
+                error: function() {
+                    console.log('error');
+                } ,
+                complete : function() {
+                    $("#modal-destroy .modal").modal('show');
+                }
+            });
+        });
+        @if(session()->has("message"))
+        $.toast({
+            title: '{{session()->get("message")}}',
+            type:  '{{session()->get("type")}}',
+            delay: 2500
+        });
+        @endif
     </script>
 @endsection

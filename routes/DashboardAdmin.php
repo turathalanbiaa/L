@@ -16,9 +16,10 @@ Route::namespace("Dashboard\\Admin")
                 Route::namespace('User')
                     ->group(function () {
                         // Resources
-                        Route::resource('users', 'UserController')->except('destroy');
+                        Route::resource('users', 'UserController');
                         // Api
                         Route::post('api/users/show','ApiUserController@show');
+                        Route::post('api/users/destroy','ApiUserController@destroy');
                     });
 
                 // Documents

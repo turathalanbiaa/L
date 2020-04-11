@@ -3,7 +3,7 @@
 @section("title", __("dashboard-admin/announcement.index.title"))
 
 @section("head")
-    @include("dashboard.admin.layout.head.data-tables")
+    @include("dashboard.admin.layout.head.datatable")
 @endsection
 
 @section("content")

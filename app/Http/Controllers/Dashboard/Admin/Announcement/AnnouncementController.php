@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\CreateAnnouncementRequest;
 use App\Http\Requests\Dashboard\Admin\UpdateAnnouncementRequest;
 use App\Models\Announcement;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,10 +23,10 @@ class AnnouncementController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('dashboard.auth');
-        $this->middleware('dashboard.role:Announcement');
-        $this->middleware('filter:announcement-type')->only(['index']);
-        $this->middleware('filter:announcement-update')->only(['update']);
+        $this->middleware("dashboard.auth");
+        $this->middleware("dashboard.role:Announcement");
+        $this->middleware("filter:announcement-type")->only(["index"]);
+        $this->middleware("filter:announcement-update")->only(["update"]);
     }
 
     /**
@@ -33,13 +34,13 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $type = request()->input('type');
-        $announcements = is_null($type)?
-            Announcement::where('lang', app()->getLocale())
+        $type = request()->input("type");
+        $announcements = is_null($type)
+            ? Announcement::where("lang", app()->getLocale())
                 ->latest()
-                ->get():
-            Announcement::where('lang', app()->getLocale())
-                ->where('type', request()->input('type'))
+                ->get()
+            : Announcement::where("lang", app()->getLocale())
+                ->where("type", request()->input("type"))
                 ->latest()
                 ->get();
 
@@ -72,18 +73,21 @@ class AnnouncementController extends Controller
     {
         $announcement = Announcement::create([
             "lang"          => app()->getLocale(),
-            "title"         => $request->input('title'),
-            "description"   => $request->input('description'),
-            "image"         => is_null($request->file('image'))?null:Storage::put("public/announcement", $request->file('image')),
-            "youtube_video" => $request->input('youtube_video'),
-            "type"          => $request->input('type'),
-            "state"         => $request->input('state'),
+            "title"         => $request->input("title"),
+            "description"   => $request->input("description"),
+            "image"         => is_null($request->file("image"))
+                ? null
+                : Storage::put("public/announcement", $request->file("image")),
+            "youtube_video" => $request->input("youtube_video"),
+            "type"          => $request->input("type"),
+            "state"         => $request->input("state"),
             "created_at"    => date("Y-m-d"),
         ]);
 
         if (!$announcement)
             return redirect()
                 ->back()
+                ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/announcement.store.failed"),
                     "type" => "warning"
@@ -135,7 +139,7 @@ class AnnouncementController extends Controller
     {
         self::checkView($announcement);
 
-        switch ($request->input('update')) {
+        switch ($request->input("update")) {
             case "info":
                 $data = [
                     "title"         => $request->input("title"),
@@ -148,18 +152,21 @@ class AnnouncementController extends Controller
                 break;
             case "image":
                 $image = $announcement->image;
-                if($request->input('deleted') || $request->file('image')) {
+                if($request->input("deleted") || $request->file("image")) {
                     Storage::delete($image);
                     $image  = null;
                 }
                 $data = [
-                    "image" => is_null($request->file('image'))?$image:Storage::put("public/announcement", $request->file('image')),
+                    "image" => is_null($request->file("image"))
+                        ? $image
+                        : Storage::put("public/announcement", $request->file("image")),
                 ];
                 break;
             default: $data = array();
         }
 
-        Announcement::where("id", $announcement->id)->update($data);
+        Announcement::where("id", $announcement->id)
+            ->update($data);
 
         if (!$announcement)
             return redirect()
@@ -183,7 +190,7 @@ class AnnouncementController extends Controller
      *
      * @param Announcement $announcement
      * @return RedirectResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Announcement $announcement)
     {
@@ -194,7 +201,6 @@ class AnnouncementController extends Controller
         if (!$announcement)
             return redirect()
                 ->back()
-                ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/announcement.destroy.failed"),
                     "type" => "warning"

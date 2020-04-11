@@ -13,7 +13,7 @@ return [
 
     'store' => [
         'success' => 'The announcement was created successfully.',
-        'failed'  => 'The announcement was not created, Try again.'
+        'failed'  => 'The announcement was not created, try again.'
     ],
 
     'edit' => [
@@ -25,12 +25,12 @@ return [
 
     'update' => [
         'success' => 'The announcement was updated successfully.',
-        'failed'  => 'The announcement was not updated, Try again.'
+        'failed'  => 'The announcement was not updated, try again.'
     ],
 
     'destroy' => [
         'success' => 'The announcement was deleted successfully.',
-        'failed'  => 'The announcement was not deleted, Try again.'
+        'failed'  => 'The announcement was not deleted, try again.'
     ],
 
     'change-state' => [
@@ -45,7 +45,7 @@ return [
             'header-1' => 'All announcements are announced to students',
             'header-2' => 'All announcements are announced to listeners',
             'header-3' => 'All announcements are announced to students and listeners',
-            'btn-add'  => 'Add Announcement',
+            'btn-add'  => 'Add announcement',
             'column'   => [
                 'number'     => 'No.',
                 'title'      => 'Title',

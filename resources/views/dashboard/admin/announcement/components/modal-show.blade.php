@@ -58,16 +58,16 @@
                     @endif
                 </div>
             </div>
-            <div class="modal-footer justify-content-center">
-                @if($announcement)
+            @if($announcement)
+                <div class="modal-footer justify-content-center">
                     <a class="btn btn-info" type="button" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
                         @lang("dashboard-admin/announcement.components.modal-show.btn-edit")
                     </a>
-                @endif
-                <a class="btn btn-outline-info" type="button" data-dismiss="modal">
-                    @lang("dashboard-admin/announcement.components.modal-show.btn-dismiss")
-                </a>
-            </div>
+                    <a class="btn btn-outline-info" type="button" data-dismiss="modal">
+                        @lang("dashboard-admin/announcement.components.modal-show.btn-dismiss")
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 </div>

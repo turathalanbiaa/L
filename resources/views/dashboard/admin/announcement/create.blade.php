@@ -60,7 +60,7 @@
                                 <span class="text-danger">*</span>
                             </label>
                             <div class="dropdown">
-                                <input type="text" class="form-control" id="type" value="{{App\Enum\AnnouncementType::getTypeName(old('type'))}}"
+                                <input type="text" class="form-control" id="type" value="{{App\Enum\AnnouncementType::getTypeName(old("type"))}}"
                                        placeholder="@lang("dashboard-admin/announcement.placeholder.type")"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <input type="hidden" name="type" value="{{old("type")}}">
@@ -80,7 +80,7 @@
                                 <span class="text-danger">*</span>
                             </label>
                             <div class="dropdown">
-                                <input type="text" class="form-control" id="state" value="{{App\Enum\AnnouncementState::getStateName(old('state', \App\Enum\AnnouncementState::ACTIVE))}}"
+                                <input type="text" class="form-control" id="state" value="{{App\Enum\AnnouncementState::getStateName(old("state", \App\Enum\AnnouncementState::ACTIVE))}}"
                                        placeholder="@lang("dashboard-admin/announcement.placeholder.state")"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <input type="hidden" name="state" value="{{old("state", \App\Enum\AnnouncementState::ACTIVE)}}">
