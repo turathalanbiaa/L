@@ -10,6 +10,7 @@ use App\Http\Requests\Dashboard\Admin\CreateDocumentRequest;
 use App\Models\Document;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -20,9 +21,9 @@ class DocumentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('dashboard.auth');
-        $this->middleware('dashboard.role:Document');
-        $this->middleware('filter:document-type')->only(['index']);
+        $this->middleware("dashboard.auth");
+        $this->middleware("dashboard.role:Document");
+        $this->middleware("filter:document-type")->only(["index"]);
     }
 
     /**
@@ -32,25 +33,25 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $users = User::select('id')
-            ->where('type', UserType::STUDENT)
-            ->where('lang', app()->getLocale())
-            ->get()
-            ->pluck('id')
+        $users = User::select("id")
+            ->where("type", UserType::STUDENT)
+            ->where("lang", app()->getLocale())
+            ->pluck("id")
             ->toArray();
 
-        $type = request()->input('type');
-        $documents = is_null($type)?
-            Document::whereIn('user_id', $users)
-                ->where('state', DocumentState::REVIEW)
-                ->simplePaginate(20) :
-            Document::whereIn('user_id', $users)
-                ->where('type', $type)
-                ->where('state', DocumentState::REVIEW)
+        $type = request()->input("type");
+        $documents = is_null($type)
+            ? Document::whereIn("user_id", $users)
+                ->where("state", DocumentState::REVIEW)
+                ->simplePaginate(20)
+            : Document::whereIn("user_id", $users)
+                ->where("type", $type)
+                ->where("state", DocumentState::REVIEW)
                 ->simplePaginate(20);
 
-        return view('dashboard.admin.document.index')->with([
-            "documents" => $documents
+        return view("dashboard.admin.document.index")->with([
+            "documents" => $documents,
+            "type"      => $type
         ]);
     }
 
@@ -61,12 +62,10 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        $user = $this->getUser(request()->input("user"));
-
-        return view('dashboard.admin.document.create')->with([
+        return view("dashboard.admin.document.create")->with([
             "types"  => DocumentType::getTypes(),
             "states" => DocumentState::getStates(),
-            "user"   => $user->id
+            "user"   => request()->input("user")
         ]);
     }
 
@@ -74,12 +73,22 @@ class DocumentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CreateDocumentRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse|void
      */
     public function store(CreateDocumentRequest $request)
     {
-        $user = $this->getUser($request->input("user"));
-        $document = $user->documents()->where('type', $request->input('type'))->first();
+        $user = User::where('id', $request->input("user"))
+            ->where('type', UserType::STUDENT)
+            ->where('lang', app()->getLocale())
+            ->first();
+
+        if (!$user)
+            return abort(404);
+
+
+        $document = $user->documents()
+            ->where('type', $request->input('type'))
+            ->first();
 
         if ($document)
             Storage::delete($document->image);
@@ -107,22 +116,5 @@ class DocumentController extends Controller
                     "message" => __("dashboard-admin/document.store.success"),
                     "type" => "success"
                 ]);
-    }
-
-    /**
-     * Get the user.
-     *
-     * @param $id
-     */
-    private function getUser($id) {
-        $user = User::where('id', $id)
-            ->where('type', UserType::STUDENT)
-            ->where('lang', app()->getLocale())
-            ->first();
-
-        if (!$user)
-            return abort(404);
-
-        return $user;
     }
 }

@@ -42,11 +42,9 @@
 @section("extra-content")
     @parent
     <div class="modal fade" id="modal-document-view" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="d-flex justify-content-center w-100">
-                <div class="modal-content w-auto">
-                    <img src="" class="img-fluid" alt="Document Image">
-                </div>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <img src="" class="img-fluid" alt="Document Image">
             </div>
         </div>
     </div>
@@ -54,8 +52,16 @@
     <div class="modal fade" id="modal-document-action" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-notify" role="document">
             <div class="modal-content">
-                <div class="modal-header text-white"></div>
-                <div class="modal-body"></div>
+                <div class="modal-header">
+                    <p class="heading lead text-capitalize"></p>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-center p-4">
+                            <div class="h5-responsive"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal-footer justify-content-center">
                     <button class="btn" data-action="document">
                         <form class="d-none">
@@ -76,18 +82,17 @@
 @section("script")
     @parent
     <script>
-        $('[data-action="document-view"]').on('click', function () {
+        $("[data-action='document-view']").on('click', function () {
             let src = $(this).parent().find('img').attr('src');
-            let modal = $('#modal-document-view');
-            src = src.replace("large", "original");
-            modal.find('img').attr('src', src);
-            modal.modal('show');
+            let modalDocumentView = $('#modal-document-view');
+            modalDocumentView.find('img').attr('src', src);
+            modalDocumentView.modal('show');
         });
 
-        $('[data-action="build-modal"]').on('click', function () {
+        $("[data-action='build-modal']").on('click', function () {
             let document = $(this).parent().data('content');
             let action = $(this).data('content');
-            let modal = $('#modal-document-action');
+            let modalDocumentAction = $('#modal-document-action');
 
             $.ajax({
                 type: 'get',
@@ -96,25 +101,30 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    let mod = result.data.modal;
-                    modal.find('.modal-dialog').removeClass().addClass("modal-dialog modal-notify " + mod.type);
-                    modal.find('.modal-header').html(mod.header);
-                    modal.find('.modal-body').html(mod.body);
-                    modal.find('.btn:first-child').removeClass().addClass("btn " + mod.button);
-                    modal.find('.btn:last-child').removeClass().addClass("btn " + mod.closeButton);
+                    let modal = result.data.modal;
+                    modalDocumentAction.find('.modal-dialog').removeClass().addClass('modal-dialog modal-notify ' + modal.type);
+                    modalDocumentAction.find('.modal-header p').html(modal.header);
+                    modalDocumentAction.find('.modal-body div.h5-responsive').html(modal.body);
+                    modalDocumentAction.find('.btn:first-child').removeClass().addClass('btn ' + modal.button);
+                    modalDocumentAction.find('.btn:last-child').removeClass().addClass('btn ' + modal.closeButton);
                     $("input[name='document']").val(document);
                     $("input[name='action']").val(action);
+
+                    if(modal.footer === false)
+                        modalDocumentAction.find('.modal-footer').addClass('d-none');
+                    else
+                        modalDocumentAction.find('.modal-footer').removeClass('d-none');
                 },
                 error: function() {
-                    console.log("error");
+                    console.log('error');
                 } ,
                 complete : function() {
-                    modal.modal('show');
+                    modalDocumentAction.modal('show');
                 }
             });
         });
 
-        $('[data-action="document"]').click(function () {
+        $('[data-action="document"]').on('click', function () {
             let document = $(this).find("input[name='document']").val();
             let action = $(this).find("input[name='action']").val();
 
@@ -133,7 +143,7 @@
                         delay: 2500
                     });
 
-                    if (toast.type === "success") {
+                    if (toast.type === 'success') {
                         if(action === 'accept')
                             $("#"+document).find('p .badge').removeClass().addClass('badge badge-success').html(result.data.documentState);
 
@@ -149,7 +159,7 @@
                     }
                 },
                 error: function() {
-                    console.log("error");
+                    console.log('error');
                 } ,
                 complete: function() {
 

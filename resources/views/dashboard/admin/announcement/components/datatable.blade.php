@@ -4,14 +4,14 @@
         <th rowspan="2">
             @lang("dashboard-admin/announcement.components.datatable.column.number")
         </th>
-        <th colspan="4" class="align-middle text-capitalize">
-            <a class="text-white mb-1" type="button" data-toggle="collapse" href="#collapse-announcement-type-filter" aria-expanded="false" aria-controls="collapse-announcement-type-filter">
+        <th colspan="4" class="align-middle">
+            <a class="text-white text-capitalize mb-1" type="button" data-toggle="collapse" href="#collapse-announcement-type-filter" aria-expanded="false" aria-controls="collapse-announcement-type-filter">
                 <i class="fa fa-filter"></i>
                 @lang("dashboard-admin/announcement.components.datatable.header-$type")
             </a>
             <div class="collapse" id="collapse-announcement-type-filter">
                 <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index")}}">
-                    <small><i class="fa fa-star"></i></small>
+                    <i class="fa fa-star"></i>
                 </a>
                 <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.announcements.index", ["type" => \App\Enum\AnnouncementType::STUDENTS])}}">
                     {{\App\Enum\AnnouncementType::getTypeName(\App\Enum\AnnouncementType::STUDENTS)}}

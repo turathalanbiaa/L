@@ -1,21 +1,15 @@
 <?php
 
 return [
-    'column' => [
-        'type'  => 'Type',
-        'state' => 'State',
-    ],
-
-    'placeholder' => [
-        'type'       => 'Select Document Type',
-        'state'      => 'Select Document State',
-        'image'      => 'Select Document Image',
-    ],
-
     'index' => [
-        'title'        => 'Documents',
-        'message'      => 'There are no documents to review.',
-        'btn-loadMore' => 'Load More'
+        'title'           => 'Documents',
+        'filter-header-'  => "All documents",
+        'filter-header-1' => "Personal identification",
+        'filter-header-2' => "Religious recommendation",
+        'filter-header-3' => "Certificate",
+        'filter-header-4' => "Personal image",
+        'message'         => 'There are no documents to review.',
+        'btn-load-more'   => 'Load more'
     ],
 
     'create' => [
@@ -32,19 +26,12 @@ return [
         'failed'  => 'The document was not created, try again.',
     ],
 
-    'share' => [
-        'user-documents' => [
-            'btn-add'  => 'Add Document',
-            'message'  => 'The listener account does not contain any document.',
-        ],
-    ],
-
     'components' => [
         'documents' => [
-            'btn-view' => 'Click To View Document',
+            'btn-view' => 'Click to view document',
 
-            'modal-error-header' => 'Warning !!!',
-            'modal-error-body'   => 'There is no document, please reload the page.',
+            'modal-error-header'  => 'Warning',
+            'modal-error-body'  => 'The document dose not exist.',
 
             'modal-accept-body' => 'Do you agree to accept the document?',
             'modal-reject-body' => 'Do you agree to reject the document?',
@@ -53,10 +40,28 @@ return [
             'modal-btn-yes' => 'Yes',
             'modal-btn-no'  => 'No',
 
-            'toast-title-accept' => 'Document accepted ',
-            'toast-title-reject' => 'Document rejected ',
-            'toast-title-delete' => 'Document deleted ',
-            'toast-title-error'  => 'Document not found.',
+            'toast-title-accept' => ':string document accepted.',
+            'toast-title-reject' => ':string document rejected.',
+            'toast-title-delete' => ':string document deleted.',
+            'toast-title-error'  => 'The document dose not exist.',
         ]
+    ],
+
+    'share' => [
+        'user-documents' => [
+            'btn-add'  => 'Add document',
+            'message'  => 'The listener account does not contain any document.',
+        ],
+    ],
+
+    'column' => [
+        'type'  => 'Type',
+        'state' => 'State',
+    ],
+
+    'placeholder' => [
+        'type'       => 'Select Document Type',
+        'state'      => 'Select Document State',
+        'image'      => 'Select Document Image',
     ],
 ];

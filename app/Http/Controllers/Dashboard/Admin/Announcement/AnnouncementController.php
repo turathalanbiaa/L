@@ -147,7 +147,7 @@ class AnnouncementController extends Controller
                     "youtube_video" => $request->input("youtube_video"),
                     "type"          => $request->input("type"),
                     "state"         => $request->input("state"),
-                    "created_at"    => $request->input("created_at"),
+                    "created_at"    => $request->input("created_at")
                 ];
                 break;
             case "image":
@@ -159,7 +159,7 @@ class AnnouncementController extends Controller
                 $data = [
                     "image" => is_null($request->file("image"))
                         ? $image
-                        : Storage::put("public/announcement", $request->file("image")),
+                        : Storage::put("public/announcement", $request->file("image"))
                 ];
                 break;
             default: $data = array();

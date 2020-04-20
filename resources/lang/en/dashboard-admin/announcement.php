@@ -42,9 +42,9 @@ return [
     'components' => [
         'datatable' => [
             'header-'  => 'All announcements',
-            'header-1' => 'All announcements are announced to students',
-            'header-2' => 'All announcements are announced to listeners',
-            'header-3' => 'All announcements are announced to students and listeners',
+            'header-1' => 'Announcements for students only',
+            'header-2' => 'Announcements for listeners only',
+            'header-3' => 'Announcements for both only',
             'btn-add'  => 'Add announcement',
             'column'   => [
                 'number'     => 'No.',

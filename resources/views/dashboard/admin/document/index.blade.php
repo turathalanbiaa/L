@@ -1,34 +1,29 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title")
-    @lang("dashboard-admin/document.index.title")
-@endsection
-
-@section("style")
-@endsection
+@section("title", __("dashboard-admin/document.index.title"))
 
 @section("content")
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12">
-                <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseDocumentTypeFilter" aria-expanded="false" aria-controls="collapseExample">
+            <div class="col-sm-12 mb-4">
+                <a class="text-dark text-capitalize mb-1" type="button" data-toggle="collapse" href="#collapse-document-type-filter" aria-expanded="false" aria-controls="collapse-document-type-filter">
                     <i class="fa fa-filter"></i>
-                </button>
-
-                <div class="collapse" id="collapseDocumentTypeFilter">
-                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index")}}">
-                        ---
+                    @lang("dashboard-admin/document.index.filter-header-$type")
+                </a>
+                <div class="collapse" id="collapse-document-type-filter">
+                    <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index")}}">
+                        <i class="fa fa-star"></i>
                     </a>
-                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IDENTIFICATION])}}">
+                    <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index", ["type" => \App\Enum\DocumentType::PERSONAL_IDENTIFICATION])}}">
                         {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IDENTIFICATION)}}
                     </a>
-                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION])}}">
+                    <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index", ["type" => \App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION])}}">
                         {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION)}}
                     </a>
-                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::CERTIFICATE])}}">
+                    <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index", ["type" => \App\Enum\DocumentType::CERTIFICATE])}}">
                         {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::CERTIFICATE)}}
                     </a>
-                    <a class="badge badge-pill badge-light p-2 m-2" href="{{route("dashboard.admin.documents.index", ['type' => \App\Enum\DocumentType::PERSONAL_IMAGE])}}">
+                    <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index", ["type" => \App\Enum\DocumentType::PERSONAL_IMAGE])}}">
                         {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IMAGE)}}
                     </a>
                 </div>
@@ -36,27 +31,21 @@
 
             @if($documents->isEmpty())
                 <div class="col-sm-12 text-center">
-                    <div class="h3-responsive p-5">
+                    <div class="h5-responsive p-5">
                         @lang("dashboard-admin/document.index.message")
                     </div>
                 </div>
             @else
-                @include('dashboard.admin.document.components.documents', ["documents" => $documents])
+                @include("dashboard.admin.document.components.documents", ["documents" => $documents])
 
                 @if($documents->hasPages())
                     <div class="col-sm-12 text-center">
-                        <a class="btn btn-flat shadow-none text-lowercase" href="{{route("dashboard.admin.documents.index")}}">
-                            @lang("dashboard-admin/document.index.btn-loadMore")
+                        <a class="btn btn-flat" href="{{route("dashboard.admin.documents.index")}}">
+                            @lang("dashboard-admin/document.index.btn-load-more")
                         </a>
                     </div>
                 @endif
             @endif
         </div>
     </div>
-@endsection
-
-@section("extra-content")
-@endsection
-
-@section("script")
 @endsection
