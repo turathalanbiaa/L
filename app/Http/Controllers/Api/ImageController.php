@@ -25,9 +25,9 @@ class ImageController extends Controller
           $document->state = 3;
 
           if ($document->save()) {
-              $url = Storage::url($document->image);
-              $document = Document::find($id);
-              $document->image = $url;
+             // $url = Storage::url($document->image);
+        //      $document = Document::find($id);
+//              $document->image = $url;
               return $this->apiResponse($document);
           } else {
               return $this->apiResponse(null, 404, true);
@@ -41,8 +41,8 @@ class ImageController extends Controller
           $document->state = 3;
           if ($document->save()) {
               $url = Storage::url($document->image);
-              $document = Document::find($id);
-              $document->image = $url;
+          //    $document = Document::find($id);
+//              $document->image = $url;
 
               return $this->apiResponse($document,200);
           } else {
