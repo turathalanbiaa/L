@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-notify" role="document">
         <div class="modal-content">
             <div class="modal-header secondary-color text-white">
-                <p class="heading lead text-capitalize">
+                <p class="heading text-capitalize">
                     @lang("dashboard-admin/user.components.modal-show.header")
                 </p>
             </div>

@@ -192,11 +192,9 @@
 
 @section("extra-content")
     <div class="modal fade" id="modal-announcement-view" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="d-flex justify-content-center w-100">
-                <div class="modal-content w-auto">
-                    <img src="" class="img-fluid" alt="Announcement Image">
-                </div>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <img src="" class="img-fluid" alt="Announcement Image">
             </div>
         </div>
     </div>

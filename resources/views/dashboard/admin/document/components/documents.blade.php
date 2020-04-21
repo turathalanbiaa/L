@@ -53,7 +53,7 @@
         <div class="modal-dialog modal-notify" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="heading lead text-capitalize"></p>
+                    <p class="heading text-capitalize"></p>
                 </div>
                 <div class="modal-body">
                     <div class="col-12">
