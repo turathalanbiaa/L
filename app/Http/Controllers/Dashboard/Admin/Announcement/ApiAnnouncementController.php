@@ -23,8 +23,7 @@ class ApiAnnouncementController extends Controller
     public function show()
     {
         $announcement = self::getAnnouncement();
-        $view = view("dashboard.admin.announcement.components.modal-show", compact("announcement"))
-            ->render();
+        $view = view("dashboard.admin.announcement.components.modal-show", compact("announcement"))->render();
         return $this->apiResponse(["html" => $view]);
     }
 
@@ -37,8 +36,7 @@ class ApiAnnouncementController extends Controller
     public function destroy()
     {
         $announcement = self::getAnnouncement();
-        $view = view("dashboard.admin.announcement.components.modal-delete", compact("announcement"))
-            ->render();
+        $view = view("dashboard.admin.announcement.components.modal-delete", compact("announcement"))->render();
         return $this->apiResponse(["html" => $view]);
     }
 
@@ -49,10 +47,8 @@ class ApiAnnouncementController extends Controller
      */
     public function changeState() {
         $announcement = self::getAnnouncement();
-
         if ($announcement) {
             $state = (integer)request()->input("state");
-
             $announcement->state = ($state == 0)
                 ? AnnouncementState::INACTIVE
                 : AnnouncementState::ACTIVE;

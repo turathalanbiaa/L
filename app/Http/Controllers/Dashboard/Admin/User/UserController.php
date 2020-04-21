@@ -99,13 +99,13 @@ class UserController extends Controller
                     "message" => __("dashboard-admin/user.store.failed"),
                     "type" => "warning"
                 ]);
-        else
-            return redirect()
-                ->back()
-                ->with([
-                    "message" => __("dashboard-admin/user.store.success"),
-                    "type" => "success"
-                ]);
+
+        return redirect()
+            ->back()
+            ->with([
+                "message" => __("dashboard-admin/user.store.success"),
+                "type" => "success"
+            ]);
     }
 
     /**
@@ -117,7 +117,6 @@ class UserController extends Controller
     public function show(User $user)
     {
         self::checkView($user);
-
         return view("dashboard.admin.user.show")->with([
             "user"      => $user,
             "documents" => $user->documents
@@ -133,7 +132,6 @@ class UserController extends Controller
     public function edit(User $user)
     {
         self::checkView($user);
-
         return view("dashboard.admin.user.edit")->with([
             "user"         => $user,
             "stages"       => Stage::getStages(),
@@ -153,7 +151,6 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         self::checkView($user);
-
         switch ($request->input("update")) {
             case "info":
                 $data = [
@@ -175,9 +172,7 @@ class UserController extends Controller
                 break;
             default: $data = array();
         }
-
-        User::where("id", $user->id)
-            ->update($data);
+        User::where("id", $user->id)->update($data);
 
         if (!$user)
             return redirect()
@@ -187,13 +182,13 @@ class UserController extends Controller
                     "message" => __("dashboard-admin/user.update.failed"),
                     "type" => "warning"
                 ]);
-        else
-            return redirect()
-                ->back()
-                ->with([
-                    "message" => __("dashboard-admin/user.update.success"),
-                    "type" => "success"
-                ]);
+
+        return redirect()
+            ->back()
+            ->with([
+                "message" => __("dashboard-admin/user.update.success"),
+                "type" => "success"
+            ]);
     }
 
     /**
@@ -204,10 +199,8 @@ class UserController extends Controller
      */
     public function destroy(User $user) {
         self::checkView($user);
-        User::where("id", $user->id)
-            ->update([
-                "state" => UserState::DISABLE
-            ]);
+        $data = ["state" => UserState::DISABLE];
+        User::where("id", $user->id)->update($data);
 
         if (!$user)
             return redirect()
@@ -216,13 +209,13 @@ class UserController extends Controller
                     "message" => __("dashboard-admin/user.destroy.failed"),
                     "type" => "warning"
                 ]);
-        else
-            return redirect()
-                ->back()
-                ->with([
-                    "message" => __("dashboard-admin/user.destroy.success"),
-                    "type" => "success"
-                ]);
+
+        return redirect()
+            ->back()
+            ->with([
+                "message" => __("dashboard-admin/user.destroy.success"),
+                "type" => "success"
+            ]);
     }
 
     /**

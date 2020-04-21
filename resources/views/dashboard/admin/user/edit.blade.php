@@ -18,10 +18,7 @@
                             <form method="post" action="{{route("dashboard.admin.users.update",["user" => $user->id])}}">
                                 @csrf()
                                 @method("put")
-
-                                <input type="hidden" name="id" value="{{$user->id}}">
                                 <input type="hidden" name="type" value="{{$user->type}}">
-
                                 <input type="hidden" name="update" value="info">
                                 <div class="form-group row">
                                     <div class="col-sm-6">
@@ -226,25 +223,25 @@
 
 @section("script")
     <script>
-        $("#dropdown-gender .dropdown-item").on('click', function () {
-            $("input#gender").val($(this).html().trim());
-            $("input[name='gender']").val($(this).data('value'));
+        $('#dropdown-gender .dropdown-item').on('click', function () {
+            $('input#gender').val($(this).html().trim());
+            $('input[name="gender"]').val($(this).data('value'));
         });
-        $("#dropdown-country .dropdown-item").on('click', function () {
-            $("input#country").val($(this).html().trim());
-            $("input[name='country']").val($(this).data('value'));
+        $('#dropdown-country .dropdown-item').on('click', function () {
+            $('input#country').val($(this).html().trim());
+            $('input[name="country"]').val($(this).data('value'));
         });
-        $("#dropdown-stage .dropdown-item").on('click', function () {
-            $("input#stage").val($(this).html().trim());
-            $("input[name='stage']").val($(this).data('value'));
+        $('#dropdown-stage .dropdown-item').on('click', function () {
+            $('input#stage').val($(this).html().trim());
+            $('input[name="stage"]').val($(this).data('value'));
         });
-        $("#dropdown-certificate .dropdown-item").on('click', function () {
-            $("input#certificate").val($(this).html().trim());
-            $("input[name='certificate']").val($(this).data('value'));
+        $('#dropdown-certificate .dropdown-item').on('click', function () {
+            $('input#certificate').val($(this).html().trim());
+            $('input[name="certificate"]').val($(this).data('value'));
         });
-        $("input#country").on('keyup', function () {
+        $('input#country').on('keyup', function () {
             let value = $(this).val();
-            let items = $("#dropdown-country .dropdown-item");
+            let items = $('#dropdown-country .dropdown-item');
 
             $.each(items, function(index, item) {
                 item.classList.add('d-none');

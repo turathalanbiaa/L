@@ -32,7 +32,7 @@ return [
             'archived-message' => 'Archived account',
             'header-info'      => 'Fill out all account information.',
             'header-auth'      => 'Authenticating the account by (email or phone).',
-            'header-documents' => 'Accept all required documents.',
+            'header-documents' => 'Accept all required documents.'
         ]
     ],
 
@@ -99,7 +99,7 @@ return [
         'certificate' => 'Certificate',
         'created-at'  => 'Created At',
         'last-login'  => 'Last Login',
-        'state'       => 'State',
+        'state'       => 'State'
     ],
 
     'placeholder' => [

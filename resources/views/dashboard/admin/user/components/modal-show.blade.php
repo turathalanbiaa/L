@@ -75,10 +75,10 @@
             @if($user)
                 <div class="modal-footer justify-content-center">
                     <a class="btn btn-secondary" type="button" href="{{route("dashboard.admin.users.show", ["user" => $user->id])}}">
-                        @lang('dashboard-admin/user.components.modal-show.btn-info')
+                        @lang("dashboard-admin/user.components.modal-show.btn-info")
                     </a>
                     <a class="btn btn-outline-secondary" type="button" data-dismiss="modal">
-                        @lang('dashboard-admin/user.components.modal-show.btn-dismiss')
+                        @lang("dashboard-admin/user.components.modal-show.btn-dismiss")
                     </a>
                 </div>
             @endif

@@ -22,8 +22,7 @@ class ApiUserController extends Controller
     public function show()
     {
         $user = self::getUser();
-        $view = view("dashboard.admin.user.components.modal-show", compact("user"))
-            ->render();
+        $view = view("dashboard.admin.user.components.modal-show", compact("user"))->render();
         return $this->apiResponse(["html" => $view]);
     }
 
@@ -36,8 +35,7 @@ class ApiUserController extends Controller
     public function destroy()
     {
         $user = self::getUser();
-        $view = view("dashboard.admin.user.components.modal-delete", compact("user"))
-            ->render();
+        $view = view("dashboard.admin.user.components.modal-delete", compact("user"))->render();
         return $this->apiResponse(["html" => $view]);
     }
 

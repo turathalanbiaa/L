@@ -38,7 +38,6 @@ class DocumentController extends Controller
             ->where("lang", app()->getLocale())
             ->pluck("id")
             ->toArray();
-
         $type = request()->input("type");
         $documents = is_null($type)
             ? Document::whereIn("user_id", $users)
@@ -77,30 +76,26 @@ class DocumentController extends Controller
      */
     public function store(CreateDocumentRequest $request)
     {
-        $user = User::where('id', $request->input("user"))
-            ->where('type', UserType::STUDENT)
-            ->where('lang', app()->getLocale())
+        $user = User::where("id", $request->input("user"))
+            ->where("type", UserType::STUDENT)
+            ->where("lang", app()->getLocale())
             ->first();
-
         if (!$user)
             return abort(404);
 
-
         $document = $user->documents()
-            ->where('type', $request->input('type'))
+            ->where("type", $request->input("type"))
             ->first();
-
         if ($document)
             Storage::delete($document->image);
 
-        $oldPath = $request->input('image');
+        $oldPath = $request->input("image");
         $newPath = str_replace("/temp/", "/$user->id/", $oldPath);
         Storage::move($oldPath, $newPath);
 
         $document = Document::updateOrCreate(
-            ['user_id' => $request->input("user"), 'type' => $request->input('type')],
-            ['image' => $newPath, 'state' => $request->input('state'), 'created_at' => date('Y-m-d')]
-        );
+            ["user_id" => $request->input("user"), "type" => $request->input("type")],
+            ["image" => $newPath, "state" => $request->input("state"), "created_at" => date("Y-m-d")]);
 
         if (!$document)
             return redirect()
@@ -109,12 +104,12 @@ class DocumentController extends Controller
                     "message" => __("dashboard-admin/document.store.failed"),
                     "type" => "warning"
                 ]);
-        else
-            return redirect()
-                ->back()
-                ->with([
-                    "message" => __("dashboard-admin/document.store.success"),
-                    "type" => "success"
-                ]);
+
+        return redirect()
+            ->back()
+            ->with([
+                "message" => __("dashboard-admin/document.store.success"),
+                "type" => "success"
+            ]);
     }
 }

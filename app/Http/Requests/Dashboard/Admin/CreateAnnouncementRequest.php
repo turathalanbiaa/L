@@ -46,7 +46,7 @@ class CreateAnnouncementRequest extends FormRequest
                 "title.required"                     => "حقل العنوان مطلوب.",
                 "description.required_without_all"   => "حقل الوصف مطلوب عندما لا يكون أي من الصورة / يوتيوب فيديو موجودة.",
                 "image.required_without_all"         => "حقل الصورة مطلوب عندما لا يكون أي من الوصف / يوتيوب فيديو موجودة.",
-                "image.mimes"                        => "يجب أن تكون الصورة ملفًا من النوع: jpeg ، jpg ، bmp ، png.",
+                "image.mimes"                        => "يجب أن تكون الصورة ملف من نوع: jpeg ، jpg ، bmp ، png.",
                 "youtube_video.required_without_all" => "حقل يوتيوب فيديو مطلوب عندما لا يكون أي من الوصف / الصورة موجودة.",
                 "type.required"                      => "حقل النوع مطلوب.",
                 "state.required"                     => "حقل الحالة مطلوب.",

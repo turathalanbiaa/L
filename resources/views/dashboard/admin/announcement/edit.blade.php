@@ -204,7 +204,7 @@
 
 @section("script")
     <script>
-        $("#description").summernote({
+        $('#description').summernote({
             placeholder: '@lang("dashboard-admin/announcement.placeholder.description")',
             tabsize: 4,
             height: 100,
@@ -218,24 +218,23 @@
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-        $("#dropdown-type .dropdown-item").on('click', function () {
-            $("input#type").val($(this).html().trim());
-            $("input[name='type']").val($(this).data('value'));
+        $('#dropdown-type .dropdown-item').on('click', function () {
+            $('input#type').val($(this).html().trim());
+            $('input[name="type"]').val($(this).data('value'));
         });
-        $("#dropdown-state .dropdown-item").on('click', function () {
+        $('#dropdown-state .dropdown-item').on('click', function () {
             $("input#state").val($(this).html().trim());
-            $("input[name='state']").val($(this).data('value'));
+            $('input[name="state"]').val($(this).data('value'));
         });
-        $("#view").on('click', function () {
+        $('#view').on('click', function () {
             let src = $(this).parent().parent().find('img').attr('src');
             let modal = $('#modal-announcement-view');
-            // src = src.replace('large", 'original");
             modal.find('img').attr('src', src);
             modal.modal('show');
         });
-        $("#delete").on('click', function () {
+        $('#delete').on('click', function () {
             $(this).parent().parent().parent().addClass('d-none');
-            $("input[name='deleted']").val(1);
+            $('input[name="deleted"]').val(1);
         });
         @if(session()->has("message"))
             $.toast({

@@ -79,8 +79,8 @@ return [
         'type'          => 'Type',
         'state'         => 'State',
         'created_at'    => 'Created At',
-        'check-image'   => 'The Announcement Contains An Image.',
-        'check-content' => 'The Announcement Contains (Description, YouTube Video).'
+        'check-image'   => 'The Announcement Contains An Image',
+        'check-content' => 'The Announcement Contains (Description, YouTube Video)'
     ],
 
     'placeholder' => [
@@ -90,7 +90,7 @@ return [
         'youtube_video' => 'Video id',
         'type'          => 'Select the type',
         'state'         => 'Select the state',
-        'check-image'   => 'If you make this selection, it will be allowed to make the announcement not contain (description, YouTube video).',
-        'check-content' => 'If you make this selection, it will be allowed to make the announcement not contain an image.'
-    ],
+        'check-image'   => 'If you make this selection, it will be allowed to make the announcement not contain (description, YouTube video)',
+        'check-content' => 'If you make this selection, it will be allowed to make the announcement not contain an image'
+    ]
 ];

@@ -81,7 +81,7 @@
 @section("script")
     @parent
     <script>
-        $("#announcements").DataTable( {
+        $('#announcements').DataTable( {
             order: [],
             columnDefs: [{
                 targets: [5],
@@ -93,7 +93,7 @@
             },
             @endif
         } );
-        $("input[type='checkbox']").on('click', function () {
+        $('input[type="checkbox"]').on('click', function () {
             let input = $(this);
             let announcement = input.attr('id').split('-')[1];
             let state;
@@ -107,7 +107,7 @@
             }
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/change-state',
@@ -127,16 +127,14 @@
                 },
                 error: function() {
                     console.log('error');
-                } ,
-                complete : function() {
                 }
             });
         });
-        $("[data-action='btn-modal-show']").on('click', function () {
+        $('[data-action="btn-modal-show"]').on('click', function () {
             let announcement = $(this).parent().data('content');
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/show',
@@ -144,21 +142,21 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    $("#modal-show").html(result.data.html)
+                    $('#modal-show').html(result.data.html)
                 },
                 error: function() {
                     console.log('error');
                 } ,
                 complete : function() {
-                    $("#modal-show .modal").modal('show');
+                    $('#modal-show .modal').modal('show');
                 }
             });
         });
-        $("[data-action='btn-modal-delete']").on('click', function () {
+        $('[data-action="btn-modal-delete"]').on('click', function () {
             let announcement = $(this).parent().data('content');
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/destroy',
@@ -166,13 +164,13 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    $("#modal-delete").html(result.data.html)
+                    $('#modal-delete').html(result.data.html)
                 },
                 error: function() {
                     console.log('error');
                 } ,
                 complete : function() {
-                    $("#modal-delete .modal").modal('show');
+                    $('#modal-delete .modal').modal('show');
                 }
             });
         });

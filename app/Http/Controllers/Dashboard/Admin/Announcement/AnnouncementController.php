@@ -92,13 +92,13 @@ class AnnouncementController extends Controller
                     "message" => __("dashboard-admin/announcement.store.failed"),
                     "type" => "warning"
                 ]);
-        else
-            return redirect()
-                ->back()
-                ->with([
-                    "message" => __("dashboard-admin/announcement.store.success"),
-                    "type" => "success"
-                ]);
+
+        return redirect()
+            ->back()
+            ->with([
+                "message" => __("dashboard-admin/announcement.store.success"),
+                "type" => "success"
+            ]);
     }
 
     /**
@@ -120,7 +120,6 @@ class AnnouncementController extends Controller
     public function edit(Announcement $announcement)
     {
         self::checkView($announcement);
-
         return view("dashboard.admin.announcement.edit")->with([
             "announcement" => $announcement,
             "types" => AnnouncementType::getTypes(),
@@ -138,7 +137,6 @@ class AnnouncementController extends Controller
     public function update(UpdateAnnouncementRequest $request, Announcement $announcement)
     {
         self::checkView($announcement);
-
         switch ($request->input("update")) {
             case "info":
                 $data = [
@@ -164,9 +162,7 @@ class AnnouncementController extends Controller
                 break;
             default: $data = array();
         }
-
-        Announcement::where("id", $announcement->id)
-            ->update($data);
+        Announcement::where("id", $announcement->id)->update($data);
 
         if (!$announcement)
             return redirect()
@@ -176,13 +172,13 @@ class AnnouncementController extends Controller
                     "message" => __("dashboard-admin/announcement.update.failed"),
                     "type" => "warning"
                 ]);
-        else
-            return redirect()
-                ->back()
-                ->with([
-                    "message" => __("dashboard-admin/announcement.update.success"),
-                    "type" => "success"
-                ]);
+
+        return redirect()
+            ->back()
+            ->with([
+                "message" => __("dashboard-admin/announcement.update.success"),
+                "type" => "success"
+            ]);
     }
 
     /**
@@ -205,13 +201,13 @@ class AnnouncementController extends Controller
                     "message" => __("dashboard-admin/announcement.destroy.failed"),
                     "type" => "warning"
                 ]);
-        else
-            return redirect()
-                ->back()
-                ->with([
-                    "message" => __("dashboard-admin/announcement.destroy.success"),
-                    "type" => "success"
-                ]);
+
+        return redirect()
+            ->back()
+            ->with([
+                "message" => __("dashboard-admin/announcement.destroy.success"),
+                "type" => "success"
+            ]);
     }
 
     /**

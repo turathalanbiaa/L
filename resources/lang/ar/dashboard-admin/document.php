@@ -16,22 +16,21 @@ return [
         'title'    => 'اضافة مستمسك',
         'btn-back' => 'رجوع الى ملف الطالب',
         'btn-send' => "ارسال",
-
-        'note-after-upload-image' => 'سوف يتم تقليل جودة الصورة بعدالرفع لغرض العرض فقط.',
-        'note-image-type'         => 'يجب أن تكون صورة (jpeg أو png أو bmp أو gif أو svg أو webp).',
+        'note-1'   => 'سوف يتم تقليل جودة الصورة بعدالرفع لغرض العرض فقط.',
+        'note-2'   => 'يجب أن تكون صورة (jpeg أو png أو bmp أو jpg).'
     ],
 
     'store' => [
-        'success' => 'تم انشاء المستمسك بنجاح.',
-        'failed'  => 'لم يتم انشاء المستمسك، اعد المحاولة.',
+        'success' => 'تم انشاء الإعلان بنجاح.',
+        'failed'  => 'لم يتم انشاء الإعلان، اعد المحاولة.'
     ],
 
     'components' => [
         'documents' => [
             'btn-view' => 'انقر لعرض المستمسك',
 
-            'modal-error-header'  => 'تحذير',
-            'modal-error-body'  => 'المستمسك غير موجود',
+            'modal-error-header' => 'تحذير',
+            'modal-error-body'   => 'المستمسك غير موجود',
 
             'modal-accept-body' => 'هل توافق على قبول المستمسك؟',
             'modal-reject-body' => 'هل توافق على رفض المستمسك؟',
@@ -43,25 +42,26 @@ return [
             'toast-title-accept' => 'تم قبول مستمسك :string.',
             'toast-title-reject' => 'تم رفض مستمسك :string.',
             'toast-title-delete' => 'تم حذف مستمسك :string.',
-            'toast-title-error'  => 'المستمسك غير موجود.',
+            'toast-title-error'  => 'المستمسك غير موجود.'
         ]
     ],
 
     'share' => [
         'user-documents' => [
             'btn-add'  => 'اضافة مستمسك',
-            'message'  => 'حساب المستمع لايحتوي على اي مستمسك.',
-        ],
+            'message'  => 'حساب المستمع لايحتوي على اي مستمسك.'
+        ]
     ],
 
-    'column' => [
+    'label' => [
+        'image' => 'الصورة',
         'type'  => 'النوع',
-        'state' => 'الحالة',
+        'state' => 'الحالة'
     ],
 
     'placeholder' => [
-        'type'       => 'اختر نوع المستمسك',
-        'state'      => 'اختر حالة المستمسك',
-        'image'      => 'اختر صورة المستمسك',
-    ],
+        'image' => 'اختر الصورة',
+        'type'  => 'اختر النوع',
+        'state' => 'اختر الحالة'
+    ]
 ];

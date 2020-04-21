@@ -109,8 +109,8 @@
 
 @section("script")
     <script>
-        $("#description").summernote({
-            placeholder: "@lang("dashboard-admin/announcement.placeholder.description")",
+        $('#description').summernote({
+            placeholder: '@lang("dashboard-admin/announcement.placeholder.description")',
             tabsize: 4,
             height: 100,
             toolbar: [
@@ -123,13 +123,13 @@
                 ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-        $("#dropdown-type .dropdown-item").on('click', function () {
-            $("input#type").val($(this).html().trim());
-            $("input[name='type']").val($(this).data('value'));
+        $('#dropdown-type .dropdown-item').on('click', function () {
+            $('input#type').val($(this).html().trim());
+            $('input[name="type"]').val($(this).data('value'));
         });
-        $("#dropdown-state .dropdown-item").on('click', function () {
+        $('#dropdown-state .dropdown-item').on('click', function () {
             $("input#state").val($(this).html().trim());
-            $("input[name='state']").val($(this).data('value'));
+            $('input[name="state"]').val($(this).data('value'));
         });
         @if(session()->has("message"))
             $.toast({

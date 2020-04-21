@@ -170,7 +170,6 @@
                             </div>
                         @endif
                     </div>
-
                     <div class="text-center mt-4">
                         <button class="btn btn-outline-primary" type="submit">
                             @lang("dashboard-admin/user.create.btn-send")
@@ -184,42 +183,40 @@
 
 @section("script")
     <script>
-        $("#dropdown-gender .dropdown-item").on('click', function () {
-            $("input#gender").val($(this).html().trim());
-            $("input[name='gender']").val($(this).data('value'));
+        $('#dropdown-gender .dropdown-item').on('click', function () {
+            $('input#gender').val($(this).html().trim());
+            $('input[name="gender"]').val($(this).data('value'));
         });
-        $("#dropdown-country .dropdown-item").on('click', function () {
-            $("input#country").val($(this).html().trim());
-            $("input[name='country']").val($(this).data('value'));
+        $('#dropdown-country .dropdown-item').on('click', function () {
+            $('input#country').val($(this).html().trim());
+            $('input[name="country"]').val($(this).data('value'));
         });
-        $("#dropdown-stage .dropdown-item").on('click', function () {
-            $("input#stage").val($(this).html().trim());
-            $("input[name='stage']").val($(this).data('value'));
+        $('#dropdown-stage .dropdown-item').on('click', function () {
+            $('input#stage').val($(this).html().trim());
+            $('input[name="stage"]').val($(this).data('value'));
         });
-        $("#dropdown-certificate .dropdown-item").on('click', function () {
-            $("input#certificate").val($(this).html().trim());
-            $("input[name='certificate']").val($(this).data('value'));
+        $('#dropdown-certificate .dropdown-item').on('click', function () {
+            $('input#certificate').val($(this).html().trim());
+            $('input[name="certificate"]').val($(this).data('value'));
         });
-        $("input#country").on('keyup', function () {
+        $('input#country').on('keyup', function () {
             let value = $(this).val();
-            let items = $("#dropdown-country .dropdown-item");
+            let items = $('#dropdown-country .dropdown-item');
 
             $.each(items, function(index, item) {
                 item.classList.add('d-none');
                 item.classList.remove('d-block');
                 str = item.textContent.trim();
-               if(str.includes(value))
-               {
-                   item.classList.add('d-block');
-               }
+                if(str.includes(value))
+                    item.classList.add('d-block');
             });
         });
         @if(session()->has("message"))
-            $.toast({
-                title: '{{session()->get("message")}}',
-                type:  '{{session()->get("type")}}',
-                delay: 2500
-            });
+        $.toast({
+            title: '{{session()->get("message")}}',
+            type:  '{{session()->get("type")}}',
+            delay: 2500
+        });
         @endif
     </script>
 @endsection

@@ -25,32 +25,27 @@ class ApiDocumentController extends Controller
      * @return ResponseFactory|Response
      */
     public function store(Request $request) {
-        $rules = ["file" => "required|image"];
-
+        $rules = ["image" => "required|mimes:jpeg,jpg,bmp,png"];
         if (app()->getLocale() == Language::ARABIC)
             $messages = [
-                "file.required" => "يجب رفع الصورة.",
-                "file.image"    => "الملف المرفوع ليس صورة.",
-                "uploaded"      => "فشل في التحميل."
+                "image.required" => "حقل الصورة مطلوب.",
+                "image.mimes"    => "يجب أن تكون الصورة ملف من نوع: jpeg ، jpg ، bmp ، png."
             ];
 
         $validation = Validator::make($request->all(), $rules, $messages ?? []);
 
         if (!$validation->passes())
-            return $this->apiResponse([
-                "message" => $validation->errors()->all()
-            ], 200, true);
+            return $this->apiResponse(["message" => $validation->errors()->all()]);
 
-        Storage::delete($request->input('prev_image'));
-
-        $image = Storage::put("public/user/temp", $request->file('file'));
+        Storage::delete($request->input("prev_image"));
+        $image = Storage::put("public/user/temp", $request->file("image"));
 
         return $this->apiResponse([
             "image" => [
                 "url"  => asset("images/large" . Storage::url($image)),
                 "path" => $image
             ]
-        ], 200, false);
+        ]);
     }
 
     /**
@@ -72,7 +67,7 @@ class ApiDocumentController extends Controller
                 "footer" => false
             );
 
-            return $this->apiResponse(["modal" => $modal], 200, false);
+            return $this->apiResponse(["modal" => $modal]);
         }
 
         switch ($action) {
@@ -105,7 +100,7 @@ class ApiDocumentController extends Controller
                 break;
         }
 
-        return $this->apiResponse(["modal" => $modal], 200, false);
+        return $this->apiResponse(["modal" => $modal]);
     }
 
     /**
@@ -124,7 +119,7 @@ class ApiDocumentController extends Controller
                 "type"  => "danger"
             );
 
-            return $this->apiResponse(["toast" => $toast], 200, false);
+            return $this->apiResponse(["toast" => $toast]);
         }
 
         switch ($action) {
@@ -150,6 +145,6 @@ class ApiDocumentController extends Controller
         return $this->apiResponse([
             "toast" => $toast,
             "documentState" => DocumentState::getStateName($document->state)
-        ], 200, false);
+        ]);
     }
 }

@@ -13,25 +13,24 @@ return [
     ],
 
     'create' => [
-        'title'    => 'Add Document',
-        'btn-back' => 'Back To The Student\'s File',
+        'title'    => 'Add document',
+        'btn-back' => 'Back to the student\'s file',
         'btn-send' => "Send",
-
-        'note-after-upload-image' => 'Image quality will be reduced after uploading for display purpose only.',
-        'note-image-type'         => 'It should be an image (jpeg, png, bmp, gif, svg, or webp).',
+        'note-1'   => 'Image quality will be reduced after uploading for display purpose only.',
+        'note-2'   => 'It should be an image (jpeg, png, bmp or jpg).'
     ],
 
     'store' => [
-        'success' => 'Document successfully created.',
-        'failed'  => 'The document was not created, try again.',
+        'success' => 'The document was created successfully.',
+        'failed'  => 'The document was not created, try again.'
     ],
 
     'components' => [
         'documents' => [
             'btn-view' => 'Click to view document',
 
-            'modal-error-header'  => 'Warning',
-            'modal-error-body'  => 'The document dose not exist.',
+            'modal-error-header' => 'Warning',
+            'modal-error-body'   => 'The document dose not exist.',
 
             'modal-accept-body' => 'Do you agree to accept the document?',
             'modal-reject-body' => 'Do you agree to reject the document?',
@@ -43,25 +42,26 @@ return [
             'toast-title-accept' => ':string document accepted.',
             'toast-title-reject' => ':string document rejected.',
             'toast-title-delete' => ':string document deleted.',
-            'toast-title-error'  => 'The document dose not exist.',
+            'toast-title-error'  => 'The document dose not exist.'
         ]
     ],
 
     'share' => [
         'user-documents' => [
             'btn-add'  => 'Add document',
-            'message'  => 'The listener account does not contain any document.',
-        ],
+            'message'  => 'The listener account does not contain any document.'
+        ]
     ],
 
-    'column' => [
+    'label' => [
+        'image' => 'Image',
         'type'  => 'Type',
-        'state' => 'State',
+        'state' => 'State'
     ],
 
     'placeholder' => [
-        'type'       => 'Select Document Type',
-        'state'      => 'Select Document State',
-        'image'      => 'Select Document Image',
-    ],
+        'image' => 'Choose an image',
+        'type'  => 'Select the type',
+        'state' => 'Select the state'
+    ]
 ];

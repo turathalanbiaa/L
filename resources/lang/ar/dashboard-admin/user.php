@@ -32,7 +32,7 @@ return [
             'archived-message' => 'الحساب مؤرشف',
             'header-info'      => 'ملئ جميع معلومات الحساب.',
             'header-auth'      => 'توثيق الحساب عن طريق (البريد او الهاتف).',
-            'header-documents' => 'قبول جميع المستمسكات المطلوبة.',
+            'header-documents' => 'قبول جميع المستمسكات المطلوبة.'
         ]
     ],
 
@@ -99,7 +99,7 @@ return [
         'certificate' => 'الشهادة',
         'created-at'  => 'تاريخ الانشاء',
         'last-login'  => 'أخر تسجيل دخول',
-        'state'       => 'الحالة',
+        'state'       => 'الحالة'
     ],
 
     'placeholder' => [
@@ -112,5 +112,5 @@ return [
         'certificate' => 'اختر الشهادة',
         'birth-date'  => 'تاريخ الميلاد',
         'address'     => 'العنوان الكامل'
-    ],
+    ]
 ];

@@ -60,7 +60,7 @@
 @section("script")
     @parent
     <script>
-        $("#users").DataTable( {
+        $('#users').DataTable( {
             order: [],
             columnDefs: [{
                 targets: [5],
@@ -72,11 +72,11 @@
             },
             @endif
         } );
-        $("[data-action='btn-modal-show']").on('click', function () {
+        $('[data-action="btn-modal-show"]').on('click', function () {
             let user = $(this).parent().data('content');
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/users/show',
@@ -84,21 +84,21 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    $("#modal-show").html(result.data.html)
+                    $('#modal-show').html(result.data.html)
                 },
                 error: function() {
                     console.log('error');
                 } ,
                 complete : function() {
-                    $("#modal-show .modal").modal('show');
+                    $('#modal-show .modal').modal('show');
                 }
             });
         });
-        $("[data-action='btn-modal-destroy']").on('click', function () {
+        $('[data-action="btn-modal-destroy"]').on('click', function () {
             let user = $(this).parent().data('content');
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': $("meta[name='csrf-token']").attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: 'post',
                 url: '/dashboard/admin/api/users/destroy',
@@ -106,13 +106,13 @@
                 datatype: 'json',
                 encode: true,
                 success: function(result) {
-                    $("#modal-destroy").html(result.data.html)
+                    $('#modal-destroy').html(result.data.html)
                 },
                 error: function() {
                     console.log('error');
                 } ,
                 complete : function() {
-                    $("#modal-destroy .modal").modal('show');
+                    $('#modal-destroy .modal').modal('show');
                 }
             });
         });
