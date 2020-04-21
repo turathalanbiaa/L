@@ -62,22 +62,15 @@
     <script>
         $('#users').DataTable( {
             order: [],
-            columnDefs: [{
-                targets: [5],
-                orderable: false
-            }],
+            columnDefs: [{targets: [5], orderable: false}],
             @if(app()->getLocale() == App\Enum\Language::ARABIC)
-            'language': {
-                'url': 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'
-            },
+            'language': {'url': 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'},
             @endif
         } );
         $('[data-action="btn-modal-show"]').on('click', function () {
             let user = $(this).parent().data('content');
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type: 'post',
                 url: '/dashboard/admin/api/users/show',
                 data: {user: user},
@@ -97,9 +90,7 @@
         $('[data-action="btn-modal-destroy"]').on('click', function () {
             let user = $(this).parent().data('content');
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type: 'post',
                 url: '/dashboard/admin/api/users/destroy',
                 data: {user: user},

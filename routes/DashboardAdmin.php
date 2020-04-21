@@ -29,8 +29,8 @@ Route::namespace("Dashboard\\Admin")
                         Route::resource('documents', 'DocumentController')->except(['show', 'edit', 'update', 'destroy']);
                         // Api
                         Route::post('api/documents/store','ApiDocumentController@store');
-                        Route::get('api/documents/build-modal','ApiDocumentController@buildModal');
-                        Route::get('api/documents/action','ApiDocumentController@action');
+                        Route::post('api/documents/build-modal','ApiDocumentController@buildModal');
+                        Route::post('api/documents/action','ApiDocumentController@action');
                     });
 
                 // Announcements

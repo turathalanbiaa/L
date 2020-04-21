@@ -83,14 +83,9 @@
     <script>
         $('#announcements').DataTable( {
             order: [],
-            columnDefs: [{
-                targets: [5],
-                orderable: false
-            }],
+            columnDefs: [{targets: [5], orderable: false}],
             @if(app()->getLocale() == App\Enum\Language::ARABIC)
-            'language': {
-                'url': 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'
-            },
+            'language': {'url': 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'},
             @endif
         } );
         $('input[type="checkbox"]').on('click', function () {
@@ -106,9 +101,7 @@
                 state = 1;
             }
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/change-state',
                 data: {announcement: announcement, state:state},
@@ -122,7 +115,7 @@
                         delay: 2500
                     });
 
-                    if (toast.type === "success")
+                    if (toast.type === 'success')
                       input.parent().find('label').html(result.data.newState);
                 },
                 error: function() {
@@ -133,9 +126,7 @@
         $('[data-action="btn-modal-show"]').on('click', function () {
             let announcement = $(this).parent().data('content');
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/show',
                 data: {announcement: announcement},
@@ -155,9 +146,7 @@
         $('[data-action="btn-modal-delete"]').on('click', function () {
             let announcement = $(this).parent().data('content');
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type: 'post',
                 url: '/dashboard/admin/api/announcements/destroy',
                 data: {announcement: announcement},

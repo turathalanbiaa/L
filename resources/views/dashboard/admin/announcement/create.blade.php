@@ -95,7 +95,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="text-center mt-4">
                         <button class="btn btn-outline-primary" type="submit">
                             @lang("dashboard-admin/announcement.create.btn-send")

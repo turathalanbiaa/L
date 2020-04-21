@@ -15,11 +15,12 @@
                     <div class="col-sm-12">
                         <form method="post" id="upload" enctype="multipart/form-data">
                             @csrf()
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label" for="image" >
-                                    @lang("dashboard-admin/document.label.image")
-                                </label>
-                                <div class="col-sm-10">
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label class="col-form-label" for="image" >
+                                        @lang("dashboard-admin/document.label.image")
+                                        <span class="text-danger">*</span>
+                                    </label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="image" id="image" value="">
                                         <div class="custom-file-label">
@@ -39,49 +40,45 @@
                             <input type="hidden" name="user" value="{{old("user", $user)}}">
                             @error("user") <div class="text-warning">{{$message}}</div> @enderror
                             <input type="hidden" name="image" value="{{old("image")}}" id="image-path">
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label" for="type" >
-                                    @lang("dashboard-admin/document.label.type")
-                                </label>
-                                <div class="col-sm-10">
-                                    <div class="md-form mt-0">
-                                        <input type="text" class="form-control" id="type" value="{{App\Enum\DocumentType::getTypeName(old("type"))}}"
-                                               placeholder="@lang("dashboard-admin/document.placeholder.type")"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <input type="hidden" name="type" value="{{old("type")}}">
-                                        @error("type") <div class="text-warning">{{$message}}</div> @enderror
-                                        <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
-                                            @foreach($types as $type)
-                                                <div class="dropdown-item" data-value="{{$type}}">
-                                                    {{App\Enum\DocumentType::getTypeName($type)}}
-                                                </div>
-                                            @endforeach
-                                        </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label class="col-form-label" for="type" >
+                                        @lang("dashboard-admin/document.label.type")
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="type" value="{{App\Enum\DocumentType::getTypeName(old("type"))}}"
+                                           placeholder="@lang("dashboard-admin/document.placeholder.type")"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <input type="hidden" name="type" value="{{old("type")}}">
+                                    @error("type") <div class="text-warning">{{$message}}</div> @enderror
+                                    <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
+                                        @foreach($types as $type)
+                                            <div class="dropdown-item" data-value="{{$type}}">
+                                                {{App\Enum\DocumentType::getTypeName($type)}}
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="col-form-label" for="state" >
+                                        @lang("dashboard-admin/document.label.state")
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="state" value="{{App\Enum\DocumentState::getStateName(old("state"))}}"
+                                           placeholder="@lang("dashboard-admin/document.placeholder.state")"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <input type="hidden" name="state" value="{{old("state")}}">
+                                    @error("state") <div class="text-warning">{{$message}}</div> @enderror
+                                    <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-state">
+                                        @foreach($states as $state)
+                                            <div class="dropdown-item" data-value="{{$state}}">
+                                                {{App\Enum\DocumentState::getStateName($state)}}
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label" for="state" >
-                                    @lang("dashboard-admin/document.label.state")
-                                </label>
-                                <div class="col-sm-10">
-                                    <div class="md-form mt-0">
-                                        <input type="text" class="form-control" id="state" value="{{App\Enum\DocumentState::getStateName(old("state"))}}"
-                                               placeholder="@lang("dashboard-admin/document.placeholder.state")"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <input type="hidden" name="state" value="{{old("state")}}">
-                                        @error("state") <div class="text-warning">{{$message}}</div> @enderror
-                                        <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-state">
-                                            @foreach($states as $state)
-                                                <div class="dropdown-item" data-value="{{$state}}">
-                                                    {{App\Enum\DocumentState::getStateName($state)}}
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center">
+                            <div class="text-center mt-4">
                                 <button class="btn btn-outline-primary" type="submit">
                                     @lang("dashboard-admin/document.create.btn-send")
                                 </button>
@@ -108,18 +105,15 @@
     </div>
 @endsection
 
-@section("extra-content")
-@endsection
-
 @section("script")
 <script>
-    $("#dropdown-type .dropdown-item").click(function () {
-        $("input#type").val($(this).html().trim());
-        $("input[name='type']").val($(this).data('value'));
+    $('#dropdown-type .dropdown-item').on('click', function () {
+        $('input#type').val($(this).html().trim());
+        $('input[name="type"]').val($(this).data('value'));
     });
-    $("#dropdown-state .dropdown-item").click(function () {
-        $("input#state").val($(this).html().trim());
-        $("input[name='state']").val($(this).data('value'));
+    $('#dropdown-state .dropdown-item').on('click', function () {
+        $('input#state').val($(this).html().trim());
+        $('input[name="state"]').val($(this).data('value'));
     });
     $('#image').change(function () {
         $('#error').addClass('d-none');
@@ -128,6 +122,7 @@
     $('#upload').on('submit', function () {
         event.preventDefault();
         $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             method: 'post',
             url: '/dashboard/admin/api/documents/store',
             data: new FormData(this),
@@ -141,7 +136,7 @@
                 if(result.error === true) {
                     message.html(result.data.message);
                     message.removeClass('d-none').addClass('d-block');
-                    return "";
+                    return '';
                 }
 
                 let image = result.data.image;
@@ -150,9 +145,7 @@
                 $('input#prev-image').val(image.path);
             },
             error: function() {
-                console.log("error");
-            } ,
-            complete : function() {
+                console.log('error');
             }
         });
     });
@@ -165,4 +158,3 @@
     @endif
 </script>
 @endsection
-

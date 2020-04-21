@@ -82,20 +82,21 @@
 @section("script")
     @parent
     <script>
-        $("[data-action='document-view']").on('click', function () {
+        $('[data-action="document-view"]').on('click', function () {
             let src = $(this).parent().find('img').attr('src');
             let modalDocumentView = $('#modal-document-view');
             modalDocumentView.find('img').attr('src', src);
             modalDocumentView.modal('show');
         });
 
-        $("[data-action='build-modal']").on('click', function () {
+        $('[data-action="build-modal"]').on('click', function () {
             let document = $(this).parent().data('content');
             let action = $(this).data('content');
             let modalDocumentAction = $('#modal-document-action');
 
             $.ajax({
-                type: 'get',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: 'post',
                 url: '/dashboard/admin/api/documents/build-modal',
                 data: {document: document, action: action},
                 datatype: 'json',
@@ -107,8 +108,8 @@
                     modalDocumentAction.find('.modal-body div.h5-responsive').html(modal.body);
                     modalDocumentAction.find('.btn:first-child').removeClass().addClass('btn ' + modal.button);
                     modalDocumentAction.find('.btn:last-child').removeClass().addClass('btn ' + modal.closeButton);
-                    $("input[name='document']").val(document);
-                    $("input[name='action']").val(action);
+                    $('input[name="document"]').val(document);
+                    $('input[name="action"]').val(action);
 
                     if(modal.footer === false)
                         modalDocumentAction.find('.modal-footer').addClass('d-none');
@@ -125,11 +126,12 @@
         });
 
         $('[data-action="document"]').on('click', function () {
-            let document = $(this).find("input[name='document']").val();
-            let action = $(this).find("input[name='action']").val();
+            let document = $(this).find('input[name="document"]').val();
+            let action = $(this).find('input[name="action"]').val();
 
             $.ajax({
-                type: 'get',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: 'post',
                 url: '/dashboard/admin/api/documents/action',
                 data: {document: document, action: action},
                 datatype: 'json',
@@ -145,24 +147,21 @@
 
                     if (toast.type === 'success') {
                         if(action === 'accept')
-                            $("#"+document).find('p .badge').removeClass().addClass('badge badge-success').html(result.data.documentState);
+                            $('#'+document).find('p .badge').removeClass().addClass('badge badge-success').html(result.data.documentState);
 
                         if(action === 'reject')
-                            $("#"+document).find('p .badge').removeClass().addClass('badge badge-warning').html(result.data.documentState);
+                            $('#'+document).find('p .badge').removeClass().addClass('badge badge-warning').html(result.data.documentState);
 
-                        if (action === "delete")
-                            $("#"+document).fadeOut(1000, function () {
+                        if (action === 'delete')
+                            $('#'+document).fadeOut(1000, function () {
                                 setTimeout(function () {
-                                    $("#"+document).remove();
+                                    $('#'+document).remove();
                                 }, 1000);
                             });
                     }
                 },
                 error: function() {
                     console.log('error');
-                } ,
-                complete: function() {
-
                 }
             });
         });
