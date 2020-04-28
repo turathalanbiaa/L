@@ -66,7 +66,7 @@
                                 <input type="hidden" name="type" value="{{old("type")}}">
                                 @error("type") <div class="text-warning">{{$message}}</div> @enderror
                                 <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
-                                    @foreach($types as $type)
+                                    @foreach(\App\Enum\AnnouncementType::getTypes() as $type)
                                         <div class="dropdown-item" data-value="{{$type}}">
                                             {{App\Enum\AnnouncementType::getTypeName($type)}}
                                         </div>
@@ -86,7 +86,7 @@
                                 <input type="hidden" name="state" value="{{old("state", \App\Enum\AnnouncementState::ACTIVE)}}">
                                 @error("state") <div class="text-warning">{{$message}}</div> @enderror
                                 <div class="dropdown-menu dropdown-default w-100" aria-labelledby="state" id="dropdown-state">
-                                    @foreach($states as $state)
+                                    @foreach(\App\Enum\AnnouncementState::getStates() as $state)
                                         <div class="dropdown-item" data-value="{{$state}}">
                                             {{App\Enum\AnnouncementState::getStateName($state)}}
                                         </div>

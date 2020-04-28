@@ -40,15 +40,23 @@ class Gender
             case Language::ARABIC:
                 switch ($gender)
                 {
-                    case self::MALE:   return "ذكر";  break;
-                    case self::FEMALE: return "انثى"; break;
+                    case self::MALE:
+                        return "ذكر";
+                        break;
+                    case self::FEMALE:
+                        return "انثى";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
                 switch ($gender)
                 {
-                    case self::MALE:   return "Male";   break;
-                    case self::FEMALE: return "Female"; break;
+                    case self::MALE:
+                        return "Male";
+                        break;
+                    case self::FEMALE:
+                        return "Female";
+                        break;
                 }
                 break;
         }

@@ -1,7 +1,7 @@
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-notify modal-info" role="document">
+    <div class="modal-dialog modal-notify" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header secondary-color text-white">
                 <p class="heading text-capitalize">
                     @lang("dashboard-admin/announcement.components.modal-show.header")
                 </p>
@@ -60,10 +60,10 @@
             </div>
             @if($announcement)
                 <div class="modal-footer justify-content-center">
-                    <a class="btn btn-info" type="button" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
+                    <a class="btn btn-secondary" type="button" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
                         @lang("dashboard-admin/announcement.components.modal-show.btn-edit")
                     </a>
-                    <a class="btn btn-outline-info" type="button" data-dismiss="modal">
+                    <a class="btn btn-outline-secondary" type="button" data-dismiss="modal">
                         @lang("dashboard-admin/announcement.components.modal-show.btn-dismiss")
                     </a>
                 </div>

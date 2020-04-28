@@ -6,7 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class GeneralCourseHeader extends Model
 {
-    protected $table = 'general_courses_headers';
-    protected $primaryKey = 'id';
+    protected $table = "general_course_headers";
+    protected $primaryKey = "id";
     public $timestamps = false;
+    protected $fillable = [
+        "id",
+        "title",
+        "lang",
+        "description",
+        "created_at"
+    ];
 }

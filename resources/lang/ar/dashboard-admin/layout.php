@@ -15,12 +15,13 @@ return [
             'students'       => 'الطلاب',
             'listeners'      => 'المستمعين',
             'documents'      => 'المستمسكات',
-            'change-account' => 'تغير الحساب',
+            'change-account' => 'تغير الحساب'
         ],
 
         'block-other' => [
             'header'        => 'آخرى',
-            'announcements' => 'الإعلانات'
+            'announcements' => 'الإعلانات',
+            'lecturers'     => 'الاساتذة'
         ]
     ]
 ];

@@ -42,19 +42,35 @@ class DocumentType
             case Language::ARABIC:
                 switch ($type)
                 {
-                    case self::PERSONAL_IDENTIFICATION:  return "الهوية الشخصية";  break;
-                    case self::RELIGIOUS_RECOMMENDATION: return "التزكية الدينية"; break;
-                    case self::CERTIFICATE:              return "الشهادة العلمية"; break;
-                    case self::PERSONAL_IMAGE:           return "الصورة الشخصية";  break;
+                    case self::PERSONAL_IDENTIFICATION:
+                        return "الهوية الشخصية";
+                        break;
+                    case self::RELIGIOUS_RECOMMENDATION:
+                        return "التزكية الدينية";
+                        break;
+                    case self::CERTIFICATE:
+                        return "الشهادة العلمية";
+                        break;
+                    case self::PERSONAL_IMAGE:
+                        return "الصورة الشخصية";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
                 switch ($type)
                 {
-                    case self::PERSONAL_IDENTIFICATION:  return "Personal Identification";  break;
-                    case self::RELIGIOUS_RECOMMENDATION: return "Religious Recommendation"; break;
-                    case self::CERTIFICATE:              return "Certificate";              break;
-                    case self::PERSONAL_IMAGE:           return "Personal Image";           break;
+                    case self::PERSONAL_IDENTIFICATION:
+                        return "Personal Identification";
+                        break;
+                    case self::RELIGIOUS_RECOMMENDATION:
+                        return "Religious Recommendation";
+                        break;
+                    case self::CERTIFICATE:
+                        return "Certificate";
+                        break;
+                    case self::PERSONAL_IMAGE:
+                        return "Personal Image";
+                        break;
                 }
                 break;
         }

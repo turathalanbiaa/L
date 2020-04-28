@@ -25,9 +25,8 @@
             </div>
         </th>
         <th colspan="1">
-            <a class="btn btn-flat waves-effect waves-light" type="button" href="{{route("dashboard.admin.announcements.create")}}">
-                <i class="fa fa-plus light-green-text mx-1"></i>
-                @lang("dashboard-admin/announcement.components.datatable.btn-add")
+            <a class="btn-floating btn-sm primary-color" type="button" href="{{route("dashboard.admin.announcements.create")}}">
+                <i class="fa fa-plus"></i>
             </a>
         </th>
     </tr>
@@ -56,8 +55,8 @@
             <td>{{$announcement->created_at}}</td>
             <td>
                 <div class="d-flex justify-content-center" data-content="{{$announcement->id}}">
-                    <a class="btn-floating btn-sm info-color mx-2" data-action="btn-modal-show">
-                        <i class="far fa-eye"></i>
+                    <a class="btn-floating btn-sm secondary-color mx-2" data-action="btn-modal-show">
+                        <i class="far fa-address-card"></i>
                     </a>
                     <a class="btn-floating btn-sm primary-color mx-2" href="{{route("dashboard.admin.announcements.edit", ["announcement" => $announcement->id])}}">
                         <i class="far fa-edit"></i>

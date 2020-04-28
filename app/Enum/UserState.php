@@ -27,16 +27,28 @@ class UserState
         switch ($locale) {
             case Language::ARABIC:
                 switch ($state) {
-                    case self::UNTRUSTED: return "غير موثوق"; break;
-                    case self::TRUSTED:   return "موثوق";     break;
-                    case self::DISABLE:   return "معطل";     break;
+                    case self::UNTRUSTED:
+                        return "غير موثوق";
+                        break;
+                    case self::TRUSTED:
+                        return "موثوق";
+                        break;
+                    case self::DISABLE:
+                        return "معطل";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
                 switch ($state) {
-                    case self::UNTRUSTED: return "Untrusted"; break;
-                    case self::TRUSTED:   return "Trusted";     break;
-                    case self::DISABLE:   return "Disable";     break;
+                    case self::UNTRUSTED:
+                        return "Untrusted";
+                        break;
+                    case self::TRUSTED:
+                        return "Trusted";
+                        break;
+                    case self::DISABLE:
+                        return "Disable";
+                        break;
                 }
                 break;
         }

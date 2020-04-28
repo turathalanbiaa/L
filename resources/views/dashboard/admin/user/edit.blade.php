@@ -15,9 +15,10 @@
                 <div class="collapse @if(old("update")=="info") show @endif border-top border-info" id="collapse-change-info" data-parent="#change-selector">
                     <div class="row mt-4">
                         <div class="col-sm-12">
-                            <form method="post" action="{{route("dashboard.admin.users.update",["user" => $user->id])}}">
+                            <form method="post" action="{{route("dashboard.admin.users.update", ["user" => $user->id])}}">
                                 @csrf()
                                 @method("put")
+                                <input type="hidden" name="id" value="{{$user->id}}">
                                 <input type="hidden" name="type" value="{{$user->type}}">
                                 <input type="hidden" name="update" value="info">
                                 <div class="form-group row">

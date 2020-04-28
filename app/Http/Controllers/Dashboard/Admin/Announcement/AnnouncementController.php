@@ -40,12 +40,12 @@ class AnnouncementController extends Controller
                 ->latest()
                 ->get()
             : Announcement::where("lang", app()->getLocale())
-                ->where("type", request()->input("type"))
+                ->where("type", $type)
                 ->latest()
                 ->get();
 
         return view("dashboard.admin.announcement.index")->with([
-            "type" => $type,
+            "type"          => $type,
             "announcements" => $announcements
         ]);
     }
@@ -57,10 +57,7 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        return view("dashboard.admin.announcement.create")->with([
-            "types" => AnnouncementType::getTypes(),
-            "states" => AnnouncementState::getStates()
-        ]);
+        return view("dashboard.admin.announcement.create");
     }
 
     /**
@@ -90,14 +87,14 @@ class AnnouncementController extends Controller
                 ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/announcement.store.failed"),
-                    "type" => "warning"
+                    "type"    => "warning"
                 ]);
 
         return redirect()
             ->back()
             ->with([
                 "message" => __("dashboard-admin/announcement.store.success"),
-                "type" => "success"
+                "type"    => "success"
             ]);
     }
 
@@ -121,9 +118,7 @@ class AnnouncementController extends Controller
     {
         self::checkView($announcement);
         return view("dashboard.admin.announcement.edit")->with([
-            "announcement" => $announcement,
-            "types" => AnnouncementType::getTypes(),
-            "states" => AnnouncementState::getStates()
+            "announcement" => $announcement
         ]);
     }
 
@@ -170,14 +165,14 @@ class AnnouncementController extends Controller
                 ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/announcement.update.failed"),
-                    "type" => "warning"
+                    "type"    => "warning"
                 ]);
 
         return redirect()
             ->back()
             ->with([
                 "message" => __("dashboard-admin/announcement.update.success"),
-                "type" => "success"
+                "type"    => "success"
             ]);
     }
 
@@ -199,14 +194,14 @@ class AnnouncementController extends Controller
                 ->back()
                 ->with([
                     "message" => __("dashboard-admin/announcement.destroy.failed"),
-                    "type" => "warning"
+                    "type"    => "warning"
                 ]);
 
         return redirect()
             ->back()
             ->with([
                 "message" => __("dashboard-admin/announcement.destroy.success"),
-                "type" => "success"
+                "type"    => "success"
             ]);
     }
 

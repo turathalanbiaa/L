@@ -61,6 +61,9 @@
                             <a class="list-item" href="{{route("dashboard.admin.announcements.index")}}">
                                 @lang("/dashboard-admin/layout.side-nav.block-other.announcements")
                             </a>
+                            <a class="list-item" href="{{route("dashboard.admin.lecturers.index")}}">
+                                @lang("/dashboard-admin/layout.side-nav.block-other.lecturers")
+                            </a>
                         </div>
                     </div>
                 </div>

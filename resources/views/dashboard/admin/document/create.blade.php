@@ -11,86 +11,80 @@
                 </a>
             </div>
             <div class="col-xl-4 col-lg-5 col-md-5 col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <form method="post" id="upload" enctype="multipart/form-data">
-                            @csrf()
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <label class="col-form-label" for="image" >
-                                        @lang("dashboard-admin/document.label.image")
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="image" id="image" value="">
-                                        <div class="custom-file-label">
-                                            @lang("dashboard-admin/document.placeholder.image")
-                                        </div>
-                                    </div>
-                                    @error("image") <div class="text-warning" id="error">{{$message}}</div> @enderror
+                <form method="post" id="upload" enctype="multipart/form-data">
+                    @csrf()
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label class="col-form-label" for="image" >
+                                @lang("dashboard-admin/document.label.image")
+                                <span class="text-danger">*</span>
+                            </label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="image" id="image" value="">
+                                <div class="custom-file-label">
+                                    @lang("dashboard-admin/document.placeholder.image")
                                 </div>
                             </div>
-                            <input type="hidden" name="prev_image" value="{{old("image")}}" id="prev-image">
-                            <input class="d-none" type="submit" id="submit">
-                        </form>
-                    </div>
-                    <div class="col-sm-12">
-                        <form method="post" action="{{route("dashboard.admin.documents.store")}}">
-                            @csrf()
-                            <input type="hidden" name="user" value="{{old("user", $user)}}">
-                            @error("user") <div class="text-warning">{{$message}}</div> @enderror
-                            <input type="hidden" name="image" value="{{old("image")}}" id="image-path">
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <label class="col-form-label" for="type" >
-                                        @lang("dashboard-admin/document.label.type")
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" class="form-control" id="type" value="{{App\Enum\DocumentType::getTypeName(old("type"))}}"
-                                           placeholder="@lang("dashboard-admin/document.placeholder.type")"
-                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <input type="hidden" name="type" value="{{old("type")}}">
-                                    @error("type") <div class="text-warning">{{$message}}</div> @enderror
-                                    <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
-                                        @foreach($types as $type)
-                                            <div class="dropdown-item" data-value="{{$type}}">
-                                                {{App\Enum\DocumentType::getTypeName($type)}}
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <label class="col-form-label" for="state" >
-                                        @lang("dashboard-admin/document.label.state")
-                                        <span class="text-danger">*</span>
-                                    </label>
-                                    <input type="text" class="form-control" id="state" value="{{App\Enum\DocumentState::getStateName(old("state"))}}"
-                                           placeholder="@lang("dashboard-admin/document.placeholder.state")"
-                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <input type="hidden" name="state" value="{{old("state")}}">
-                                    @error("state") <div class="text-warning">{{$message}}</div> @enderror
-                                    <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-state">
-                                        @foreach($states as $state)
-                                            <div class="dropdown-item" data-value="{{$state}}">
-                                                {{App\Enum\DocumentState::getStateName($state)}}
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center mt-4">
-                                <button class="btn btn-outline-primary" type="submit">
-                                    @lang("dashboard-admin/document.create.btn-send")
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="alert alert-info">
-                            <i class="far fa-star text-danger"></i>
-                            @lang("dashboard-admin/document.create.note-1")
+                            @error("image") <div class="text-warning" id="error">{{$message}}</div> @enderror
                         </div>
                     </div>
+                    <input type="hidden" name="prev_image" value="{{old("image")}}" id="prev-image">
+                    <input class="d-none" type="submit" id="submit">
+                </form>
+
+                <form method="post" action="{{route("dashboard.admin.documents.store")}}">
+                    @csrf()
+                    <input type="hidden" name="user" value="{{old("user", $user)}}">
+                    @error("user") <div class="text-warning">{{$message}}</div> @enderror
+                    <input type="hidden" name="image" value="{{old("image")}}" id="image-path">
+                    <div class="form-group row">
+                        <div class="col-12 mb-3">
+                            <label class="col-form-label" for="type" >
+                                @lang("dashboard-admin/document.label.type")
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="type" value="{{App\Enum\DocumentType::getTypeName(old("type"))}}"
+                                   placeholder="@lang("dashboard-admin/document.placeholder.type")"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <input type="hidden" name="type" value="{{old("type")}}">
+                            @error("type") <div class="text-warning">{{$message}}</div> @enderror
+                            <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
+                                @foreach($types as $type)
+                                    <div class="dropdown-item" data-value="{{$type}}">
+                                        {{App\Enum\DocumentType::getTypeName($type)}}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="col-form-label" for="state" >
+                                @lang("dashboard-admin/document.label.state")
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="state" value="{{App\Enum\DocumentState::getStateName(old("state"))}}"
+                                   placeholder="@lang("dashboard-admin/document.placeholder.state")"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <input type="hidden" name="state" value="{{old("state")}}">
+                            @error("state") <div class="text-warning">{{$message}}</div> @enderror
+                            <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-state">
+                                @foreach($states as $state)
+                                    <div class="dropdown-item" data-value="{{$state}}">
+                                        {{App\Enum\DocumentState::getStateName($state)}}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-primary" type="submit">
+                            @lang("dashboard-admin/document.create.btn-send")
+                        </button>
+                    </div>
+                </form>
+
+                <div class="alert alert-info">
+                    <i class="far fa-star text-danger"></i>
+                    @lang("dashboard-admin/document.create.note-1")
                 </div>
             </div>
             <div class="col-xl-5 col-lg-7 col-md-7 col-sm-12 text-center">

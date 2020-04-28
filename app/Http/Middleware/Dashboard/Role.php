@@ -3,14 +3,15 @@
 namespace App\Http\Middleware\Dashboard;
 
 use Closure;
+use Illuminate\Http\Request;
 
 class Role
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  Request  $request
+     * @param Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next, $role)
@@ -20,7 +21,7 @@ class Role
         {
             $roles = session()->get("eta.admin.roles");
             if (!in_array($role, $roles))
-                abort(403, __('dashboard-admin/middleware.auth'));
+                abort(403, __("dashboard-admin/middleware.auth"));
         }
 
         return $next($request);

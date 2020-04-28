@@ -48,8 +48,7 @@ class ApiAnnouncementController extends Controller
     public function changeState() {
         $announcement = self::getAnnouncement();
         if ($announcement) {
-            $state = (integer)request()->input("state");
-            $announcement->state = ($state == 0)
+            $announcement->state = ((integer)request()->input("state") == 0)
                 ? AnnouncementState::INACTIVE
                 : AnnouncementState::ACTIVE;
             $announcement->save();
@@ -66,7 +65,7 @@ class ApiAnnouncementController extends Controller
             );
 
         return $this->apiResponse([
-            "toast" => $toast,
+            "toast"    => $toast,
             "newState" => AnnouncementState::getStateName($announcement->state ?? "")
         ]);
     }

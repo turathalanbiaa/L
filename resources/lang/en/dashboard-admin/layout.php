@@ -15,12 +15,13 @@ return [
             'students'       => 'Students',
             'listeners'      => 'Listeners',
             'documents'      => 'Documents',
-            'change-account' => 'Change Account',
+            'change-account' => 'Change Account'
         ],
 
         'block-other' => [
             'header'        => 'Other',
-            'announcements' => 'Announcements'
+            'announcements' => 'Announcements',
+            'lecturers'     => 'Lecturers'
         ]
     ]
 ];

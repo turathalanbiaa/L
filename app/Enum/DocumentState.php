@@ -39,16 +39,28 @@ class DocumentState
         switch ($locale) {
             case Language::ARABIC:
                 switch ($stateNumber) {
-                    case self::ACCEPT: return "مقبولة";       break;
-                    case self::REJECT: return "مرفوضة";       break;
-                    case self::REVIEW: return "قيد المراجعة"; break;
+                    case self::ACCEPT:
+                        return "مقبولة";
+                        break;
+                    case self::REJECT:
+                        return "مرفوضة";
+                        break;
+                    case self::REVIEW:
+                        return "قيد المراجعة";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
                 switch ($stateNumber) {
-                    case self::ACCEPT: return "Accept"; break;
-                    case self::REJECT: return "Reject"; break;
-                    case self::REVIEW: return "Review"; break;
+                    case self::ACCEPT:
+                        return "Accepted";
+                        break;
+                    case self::REJECT:
+                        return "Rejected";
+                        break;
+                    case self::REVIEW:
+                        return "Under Review";
+                        break;
                 }
                 break;
         }

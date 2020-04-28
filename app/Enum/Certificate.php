@@ -51,26 +51,58 @@ class Certificate
         switch ($locale) {
             case Language::ARABIC:
                 switch ($Certificate) {
-                    case self::RELIGION:            return "حوزوي";       break;
-                    case self::INTERMEDIATE_SCHOOL: return "متوسطة";      break;
-                    case self::HIGH_SCHOOL:         return "أعدادية";     break;
-                    case self::DIPLOMA:             return "دبلوم";       break;
-                    case self::BACHELORS:           return "بكالوريوس";   break;
-                    case self::MASTER:              return "دراسات عليا"; break;
-                    case self::PHD:                 return "دكتوراه";     break;
-                    case self::OTHER:               return "أخرى";        break;
+                    case self::RELIGION:
+                        return "حوزوي";
+                        break;
+                    case self::INTERMEDIATE_SCHOOL:
+                        return "متوسطة";
+                        break;
+                    case self::HIGH_SCHOOL:
+                        return "أعدادية";
+                        break;
+                    case self::DIPLOMA:
+                        return "دبلوم";
+                        break;
+                    case self::BACHELORS:
+                        return "بكالوريوس";
+                        break;
+                    case self::MASTER:
+                        return "دراسات عليا";
+                        break;
+                    case self::PHD:
+                        return "دكتوراه";
+                        break;
+                    case self::OTHER:
+                        return "أخرى";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
                 switch ($Certificate) {
-                    case self::RELIGION:            return "Religion";            break;
-                    case self::INTERMEDIATE_SCHOOL: return "Intermediate School"; break;
-                    case self::HIGH_SCHOOL:         return "High School";         break;
-                    case self::DIPLOMA:             return "Diploma";             break;
-                    case self::BACHELORS:           return "Bachelors";           break;
-                    case self::MASTER:              return "Master";              break;
-                    case self::PHD:                 return "PHD";                 break;
-                    case self::OTHER:               return "Other";               break;
+                    case self::RELIGION:
+                        return "Religion";
+                        break;
+                    case self::INTERMEDIATE_SCHOOL:
+                        return "Intermediate School";
+                        break;
+                    case self::HIGH_SCHOOL:
+                        return "High School";
+                        break;
+                    case self::DIPLOMA:
+                        return "Diploma";
+                        break;
+                    case self::BACHELORS:
+                        return "Bachelors";
+                        break;
+                    case self::MASTER:
+                        return "Master";
+                        break;
+                    case self::PHD:
+                        return "PHD";
+                        break;
+                    case self::OTHER:
+                        return "Other";
+                        break;
                 }
                 break;
         }

@@ -12,3 +12,4 @@
 */
 
 @include("DashboardAdmin.php");
+@include("DashboardLecturer.php");

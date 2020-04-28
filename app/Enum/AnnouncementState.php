@@ -38,14 +38,22 @@ class AnnouncementState
         switch ($locale) {
             case Language::ARABIC:
                 switch ($state) {
-                    case self::INACTIVE:  return "غير فعال"; break;
-                    case self::ACTIVE:      return "فعال";   break;
+                    case self::INACTIVE:
+                        return "غير فعال";
+                        break;
+                    case self::ACTIVE:
+                        return "فعال";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
                 switch ($state) {
-                    case self::INACTIVE: return "Inactive"; break;
-                    case self::ACTIVE:   return "Active";   break;
+                    case self::INACTIVE:
+                        return "Inactive";
+                        break;
+                    case self::ACTIVE:
+                        return "Active";
+                        break;
                 }
                 break;
         }

@@ -4,6 +4,7 @@ namespace App\Http\Middleware\Dashboard;
 
 use App\Enum\AnnouncementType;
 use App\Enum\DocumentType;
+use App\Enum\LecturerState;
 use App\Enum\UserType;
 use Closure;
 
@@ -41,6 +42,14 @@ class Filter
                 case "announcement-update":
                     if (!in_array(request()->input("update"), array("info", "image")))
                         abort(403, __("dashboard-admin/middleware.filter.announcement-update"));
+                    break;
+                case "lecturer-state":
+                    if (!is_null(request()->input("state")) && !in_array(request()->input("state"), LecturerState::getStates()))
+                        abort(403, __("dashboard-admin/middleware.filter.lecturer-state"));
+                    break;
+                case "lecturer-update":
+                    if (!in_array(request()->input("update"), array("info", "pass")))
+                        abort(403, __("dashboard-admin/middleware.filter.lecturer-update"));
                     break;
             }
         }
