@@ -36,8 +36,7 @@ class ImageController extends Controller
       }else{
           $document = new Document();
           $document->user_id = $id;
-          $document->image = Storage::put('public/user/' . $id, $file,
-               'public');
+          $document->image = Storage::put('public/user/' . $id, $file,'public');
           $document->type = $type;
           $mydatetime = Carbon::now();
           $mydate = $mydatetime->toDateString();

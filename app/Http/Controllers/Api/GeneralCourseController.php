@@ -66,14 +66,14 @@ class GeneralCourseController extends Controller
         }
         return $this->notFoundResponse();
     }
-    public function getCoursesByLang($lang,$id)
+    public function getCoursesByLang($lang)
     {
-        $session = new SessionController($id);
-        $remember_token = $session->getSessionId();
+//               $session = new SessionController($id);
+//        $remember_token = $session->getSessionId();
 
         $courses = GeneralCourse::where('lang', $lang)->paginate(10);
         if ($courses){
-            return $this->apiResponse(GeneralCourseResource::collection($courses),200,null,$remember_token);
+            return $this->apiResponse(GeneralCourseResource::collection($courses),200,null);
         }
         return $this->notFoundResponse();
     }
