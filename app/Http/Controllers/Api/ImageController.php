@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Document;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Mockery\Matcher\Ducktype;
@@ -38,6 +39,10 @@ class ImageController extends Controller
           $document->image = Storage::put('public/user/' . $id, $file,
                'public');
           $document->type = $type;
+          $mydatetime = Carbon::now();
+          $mydate = $mydatetime->toDateString();
+
+          $document->created_at =$mydate;
           $document->state = 3;
           if ($document->save()) {
               $url = Storage::url($document->image);
