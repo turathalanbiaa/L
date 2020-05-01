@@ -16,13 +16,25 @@ class UserState
     const DISABLE = 3;
 
     /**
+     * Get all states.
+     *
+     * @return array
+     */
+    public static function getStates() {
+        return array(
+            self::UNTRUSTED,
+            self::TRUSTED,
+            self::DISABLE
+        );
+    }
+
+    /**
      * Get the name of the state.
      *
      * @param $state
      * @return string
      */
-    public static function getStateName($state)
-    {
+    public static function getStateName($state) {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
@@ -54,5 +66,15 @@ class UserState
         }
 
         return "";
+    }
+
+    /**
+     * Get the random state.
+     *
+     * @return int
+     */
+    public static function getRandomState() {
+        $states = self::getStates();
+        return (integer)$states[array_rand($states)];
     }
 }

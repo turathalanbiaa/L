@@ -13,14 +13,14 @@ class CreateGeneralCoursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('general_courses', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->bigInteger('general_course_header_id')->nullable();
-            $table->bigInteger('lecturer_id');
-            $table->string('lang');
-            $table->text('description')->nullable();
-            $table->date('created_at');
+        Schema::create("general_courses", function (Blueprint $table) {
+            $table->integerIncrements("id");
+            $table->string("name");
+            $table->unsignedInteger("general_course_header_id")->nullable();
+            $table->unsignedInteger("lecturer_id");
+            $table->char("lang", 2);
+            $table->text("description")->nullable();
+            $table->date("created_at");
         });
     }
 
@@ -31,6 +31,6 @@ class CreateGeneralCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('general_courses');
+        Schema::dropIfExists("general_courses");
     }
 }

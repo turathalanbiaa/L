@@ -10,8 +10,7 @@ class LecturersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        factory(Lecturer::class, 100)->create();
+    public function run() {
+        factory(Lecturer::class, 250)->create();
     }
 }

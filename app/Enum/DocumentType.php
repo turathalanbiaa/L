@@ -35,13 +35,11 @@ class DocumentType
      * @param $type
      * @return string
      */
-    public static function getTypeName($type)
-    {
+    public static function getTypeName($type) {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
-                switch ($type)
-                {
+                switch ($type) {
                     case self::PERSONAL_IDENTIFICATION:
                         return "الهوية الشخصية";
                         break;
@@ -57,8 +55,7 @@ class DocumentType
                 }
                 break;
             case Language::ENGLISH:
-                switch ($type)
-                {
+                switch ($type) {
                     case self::PERSONAL_IDENTIFICATION:
                         return "Personal Identification";
                         break;
@@ -83,8 +80,7 @@ class DocumentType
      *
      * @return int
      */
-    public static function getRandomType()
-    {
+    public static function getRandomType() {
         $types = self::getTypes();
         return (integer)$types[array_rand($types)];
     }

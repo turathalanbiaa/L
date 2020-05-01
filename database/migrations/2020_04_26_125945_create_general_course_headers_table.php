@@ -13,12 +13,12 @@ class CreateGeneralCourseHeadersTable extends Migration
      */
     public function up()
     {
-        Schema::create('general_course_headers', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('lang');
-            $table->text('description')->nullable();
-            $table->date('created_at');
+        Schema::create("general_course_headers", function (Blueprint $table) {
+            $table->integerIncrements("id");
+            $table->string("title");
+            $table->char("lang", 2);
+            $table->text("description")->nullable();
+            $table->date("created_at");
         });
     }
 
@@ -29,6 +29,6 @@ class CreateGeneralCourseHeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('general_course_headers');
+        Schema::dropIfExists("general_course_headers");
     }
 }
