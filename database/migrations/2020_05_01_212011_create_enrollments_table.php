@@ -1,10 +1,11 @@
 <?php
 
+use App\Enum\EnrollmentState;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudyCoursesTable extends Migration
+class CreateEnrollmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +13,11 @@ class CreateStudyCoursesTable extends Migration
      * @return void
      */
     public function up() {
-        Schema::create("study_courses", function (Blueprint $table) {
+        Schema::create("enrollments", function (Blueprint $table) {
             $table->integerIncrements("id");
-            $table->string("name");
-            $table->char("lang", 2);
-            $table->unsignedTinyInteger("stage");
-            $table->unsignedInteger("lecturer_id");
-            $table->text("description")->nullable();
+            $table->unsignedInteger("user_id");
+            $table->unsignedInteger("general_course_id");
+            $table->unsignedTinyInteger("state")->default(EnrollmentState::SUBSCRIBE);
             $table->date("created_at");
         });
     }
@@ -29,6 +28,6 @@ class CreateStudyCoursesTable extends Migration
      * @return void
      */
     public function down() {
-        Schema::dropIfExists("study_courses");
+        Schema::dropIfExists("enrollments");
     }
 }

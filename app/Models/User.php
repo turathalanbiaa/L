@@ -29,8 +29,7 @@ class User extends Model
         "remember_token"
     ];
 
-    public function documents()
-    {
+    public function documents() {
         return $this->hasMany("App\\Models\\Document")
             ->orderBy("type");
     }

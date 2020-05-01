@@ -11,8 +11,7 @@ class CreateAdminRoleTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create("admin_role", function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->unsignedInteger("admin_id");
@@ -26,8 +25,7 @@ class CreateAdminRoleTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists("admin_role");
     }
 }

@@ -11,8 +11,7 @@ class CreateGeneralCourseHeadersTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create("general_course_headers", function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->string("title");
@@ -27,8 +26,7 @@ class CreateGeneralCourseHeadersTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists("general_course_headers");
     }
 }
