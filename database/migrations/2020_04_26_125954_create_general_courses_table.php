@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\CourseState;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,7 @@ class CreateGeneralCoursesTable extends Migration
             $table->unsignedInteger("lecturer_id");
             $table->char("lang", 2);
             $table->text("description")->nullable();
+            $table->unsignedTinyInteger("state")->default(CourseState::ACTIVE);
             $table->date("created_at");
         });
     }

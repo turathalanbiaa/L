@@ -2,6 +2,7 @@
 
 /** @var Factory $factory */
 
+use App\Enum\CourseState;
 use App\Enum\Language;
 use App\Enum\Stage;
 use App\Models\Lecturer;
@@ -17,6 +18,7 @@ $factory->define(StudyCourse::class, function (Faker $faker) {
         "stage"       => Stage::getRandomStage(),
         "lecturer_id" => Lecturer::where("lang", $lang)->get()->random()->id,
         "description" => $faker->randomElement(array(null, $faker->realText(1000))),
+        "state"       => CourseState::getRandomState(),
         "created_at"  => $faker->dateTimeBetween("-3 years", "now")
     ];
 });
