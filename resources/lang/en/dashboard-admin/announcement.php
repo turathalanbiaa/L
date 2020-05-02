@@ -45,6 +45,7 @@ return [
             "header-1" => "Announcements for students only",
             "header-2" => "Announcements for listeners only",
             "header-3" => "Announcements for both only",
+            "btn-add"  => "Add",
             "column"   => [
                 "number"     => "No.",
                 "title"      => "Title",

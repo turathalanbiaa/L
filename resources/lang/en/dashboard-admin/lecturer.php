@@ -55,6 +55,7 @@ return [
             "header-"  => "All lecturers",
             "header-0" => "The lecturers have disable accounts",
             "header-1" => "The lecturers have active accounts",
+            "btn-add"  => "Add",
             "column"   => [
                 "number"     => "No.",
                 "name"       => "Name",

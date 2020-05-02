@@ -22,8 +22,9 @@
             </div>
         </th>
         <th colspan="1">
-            <a class="btn-floating btn-sm primary-color" type="button" href="{{route("dashboard.admin.lecturers.create")}}">
-                <i class="fa fa-plus"></i>
+            <a class="btn btn-flat waves-effect waves-light" type="button" href="{{route("dashboard.admin.lecturers.create")}}">
+                <i class="fa fa-plus light-green-text mx-1"></i>
+                @lang("dashboard-admin/lecturer.components.datatable.btn-add")
             </a>
         </th>
     </tr>
