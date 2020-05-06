@@ -25,7 +25,8 @@ class Certificate
      *
      * @return array
      */
-    public static function getCertificates() {
+    public static function getCertificates()
+    {
         return array(
             self::RELIGION,
             self::INTERMEDIATE_SCHOOL,
@@ -44,7 +45,8 @@ class Certificate
      * @param $Certificate
      * @return string
      */
-    public static function getCertificateName($Certificate) {
+    public static function getCertificateName($Certificate)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
@@ -113,7 +115,8 @@ class Certificate
      *
      * @return int
      */
-    public static function getRandomCertificate() {
+    public static function getRandomCertificate()
+    {
         $certificates = self::getCertificates();
         return (integer)$certificates[array_rand($certificates)];
     }

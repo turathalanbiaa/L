@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                @include("dashboard.admin.user.components.datatable", ["users" => $users, "type" => $type])
+                @include("dashboard.admin.user.components.datatable", ["type" => $type, "state" => $state, "users" => $users])
             </div>
         </div>
     </div>

@@ -14,7 +14,8 @@ class Language
      *
      * @return array
      */
-    public static function getLanguages() {
+    public static function getLanguages()
+    {
         return array(
             self::ARABIC,
             self::ENGLISH
@@ -27,7 +28,8 @@ class Language
      * @param $locale
      * @return string
      */
-    public static function getLanguageName($locale) {
+    public static function getLanguageName($locale)
+    {
         switch ($locale){
             case self::ARABIC:
                 return "العربية";
@@ -45,7 +47,8 @@ class Language
      *
      * @return string
      */
-    public static function getRandomLanguage() {
+    public static function getRandomLanguage()
+    {
         $languages = self::getLanguages();
         return (string)$languages[array_rand($languages)];
     }

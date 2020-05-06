@@ -13,51 +13,50 @@ return [
     ],
 
     'store' => [
-        'success' => 'The user was created successfully.',
-        'failed'  => 'The user was not created, Try again.'
+        'success' => 'The user account was created successfully.',
+        'failed'  => 'The user account was not created, try again.'
     ],
 
     'show' => [
         'tab' => [
             'profile'       => 'Profile',
-            'documents'     => 'Documents',
-            'account-state' => 'Account state'
+            'documents'     => 'Documents'
         ],
 
         'profile-tab' => [
             'btn-edit' => 'Edit account'
         ],
-
-        'account-state-tab' => [
-            'archived-message' => 'Archived account',
-            'header-info'      => 'Fill out all account information.',
-            'header-auth'      => 'Authenticating the account by (email or phone).',
-            'header-documents' => 'Accept all required documents.'
-        ]
     ],
 
     'edit' => [
-        'change-info'     => 'Change user information',
-        'change-password' => 'Change user password',
-        'btn-save'        => 'Save'
+        "change-info" => "Change account information",
+        "change-pass" => "Change account password",
+        "btn-save"    => "Save"
     ],
 
     'update' => [
-        'success' => 'The user was updated successfully.',
-        'failed'  => 'The user was not updated, Try again.'
+        'success' => 'The user account was updated successfully.',
+        'failed'  => 'The user account was not updated, try again.'
     ],
 
-    'destroy' => [
-        'success' => 'The user was archived successfully.',
-        'failed'  => 'The user was not archived, Try again.'
+    "change-state" => [
+        "success-1" => "The user account was activated successfully.",
+        "failed-1"  => "The user account was not activated, try again.",
+        "success-3" => "The user account was disabled successfully.",
+        "failed-3"  => "The user account was not disabled, try again."
     ],
 
     'components' => [
         'datatable' => [
-            'header-1'  => 'Students enrolled in the institute',
-            'header-2'  => 'Listeners enrolled in the institute',
-            'btn-add-1' => 'Add student',
-            'btn-add-2' => 'Add listener',
+            'header-1-'  => 'All students',
+            'header-1-1' => 'The students have untrusted accounts',
+            'header-1-2' => 'The students have trusted accounts',
+            'header-1-3' => 'The students have disable accounts',
+            'header-2-'  => 'All listeners',
+            'header-2-1' => 'The listeners have untrusted accounts',
+            'header-2-2' => 'The listeners have trusted accounts',
+            'header-2-3' => 'The listeners have disable accounts',
+            'btn-add'    => 'Add',
             'column'    => [
                 'number'     => 'No.',
                 'name'       => 'Name',
@@ -68,19 +67,19 @@ return [
         ],
 
         'modal-show' => [
-            'header'        => 'User information',
-            'btn-info'      => 'Show user',
+            'header'        => 'Account information',
+            'btn-info'      => 'View',
             'btn-dismiss'   => 'No, thanks',
             'error-message' => 'The user dose not exist.'
         ],
 
-        'modal-delete' => [
-            'header'        => 'Archive user',
-            'archive-message'  => 'Do you want to archive user No. (:number)?',
-            'archived-message' => 'User previously archived',
-            'error-message'    => 'The user dose not exist.',
-            'btn-yes'       => 'Yes',
-            'btn-no'        => 'NO'
+        "modal-change-state" => [
+            "header"          => "Account State",
+            "active-message"  => "Do you want to activate the user account No. (:number)?",
+            "disable-message" => "Do you want to disable the user account No. (:number)?",
+            'error-message'   => 'The user dose not exist.',
+            'btn-yes'         => 'Yes',
+            'btn-no'          => 'NO'
         ]
     ],
 
@@ -103,14 +102,13 @@ return [
     ],
 
     'placeholder' => [
-        'name'        => 'Full Name and Surname',
-        'stage'       => 'Select Stage',
+        'name'        => 'Full name and surname',
+        'stage'       => 'Select the stage',
         'email'       => 'Email',
         'phone'       => 'Phone',
-        'gender'      => 'Select Gender',
-        'country'     => 'Select Country',
-        'certificate' => 'Select Certificate',
-        'birth-date'  => 'Birth Date',
-        'address'     => 'Full Address'
+        'gender'      => 'Select the gender',
+        'country'     => 'Select the country',
+        'certificate' => 'Select the certificate',
+        'address'     => 'Full address'
     ]
 ];

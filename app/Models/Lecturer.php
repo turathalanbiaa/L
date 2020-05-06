@@ -22,11 +22,13 @@ class Lecturer extends Model
         "remember_token"
     ];
 
-    public function studyCourses() {
+    public function studyCourses()
+    {
         return $this->hasMany("App\\Models\\StudyCourse");
     }
 
-    public function generalCourses() {
+    public function generalCourses()
+    {
         return $this->hasMany("App\\Models\\GeneralCourse");
     }
 }

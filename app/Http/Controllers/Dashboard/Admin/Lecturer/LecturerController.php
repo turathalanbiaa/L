@@ -17,7 +17,7 @@ class LecturerController extends Controller
     {
         $this->middleware("dashboard.auth");
         $this->middleware("dashboard.role:Lecturer");
-        $this->middleware("filter:lecturer-state")->only(["index"]);
+        $this->middleware("filter:lecturer-state")->only(["index", "changeState"]);
         $this->middleware("filter:lecturer-update")->only(["update"]);
     }
 
@@ -30,10 +30,12 @@ class LecturerController extends Controller
     {
         $state = request()->input("state");
         $lecturers = is_null($state)
-            ? Lecturer::where("lang", app()->getLocale())
+            ? Lecturer::select(["id", "name", "email", "phone", "last_login", "state"])
+                ->where("lang", app()->getLocale())
                 ->latest()
                 ->get()
-            : Lecturer::where("lang", app()->getLocale())
+            : Lecturer::select(["id", "name", "email", "phone", "last_login", "state"])
+                ->where("lang", app()->getLocale())
                 ->where("state", $state)
                 ->latest()
                 ->get();
@@ -186,7 +188,7 @@ class LecturerController extends Controller
     public function changeState() {
         $lecturer = Lecturer::findorFail(request()->input("id"));
         self::checkView($lecturer);
-        $lecturer->state = ((integer)request()->input("state") == 0)
+        $lecturer->state = ((integer)request()->input("state") == LecturerState::INACTIVE)
             ? LecturerState::INACTIVE
             : LecturerState::ACTIVE;
         $lecturer->save();

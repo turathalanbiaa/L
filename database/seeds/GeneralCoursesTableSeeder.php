@@ -10,7 +10,8 @@ class GeneralCoursesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         factory(GeneralCourse::class, 100)->create();
     }
 }

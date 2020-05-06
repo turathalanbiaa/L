@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="collapse @if(old("update") == "info") show @endif border-top border-info" id="collapse-change-info" data-parent="#change-selector">
-                            <form class="pt-3 pb-5" method="post" action="{{route("dashboard.admin.lecturers.update", ["lecturer" => $lecturer->id])}}">
+                            <form method="post" action="{{route("dashboard.admin.lecturers.update", ["lecturer" => $lecturer->id])}}">
                                 @csrf()
                                 @method("PUT")
                                 <input type="hidden" name="id" value="{{$lecturer->id}}">
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="collapse @if(old("update") == "pass") show @endif border-top border-info" id="collapse-change-pass" data-parent="#change-selector">
-                            <form class="pt-3 pb-5" method="post" action="{{route("dashboard.admin.lecturers.update", ["lecturer" => $lecturer->id])}}">
+                            <form method="post" action="{{route("dashboard.admin.lecturers.update", ["lecturer" => $lecturer->id])}}">
                                 @csrf()
                                 @method("PUT")
                                 <input type="hidden" name="update" value="pass">

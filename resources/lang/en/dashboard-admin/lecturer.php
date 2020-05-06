@@ -22,7 +22,7 @@ return [
         ],
 
         "profile-tab" => [
-            "btn-edit" => "Edit Account"
+            "btn-edit" => "Edit account"
         ],
 
         "courses-tab" => [
@@ -44,10 +44,10 @@ return [
     ],
 
     "change-state" => [
-        "success-0" => "The lecturer account was activated successfully.",
-        "failed-0"  => "The lecturer account was not activated, try again.",
-        "success-1" => "The lecturer account was disabled successfully.",
-        "failed-1"  => "The lecturer account was not disabled, try again."
+        "success-0" => "The lecturer account was disabled successfully.",
+        "failed-0"  => "The lecturer account was not disabled, try again.",
+        "success-1" => "The lecturer account was activated successfully.",
+        "failed-1"  => "The lecturer account was not activated, try again."
     ],
 
     "components" => [
@@ -73,12 +73,12 @@ return [
         ],
 
         "modal-change-state" => [
-            "header"        => "Account State",
-            "message-0"     => "Do you want to activate the lecturer account No. (:number)?",
-            "message-1"     => "Do you want to disable the lecturer account No. (:number)?",
-            "error-message" => "The lecturer dose not exist.",
-            "btn-yes"       => "Yes",
-            "btn-no"        => "No"
+            "header"          => "Account State",
+            "active-message"  => "Do you want to activate the lecturer account No. (:number)?",
+            "disable-message" => "Do you want to disable the lecturer account No. (:number)?",
+            "error-message"   => "The lecturer dose not exist.",
+            "btn-yes"         => "Yes",
+            "btn-no"          => "No"
         ]
     ],
 

@@ -21,8 +21,7 @@ class Auth
     public function handle($request, Closure $next)
     {
         //For admin
-        if (request()->is("dashboard/admin*"))
-        {
+        if (request()->is("dashboard/admin*")) {
             if (!Cookie::has("ETA-Admin") && !session()->has("eta.admin.token"))
                 abort(302, "", ["Location" => "/dashboard/admin"]);
 

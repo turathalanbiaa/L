@@ -1,8 +1,13 @@
-@if(!$lecturer || $lecturer->state == \App\Enum\LecturerState::INACTIVE)
+@if(!$lecturer)
     @php $color = "danger" @endphp
+    @php $message = __("dashboard-admin/lecturer.components.modal-change-state.error-message") @endphp
+@elseif($lecturer->state == \App\Enum\LecturerState::INACTIVE)
+    @php $color = "danger" @endphp
+    @php $message = __("dashboard-admin/lecturer.components.modal-change-state.active-message", ["number" => $lecturer->id]) @endphp
     @php $state = \App\Enum\LecturerState::ACTIVE @endphp
 @else
     @php $color = "success" @endphp
+    @php $message = __("dashboard-admin/lecturer.components.modal-change-state.disable-message", ["number" => $lecturer->id]) @endphp
     @php $state = \App\Enum\LecturerState::INACTIVE @endphp
 @endif
 
@@ -19,11 +24,7 @@
                     <div class="col-12">
                         <div class="d-flex justify-content-center p-4">
                             <div class="h5-responsive">
-                                @if($lecturer)
-                                    @lang("dashboard-admin/lecturer.components.modal-change-state.message-$lecturer->state", ["number" => $lecturer->id])
-                                @else
-                                    @lang("dashboard-admin/lecturer.components.modal-change-state.error-message")
-                                @endif
+                              {{$message}}
                             </div>
                         </div>
                     </div>

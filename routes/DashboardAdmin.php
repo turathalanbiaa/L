@@ -16,15 +16,16 @@ Route::namespace("Dashboard\\Admin")
             Route::namespace("User")->group(function () {
                 // Resources
                 Route::resource("users", "UserController");
+                Route::post("users/change-state","UserController@changeState");
                 // Api
                 Route::post("api/users/show","ApiUserController@show");
-                Route::post("api/users/destroy","ApiUserController@destroy");
+                Route::post("api/users/change-state","ApiUserController@changeState");
             });
 
             // Documents
             Route::namespace("Document")->group(function () {
                 // Resources
-                Route::resource("documents", "DocumentController")->except(["show", "edit", "update", "destroy"]);
+                Route::resource("documents", "DocumentController");
                 // Api
                 Route::post("api/documents/store","ApiDocumentController@store");
                 Route::post("api/documents/build-modal","ApiDocumentController@buildModal");
@@ -38,7 +39,7 @@ Route::namespace("Dashboard\\Admin")
                 // Api
                 Route::post("api/announcements/show","ApiAnnouncementController@show");
                 Route::post("api/announcements/destroy","ApiAnnouncementController@destroy");
-                    Route::post("api/announcements/change-state","ApiAnnouncementController@changeState");
+                Route::post("api/announcements/change-state","ApiAnnouncementController@changeState");
             });
 
             // Lecturers
@@ -50,6 +51,10 @@ Route::namespace("Dashboard\\Admin")
                 Route::post("api/lecturers/show","ApiLecturerController@show");
                 Route::post("api/lecturers/change-state","ApiLecturerController@changeState");
             });
+
+
+
+
 
             // Study Courses
             Route::namespace("StudyCourse")->group(function () {

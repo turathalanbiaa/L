@@ -10,7 +10,8 @@ class EnrollmentsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         factory(Enrollment::class, 5000)->create();
     }
 }

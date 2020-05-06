@@ -20,7 +20,8 @@ class AnnouncementType
      *
      * @return array
      */
-    public static function getTypes() {
+    public static function getTypes()
+    {
         return array(
             self::STUDENTS,
             self::LISTENERS,
@@ -34,7 +35,8 @@ class AnnouncementType
      * @param $type
      * @return string
      */
-    public static function getTypeName($type) {
+    public static function getTypeName($type)
+    {
        $locale = app()->getLocale();
        switch ($locale) {
            case Language::ARABIC:
@@ -73,7 +75,8 @@ class AnnouncementType
      *
      * @return int
      */
-    public static function getRandomType() {
+    public static function getRandomType()
+    {
         $types = self::getTypes();
         return (integer)$types[array_rand($types)];
     }

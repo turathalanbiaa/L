@@ -29,25 +29,15 @@ class UpdateAnnouncementRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->input("update")) {
-            case "info":
-                return [
-                    "title"         => "required",
-                    "description"   => "exclude_if:checkImage,on|required_without:youtube_video",
-                    "youtube_video" => "exclude_if:checkImage,on|required_without:description",
-                    "type"          => ["required", Rule::in(AnnouncementType::getTypes())],
-                    "state"         => ["required", Rule::in(AnnouncementState::getStates())],
-                    "created_at"    => "required"
-                ];
-                break;
-            case "image":
-                return [
-                    "image" => "exclude_if:checkContent,on|required|mimes:jpeg,jpg,bmp,png"
-                ];
-                break;
-            default:
-                throw new Exception('Unexpected value');
-        }
+        return [
+            "title"         => ["exclude_if:update,image", "required"],
+            "description"   => ["exclude_if:update,image", "exclude_if:checkImage,on", "required_without:youtube_video"],
+            "youtube_video" => ["exclude_if:update,image", "exclude_if:checkImage,on", "required_without:description"],
+            "type"          => ["exclude_if:update,image", "required", Rule::in(AnnouncementType::getTypes())],
+            "state"         => ["exclude_if:update,image", "required", Rule::in(AnnouncementState::getStates())],
+            "created_at"    => ["exclude_if:update,image", "required"],
+            "image"         => ["exclude_if:update,info", "exclude_if:checkContent,on", "required", "mimes:jpeg,jpg,bmp,png"]
+        ];
     }
 
     /**
@@ -59,28 +49,18 @@ class UpdateAnnouncementRequest extends FormRequest
     public function messages()
     {
         if(app()->getLocale() == Language::ARABIC)
-            switch ($this->input("update")) {
-                case "info":
-                    return [
-                        "title.required"                 => "حقل العنوان مطلوب.",
-                        "description.required_without"   => "حقل الوصف مطلوب عندما لا يكون يوتيوب فيديو موجودة.",
-                        "youtube_video.required_without" => "حقل يوتيوب فيديو مطلوب عندما لا يكون الوصف موجودة.",
-                        "type.required"                  => "حقل النوع مطلوب.",
-                        "type.in"                        => "النوع المحدد غير مقبول.",
-                        "state.required"                 => "حقل الحالة مطلوب.",
-                        "state.in"                       => "الحالة المحددة غير مقبولة.",
-                        "created_at.required"            => "حقل تاريخ الإنشاء مطلوب."
-                    ];
-                    break;
-                case "image":
-                    return [
-                        "image.required" => "حقل الصورة مطلوب.",
-                        "image.mimes"    => "يجب أن تكون الصورة ملفًا من النوع: jpeg ، jpg ، bmp ، png."
-                    ];
-                    break;
-                default:
-                    throw new Exception('Unexpected value');
-            }
+            return [
+                "title.required"                 => "حقل العنوان مطلوب.",
+                "description.required_without"   => "حقل الوصف مطلوب عندما لا يكون يوتيوب فيديو موجودة.",
+                "youtube_video.required_without" => "حقل يوتيوب فيديو مطلوب عندما لا يكون الوصف موجودة.",
+                "type.required"                  => "حقل النوع مطلوب.",
+                "type.in"                        => "النوع المحدد غير مقبول.",
+                "state.required"                 => "حقل الحالة مطلوب.",
+                "state.in"                       => "الحالة المحددة غير مقبولة.",
+                "created_at.required"            => "حقل تاريخ الإنشاء مطلوب.",
+                "image.required"                 => "حقل الصورة مطلوب.",
+                "image.mimes"                    => "يجب أن تكون الصورة ملفًا من النوع: jpeg ، jpg ، bmp ، png."
+            ];
 
         return parent::messages();
     }

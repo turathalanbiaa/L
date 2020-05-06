@@ -19,7 +19,8 @@ class AnnouncementState
      *
      * @return array
      */
-    public static function getStates() {
+    public static function getStates()
+    {
         return array(
             self::INACTIVE,
             self::ACTIVE
@@ -32,7 +33,8 @@ class AnnouncementState
      * @param $state
      * @return string
      */
-    public static function getStateName($state) {
+    public static function getStateName($state)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
@@ -65,7 +67,8 @@ class AnnouncementState
      *
      * @return int
      */
-    public static function getRandomState() {
+    public static function getRandomState()
+    {
         $states = self::getStates();
         return (integer)$states[array_rand($states)];
     }

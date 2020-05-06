@@ -17,7 +17,7 @@ class ApiUserController extends Controller
      * Display the specified user.
      *
      * @return ResponseFactory|Response
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function show()
     {
@@ -27,15 +27,15 @@ class ApiUserController extends Controller
     }
 
     /**
-     * Display Modal Remove.
+     * Display model change state.
      *
      * @return ResponseFactory|Response
      * @throws Throwable
      */
-    public function destroy()
+    public function changeState()
     {
         $user = self::getUser();
-        $view = view("dashboard.admin.user.components.modal-delete", compact("user"))->render();
+        $view = view("dashboard.admin.user.components.modal-change-state", compact("user"))->render();
         return $this->apiResponse(["html" => $view]);
     }
 

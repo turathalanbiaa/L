@@ -21,7 +21,8 @@ class DocumentType
      *
      * @return array
      */
-    public static function getTypes() {
+    public static function getTypes()
+    {
         return array(
             self::PERSONAL_IDENTIFICATION,
             self::RELIGIOUS_RECOMMENDATION,
@@ -35,7 +36,8 @@ class DocumentType
      * @param $type
      * @return string
      */
-    public static function getTypeName($type) {
+    public static function getTypeName($type)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
@@ -80,7 +82,8 @@ class DocumentType
      *
      * @return int
      */
-    public static function getRandomType() {
+    public static function getRandomType()
+    {
         $types = self::getTypes();
         return (integer)$types[array_rand($types)];
     }

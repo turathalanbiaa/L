@@ -12,7 +12,8 @@ class CreateLecturersTable extends Migration
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         Schema::create("lecturers", function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->string("name");
@@ -33,7 +34,8 @@ class CreateLecturersTable extends Migration
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists("lecturers");
     }
 }

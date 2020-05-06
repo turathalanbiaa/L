@@ -46,7 +46,7 @@
             <td>{{$lecturer->last_login ?? "---"}}</td>
             <td>
                 <div class="d-flex justify-content-center" data-content="{{$lecturer->id}}">
-                    <a class="btn-floating btn-sm secondary-color mx-2" data-action="btn-modal-show">
+                    <a class="btn-floating btn-sm secondary-color mx-2" data-action="btn-show">
                         <i class="far fa-address-card"></i>
                     </a>
                     <a class="btn-floating btn-sm info-color mx-2" href="{{route("dashboard.admin.lecturers.show",["lecturer" => $lecturer->id])}}">
@@ -56,11 +56,11 @@
                         <i class="far fa-edit"></i>
                     </a>
                     @if($lecturer->state == \App\Enum\LecturerState::INACTIVE)
-                        <a class="btn-floating btn-sm danger-color mx-2" data-action="btn-modal-change-state">
+                        <a class="btn-floating btn-sm danger-color mx-2" data-action="btn-change-state">
                             <i class="fas fa-user-times"></i>
                         </a>
                     @else
-                        <a class="btn-floating btn-sm success-color mx-2" data-action="btn-modal-change-state">
+                        <a class="btn-floating btn-sm success-color mx-2" data-action="btn-change-state">
                             <i class="fas fa-user-check"></i>
                         </a>
                     @endif
@@ -87,7 +87,7 @@
             'language': {'url': 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'},
             @endif
         } );
-        $('[data-action="btn-modal-show"]').on('click', function () {
+        $('[data-action="btn-show"]').on('click', function () {
             let lecturer = $(this).parent().data('content');
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -107,7 +107,7 @@
                 }
             });
         });
-        $('[data-action="btn-modal-change-state"]').on('click', function () {
+        $('[data-action="btn-change-state"]').on('click', function () {
             let lecturer = $(this).parent().data('content');
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

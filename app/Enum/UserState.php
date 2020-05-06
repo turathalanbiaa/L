@@ -20,7 +20,8 @@ class UserState
      *
      * @return array
      */
-    public static function getStates() {
+    public static function getStates()
+    {
         return array(
             self::UNTRUSTED,
             self::TRUSTED,
@@ -34,16 +35,17 @@ class UserState
      * @param $state
      * @return string
      */
-    public static function getStateName($state) {
+    public static function getStateName($state)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
                 switch ($state) {
                     case self::UNTRUSTED:
-                        return "غير موثوق";
+                        return "غير موثق";
                         break;
                     case self::TRUSTED:
-                        return "موثوق";
+                        return "موثق";
                         break;
                     case self::DISABLE:
                         return "معطل";
@@ -73,7 +75,8 @@ class UserState
      *
      * @return int
      */
-    public static function getRandomState() {
+    public static function getRandomState()
+    {
         $states = self::getStates();
         return (integer)$states[array_rand($states)];
     }

@@ -16,7 +16,6 @@ class SetLocale
 
     public function handle($request, Closure $next)
     {
-
         //For admin
         if (request()->is("dashboard/admin*")) {
             $locale = request()->input("locale");

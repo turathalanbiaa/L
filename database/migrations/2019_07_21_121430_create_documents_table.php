@@ -12,7 +12,8 @@ class CreateDocumentsTable extends Migration
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         Schema::create("documents", function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->unsignedInteger("user_id");
@@ -28,7 +29,8 @@ class CreateDocumentsTable extends Migration
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists("documents");
     }
 }

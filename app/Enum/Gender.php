@@ -19,7 +19,8 @@ class Gender
      *
      * @return array
      */
-    public static function getGenders() {
+    public static function getGenders()
+    {
         return array(
             self::MALE,
             self::FEMALE
@@ -32,7 +33,8 @@ class Gender
      * @param $gender
      * @return string
      */
-    public static function getGenderName($gender) {
+    public static function getGenderName($gender)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
@@ -65,7 +67,8 @@ class Gender
      *
      * @return int
      */
-    public static function getRandomGender() {
+    public static function getRandomGender()
+    {
         $genders = self::getGenders();
         return (integer)$genders[array_rand($genders)];
     }

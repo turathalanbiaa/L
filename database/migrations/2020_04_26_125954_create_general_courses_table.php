@@ -12,7 +12,8 @@ class CreateGeneralCoursesTable extends Migration
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         Schema::create("general_courses", function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->string("name");
@@ -30,7 +31,8 @@ class CreateGeneralCoursesTable extends Migration
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists("general_courses");
     }
 }

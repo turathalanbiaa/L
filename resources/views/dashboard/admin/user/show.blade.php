@@ -12,16 +12,9 @@
                             @lang("dashboard-admin/user.show.tab.profile")
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link text-capitalize" id="documents-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">
                             @lang("dashboard-admin/user.show.tab.documents")
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link text-capitalize" id="account-state-tab" data-toggle="tab" href="#account-state" role="tab" aria-controls="account-state" aria-selected="false">
-                            @lang("dashboard-admin/user.show.tab.account-state")
                         </a>
                     </li>
                 </ul>
@@ -81,47 +74,8 @@
                             @lang("dashboard-admin/user.show.profile-tab.btn-edit")
                         </a>
                     </div>
-
                     <div class="tab-pane fade pt-4" id="documents" role="tabpanel" aria-labelledby="documents-tab">
-                        @include("dashboard.admin.document.share.user-documents", ["user" => $user, "documents" => $documents])
-                    </div>
-
-                    <div class="tab-pane fade pt-4" id="account-state" role="tabpanel" aria-labelledby="account-state-tab">
-                        @if($user->state == \App\Enum\UserState::DISABLE)
-                            <div class="alert alert-danger text-center">
-                                @lang("dashboard-admin/user.show.account-state-tab.archived-message")
-                            </div>
-                        @endif
-
-                        <div class="h5-responsive mb-3">
-                            @if($user->type == \App\Enum\UserType::STUDENT)
-                                <i class="far fa-check-square mx-1 text-success"></i>
-                            @else
-                                <i class="far fa-minus-square mx-1"></i>
-                            @endif
-                            @lang("dashboard-admin/user.show.account-state-tab.header-info")
-                        </div>
-
-                        <div class="h5-responsive mb-3">
-                            @if($user->state == \App\Enum\UserState::TRUSTED)
-                                <i class="far fa-check-square mx-1 text-success"></i>
-                            @else
-                                <i class="far fa-minus-square mx-1"></i>
-                            @endif
-                            @lang("dashboard-admin/user.show.account-state-tab.header-auth")
-                        </div>
-
-                        <div class="h5-responsive mb-3">
-                            @if($user->documents->filter(function ($document) {
-                                return ($document->type != \App\Enum\DocumentType::PERSONAL_IMAGE) &&
-                                    ($document->state == \App\Enum\DocumentState::ACCEPT);
-                                })->count() == 3)
-                                <i class="far fa-check-square mx-1 text-success"></i>
-                            @else
-                                <i class="far fa-minus-square mx-1"></i>
-                            @endif
-                            @lang("dashboard-admin/user.show.account-state-tab.header-documents")
-                        </div>
+                        @include("dashboard.admin.document.share.user-documents", ["user" => $user])
                     </div>
                 </div>
             </div>

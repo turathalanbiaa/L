@@ -10,7 +10,8 @@ class AnnouncementsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         factory(Announcement::class, 1000)->create();
     }
 }

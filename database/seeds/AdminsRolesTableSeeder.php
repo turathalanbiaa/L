@@ -12,7 +12,8 @@ class AdminsRolesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         $admins = Admin::all();
         $roles = Role::all();
 

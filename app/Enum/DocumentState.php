@@ -20,7 +20,8 @@ class DocumentState
      *
      * @return array
      */
-    public static function getStates() {
+    public static function getStates()
+    {
         return array(
             self::ACCEPT,
             self::REJECT,
@@ -33,7 +34,8 @@ class DocumentState
      * @param $stateNumber
      * @return string
      */
-    public static function getStateName($stateNumber) {
+    public static function getStateName($stateNumber)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
@@ -72,7 +74,8 @@ class DocumentState
      *
      * @return int
      */
-    public static function getRandomState() {
+    public static function getRandomState()
+    {
         $states = self::getStates();
         return (integer)$states[array_rand($states)];
     }

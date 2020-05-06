@@ -24,7 +24,8 @@ class Stage
      *
      * @return array
      */
-    public static function getStages() {
+    public static function getStages()
+    {
         return array(
             self::BEGINNER_STAGE,
             self::INTRO_STAGE_FIRST_LEVEL_ONE,
@@ -42,7 +43,8 @@ class Stage
      * @param $stage
      * @return string
      */
-    public static function getStageName($stage) {
+    public static function getStageName($stage)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
@@ -105,7 +107,8 @@ class Stage
      *
      * @return int
      */
-    public static function getRandomStage() {
+    public static function getRandomStage()
+    {
        $stages = self::getStages();
        return (integer)$stages[array_rand($stages)];
     }

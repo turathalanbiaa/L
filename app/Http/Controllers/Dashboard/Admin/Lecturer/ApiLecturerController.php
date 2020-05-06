@@ -27,7 +27,7 @@ class ApiLecturerController extends Controller
     }
 
     /**
-     * Display Modal Remove.
+     * Display model change state.
      *
      * @return ResponseFactory|Response
      * @throws Throwable

@@ -31,29 +31,31 @@
                     <input type="hidden" name="prev_image" value="{{old("image")}}" id="prev-image">
                     <input class="d-none" type="submit" id="submit">
                 </form>
-
                 <form method="post" action="{{route("dashboard.admin.documents.store")}}">
                     @csrf()
                     <input type="hidden" name="user" value="{{old("user", $user)}}">
                     @error("user") <div class="text-warning">{{$message}}</div> @enderror
                     <input type="hidden" name="image" value="{{old("image")}}" id="image-path">
+
                     <div class="form-group row">
                         <div class="col-12 mb-3">
                             <label class="col-form-label" for="type" >
                                 @lang("dashboard-admin/document.label.type")
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" class="form-control" id="type" value="{{App\Enum\DocumentType::getTypeName(old("type"))}}"
-                                   placeholder="@lang("dashboard-admin/document.placeholder.type")"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <input type="hidden" name="type" value="{{old("type")}}">
-                            @error("type") <div class="text-warning">{{$message}}</div> @enderror
-                            <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
-                                @foreach($types as $type)
-                                    <div class="dropdown-item" data-value="{{$type}}">
-                                        {{App\Enum\DocumentType::getTypeName($type)}}
-                                    </div>
-                                @endforeach
+                            <div class="dropdown">
+                                <input type="text" class="form-control" id="type" value="{{App\Enum\DocumentType::getTypeName(old("type"))}}"
+                                       placeholder="@lang("dashboard-admin/document.placeholder.type")"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <input type="hidden" name="type" value="{{old("type")}}">
+                                @error("type") <div class="text-warning">{{$message}}</div> @enderror
+                                <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-type">
+                                    @foreach(\App\Enum\DocumentType::getTypes() as $type)
+                                        <div class="dropdown-item" data-value="{{$type}}">
+                                            {{App\Enum\DocumentType::getTypeName($type)}}
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                         <div class="col-12">
@@ -61,17 +63,19 @@
                                 @lang("dashboard-admin/document.label.state")
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" class="form-control" id="state" value="{{App\Enum\DocumentState::getStateName(old("state"))}}"
-                                   placeholder="@lang("dashboard-admin/document.placeholder.state")"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <input type="hidden" name="state" value="{{old("state")}}">
-                            @error("state") <div class="text-warning">{{$message}}</div> @enderror
-                            <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-state">
-                                @foreach($states as $state)
-                                    <div class="dropdown-item" data-value="{{$state}}">
-                                        {{App\Enum\DocumentState::getStateName($state)}}
-                                    </div>
-                                @endforeach
+                            <div class="dropdown">
+                                <input type="text" class="form-control" id="state" value="{{App\Enum\DocumentState::getStateName(old("state"))}}"
+                                       placeholder="@lang("dashboard-admin/document.placeholder.state")"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <input type="hidden" name="state" value="{{old("state")}}">
+                                @error("state") <div class="text-warning">{{$message}}</div> @enderror
+                                <div class="dropdown-menu dropdown-default w-100" aria-labelledby="type" id="dropdown-state">
+                                    @foreach(\App\Enum\DocumentState::getStates() as $state)
+                                        <div class="dropdown-item" data-value="{{$state}}">
+                                            {{App\Enum\DocumentState::getStateName($state)}}
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>

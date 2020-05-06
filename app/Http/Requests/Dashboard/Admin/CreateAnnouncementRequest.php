@@ -28,10 +28,10 @@ class CreateAnnouncementRequest extends FormRequest
     public function rules()
     {
         return [
-            "title"         => "required",
-            "description"   => "required_without_all:image,youtube_video",
-            "image"         => "required_without_all:description,youtube_video|mimes:jpeg,jpg,bmp,png",
-            "youtube_video" => "required_without_all:description,image",
+            "title"         => ["required"],
+            "description"   => ["required_without_all:image,youtube_video"],
+            "image"         => ["required_without_all:description,youtube_video", "mimes:jpeg,jpg,bmp,png"],
+            "youtube_video" => ["required_without_all:description,image"],
             "type"          => ["required", Rule::in(AnnouncementType::getTypes())],
             "state"         => ["required", Rule::in(AnnouncementState::getStates())]
         ];

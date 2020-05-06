@@ -19,7 +19,8 @@ class LecturerState
      *
      * @return array
      */
-    public static function getStates() {
+    public static function getStates()
+    {
         return array(
             self::INACTIVE,
             self::ACTIVE
@@ -32,7 +33,8 @@ class LecturerState
      * @param $state
      * @return string
      */
-    public static function getStateName($state) {
+    public static function getStateName($state)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:

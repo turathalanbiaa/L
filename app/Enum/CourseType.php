@@ -19,7 +19,8 @@ class CourseType
      *
      * @return array
      */
-    public static function getTypes() {
+    public static function getTypes()
+    {
         return array(
             self::GENERAL,
             self::STUDY
@@ -32,7 +33,8 @@ class CourseType
      * @param $type
      * @return string
      */
-    public static function getTypeName($type) {
+    public static function getTypeName($type)
+    {
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
@@ -65,7 +67,8 @@ class CourseType
      *
      * @return int
      */
-    public static function getRandomType() {
+    public static function getRandomType()
+    {
         $types = self::getTypes();
         return (integer)$types[array_rand($types)];
     }

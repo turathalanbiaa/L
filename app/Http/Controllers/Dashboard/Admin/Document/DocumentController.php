@@ -49,8 +49,8 @@ class DocumentController extends Controller
                 ->simplePaginate(20);
 
         return view("dashboard.admin.document.index")->with([
-            "documents" => $documents,
-            "type"      => $type
+            "type"      => $type,
+            "documents" => $documents
         ]);
     }
 
@@ -62,9 +62,7 @@ class DocumentController extends Controller
     public function create()
     {
         return view("dashboard.admin.document.create")->with([
-            "types"  => DocumentType::getTypes(),
-            "states" => DocumentState::getStates(),
-            "user"   => request()->input("user")
+            "user" => request()->input("user")
         ]);
     }
 

@@ -28,10 +28,10 @@ class CreateLecturerRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"     => "required",
-            "email"    => "required|email|unique:lecturers,email",
-            "phone"    => "required|unique:lecturers,phone",
-            "password" => "required|min:6|confirmed",
+            "name"     => ["required"],
+            "email"    => ["required", "email", "unique:lecturers,email"],
+            "phone"    => ["required", "unique:lecturers,phone"],
+            "password" => ["required", "min:6", "confirmed"],
             "state"    => ["required", Rule::in(LecturerState::getStates())]
         ];
     }

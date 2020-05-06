@@ -3,7 +3,7 @@
         @lang("dashboard-admin/document.share.user-documents.btn-add")
     </a>
     <div class="clearfix row pt-3">
-        @include("dashboard.admin.document.components.documents", ["documents" => $documents])
+        @include("dashboard.admin.document.components.documents", ["documents" => $user->documents])
     </div>
 @else
     <div class="d-flex justify-content-center">

@@ -11,7 +11,8 @@ class AdminsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         // Arabic Admin
         factory(Admin::class)->create([
             "name"           => "عماد وهاب الكعبي",

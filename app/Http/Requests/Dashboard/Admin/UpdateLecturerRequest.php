@@ -28,24 +28,14 @@ class UpdateLecturerRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->input("update")) {
-            case "info":
-                $id = request()->input("id");
-                return [
-                    "name"  => "required",
-                    "email" => "required|email|unique:lecturers,email,$id",
-                    "phone" => "required|unique:lecturers,phone,$id",
-                    "state" => ["required", Rule::in(LecturerState::getStates())]
-                ];
-                break;
-            case "pass":
-                return [
-                    "password" => "required|min:6|confirmed"
-                ];
-                break;
-            default:
-                throw new Exception('Unexpected value');
-        }
+        $id = request()->input("id");
+        return [
+            "name"     => ["exclude_if:update,pass", "required"],
+            "email"    => ["exclude_if:update,pass", "required", "email", "unique:lecturers,email,$id"],
+            "phone"    => ["exclude_if:update,pass", "required", "unique:lecturers,phone,$id"],
+            "state"    => ["exclude_if:update,pass", "required", Rule::in(LecturerState::getStates())],
+            "password" => ["exclude_if:update,info", "required", "min:6", "confirmed"]
+        ];
     }
 
     /**
@@ -57,29 +47,19 @@ class UpdateLecturerRequest extends FormRequest
     public function messages()
     {
         if(app()->getLocale() == Language::ARABIC)
-            switch ($this->input("update")) {
-                case "info":
-                    return [
-                        "name.required"  => "حقل الاسم مطلوب.",
-                        "email.required" => "حقل البريد الإلكتروني مطلوب.",
-                        "email.email"    => "البريد الالكتروني غير مقبول.",
-                        "email.unique"   => "البريد الالكتروني محجوز.",
-                        "phone.required" => "حقل الهاتف مطلوب.",
-                        "phone.unique"   => "الهاتف محجوز.",
-                        "state.required" => "حقل الحالة مطلوب.",
-                        "state.in"       => "الحالة المحددة غير مقبولة."
-                    ];
-                    break;
-                case "pass":
-                    return [
-                        "password.required"  => "حقل كلمة المرور مطلوب.",
-                        "password.min"       => "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
-                        "password.confirmed" => "كلمتا المرور غير متطابقتان."
-                    ];
-                    break;
-                default:
-                    throw new Exception('Unexpected value');
-            }
+            return [
+                "name.required"      => "حقل الاسم مطلوب.",
+                "email.required"     => "حقل البريد الإلكتروني مطلوب.",
+                "email.email"        => "البريد الالكتروني غير مقبول.",
+                "email.unique"       => "البريد الالكتروني محجوز.",
+                "phone.required"     => "حقل الهاتف مطلوب.",
+                "phone.unique"       => "الهاتف محجوز.",
+                "state.required"     => "حقل الحالة مطلوب.",
+                "state.in"           => "الحالة المحددة غير مقبولة.",
+                "password.required"  => "حقل كلمة المرور مطلوب.",
+                "password.min"       => "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
+                "password.confirmed" => "كلمتا المرور غير متطابقتان."
+            ];
 
         return parent::messages();
     }

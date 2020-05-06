@@ -25,6 +25,7 @@ class UserController extends Controller
         $this->middleware("dashboard.auth");
         $this->middleware("dashboard.role:User");
         $this->middleware("filter:user-type")->only(["index", "create", "store"]);
+        $this->middleware("filter:user-state")->only(["index", "changeState"]);
         $this->middleware("filter:user-update")->only(["update"]);
     }
 
@@ -36,14 +37,23 @@ class UserController extends Controller
     public function index()
     {
         $type = request()->input("type");
-        $users = User::select(["id", "name", "email", "phone", "last_login"])
-            ->where("type", $type)
-            ->where("lang", app()->getLocale())
-            ->latest()
-            ->get();
+        $state = request()->input("state");
+        $users = is_null($state)
+            ? User::select(["id", "name", "email", "phone", "last_login", "state"])
+                ->where("type", $type)
+                ->where("lang", app()->getLocale())
+                ->latest()
+                ->get()
+            : User::select(["id", "name", "email", "phone", "last_login", "state"])
+                ->where("type", $type)
+                ->where("state", $state)
+                ->where("lang", app()->getLocale())
+                ->latest()
+                ->get();
 
         return view("dashboard.admin.user.index")->with([
-            "type" => $type,
+            "type"  => $type,
+            "state" => $state,
             "users" => $users
         ]);
     }
@@ -56,11 +66,7 @@ class UserController extends Controller
     public function create()
     {
         return view("dashboard.admin.user.create")->with([
-            "type"         => request()->input("type"),
-            "stages"       => Stage::getStages(),
-            "genders"      => Gender::getGenders(),
-            "countries"    => Countries::lookup(app()->getLocale()),
-            "certificates" => Certificate::getCertificates()
+            "type" => request()->input("type")
         ]);
     }
 
@@ -97,14 +103,14 @@ class UserController extends Controller
                 ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/user.store.failed"),
-                    "type" => "warning"
+                    "type"    => "warning"
                 ]);
 
         return redirect()
             ->back()
             ->with([
                 "message" => __("dashboard-admin/user.store.success"),
-                "type" => "success"
+                "type"    => "success"
             ]);
     }
 
@@ -118,8 +124,7 @@ class UserController extends Controller
     {
         self::checkView($user);
         return view("dashboard.admin.user.show")->with([
-            "user"      => $user,
-            "documents" => $user->documents
+            "user" => $user
         ]);
     }
 
@@ -133,11 +138,7 @@ class UserController extends Controller
     {
         self::checkView($user);
         return view("dashboard.admin.user.edit")->with([
-            "user"         => $user,
-            "stages"       => Stage::getStages(),
-            "genders"      => Gender::getGenders(),
-            "countries"    => Countries::lookup(app()->getLocale()),
-            "certificates" => Certificate::getCertificates()
+            "user" => $user
         ]);
     }
 
@@ -162,7 +163,7 @@ class UserController extends Controller
                     "country"     => $request->input("country"),
                     "birth_date"  => $request->input("birth_date", null),
                     "address"     => $request->input("address", null),
-                    "certificate" => $request->input("certificate", null),
+                    "certificate" => $request->input("certificate", null)
                 ];
                 break;
             case "pass":
@@ -180,14 +181,14 @@ class UserController extends Controller
                 ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/user.update.failed"),
-                    "type" => "warning"
+                    "type"    => "warning"
                 ]);
 
         return redirect()
             ->back()
             ->with([
                 "message" => __("dashboard-admin/user.update.success"),
-                "type" => "success"
+                "type"    => "success"
             ]);
     }
 
@@ -195,26 +196,38 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return RedirectResponse
+     * @return void
      */
     public function destroy(User $user) {
+        abort(404);
+    }
+
+    /**
+     * Change state for the specified resource in storage.
+     *
+     * @return RedirectResponse
+     */
+    public function changeState() {
+        $user = User::findorFail(request()->input("id"));
         self::checkView($user);
-        $data = ["state" => UserState::DISABLE];
-        User::where("id", $user->id)->update($data);
+        $user->state = ((integer)request()->input("state") == UserState::DISABLE)
+            ? UserState::DISABLE
+            : UserState::UNTRUSTED;
+        $user->save();
 
         if (!$user)
             return redirect()
                 ->back()
                 ->with([
-                    "message" => __("dashboard-admin/user.destroy.failed"),
-                    "type" => "warning"
+                    "message" => __("dashboard-admin/user.change-state.failed-$user->state"),
+                    "type"    => "warning"
                 ]);
 
         return redirect()
             ->back()
             ->with([
-                "message" => __("dashboard-admin/user.destroy.success"),
-                "type" => "success"
+                "message" => __("dashboard-admin/user.change-state.success-$user->state"),
+                "type"    => "success"
             ]);
     }
 

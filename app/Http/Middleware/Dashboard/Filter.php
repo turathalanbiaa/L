@@ -5,6 +5,7 @@ namespace App\Http\Middleware\Dashboard;
 use App\Enum\AnnouncementType;
 use App\Enum\DocumentType;
 use App\Enum\LecturerState;
+use App\Enum\UserState;
 use App\Enum\UserType;
 use Closure;
 
@@ -26,6 +27,10 @@ class Filter
                 case "user-type":
                     if (!in_array(request()->input("type"), UserType::getTypes()))
                         abort(403, __("dashboard-admin/middleware.filter.user-type"));
+                    break;
+                case "user-state":
+                    if (!is_null(request()->input("state")) && !in_array(request()->input("state"), UserState::getStates()))
+                        abort(403, __("dashboard-admin/middleware.filter.user-state"));
                     break;
                 case "user-update":
                     if (!in_array(request()->input("update"), array("info", "pass")))
