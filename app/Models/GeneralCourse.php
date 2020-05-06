@@ -9,7 +9,6 @@ class GeneralCourse extends Model
     protected $table = "general_courses";
     protected $primaryKey = "id";
     public $timestamps = false;
-
     protected $fillable = [
         "id",
         "name",
