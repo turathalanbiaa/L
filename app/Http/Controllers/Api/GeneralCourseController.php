@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\GeneralCourse;
 use Illuminate\Http\Request;
 use App\Http\Resources\GeneralCourse as GeneralCourseResource;
+use Illuminate\Support\Facades\DB;
 
 class GeneralCourseController extends Controller
 {
@@ -26,7 +27,25 @@ class GeneralCourseController extends Controller
             return $this->notFoundResponse();
         }
     }
+    public function MyCourses(Request $request)
+    {
+        $user_id = $request->get('user_id');
 
+        $generalCourse = DB::table('enrollments')
+            ->where('enrollments.user_id',$user_id)
+            ->Join('general_courses', 'general_courses.id', '=', 'enrollments.general_course_id')
+            ->get();
+
+
+        if ($generalCourse){
+
+
+            return $this->apiResponse($generalCourse,200,null);
+        }
+        else{
+            return $this->notFoundResponse();
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -54,15 +73,16 @@ class GeneralCourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,Request $request)
+    public function show(Request $request)
     {
+        $id = $request->get('id');
         $generalCourse=GeneralCourse::find($id);
         if ($generalCourse){
-            $remember_token = $request->get('remember_token');
-            $session = new SessionController();
-            $logged = $session->getToken($remember_token);
+//            $remember_token = $request->get('remember_token');
+//            $session = new SessionController();
+//            $logged = $session->getToken($remember_token);
 
-            return $this->apiResponse(new GeneralCourseResource($generalCourse),200,null,$logged);
+            return $this->apiResponse(new GeneralCourseResource($generalCourse),200,null);
         }
         return $this->notFoundResponse();
     }
