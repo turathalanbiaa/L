@@ -1,21 +1,32 @@
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{str_replace("_", "-", app()->getLocale())}}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>@lang("dashboard-admin/login.title")</title>
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
-    <!-- Custom Style -->
-    <link href="{{asset("css/custom-ltr.css")}}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap tooltips/core  JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- MDB core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.1/css/mdb.min.css" rel="stylesheet">
+    <!-- MDB core JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.1/js/mdb.min.js"></script>
     <!-- Inside Page Styles -->
     <style>
+        [lang="ar"] body {
+            direction: rtl;
+            text-align: right;
+        }
+        [lang="en"] body {
+            direction: ltr;
+            text-align: left;
+        }
         html, body {
             background-color: #f0f3f9;
             color: #23282c;
@@ -33,7 +44,6 @@
     </style>
 </head>
 <body>
-    <!-- content -->
     <div class="d-flex justify-content-center align-items-center full-height position-relative">
         <div class="container">
             <div class="row justify-content-center">
@@ -46,41 +56,39 @@
                                     {{ session("error") }}
                                 </div>
                             @endif
-                            <form role="form" method="POST" action="{{route('dashboard.admin.login')}}">
-                                @csrf
 
+                            <form method="post" action="{{route("dashboard.admin.login")}}">
+                                @csrf()
                                 <div class="form-group">
-                                    <label class="control-label" for="username">@lang('dashboard-admin/login.input-username')</label>
-                                    <input type="text" class="form-control form-control-sm" name="username" id="username" value="">
-                                    @error('username') <div class="text-danger">{{ $message }}</div> @enderror
+                                    <label class="control-label" for="username">
+                                        @lang("dashboard-admin/login.label-username")
+                                    </label>
+                                    <input type="text" class="form-control form-control-sm" name="username" id="username" value="{{old("username")}}">
+                                    @error("username") <div class="text-danger">{{$message}}</div> @enderror
                                 </div>
-
                                 <div class="form-group">
-                                    <label class="control-label" for="password">@lang('dashboard-admin/login.input-password')</label>
+                                    <label class="control-label" for="password">
+                                        @lang("dashboard-admin/login.label-password")
+                                    </label>
                                     <input type="password" class="form-control form-control-sm" name="password" id="password" value="">
-                                    @error('password') <div class="text-danger">{{ $message }}</div> @enderror
+                                    @error("password") <div class="text-danger">{{$message}}</div> @enderror
                                 </div>
-
                                 <div class="form-group pt-2">
-                                    <div>
-                                        <button type="submit" class="btn btn-block btn-blue-grey">
-                                            @lang('dashboard-admin/login.btn-login')
-                                        </button>
-                                    </div>
+                                    <button type="submit" class="btn btn-block btn-blue-grey">
+                                        @lang("dashboard-admin/login.btn-login")
+                                    </button>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="links text-center pt-3">
-                        <a href="{{route('dashboard.admin')}}?locale=ar">العربية</a>
-                        <a href="{{route('dashboard.admin')}}?locale=en">English</a>
+                        <a href="{{route("dashboard.admin")}}?locale={{\App\Enum\Language::ARABIC}}">العربية</a>
+                        <a href="{{route("dashboard.admin")}}?locale={{\App\Enum\Language::ENGLISH}}">English</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
     <footer class="page-footer unique-color-dark">
         <div class="footer-copyright py-3 text-center" dir="ltr">
             © 2016 Copyright:
@@ -89,14 +97,5 @@
             </a>
         </div>
     </footer>
-
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
 </body>
 </html>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\View\View;
 
 class MainController extends Controller
 {
@@ -12,13 +14,13 @@ class MainController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('setLocale')->only('index');
+        $this->middleware("setLocale")->only(["index"]);
     }
 
     /**
      * Show the admin page or go to the login page.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {

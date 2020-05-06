@@ -1,12 +1,6 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title")
-    @lang("dashboard-admin/main.title")
-@endSection
-
-@section("style")
-
-@endSection
+@section("title", __("dashboard-admin/main.title"))
 
 @section("content")
     <div class="container-fluid">
@@ -65,12 +59,4 @@
             <div class="col-12"><h3 class="text-center bg-light">this is last line</h3></div>
         </div>
     </div>
-@endsection
-
-@section("extra-content")
-
-@endsection
-
-@section("script")
-
 @endsection
