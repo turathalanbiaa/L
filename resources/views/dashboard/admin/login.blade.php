@@ -48,8 +48,10 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 col-lg-4">
-                    <h4 class="text-center font-weight-bold mb-4">@lang("dashboard-admin/login.header")</h4>
-                    <div class="card mx-3 shadow-sm">
+                    <h4 class="text-center font-weight-bold mb-4">
+                        @lang("dashboard-admin/login.header")
+                    </h4>
+                    <div class="card shadow-sm">
                         <div class="card-body">
                             @if(session("error"))
                                 <div class="alert alert-danger animated fadeIn">
