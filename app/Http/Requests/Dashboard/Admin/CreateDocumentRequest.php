@@ -28,10 +28,10 @@ class CreateDocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'user'  => 'required',
-            'image' => 'required',
-            'type'  => ["required", Rule::in(DocumentType::getTypes())],
-            'state' => ["required", Rule::in(DocumentState::getStates())]
+            "user"  => ["required"],
+            "image" => ["required"],
+            "type"  => ["required", Rule::in(DocumentType::getTypes())],
+            "state" => ["required", Rule::in(DocumentState::getStates())]
         ];
     }
 
@@ -44,13 +44,12 @@ class CreateDocumentRequest extends FormRequest
     {
         if(app()->getLocale() == Language::ARABIC)
             return [
-                "user.required"  => "المستخدم غير موجود",
-                "image.required" => "اختيار الصورة مطلوب",
-                "email.email"    => "البريد الالكتروني غير مقبول",
-                "type.required"  => "اختيار النوع مطلوب",
-                "type.in"        => "النوع غير مقبول",
-                "state.required" => "اختيار الحالة مطلوب",
-                "state.in"       => "الحالة غير مقبولة",
+                "user.required"  => "حقل المستخدم مطلوب.",
+                "image.required" => "حقل الصورة مطلوب.",
+                "type.required"  => "حقل النوع مطلوب.",
+                "type.in"        => "النوع المحدد غير مقبول.",
+                "state.required" => "حقل الحالة مطلوب.",
+                "state.in"       => "الحالة المحدده غير مقبولة."
             ];
 
         return parent::messages();

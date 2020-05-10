@@ -36,7 +36,6 @@
                     <input type="hidden" name="user" value="{{old("user", $user)}}">
                     @error("user") <div class="text-warning">{{$message}}</div> @enderror
                     <input type="hidden" name="image" value="{{old("image")}}" id="image-path">
-
                     <div class="form-group row">
                         <div class="col-12 mb-3">
                             <label class="col-form-label" for="type" >
@@ -85,14 +84,13 @@
                         </button>
                     </div>
                 </form>
-
                 <div class="alert alert-info">
                     <i class="far fa-star text-danger"></i>
                     @lang("dashboard-admin/document.create.note-1")
                 </div>
             </div>
             <div class="col-xl-5 col-lg-7 col-md-7 col-sm-12 text-center">
-                <img src="{{is_null(old("image"))?asset("images/large/img/dashboard/admin/image-placeholder.jpg"):asset("images/large/".Storage::url(old('image')))}}" id="image-url" class="w-100 img-thumbnail z-depth-1" alt="Document Image">
+                <img src="{{is_null(old("image"))?asset("images/large/img/dashboard/admin/image-placeholder.jpg"):asset("images/large/".Storage::url(old("image")))}}" id="image-url" class="w-100 img-thumbnail z-depth-1" alt="Document Image">
                 <div class="alert alert-info mt-2">
                     <i class="far fa-star text-danger"></i>
                     @lang("dashboard-admin/document.create.note-2")

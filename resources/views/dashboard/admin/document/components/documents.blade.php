@@ -88,12 +88,10 @@
             modalDocumentView.find('img').attr('src', src);
             modalDocumentView.modal('show');
         });
-
         $('[data-action="build-modal"]').on('click', function () {
             let document = $(this).parent().data('content');
             let action = $(this).data('content');
             let modalDocumentAction = $('#modal-document-action');
-
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type: 'post',
@@ -124,11 +122,9 @@
                 }
             });
         });
-
         $('[data-action="document"]').on('click', function () {
             let document = $(this).find('input[name="document"]').val();
             let action = $(this).find('input[name="action"]').val();
-
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 type: 'post',

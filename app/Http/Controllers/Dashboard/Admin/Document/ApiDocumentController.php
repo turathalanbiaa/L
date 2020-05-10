@@ -25,7 +25,9 @@ class ApiDocumentController extends Controller
      * @return ResponseFactory|Response
      */
     public function store(Request $request) {
-        $rules = ["image" => "required|mimes:jpeg,jpg,bmp,png"];
+        $rules = [
+            "image" => ["required|mimes:jpeg,jpg,bmp,png"]
+        ];
         if (app()->getLocale() == Language::ARABIC)
             $messages = [
                 "image.required" => "حقل الصورة مطلوب.",

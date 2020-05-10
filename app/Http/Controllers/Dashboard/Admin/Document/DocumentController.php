@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Dashboard\Admin\Document;
 
 use App\Enum\DocumentState;
-use App\Enum\DocumentType;
 use App\Enum\UserType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\CreateDocumentRequest;
@@ -11,6 +10,7 @@ use App\Models\Document;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -109,5 +109,50 @@ class DocumentController extends Controller
                 "message" => __("dashboard-admin/document.store.success"),
                 "type" => "success"
             ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Document $document
+     * @return void
+     */
+    public function show(Document $document)
+    {
+        abort(404);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Document $document
+     * @return void
+     */
+    public function edit(Document $document)
+    {
+        abort(404);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param Document $document
+     * @return void
+     */
+    public function update(Request $request, Document $document)
+    {
+        abort(404);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Document $document
+     * @return void
+     */
+    public function destroy(Document $document)
+    {
+        abort(404);
     }
 }

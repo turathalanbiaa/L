@@ -15,16 +15,16 @@
                         <i class="fa fa-star"></i>
                     </a>
                     <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index", ["type" => \App\Enum\DocumentType::PERSONAL_IDENTIFICATION])}}">
-                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IDENTIFICATION)}}
+                        @lang("dashboard-admin/document.index.filter-header-1")
                     </a>
                     <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index", ["type" => \App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION])}}">
-                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::RELIGIOUS_RECOMMENDATION)}}
+                        @lang("dashboard-admin/document.index.filter-header-2")
                     </a>
                     <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index", ["type" => \App\Enum\DocumentType::CERTIFICATE])}}">
-                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::CERTIFICATE)}}
+                        @lang("dashboard-admin/document.index.filter-header-3")
                     </a>
                     <a class="badge blue-gray p-2 m-1" href="{{route("dashboard.admin.documents.index", ["type" => \App\Enum\DocumentType::PERSONAL_IMAGE])}}">
-                        {{\App\Enum\DocumentType::getTypeName(\App\Enum\DocumentType::PERSONAL_IMAGE)}}
+                        @lang("dashboard-admin/document.index.filter-header-4")
                     </a>
                 </div>
             </div>
