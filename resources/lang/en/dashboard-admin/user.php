@@ -57,7 +57,7 @@ return [
             "header-2-2" => "The listeners have trusted accounts",
             "header-2-3" => "The listeners have disable accounts",
             "btn-add"    => "Add",
-            "column"    => [
+            "column"     => [
                 "number"     => "No.",
                 "name"       => "Name",
                 "email"      => "Email",
