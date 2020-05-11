@@ -61,17 +61,14 @@
                     @if($user->state == \App\Enum\UserState::UNTRUSTED)
                         <a class="btn-floating Warning-color btn-sm mx-2" data-action="btn-change-state">
                             <i class="fas fa-user"></i>
-                            {{$user->state}}
                         </a>
                     @elseif($user->state == \App\Enum\UserState::TRUSTED)
                         <a class="btn-floating btn-sm success-color mx-2" data-action="btn-change-state">
                             <i class="fas fa-user-check"></i>
-                            {{$user->state}}
                         </a>
                     @else
                         <a class="btn-floating btn-sm danger-color mx-2" data-action="btn-change-state">
                             <i class="fas fa-user-times"></i>
-                            {{$user->state}}
                         </a>
                     @endif
                 </div>
