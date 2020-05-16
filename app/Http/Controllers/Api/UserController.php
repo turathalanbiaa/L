@@ -146,15 +146,13 @@ class  UserController extends Controller
         }}
 
 
-
-
         $user = new User();
         $user->name = $request->get('name');
         $user->lang = $request->get('lang');
         $user->email = $request->get('email');
         $user->phone = $request->get('phone');
         $user->password = md5($request->get('password'));
-        $user->gender = $request->get('gender');
+        $user->gender = (int)$request->get('gender');
         $user->country = $request->get('country');
         $user->birth_date = $request->get('birthdate');
         $user->address = $request->get('address');
