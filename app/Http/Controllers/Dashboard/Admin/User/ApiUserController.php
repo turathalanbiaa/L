@@ -5,19 +5,17 @@ namespace App\Http\Controllers\Dashboard\Admin\User;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\ApiResponseTrait;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
-use Throwable;
 
 class ApiUserController extends Controller
 {
     use ApiResponseTrait;
 
     /**
-     * Display the specified user.
-     *
-     * @return ResponseFactory|Response
-     * @throws Throwable
+     * @return Application|ResponseFactory|Response
+     * @throws /Throwable
      */
     public function show()
     {
@@ -30,7 +28,7 @@ class ApiUserController extends Controller
      * Display model change state.
      *
      * @return ResponseFactory|Response
-     * @throws Throwable
+     * @throws /Throwable
      */
     public function changeState()
     {
