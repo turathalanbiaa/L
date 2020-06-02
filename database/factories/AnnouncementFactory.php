@@ -11,14 +11,13 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Announcement::class, function (Faker $faker) {
     return [
-        'lang' => Language::getRandomLanguage(),
-        'title' => $faker->sentence(12),
-        'description' => $faker->randomElement(array(null, $faker->realText(2000, 2))),
-        'image' => $faker->randomElement(array(null, $faker->imageUrl())),
-        'url' => $faker->randomElement(array(null, $faker->url)),
-        'youtube_video' => $faker->randomElement(array(null, "C4kxS1ksqtw")),
-        'type' => AnnouncementType::getRandomType(),
-        'state' => AnnouncementState::getRandomState(),
-        'created_at' => $faker->dateTimeBetween('-3 years', 'now')
+        "lang"          => Language::getRandomLanguage(),
+        "title"         => $faker->sentence(10),
+        "description"   => $faker->randomElement(array(null, $faker->realText(1000))),
+        "image"         => $faker->randomElement(array(null, "public/announcement/wGOimJMU9weZU9Y7CJh3aPA46eEG8IzgOKsMnP2M.png", "public/announcement/Z8sFOmJcMP6VLrGOoYGV1mVBDY5M9LvgEPiOY9pK.jpeg")),
+        "youtube_video" => $faker->randomElement(array(null, "C4kxS1ksqtw", "jbYBUXd0Otw")),
+        "type"          => AnnouncementType::getRandomType(),
+        "state"         => AnnouncementState::getRandomState(),
+        "created_at"    => $faker->dateTimeBetween("-3 years", "now")
     ];
 });

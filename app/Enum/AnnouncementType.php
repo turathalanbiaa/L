@@ -20,7 +20,8 @@ class AnnouncementType
      *
      * @return array
      */
-    public static function getTypes() {
+    public static function getTypes()
+    {
         return array(
             self::STUDENTS,
             self::LISTENERS,
@@ -40,16 +41,28 @@ class AnnouncementType
        switch ($locale) {
            case Language::ARABIC:
                switch ($type) {
-                   case self::STUDENTS:  return "للطلاب";  break;
-                   case self::LISTENERS: return "للمستمعين"; break;
-                   case self::BOTH:       return "كلاهما"; break;
+                   case self::STUDENTS:
+                       return "للطلاب";
+                       break;
+                   case self::LISTENERS:
+                       return "للمستمعين";
+                       break;
+                   case self::BOTH:
+                       return "لكلاهما";
+                       break;
                }
                break;
            case Language::ENGLISH:
                switch ($type) {
-                   case self::STUDENTS:  return "For Students";  break;
-                   case self::LISTENERS: return "For Listeners"; break;
-                   case self::BOTH:       return "For Both";      break;
+                   case self::STUDENTS:
+                       return "For Students";
+                       break;
+                   case self::LISTENERS:
+                       return "For Listeners";
+                       break;
+                   case self::BOTH:
+                       return "For Both";
+                       break;
                }
                break;
        }

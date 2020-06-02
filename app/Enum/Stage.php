@@ -24,7 +24,8 @@ class Stage
      *
      * @return array
      */
-    public static function getStages() {
+    public static function getStages()
+    {
         return array(
             self::BEGINNER_STAGE,
             self::INTRO_STAGE_FIRST_LEVEL_ONE,
@@ -48,24 +49,52 @@ class Stage
         switch ($locale) {
             case Language::ARABIC:
                 switch ($stage) {
-                    case self::BEGINNER_STAGE:               return "المرحلة التمهيدية";                       break;
-                    case self::INTRO_STAGE_FIRST_LEVEL_ONE:  return "المقدمات المرحلة الأولى المستوى الأول";     break;
-                    case self::INTRO_STAGE_FIRST_LEVEL_TWO:  return "المقدمات المرحلة الأولى المستوى الثاني";   break;
-                    case self::INTRO_STAGE_SECOND_LEVEL_ONE: return "المقدمات المرحلة الثانية المستوى الأول";   break;
-                    case self::INTRO_STAGE_SECOND_LEVEL_TWO: return "المقدمات المرحلة الثانية المستوى الثاني"; break;
-                    case self::INTRO_STAGE_THIRD_LEVEL_ONE:  return "المقدمات المرحلة الثالثة المستوى الأول";   break;
-                    case self::INTRO_STAGE_THIRD_LEVEL_TWO:  return "المقدمات المرحلة الثالثة المستوى الثاني"; break;
+                    case self::BEGINNER_STAGE:
+                        return "المرحلة التمهيدية";
+                        break;
+                    case self::INTRO_STAGE_FIRST_LEVEL_ONE:
+                        return "المقدمات المرحلة الأولى المستوى الأول";
+                        break;
+                    case self::INTRO_STAGE_FIRST_LEVEL_TWO:
+                        return "المقدمات المرحلة الأولى المستوى الثاني";
+                        break;
+                    case self::INTRO_STAGE_SECOND_LEVEL_ONE:
+                        return "المقدمات المرحلة الثانية المستوى الأول";
+                        break;
+                    case self::INTRO_STAGE_SECOND_LEVEL_TWO:
+                        return "المقدمات المرحلة الثانية المستوى الثاني";
+                        break;
+                    case self::INTRO_STAGE_THIRD_LEVEL_ONE:
+                        return "المقدمات المرحلة الثالثة المستوى الأول";
+                        break;
+                    case self::INTRO_STAGE_THIRD_LEVEL_TWO:
+                        return "المقدمات المرحلة الثالثة المستوى الثاني";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
                 switch ($stage) {
-                    case self::BEGINNER_STAGE:               return "Beginner Stage";                       break;
-                    case self::INTRO_STAGE_FIRST_LEVEL_ONE:  return "Introductions First Stage Level One";  break;
-                    case self::INTRO_STAGE_FIRST_LEVEL_TWO:  return "Introductions First Stage Level Two";  break;
-                    case self::INTRO_STAGE_SECOND_LEVEL_ONE: return "Introductions Second Stage Level One"; break;
-                    case self::INTRO_STAGE_SECOND_LEVEL_TWO: return "Introductions Second Stage Level Two"; break;
-                    case self::INTRO_STAGE_THIRD_LEVEL_ONE:  return "Introductions Third Stage Level One";  break;
-                    case self::INTRO_STAGE_THIRD_LEVEL_TWO:  return "Introductions Third Stage Level Two";  break;
+                    case self::BEGINNER_STAGE:
+                        return "Beginner Stage";
+                        break;
+                    case self::INTRO_STAGE_FIRST_LEVEL_ONE:
+                        return "Introductions First Stage Level One";
+                        break;
+                    case self::INTRO_STAGE_FIRST_LEVEL_TWO:
+                        return "Introductions First Stage Level Two";
+                        break;
+                    case self::INTRO_STAGE_SECOND_LEVEL_ONE:
+                        return "Introductions Second Stage Level One";
+                        break;
+                    case self::INTRO_STAGE_SECOND_LEVEL_TWO:
+                        return "Introductions Second Stage Level Two";
+                        break;
+                    case self::INTRO_STAGE_THIRD_LEVEL_ONE:
+                        return "Introductions Third Stage Level One";
+                        break;
+                    case self::INTRO_STAGE_THIRD_LEVEL_TWO:
+                        return "Introductions Third Stage Level Two";
+                        break;
                 }
                 break;
         }

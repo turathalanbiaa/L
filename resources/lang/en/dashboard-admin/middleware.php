@@ -1,12 +1,16 @@
 <?php
 
 return [
-    'filter' => [
-        'user-type'         => 'incorrect user type',
-        'user-update'       => 'incorrect user update',
-        'document-type'     => 'incorrect document type',
-        'announcement-type' => 'incorrect announcement type'
-    ],
+    "auth" => "Unauthorized action.",
 
-    'auth' => 'Unauthorized action.'
+    "filter" => [
+        "user-type"           => "Incorrect user type.",
+        "user-state"          => "Incorrect user state.",
+        "user-update"         => "Incorrect user update.",
+        "document-type"       => "Incorrect document type.",
+        "announcement-type"   => "Incorrect announcement type.",
+        "announcement-update" => "Incorrect announcement update.",
+        "lecturer-state"      => "Incorrect lecturer state.",
+        "lecturer-update"     => "Incorrect lecturer update."
+    ],
 ];

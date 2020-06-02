@@ -19,7 +19,7 @@ class GeneralCourse extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'general_course_header_id' => $this->general_course_header_id,
-            'header' =>$this->header->title,
+//            'GeneralCourseHeader' =>$this->GeneralCourseHeader->title,
             'lecturer_id' => $this->lecturer_id,
             'lang' => $this->lang,
             'description' => $this->description

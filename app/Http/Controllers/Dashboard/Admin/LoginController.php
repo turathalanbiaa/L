@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\LoginRequest;
 use App\Models\Admin;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cookie;
 
 class LoginController extends Controller
@@ -13,26 +14,22 @@ class LoginController extends Controller
      * Login the admin.
      *
      * @param LoginRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function login(LoginRequest $request)
     {
-        $username = $request->input('username');
-        $password = $request->input('password');
-
-        $admin = Admin::where('username', $username)
-            ->where('password', md5($password))
+        $admin = Admin::where("username", $request->input("username"))
+            ->where("password", md5($request->input("password")))
             ->first();
 
         if (!$admin)
             return redirect()
-                ->route("dashboard.admin")
+                ->back()
                 ->withInput()
-                ->with(["error" => __('dashboard-admin/login.error-message')]);
+                ->with(["error" => __("dashboard-admin/login.error-message")]);
 
         self::generateSession($admin);
         self::generateCookie($admin);
-
         return redirect()->route("dashboard.admin");
     }
 
@@ -43,12 +40,12 @@ class LoginController extends Controller
      */
     public static function generateSession(Admin $admin) {
         self::updateLoginDate($admin);
-        session()->put('eta.admin.id', $admin->id);
-        session()->put('eta.admin.name', $admin->name);
-        session()->put('eta.admin.lang', $admin->lang);
-        session()->put('eta.admin.username', $admin->username);
-        session()->put('eta.admin.token', $admin->remember_token);
-        session()->put('eta.admin.roles', $admin->roles
+        session()->put("eta.admin.id", $admin->id);
+        session()->put("eta.admin.name", $admin->name);
+        session()->put("eta.admin.lang", $admin->lang);
+        session()->put("eta.admin.username", $admin->username);
+        session()->put("eta.admin.token", $admin->remember_token);
+        session()->put("eta.admin.roles", $admin->roles
             ->pluck("name")
             ->toArray()
         );

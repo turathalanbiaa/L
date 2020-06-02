@@ -27,7 +27,7 @@ class  UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
 
         $users = User::paginate(10);
@@ -146,15 +146,13 @@ class  UserController extends Controller
         }}
 
 
-
-
         $user = new User();
         $user->name = $request->get('name');
         $user->lang = $request->get('lang');
         $user->email = $request->get('email');
         $user->phone = $request->get('phone');
         $user->password = md5($request->get('password'));
-        $user->gender = $request->get('gender');
+        $user->gender = (int)$request->get('gender');
         $user->country = $request->get('country');
         $user->birth_date = $request->get('birthdate');
         $user->address = $request->get('address');
@@ -168,7 +166,7 @@ class  UserController extends Controller
         //  $user->image = $request->get('image');
         //  $user->remember_token = $request->get('remember_token');
         $user->save();
-        return $this->apiResponse(new UserResource($user), 201);
+        return $this->apiResponse(new UserResource($user), 200);
     }
 
     /**

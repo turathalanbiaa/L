@@ -1,98 +1,114 @@
 <?php
 
 return [
-    'column' => [
-        'id'             => 'No.',
-        'name'           => 'Name',
-        'type'           => 'Type',
-        'lang'           => 'Language',
-        'stage'          => 'Stage',
-        'email'          => 'E-mail',
-        'phone'          => 'Phone',
-        'password'       => 'Password',
-        'gender'         => 'Gender',
-        'country'        => 'Country',
-        'birth_date'     => 'Birth Date',
-        'address'        => 'Address',
-        'certificate'    => 'Certificate',
-        'created_at'     => 'Created At',
-        'last_login'     => 'Last Login',
-        'state'          => 'State',
-        'remember_token' => 'Token',
-
-        're_password'     => 'Re-Password',
-        'last_login_null' => 'Not Login'
+    "index" => [
+        "title-1" => "Students",
+        "title-2" => "Listeners"
     ],
 
-    'placeholder' => [
-        'name'        => 'Full Name and Surname',
-        'stage'       => 'Select Stage',
-        'email'       => 'E-mail',
-        'phone'       => 'Phone',
-        'gender'      => 'Select Gender',
-        'country'     => 'Select Country',
-        'certificate' => 'Select Certificate'
+    "create" => [
+        "title-1"  => "Add Student",
+        "title-2"  => "Add Listener",
+        "btn-send" => "Send"
     ],
 
-    'components' => [
-        'datatable' => [
-            'title-1'   => 'Students Enrolled In The Institute',
-            'title-2'   => 'Listeners Enrolled In The Institute',
-            'btn-add-1' => 'Add Student',
-            'btn-add-2' => 'Add Listener'
+    "store" => [
+        "success" => "The user account was created successfully.",
+        "failed"  => "The user account was not created, try again."
+    ],
+
+    "show" => [
+        "tab" => [
+            "profile"       => "Profile",
+            "documents"     => "Documents"
         ],
 
-        'modal-info' => [
-            'header-1'      => 'Student Account Information',
-            'header-2'      => 'Listener Account Information',
-            'btn-info'      => 'Show File',
-            'btn-dismiss'   => 'No, Thanks',
-            'error-message' => 'User Not Found'
+        "profile-tab" => [
+            "btn-edit" => "Edit account"
+        ],
+    ],
+
+    "edit" => [
+        "change-info" => "Change account information",
+        "change-pass" => "Change account password",
+        "btn-save"    => "Save"
+    ],
+
+    "update" => [
+        "success" => "The user account was updated successfully.",
+        "failed"  => "The user account was not updated, try again."
+    ],
+
+    "change-state" => [
+        "success-1" => "The user account was activated successfully.",
+        "failed-1"  => "The user account was not activated, try again.",
+        "success-3" => "The user account was disabled successfully.",
+        "failed-3"  => "The user account was not disabled, try again."
+    ],
+
+    "components" => [
+        "datatable" => [
+            "header-1-"  => "All students",
+            "header-1-1" => "The students have untrusted accounts",
+            "header-1-2" => "The students have trusted accounts",
+            "header-1-3" => "The students have disable accounts",
+            "header-2-"  => "All listeners",
+            "header-2-1" => "The listeners have untrusted accounts",
+            "header-2-2" => "The listeners have trusted accounts",
+            "header-2-3" => "The listeners have disable accounts",
+            "btn-add"    => "Add",
+            "column"     => [
+                "number"     => "No.",
+                "name"       => "Name",
+                "email"      => "Email",
+                "phone"      => "Phone",
+                "last-login" => "Last login date"
+            ]
+        ],
+
+        "modal-show" => [
+            "header"        => "Account information",
+            "btn-info"      => "View",
+            "btn-dismiss"   => "No, thanks",
+            "error-message" => "The user dose not exist."
+        ],
+
+        "modal-change-state" => [
+            "header"          => "Account State",
+            "active-message"  => "Do you want to activate the user account No. (:number)?",
+            "disable-message" => "Do you want to disable the user account No. (:number)?",
+            "error-message"   => "The user dose not exist.",
+            "btn-yes"         => "Yes",
+            "btn-no"          => "NO"
         ]
     ],
 
-    'index' => [
-        'title-1'   => 'Students',
-        'title-2'   => 'Listeners'
+    "label" => [
+        "name"        => "Name",
+        "type"        => "Type",
+        "stage"       => "Stage",
+        "email"       => "Email",
+        "phone"       => "Phone",
+        "password"    => "Password",
+        "re-password" => "Re-Password",
+        "gender"      => "Gender",
+        "country"     => "Country",
+        "birth-date"  => "Birth Date",
+        "address"     => "Address",
+        "certificate" => "Certificate",
+        "created-at"  => "Created At",
+        "last-login"  => "Last Login",
+        "state"       => "State"
     ],
 
-    'create' => [
-        'title-1'  => 'Add Student',
-        'title-2'  => 'Add Listener',
-        'btn-send' => 'Send'
-    ],
-
-    'store' => [
-        'success' => 'Account successfully created.',
-        'failed'  => 'The account was not created, try again.'
-    ],
-
-    'show' => [
-        'tab' => [
-            'profile'       => 'Profile',
-            'documents'     => 'Documents',
-            'account-state' => 'Account State'
-        ],
-
-        'profile-tab' => [
-            'btn-edit' => 'Edit Account'
-        ],
-
-        'account-state-tab' => [
-            'header-info'      => 'Fill out all account information.',
-            'header-auth'      => 'Authenticating the account by (mail or phone).',
-            'header-documents' => 'Accept all required documents.',
-        ]
-    ],
-
-    'edit' => [
-        'change-info'     => 'Change Account Information',
-        'change-password' => 'Change Account Password',
-        'btn-save'        => 'Save'
-    ],
-
-    'update' => [
-        'success' => 'The account was successfully updated.',
-        'failed'  => 'The account has not been updated.'
+    "placeholder" => [
+        "name"        => "Full name and surname",
+        "stage"       => "Select the stage",
+        "email"       => "Email",
+        "phone"       => "Phone",
+        "gender"      => "Select the gender",
+        "country"     => "Select the country",
+        "certificate" => "Select the certificate",
+        "address"     => "Full address"
     ]
 ];

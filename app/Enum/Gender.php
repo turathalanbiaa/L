@@ -38,17 +38,23 @@ class Gender
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
-                switch ($gender)
-                {
-                    case self::MALE:   return "ذكر";  break;
-                    case self::FEMALE: return "انثى"; break;
+                switch ($gender) {
+                    case self::MALE:
+                        return "ذكر";
+                        break;
+                    case self::FEMALE:
+                        return "انثى";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
-                switch ($gender)
-                {
-                    case self::MALE:   return "Male";   break;
-                    case self::FEMALE: return "Female"; break;
+                switch ($gender) {
+                    case self::MALE:
+                        return "Male";
+                        break;
+                    case self::FEMALE:
+                        return "Female";
+                        break;
                 }
                 break;
         }

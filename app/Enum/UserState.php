@@ -16,6 +16,20 @@ class UserState
     const DISABLE = 3;
 
     /**
+     * Get all states.
+     *
+     * @return array
+     */
+    public static function getStates()
+    {
+        return array(
+            self::UNTRUSTED,
+            self::TRUSTED,
+            self::DISABLE
+        );
+    }
+
+    /**
      * Get the name of the state.
      *
      * @param $state
@@ -27,20 +41,43 @@ class UserState
         switch ($locale) {
             case Language::ARABIC:
                 switch ($state) {
-                    case self::UNTRUSTED: return "غير موثوق"; break;
-                    case self::TRUSTED:   return "موثوق";     break;
-                    case self::DISABLE:   return "معطل";     break;
+                    case self::UNTRUSTED:
+                        return "غير موثق";
+                        break;
+                    case self::TRUSTED:
+                        return "موثق";
+                        break;
+                    case self::DISABLE:
+                        return "معطل";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
                 switch ($state) {
-                    case self::UNTRUSTED: return "Untrusted"; break;
-                    case self::TRUSTED:   return "Trusted";     break;
-                    case self::DISABLE:   return "Disable";     break;
+                    case self::UNTRUSTED:
+                        return "Untrusted";
+                        break;
+                    case self::TRUSTED:
+                        return "Trusted";
+                        break;
+                    case self::DISABLE:
+                        return "Disable";
+                        break;
                 }
                 break;
         }
 
         return "";
+    }
+
+    /**
+     * Get the random state.
+     *
+     * @return int
+     */
+    public static function getRandomState()
+    {
+        $states = self::getStates();
+        return (integer)$states[array_rand($states)];
     }
 }

@@ -19,8 +19,12 @@ class UserType
      *
      * @return array
      */
-    public static function getTypes() {
-        return array(self::STUDENT, self::LISTENER);
+    public static function getTypes()
+    {
+        return array(
+            self::STUDENT,
+            self::LISTENER
+        );
     }
 
     /**
@@ -35,14 +39,22 @@ class UserType
         switch ($locale) {
             case Language::ARABIC:
                 switch ($type) {
-                    case self::STUDENT:  return "طالب";  break;
-                    case self::LISTENER: return "مستمع"; break;
+                    case self::STUDENT:
+                        return "طالب";
+                        break;
+                    case self::LISTENER:
+                        return "مستمع";
+                        break;
                 }
                 break;
             case Language::ENGLISH :
                 switch ($type) {
-                    case self::STUDENT:  return "Student";  break;
-                    case self::LISTENER: return "Listener"; break;
+                    case self::STUDENT:
+                        return "Student";
+                        break;
+                    case self::LISTENER:
+                        return "Listener";
+                        break;
                 }
                 break;
         }

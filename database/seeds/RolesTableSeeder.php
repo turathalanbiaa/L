@@ -14,37 +14,44 @@ class RolesTableSeeder extends Seeder
     {
         // Admin role
         factory(Role::class)->create([
-            "name" => "Admin",
+            "name"        => "Admin",
             "description" => "Manage admins",
-            "created_at" => date("Y-m-d")
+            "created_at"  => date("Y-m-d")
         ]);
 
         // User role
         factory(Role::class)->create([
-            "name" => "User",
+            "name"        => "User",
             "description" => "Manage users",
-            "created_at" => date("Y-m-d")
+            "created_at"  => date("Y-m-d")
         ]);
 
         // Document role
         factory(Role::class)->create([
-            "name" => "Document",
+            "name"        => "Document",
             "description" => "Manage students (Users) documents",
-            "created_at" => date("Y-m-d")
+            "created_at"  => date("Y-m-d")
         ]);
 
         // Convert account type role
         factory(Role::class)->create([
-            "name" => "ConvertAccountType",
+            "name"        => "ConvertAccountType",
             "description" => "Manage user requests to change the account type",
-            "created_at" => date("Y-m-d")
+            "created_at"  => date("Y-m-d")
         ]);
 
         // announcement role
         factory(Role::class)->create([
-            "name" => "announcement",
+            "name"        => "Announcement",
             "description" => "Manage announcements",
-            "created_at" => date("Y-m-d")
+            "created_at"  => date("Y-m-d")
+        ]);
+
+        // announcement role
+        factory(Role::class)->create([
+            "name"        => "Lecturer",
+            "description" => "Manage lecturers",
+            "created_at"  => date("Y-m-d")
         ]);
     }
 }

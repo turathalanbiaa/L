@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\GeneralCourse;
 use Illuminate\Http\Request;
 use App\Http\Resources\GeneralCourse as GeneralCourseResource;
+use Illuminate\Support\Facades\DB;
 
 class GeneralCourseController extends Controller
 {
@@ -16,7 +17,7 @@ class GeneralCourseController extends Controller
      */
     public function index(Request $request)
     {
-        $generalCourse=GeneralCourse::paginate(1);
+        $generalCourse=GeneralCourse::paginate(5);
         if ($generalCourse){
 
 
@@ -26,7 +27,25 @@ class GeneralCourseController extends Controller
             return $this->notFoundResponse();
         }
     }
+    public function MyCourses(Request $request)
+    {
+        $user_id = $request->get('user_id');
 
+        $generalCourse = DB::table('enrollments')
+            ->where('enrollments.user_id',$user_id)
+            ->Join('general_courses', 'general_courses.id', '=', 'enrollments.general_course_id')
+            ->get();
+
+
+        if ($generalCourse){
+
+
+            return $this->apiResponse($generalCourse,200,null);
+        }
+        else{
+            return $this->notFoundResponse();
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -54,26 +73,27 @@ class GeneralCourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id,Request $request)
+    public function show(Request $request)
     {
+        $id = $request->get('id');
         $generalCourse=GeneralCourse::find($id);
         if ($generalCourse){
-            $remember_token = $request->get('remember_token');
-            $session = new SessionController();
-            $logged = $session->getToken($remember_token);
+//            $remember_token = $request->get('remember_token');
+//            $session = new SessionController();
+//            $logged = $session->getToken($remember_token);
 
-            return $this->apiResponse(new GeneralCourseResource($generalCourse),200,null,$logged);
+            return $this->apiResponse(new GeneralCourseResource($generalCourse),200,null);
         }
         return $this->notFoundResponse();
     }
-    public function getCoursesByLang($lang,$id)
+    public function getCoursesByLang($lang)
     {
-        $session = new SessionController($id);
-        $remember_token = $session->getSessionId();
+//               $session = new SessionController($id);
+//        $remember_token = $session->getSessionId();
 
         $courses = GeneralCourse::where('lang', $lang)->paginate(10);
         if ($courses){
-            return $this->apiResponse(GeneralCourseResource::collection($courses),200,null,$remember_token);
+            return $this->apiResponse(GeneralCourseResource::collection($courses),200,null);
         }
         return $this->notFoundResponse();
     }

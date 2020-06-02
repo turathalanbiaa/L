@@ -33,14 +33,18 @@ Route::post('credentials','UserController@credentials');
 //Course
 Route::get('general-courses','GeneralCourseController@index');
 Route::get('general-courses/{lang}','GeneralCourseController@getCoursesByLang');
-Route::get('general-course/{id}','GeneralCourseController@show');
+Route::post('single-general-course','GeneralCourseController@show');
+Route::post('single-study-course','StudyCourseController@show');
+
+
+Route::post('my-general-course','GeneralCourseController@MyCourses');
 Route::post('image-store','ImageController@store');
 Route::post('image-update','ImageController@updateimage');
 Route::post('my-images','ImageController@allimages');
-Route::get('users','UserController@index');
+//Route::get('users','UserController@index');
 Route::post('get-countries','UserController@countries');
 Route::post('get-certificates','UserController@certificate');
-Route::post('last-announcement','AnnouncementController@last_one');
+Route::post('last-announcement','AnnouncementController@lastAnnouncments');
 Route::post('get-all-announcment','AnnouncementController@getallAnnouncment');
-Route::post('singl-announcment','AnnouncementController@show');
+Route::post('single-announcment','AnnouncementController@show');
 

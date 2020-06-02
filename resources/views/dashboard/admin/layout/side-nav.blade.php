@@ -1,8 +1,8 @@
-<div class="side-nav" id="mySidenav">
+<div class="side-nav" id="my-sidenav">
     <div class="side-nav-skin">
         <div class="side-nav-content blue-gray-darken-3">
             <div class="d-flex justify-content-center pt-2">
-                <img src="{{asset('img/dashboard/admin/logo-white.png')}}" alt="Brand Logo">
+                <img src="{{asset("images/original/img/dashboard/admin/logo-white.png")}}" alt="Brand Logo">
             </div>
             <hr class="hr-light"/>
             <div class="accordion main-list" id="accordionSideNav">
@@ -60,6 +60,9 @@
                         <div class="sup-list">
                             <a class="list-item" href="{{route("dashboard.admin.announcements.index")}}">
                                 @lang("/dashboard-admin/layout.side-nav.block-other.announcements")
+                            </a>
+                            <a class="list-item" href="{{route("dashboard.admin.lecturers.index")}}">
+                                @lang("/dashboard-admin/layout.side-nav.block-other.lecturers")
                             </a>
                         </div>
                     </div>

@@ -13,11 +13,11 @@ class CreateAdminRoleTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_role', function (Blueprint $table) {
-            $table->integerIncrements('id');
-            $table->unsignedInteger('admin_id');
-            $table->unsignedInteger('role_id');
-            $table->date('created_at');
+        Schema::create("admin_role", function (Blueprint $table) {
+            $table->integerIncrements("id");
+            $table->unsignedInteger("admin_id");
+            $table->unsignedInteger("role_id");
+            $table->date("created_at");
         });
     }
 
@@ -28,6 +28,6 @@ class CreateAdminRoleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_role');
+        Schema::dropIfExists("admin_role");
     }
 }

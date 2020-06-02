@@ -15,29 +15,22 @@ use PeterColes\Countries\CountriesFacade as Countries;
 
 $factory->define(User::class, function (Faker $faker) {
     $type = UserType::getRandomType();
-    $lang = Language::getRandomLanguage();
-    $stage = Stage::getRandomStage();
-    $gender = Gender::getRandomGender();
-    $country = array_rand((Countries::lookup(app()->getLocale()))->toArray());
-    $certificate = Certificate::getRandomCertificate();
-    $state = UserState::UNTRUSTED;
-
     return [
-        'name'           => $faker->name,
-        'type'           => $type,
-        'lang'           => $lang,
-        'stage'          => ($type==UserType::LISTENER)?null:$stage,
-        'email'          => $faker->email,
-        'phone'          => $faker->phoneNumber,
-        'password'       => md5($faker->password),
-        'gender'         => $gender,
-        'country'        => $country,
-        'birth_date'     => ($type==UserType::LISTENER)?null:$faker->date('Y-m-d','2000-01-01'),
-        'address'        => ($type==UserType::LISTENER)?null:$faker->address,
-        'certificate'    => ($type==UserType::LISTENER)?null:$certificate,
-        'created_at'     => $faker->dateTimeBetween('-3 years', 'now'),
-        'last_login'     => null,
-        'state'          => $state,
-        'remember_token' => null
+        "name"           => $faker->name,
+        "type"           => $type,
+        "lang"           => Language::getRandomLanguage(),
+        "stage"          => ($type == UserType::STUDENT) ? Stage::getRandomStage() : null,
+        "email"          => $faker->email,
+        "phone"          => $faker->phoneNumber,
+        "password"       => md5($faker->password),
+        "gender"         => Gender::getRandomGender(),
+        "country"        => array_rand((Countries::lookup(app()->getLocale()))->toArray()),
+        "birth_date"     => ($type == UserType::STUDENT) ? $faker->date("Y-m-d","2002-01-01") : null,
+        "address"        => ($type == UserType::STUDENT) ? $faker->address : null,
+        "certificate"    => ($type == UserType::STUDENT) ? Certificate::getRandomCertificate() : null,
+        "created_at"     => $faker->dateTimeBetween("-3 years", "now"),
+        "last_login"     => null,
+        "state"          => UserState::getRandomState(),
+        "remember_token" => null
     ];
 });

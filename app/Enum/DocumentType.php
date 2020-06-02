@@ -21,7 +21,8 @@ class DocumentType
      *
      * @return array
      */
-    public static function getTypes() {
+    public static function getTypes()
+    {
         return array(
             self::PERSONAL_IDENTIFICATION,
             self::RELIGIOUS_RECOMMENDATION,
@@ -40,21 +41,35 @@ class DocumentType
         $locale = app()->getLocale();
         switch ($locale) {
             case Language::ARABIC:
-                switch ($type)
-                {
-                    case self::PERSONAL_IDENTIFICATION:  return "الهوية الشخصية";  break;
-                    case self::RELIGIOUS_RECOMMENDATION: return "التزكية الدينية"; break;
-                    case self::CERTIFICATE:              return "الشهادة العلمية"; break;
-                    case self::PERSONAL_IMAGE:           return "الصورة الشخصية";  break;
+                switch ($type) {
+                    case self::PERSONAL_IDENTIFICATION:
+                        return "الهوية الشخصية";
+                        break;
+                    case self::RELIGIOUS_RECOMMENDATION:
+                        return "التزكية الدينية";
+                        break;
+                    case self::CERTIFICATE:
+                        return "الشهادة العلمية";
+                        break;
+                    case self::PERSONAL_IMAGE:
+                        return "الصورة الشخصية";
+                        break;
                 }
                 break;
             case Language::ENGLISH:
-                switch ($type)
-                {
-                    case self::PERSONAL_IDENTIFICATION:  return "Personal Identification";  break;
-                    case self::RELIGIOUS_RECOMMENDATION: return "Religious Recommendation"; break;
-                    case self::CERTIFICATE:              return "Certificate";              break;
-                    case self::PERSONAL_IMAGE:           return "Personal Image";           break;
+                switch ($type) {
+                    case self::PERSONAL_IDENTIFICATION:
+                        return "Personal Identification";
+                        break;
+                    case self::RELIGIOUS_RECOMMENDATION:
+                        return "Religious Recommendation";
+                        break;
+                    case self::CERTIFICATE:
+                        return "Certificate";
+                        break;
+                    case self::PERSONAL_IMAGE:
+                        return "Personal Image";
+                        break;
                 }
                 break;
         }

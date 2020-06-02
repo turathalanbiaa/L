@@ -1,10 +1,9 @@
 @extends("dashboard.admin.layout.app")
 
-@section("title")
-    @lang('dashboard-admin/announcement.index.title')
-@endsection
+@section("title", __("dashboard-admin/announcement.index.title"))
 
-@section("style")
+@section("head")
+    @include("dashboard.admin.layout.head.datatable")
 @endsection
 
 @section("content")
@@ -15,10 +14,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section("extra-content")
-@endsection
-
-@section("script")
 @endsection

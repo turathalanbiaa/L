@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\AnnouncementState;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,17 +14,16 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
-            $table->integerIncrements('id');
-            $table->char('lang', 2);
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
-            $table->string('url')->nullable();
-            $table->string('youtube_video')->nullable();
-            $table->unsignedTinyInteger('type');
-            $table->unsignedTinyInteger('state');
-            $table->date('created_at');
+        Schema::create("announcements", function (Blueprint $table) {
+            $table->integerIncrements("id");
+            $table->char("lang", 2);
+            $table->string("title");
+            $table->text("description")->nullable();
+            $table->string("image")->nullable();
+            $table->string("youtube_video")->nullable();
+            $table->unsignedTinyInteger("type");
+            $table->unsignedTinyInteger("state")->default(AnnouncementState::ACTIVE);
+            $table->date("created_at");
         });
     }
 
@@ -34,6 +34,6 @@ class CreateAnnouncementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists("announcements");
     }
 }

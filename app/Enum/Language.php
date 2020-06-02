@@ -31,8 +31,12 @@ class Language
     public static function getLanguageName($locale)
     {
         switch ($locale){
-            case self::ARABIC:  return "العربية"; break;
-            case self::ENGLISH: return "English"; break;
+            case self::ARABIC:
+                return "العربية";
+                break;
+            case self::ENGLISH:
+                return "English";
+                break;
         }
 
         return "";
