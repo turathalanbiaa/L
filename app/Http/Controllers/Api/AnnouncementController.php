@@ -42,6 +42,7 @@ class AnnouncementController extends Controller
         $type = $request->get('type');
         $lang = $request->get('lang');
         $Announcements = Announcement::where('state', AnnouncementState::ACTIVE)->where('lang', $lang)->where('type', $type)->orderBy('id', 'desc')->paginate(15);
+
         if ($Announcements){
             return $this->apiResponse($Announcements,200,null);
         }

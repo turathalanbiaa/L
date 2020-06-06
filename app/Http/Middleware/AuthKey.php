@@ -16,7 +16,7 @@ class AuthKey
      */
     public function handle($request, Closure $next)
     {
-        if($request->header('APP_KEY')!=env('APP_KEY')){
+        if($request->header('APP_KEY')!=config("app.key")){
            return response()->json(['error'=>'App key not found'],401);
         }
         return $next($request);

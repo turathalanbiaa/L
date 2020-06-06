@@ -32,8 +32,15 @@ class  UserController extends Controller
 
         $users = User::paginate(10);
         if ($users) {
-
-
+//            $element = $users->count("selector");
+//          $element =   array_filter([
+//                $users['first'],
+//                is_array($users['slider']) ? '...' : null,
+//                $users['slider'],
+//                is_array($users['last']) ? '...' : null,
+//                $users['last'],
+//            ]);
+//        dd($element);
             return $this->apiResponse(UserResource::collection($users), 200, null);
         } else {
             return $this->notFoundResponse();
@@ -120,9 +127,9 @@ class  UserController extends Controller
         ]);
         if ($validatedData->fails()) {
             {if($request->get('lang') == "ar"){
-                return $this->apiResponse(null, 402,"تأكد من القيم المدخلة");
+                return $this->apiResponse(null, 200,"تأكد من القيم المدخلة");
             }else{
-                return $this->apiResponse(null, 402, "Check the entered values");
+                return $this->apiResponse(null, 200, "Check the entered values");
             }}
         }
 
@@ -133,16 +140,16 @@ class  UserController extends Controller
         $user = User::where('email', $request->get('email'))->first();
         if($user)
         {if($request->get('lang') == "ar"){
-            return $this->apiResponse(null, 402,"لا يمكن التسجيل بهذا الايميل");
+            return $this->apiResponse(null, 200,"لا يمكن التسجيل بهذا الايميل");
         }else{
-            return $this->apiResponse(null, 402,"cannot register by this email");
+            return $this->apiResponse(null, 200,"cannot register by this email");
         }}
         $user = User::where('phone', $request->get('phone'))->first();
         if($user)
         {if($request->get('lang') == "ar"){
-            return $this->apiResponse(null, 402,"لا يمكن التسجيل بهذا الرقم");
+            return $this->apiResponse(null, 200,"لا يمكن التسجيل بهذا الرقم");
         }else{
-            return $this->apiResponse(null, 402,"cannot register by this phone");
+            return $this->apiResponse(null, 200,"cannot register by this phone");
         }}
 
 
