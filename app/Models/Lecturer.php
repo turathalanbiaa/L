@@ -12,11 +12,11 @@ class Lecturer extends Model
     protected $fillable = [
         "id",
         "name",
-        "lang",
         "email",
         "phone",
         "password",
         "description",
+        "image",
         "created_at",
         "last_login",
         "remember_token"

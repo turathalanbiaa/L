@@ -12,7 +12,7 @@ use Mockery\Matcher\Ducktype;
 
 class ImageController extends Controller
 {
-    use ApiResponseTrait;
+    use SimpleResponseTrait;
 
     public function store(Request $request)
     {

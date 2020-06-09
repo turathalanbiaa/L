@@ -17,11 +17,11 @@ class CreateLecturersTable extends Migration
         Schema::create("lecturers", function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->string("name");
-            $table->char("lang", 2);
             $table->string("email")->unique();
             $table->string("phone")->unique();
             $table->char("password", 32);
             $table->text("description")->nullable();
+            $table->string("image")->nullable();
             $table->date("created_at");
             $table->date("last_login")->nullable();
             $table->unsignedTinyInteger("state")->default(LecturerState::ACTIVE);

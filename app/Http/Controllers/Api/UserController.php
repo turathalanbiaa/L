@@ -20,7 +20,7 @@ use PeterColes\Countries\CountriesFacade as Countries;
 
 class  UserController extends Controller
 {
-    use ApiResponseTrait;
+    use SimpleResponseTrait;
 
     /**
      * Display a listing of the resource.

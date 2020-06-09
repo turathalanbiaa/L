@@ -31,11 +31,9 @@ class LecturerController extends Controller
         $state = request()->input("state");
         $lecturers = is_null($state)
             ? Lecturer::select(["id", "name", "email", "phone", "last_login", "state"])
-                ->where("lang", app()->getLocale())
                 ->latest()
                 ->get()
             : Lecturer::select(["id", "name", "email", "phone", "last_login", "state"])
-                ->where("lang", app()->getLocale())
                 ->where("state", $state)
                 ->latest()
                 ->get();
@@ -66,11 +64,11 @@ class LecturerController extends Controller
     {
         $lecturer = Lecturer::create([
             "name"           => $request->input("name"),
-            "lang"           => app()->getLocale(),
             "email"          => $request->input("email"),
             "phone"          => $request->input("phone"),
             "password"       => md5($request->input("password")),
             "description"    => $request->input("description"),
+            "image"          => null,
             "created_at"     => date("Y-m-d"),
             "last_login"     => null,
             "state"          => $request->input("state"),
@@ -215,7 +213,7 @@ class LecturerController extends Controller
      * @param Lecturer $lecturer
      */
     public static function checkView(Lecturer $lecturer) {
-        if ($lecturer->lang != app()->getLocale())
-            abort(404);
+//        if ($lecturer->lang != app()->getLocale())
+//            abort(404);
     }
 }

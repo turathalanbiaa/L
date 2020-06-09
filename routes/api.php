@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,7 +10,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 /
 */
+
 //User
+use Illuminate\Support\Facades\Route;
+
 Route::get('users','UserController@index');
 Route::get('user/{id}','UserController@show');
 Route::post('listener-account','UserController@listener_store');
@@ -32,4 +33,6 @@ Route::post('single-announcment','AnnouncementController@show');
 
 
 //Lecturer
-
+Route::get("lecturers", "LecturerController@index");
+Route::get("lecturers/{lecturer}", "LecturerController@show");
+Route::get("lecturers/{lecturer}/courses", "LecturerController@courses");

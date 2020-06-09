@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Support\Facades\App;
 
 class Kernel extends HttpKernel
 {
@@ -35,13 +36,14 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\Dashboard\SetLocale::class,
+            \App\Http\Middleware\Dashboard\SetLocale::class
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
-            \App\Http\Middleware\AuthKey::class
+//            \App\Http\Middleware\Api\AuthKey::class,
+//            \App\Http\Middleware\Api\SetLocale::class
         ],
     ];
 

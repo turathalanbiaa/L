@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
 {
-    use ApiResponseTrait;
+    use SimpleResponseTrait;
     public function show(Request $request)
     {
         $id = $request->get('id');
