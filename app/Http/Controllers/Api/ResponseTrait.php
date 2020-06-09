@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 trait ResponseTrait{
     public function simpleResponse($data = null) {
         return response()->json([
-            'data'   => $data ?? null,
+            'data'   => $data->isEmpty() ? null : $data,
             'status' => true,
             'error'  => null
         ]);
