@@ -36,6 +36,6 @@ class LecturerController extends Controller
             return $this->simpleResponseWithError("not_found");
 
         $courses = collect([$lecturer->generalCourses , $lecturer->studyCourses])->collapse();
-        return $this->simpleResponse($courses);
+        return $this->simpleResponse($courses->isEmpty() ? null : $courses);
     }
 }
