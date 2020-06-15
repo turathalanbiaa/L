@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Lecturer\LecturerCollection;
+use App\Http\Resources\Lecturer\LecturersCollection;
 use App\Models\Lecturer;
-use Illuminate\Http\Request;
 
 class LecturerController extends Controller
 {
@@ -12,12 +13,12 @@ class LecturerController extends Controller
 
     public function index()
     {
+        $q = request()->input("q");
         $lecturers = (\request()->input("q"))
-            ? Lecturer::where("name", 'like', '%' . \request()->input("q") . '%')
-                ->paginate(10)
+            ? Lecturer::where("name", "like", "%$q%")->paginate(10)
             : Lecturer::paginate(10);
 
-        return $this->paginateResponse($lecturers);
+        return $this->paginateResponse(LecturersCollection::collection($lecturers), $lecturers);
     }
 
     public function show($lecturer) {
@@ -26,7 +27,7 @@ class LecturerController extends Controller
         if (!$lecturer)
             return $this->simpleResponseWithError("not_found");
 
-        return $this->simpleResponse($lecturer);
+        return $this->simpleResponse(new LecturerCollection($lecturer));
     }
 
     public function courses($lecturer) {

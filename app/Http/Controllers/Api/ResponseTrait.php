@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 trait ResponseTrait{
-    public function simpleResponse($data = null) {
+    public function simpleResponse($data) {
         return response()->json([
             'data'   => $data,
             'status' => true,
@@ -19,8 +19,8 @@ trait ResponseTrait{
         ]);
     }
 
-    public function paginateResponse($collection, $status = true, $error = null) {
-        $array = $collection->toArray();
+    public function paginateResponse($data, $resource) {
+        $array = $resource->toArray();
         $data = empty($array["data"]) ? null : $array["data"];
         $currentPage = $array["current_page"];
         $maxPage = ceil($array["total"]/$array["per_page"]);
