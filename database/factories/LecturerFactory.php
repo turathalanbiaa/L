@@ -15,7 +15,6 @@ $factory->define(Lecturer::class, function (Faker $faker) {
         "phone"          => $faker->phoneNumber,
         "password"       => md5($faker->password),
         "description"    => $faker->randomElement(array(null, $faker->text)),
-        "details"        => $faker->randomElement(array(null, $faker->randomHtml())),
         "image"          => $faker->imageUrl(),
         "created_at"     => $faker->dateTimeBetween("-3 years", "now"),
         "last_login"     => null,

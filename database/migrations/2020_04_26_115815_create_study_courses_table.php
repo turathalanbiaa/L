@@ -21,7 +21,6 @@ class CreateStudyCoursesTable extends Migration
             $table->unsignedTinyInteger("stage");
             $table->unsignedInteger("lecturer_id");
             $table->string("description")->nullable();
-            $table->text("details")->nullable();
             $table->string("image");
             $table->unsignedTinyInteger("state")->default(CourseState::ACTIVE);
             $table->date("created_at");

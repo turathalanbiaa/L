@@ -17,7 +17,6 @@ class Lecturer extends Model
         "phone",
         "password",
         "description",
-        "details",
         "image",
         "created_at",
         "last_login",

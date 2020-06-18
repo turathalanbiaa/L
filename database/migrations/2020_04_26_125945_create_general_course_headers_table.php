@@ -17,7 +17,6 @@ class CreateGeneralCourseHeadersTable extends Migration
             $table->integerIncrements("id");
             $table->string("title");
             $table->string("description")->nullable();
-            $table->text("details")->nullable();
             $table->text("image");
             $table->date("created_at");
         });

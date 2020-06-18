@@ -18,7 +18,6 @@ $factory->define(GeneralCourse::class, function (Faker $faker) {
         "general_course_header_id" => $faker->randomElement(array(null, GeneralCourseHeader::all()->random()->id)),
         "lecturer_id"              => Lecturer::all()->random()->id,
         "description"              => $faker->randomElement(array(null, $faker->text)),
-        "details"                  => $faker->randomElement(array(null, $faker->randomHtml())),
         "image"                    => $faker->imageUrl(),
         "state"                    => CourseState::getRandomState(),
         "created_at"               => $faker->dateTimeBetween("-3 years", "now")

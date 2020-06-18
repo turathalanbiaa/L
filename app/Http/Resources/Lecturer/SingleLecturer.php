@@ -20,7 +20,6 @@ class SingleLecturer extends JsonResource
             "email"       => $this->email,
             "phone"       => $this->phone,
             "description" => $this->description,
-            "details"     => $this->details,
             "image"       => $this->image
         ];
     }

@@ -14,7 +14,6 @@ class GeneralCourseHeader extends Model
         "title",
         "lang",
         "description",
-        "details",
         "created_at"
     ];
 }
