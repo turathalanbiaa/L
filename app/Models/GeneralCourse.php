@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\CourseType;
 use Illuminate\Database\Eloquent\Model;
 
 class GeneralCourse extends Model
@@ -22,5 +23,14 @@ class GeneralCourse extends Model
     public function generalCourseHeader()
     {
         return $this->belongsTo("App\\Models\\GeneralCourseHeader");
+    }
+
+    public function enrollments() {
+        return $this->hasMany("App\\Models\\Enrollment");
+    }
+
+    public function reviews() {
+        return $this->hasMany("App\\Models\\Review", "course_id")
+            ->where("type", CourseType::GENERAL);
     }
 }

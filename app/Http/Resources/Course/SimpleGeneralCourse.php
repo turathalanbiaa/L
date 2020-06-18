@@ -23,8 +23,8 @@ class SimpleGeneralCourse extends JsonResource
             "header"            => is_null($this->general_course_header_id)
                 ? null
                 : new SimpleGeneralCourseHerder($this->generalCourseHeader),
-            "no.of_enrollments" => 120,
-            "rating"            => 120,
+            "no.of_enrollments" => $this->enrollments->count(),
+            "rating"            => $this->reviews->avg("rate"),
             "no.of_lessons"     => 120,
         ];
     }
