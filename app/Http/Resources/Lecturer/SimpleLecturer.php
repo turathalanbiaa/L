@@ -2,14 +2,15 @@
 
 namespace App\Http\Resources\Lecturer;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\GeneralCourseHeader as GeneralCourseHeaderResource;
-class LecturerCollection extends JsonResource
+
+class SimpleLecturer extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  Request $request
      * @return array
      */
     public function toArray($request)
@@ -17,8 +18,6 @@ class LecturerCollection extends JsonResource
         return [
             "id"          => $this->id,
             "name"        => $this->name,
-            "email"       => $this->email,
-            "phone"       => $this->phone,
             "description" => $this->description,
             "image"       => $this->image
         ];

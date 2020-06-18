@@ -16,6 +16,7 @@ class StudyCourse extends Model
         "stage",
         "lecturer_id",
         "description",
+        "details",
         "created_at"
     ];
 }

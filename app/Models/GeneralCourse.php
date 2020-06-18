@@ -16,6 +16,7 @@ class GeneralCourse extends Model
         "lecturer_id",
         "lang",
         "description",
+        "details",
         "created_at"
     ];
 

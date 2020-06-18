@@ -16,7 +16,8 @@ class CreateGeneralCourseHeadersTable extends Migration
         Schema::create("general_course_headers", function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->string("title");
-            $table->text("description")->nullable();
+            $table->string("description")->nullable();
+            $table->text("details")->nullable();
             $table->text("image");
             $table->date("created_at");
         });

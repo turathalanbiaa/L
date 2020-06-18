@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Course\GeneralCourseCollection;
-use App\Http\Resources\Course\StudyCourseCollection;
-use App\Http\Resources\Lecturer\LecturerCollection;
-use App\Http\Resources\Lecturer\SimpleLecturerCollection;
+use App\Http\Resources\Course\SimpleGeneralCourse;
+use App\Http\Resources\Course\SimpleStudyCourse;
+use App\Http\Resources\Lecturer\SingleLecturer;
+use App\Http\Resources\Lecturer\SimpleLecturer;
 use App\Models\Lecturer;
 
 class LecturerController extends Controller
@@ -20,7 +20,7 @@ class LecturerController extends Controller
             ? Lecturer::where("name", "like", "%$q%")->paginate(10)
             : Lecturer::paginate(10);
 
-        return $this->paginateResponse(SimpleLecturerCollection::collection($lecturers), $lecturers);
+        return $this->paginateResponse(SimpleLecturer::collection($lecturers), $lecturers);
     }
 
     public function show($lecturer) {
@@ -28,7 +28,7 @@ class LecturerController extends Controller
         if (!$lecturer)
             return $this->simpleResponseWithError("not_found");
 
-        return $this->simpleResponse(new LecturerCollection($lecturer));
+        return $this->simpleResponse(new SingleLecturer($lecturer));
     }
 
     public function studyCourses($lecturer) {
@@ -38,7 +38,7 @@ class LecturerController extends Controller
 
         return $this->simpleResponse($lecturer->availableStudyCourses->isEmpty()
             ? null
-            : StudyCourseCollection::collection($lecturer->availableStudyCourses));
+            : SimpleStudyCourse::collection($lecturer->availableStudyCourses));
     }
 
     public function generalCourses($lecturer) {
@@ -48,6 +48,6 @@ class LecturerController extends Controller
 
         return $this->simpleResponse($lecturer->availableGeneralCourses->isEmpty()
             ? null
-            : GeneralCourseCollection::collection($lecturer->availableGeneralCourses));
+            : SimpleGeneralCourse::collection($lecturer->availableGeneralCourses));
     }
 }
