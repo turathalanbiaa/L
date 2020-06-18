@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Lecturer;
+namespace App\Http\Resources\Course;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CoursesCollection extends JsonResource
+class GeneralCourseHerderCollection extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,7 +16,8 @@ class CoursesCollection extends JsonResource
     public function toArray($request)
     {
         return [
-            //
+            "id"    => $this->id,
+            "title" => $this->title
         ];
     }
 }

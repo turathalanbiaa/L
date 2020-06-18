@@ -18,4 +18,9 @@ class GeneralCourse extends Model
         "description",
         "created_at"
     ];
+
+    public function generalCourseHeader()
+    {
+        return $this->belongsTo("App\\Models\\GeneralCourseHeader");
+    }
 }

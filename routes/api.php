@@ -35,4 +35,5 @@ Route::post('single-announcment','AnnouncementController@show');
 //Lecturer
 Route::get("lecturers", "LecturerController@index");
 Route::get("lecturers/{lecturer}", "LecturerController@show");
-Route::get("lecturers/{lecturer}/courses", "LecturerController@courses");
+Route::get("lecturers/{lecturer}/study-courses", "LecturerController@studyCourses");
+Route::get("lecturers/{lecturer}/general-courses", "LecturerController@GeneralCourses");

@@ -16,8 +16,9 @@ $factory->define(StudyCourse::class, function (Faker $faker) {
         "name"        => $faker->sentence,
         "lang"        => $lang,
         "stage"       => Stage::getRandomStage(),
-        "lecturer_id" => Lecturer::where("lang", $lang)->get()->random()->id,
-        "description" => $faker->randomElement(array(null, $faker->realText(1000))),
+        "lecturer_id" => Lecturer::all()->random()->id,
+        "description" => $faker->randomElement(array(null, $faker->randomHtml())),
+        "image"       => $faker->imageUrl(),
         "state"       => CourseState::getRandomState(),
         "created_at"  => $faker->dateTimeBetween("-3 years", "now")
     ];

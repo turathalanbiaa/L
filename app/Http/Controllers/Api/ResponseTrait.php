@@ -26,11 +26,22 @@ trait ResponseTrait{
         $maxPage = ceil($array["total"]/$array["per_page"]);
         $status =  ($currentPage > $maxPage && $maxPage > 1) ? false : true;
         $error = ($status) ? null : "out of range";
+
         return response()->json([
             'data'         => $data,
             "current_page" => $currentPage,
             "max_page"     => $maxPage,
             'status'       => $status,
+            'error'        => $error
+        ]);
+    }
+
+    public function paginateResponseWithError($error) {
+        return response()->json([
+            'data'         => null,
+            "current_page" => 1,
+            "max_page"     => 0,
+            'status'       => false,
             'error'        => $error
         ]);
     }
