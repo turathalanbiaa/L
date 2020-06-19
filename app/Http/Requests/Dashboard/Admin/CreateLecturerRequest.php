@@ -32,6 +32,7 @@ class CreateLecturerRequest extends FormRequest
             "email"    => ["required", "email", "unique:lecturers,email"],
             "phone"    => ["required", "unique:lecturers,phone"],
             "password" => ["required", "min:6", "confirmed"],
+            "image"    => ["required", "mimes:png"],
             "state"    => ["required", Rule::in(LecturerState::getStates())]
         ];
     }
@@ -54,6 +55,8 @@ class CreateLecturerRequest extends FormRequest
                 "password.required"  => "حقل كلمة المرور مطلوب.",
                 "password.min"       => "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
                 "password.confirmed" => "كلمتا المرور غير متطابقتان.",
+                "image.required"     => "حقل الصورة مطلوب.",
+                "image.mimes"        => "يجب أن تكون الصورة ملف من نوع: png.",
                 "state.required"     => "حقل الحالة مطلوب.",
                 "state.in"           => "الحالة المحددة غير مقبولة."
             ];

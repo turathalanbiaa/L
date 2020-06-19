@@ -33,9 +33,10 @@ return [
     ],
 
     "edit" => [
-        "change-info" => "Change account information",
-        "change-pass" => "Change account password",
-        "btn-save"    => "Save"
+        "change-info"  => "Change the information",
+        "change-pass"  => "Change the password",
+        "change-image" => "Change the image",
+        "btn-save"     => "Save"
     ],
 
     "update" => [
@@ -89,6 +90,7 @@ return [
         "password"    => "Password",
         "re-password" => "Re-Password",
         "description" => "Description",
+        "image"       => "Image",
         "created-at"  => "Created At",
         "last-login"  => "Last Login",
         "state"       => "State"
@@ -99,6 +101,7 @@ return [
         "email"       => "Email",
         "phone"       => "Phone",
         "description" => "Description",
+        "image"       => "Choose an image",
         "state"       => "Select the state"
     ]
 ];

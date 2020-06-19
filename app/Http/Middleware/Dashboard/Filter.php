@@ -53,7 +53,7 @@ class Filter
                         abort(403, __("dashboard-admin/middleware.filter.lecturer-state"));
                     break;
                 case "lecturer-update":
-                    if (!in_array(request()->input("update"), array("info", "pass")))
+                    if (!in_array(request()->input("update"), array("info", "image", "pass")))
                         abort(403, __("dashboard-admin/middleware.filter.lecturer-update"));
                     break;
             }

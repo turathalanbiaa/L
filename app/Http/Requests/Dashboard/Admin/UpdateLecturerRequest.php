@@ -28,13 +28,14 @@ class UpdateLecturerRequest extends FormRequest
      */
     public function rules()
     {
-        $id = request()->input("id");
+        $id = request()->lecturer->id;
         return [
-            "name"     => ["exclude_if:update,pass", "required"],
-            "email"    => ["exclude_if:update,pass", "required", "email", "unique:lecturers,email,$id"],
-            "phone"    => ["exclude_if:update,pass", "required", "unique:lecturers,phone,$id"],
-            "state"    => ["exclude_if:update,pass", "required", Rule::in(LecturerState::getStates())],
-            "password" => ["exclude_if:update,info", "required", "min:6", "confirmed"]
+            "name"     => ["exclude_if:update,pass,image", "required"],
+            "email"    => ["exclude_if:update,pass,image", "required", "email", "unique:lecturers,email,$id"],
+            "phone"    => ["exclude_if:update,pass,image", "required", "unique:lecturers,phone,$id"],
+            "state"    => ["exclude_if:update,pass,image", "required", Rule::in(LecturerState::getStates())],
+            "password" => ["exclude_if:update,info,image", "required", "min:6", "confirmed"],
+            "image"    => ["exclude_if:update,info,pass", "required", "mimes:png"]
         ];
     }
 
@@ -58,7 +59,9 @@ class UpdateLecturerRequest extends FormRequest
                 "state.in"           => "الحالة المحددة غير مقبولة.",
                 "password.required"  => "حقل كلمة المرور مطلوب.",
                 "password.min"       => "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.",
-                "password.confirmed" => "كلمتا المرور غير متطابقتان."
+                "password.confirmed" => "كلمتا المرور غير متطابقتان.",
+                "image.required"     => "حقل الصورة مطلوب.",
+                "image.mimes"        => "يجب أن تكون الصورة ملف من نوع: png."
             ];
 
         return parent::messages();

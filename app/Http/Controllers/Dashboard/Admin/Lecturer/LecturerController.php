@@ -9,6 +9,7 @@ use App\Http\Requests\Dashboard\Admin\UpdateLecturerRequest;
 use App\Models\Lecturer;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class LecturerController extends Controller
@@ -68,7 +69,7 @@ class LecturerController extends Controller
             "phone"          => $request->input("phone"),
             "password"       => md5($request->input("password")),
             "description"    => $request->input("description"),
-            "image"          => null,
+            "image"          => Storage::put("public/lecturer", $request->file("image")),
             "created_at"     => date("Y-m-d"),
             "last_login"     => null,
             "state"          => $request->input("state"),
@@ -100,7 +101,6 @@ class LecturerController extends Controller
      */
     public function show(Lecturer $lecturer)
     {
-        self::checkView($lecturer);
         return view("dashboard.admin.lecturer.show")->with([
             "lecturer"       => $lecturer,
             "studyCourses"   => $lecturer->studyCourses,
@@ -116,7 +116,6 @@ class LecturerController extends Controller
      */
     public function edit(Lecturer $lecturer)
     {
-        self::checkView($lecturer);
         return view("dashboard.admin.lecturer.edit")->with([
             "lecturer" => $lecturer
         ]);
@@ -131,7 +130,6 @@ class LecturerController extends Controller
      */
     public function update(UpdateLecturerRequest $request, Lecturer $lecturer)
     {
-        self::checkView($lecturer);
         switch ($request->input("update")) {
             case "info":
                 $data = [
@@ -140,6 +138,12 @@ class LecturerController extends Controller
                     "phone"       => $request->input("phone"),
                     "description" => $request->input("description"),
                     "state"       => $request->input("state")
+                ];
+                break;
+            case "image":
+                Storage::delete($lecturer->image);
+                $data = [
+                    "image" => Storage::put("public/lecturer", $request->file("image"))
                 ];
                 break;
             case "pass":
@@ -205,15 +209,5 @@ class LecturerController extends Controller
                 "message" => __("dashboard-admin/lecturer.change-state.success-$lecturer->state"),
                 "type"    => "success"
             ]);
-    }
-
-    /**
-     * Check permission to view the specified resource.
-     *
-     * @param Lecturer $lecturer
-     */
-    public static function checkView(Lecturer $lecturer) {
-//        if ($lecturer->lang != app()->getLocale())
-//            abort(404);
     }
 }

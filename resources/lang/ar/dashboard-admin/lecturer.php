@@ -33,9 +33,10 @@ return [
     ],
 
     "edit" => [
-        "change-info" => "تغيير معلومات الحساب",
-        "change-pass" => "تغيير كلمة مرور الخاصة بالحساب",
-        "btn-save"    => "حفظ"
+        "change-info"  => "تغيير المعلومات",
+        "change-pass"  => "تغيير كلمة المرور",
+        "change-image" => "تغييرالصورة",
+        "btn-save"     => "حفظ"
     ],
 
     "update" => [
@@ -89,6 +90,7 @@ return [
         "password"    => "كلمة المرور",
         "re-password" => "اعد كلمة المرور",
         "description" => "الوصف",
+        "image"       => "الصورة",
         "created-at"  => "تاريخ الانشاء",
         "last-login"  => "أخر تسجيل دخول",
         "state"       => "الحالة"
@@ -99,6 +101,7 @@ return [
         "email"       => "البريد الإلكتروني",
         "phone"       => "رقم الهاتف",
         "description" => "الوصف",
+        "image"       => "اختر الصورة",
         "state"       => "اختر الحالة"
     ]
 ];

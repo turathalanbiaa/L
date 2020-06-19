@@ -21,37 +21,44 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active pt-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <p>
-                            <strong>@lang("dashboard-admin/lecturer.label.name"): </strong>
-                            <span>{{$lecturer->name}}</span>
-                        </p>
-                        <p>
-                            <strong>@lang("dashboard-admin/lecturer.label.email"): </strong>
-                            <span>{{$lecturer->email}}</span>
-                        </p>
-                        <p>
-                            <strong>@lang("dashboard-admin/lecturer.label.phone"): </strong>
-                            <span>{{$lecturer->phone}}</span>
-                        </p>
-                        <p>
-                            <strong>@lang("dashboard-admin/lecturer.label.description"): </strong>
-                            <span>{!! $lecturer->description !!}</span>
-                        </p>
-                        <p>
-                            <strong>@lang("dashboard-admin/lecturer.label.last-login"): </strong>
-                            <span>{{$lecturer->last_login ?? "---"}}</span>
-                        </p>
-                        <p>
-                            <strong>@lang("dashboard-admin/lecturer.label.state"): </strong>
-                            <span>{{\App\Enum\LecturerState::getStateName($lecturer->state)}}</span>
-                        </p>
-                        <p>
-                            <strong>@lang("dashboard-admin/lecturer.label.created-at"): </strong>
-                            <span>{{$lecturer->created_at}}</span>
-                        </p>
-                        <a class="btn btn-outline-primary" href="{{route("dashboard.admin.lecturers.edit", ["lecturer" => $lecturer->id])}}">
-                            @lang("dashboard-admin/lecturer.show.profile-tab.btn-edit")
-                        </a>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p>
+                                    <strong>@lang("dashboard-admin/lecturer.label.name"): </strong>
+                                    <span>{{$lecturer->name}}</span>
+                                </p>
+                                <p>
+                                    <strong>@lang("dashboard-admin/lecturer.label.email"): </strong>
+                                    <span>{{$lecturer->email}}</span>
+                                </p>
+                                <p>
+                                    <strong>@lang("dashboard-admin/lecturer.label.phone"): </strong>
+                                    <span>{{$lecturer->phone}}</span>
+                                </p>
+                                <p>
+                                    <strong>@lang("dashboard-admin/lecturer.label.description"): </strong>
+                                    <span>{!! $lecturer->description !!}</span>
+                                </p>
+                                <p>
+                                    <strong>@lang("dashboard-admin/lecturer.label.last-login"): </strong>
+                                    <span>{{$lecturer->last_login ?? "---"}}</span>
+                                </p>
+                                <p>
+                                    <strong>@lang("dashboard-admin/lecturer.label.state"): </strong>
+                                    <span>{{\App\Enum\LecturerState::getStateName($lecturer->state)}}</span>
+                                </p>
+                                <p>
+                                    <strong>@lang("dashboard-admin/lecturer.label.created-at"): </strong>
+                                    <span>{{$lecturer->created_at}}</span>
+                                </p>
+                                <a class="btn btn-outline-primary" href="{{route("dashboard.admin.lecturers.edit", ["lecturer" => $lecturer->id])}}">
+                                    @lang("dashboard-admin/lecturer.show.profile-tab.btn-edit")
+                                </a>
+                            </div>
+                            <div class="col-sm-4">
+                                <img class="img-fluid" src="{{asset("images/large".Storage::url($lecturer->image))}}" alt="Lecturer Image">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-pane fade pt-4" id="courses" role="tabpanel" aria-labelledby="courses-tab">
