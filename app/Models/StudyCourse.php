@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\CourseType;
 use Illuminate\Database\Eloquent\Model;
 
 class StudyCourse extends Model
@@ -18,4 +19,9 @@ class StudyCourse extends Model
         "description",
         "created_at"
     ];
+
+    public function reviews() {
+        return $this->hasMany("App\\Models\\Review", "course_id")
+            ->where("type", CourseType::STUDY);
+    }
 }

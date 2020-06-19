@@ -20,7 +20,7 @@ class SimpleStudyCourse extends JsonResource
             "name"              => $this->name,
             "description"       => $this->description,
             "image"             => $this->image,
-            "rating"            => 120,
+            "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
             "no.of_lessons"     => 120,
         ];
     }

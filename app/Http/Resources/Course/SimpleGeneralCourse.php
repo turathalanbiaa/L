@@ -24,7 +24,7 @@ class SimpleGeneralCourse extends JsonResource
                 ? null
                 : new SimpleGeneralCourseHerder($this->generalCourseHeader),
             "no.of_enrollments" => $this->enrollments->count(),
-            "rating"            => $this->reviews->avg("rate"),
+            "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
             "no.of_lessons"     => 120,
         ];
     }
