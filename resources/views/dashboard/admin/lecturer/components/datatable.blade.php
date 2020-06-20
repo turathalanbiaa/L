@@ -4,7 +4,7 @@
         <th rowspan="2">
             @lang("dashboard-admin/lecturer.components.datatable.column.number")
         </th>
-        <th colspan="4" class="align-middle">
+        <th colspan="3" class="align-middle">
             <a class="text-white text-capitalize mb-1" type="button" data-toggle="collapse" href="#collapse-lecturer-filter" aria-expanded="false" aria-controls="collapse-lecturer-filter">
                 <i class="fa fa-filter"></i>
                 @lang("dashboard-admin/lecturer.components.datatable.header-$state")
@@ -30,9 +30,8 @@
     </tr>
     <tr>
         <th class="th-sm">@lang("dashboard-admin/lecturer.components.datatable.column.name")</th>
-        <th class="th-sm">@lang("dashboard-admin/lecturer.components.datatable.column.email")</th>
-        <th class="th-sm">@lang("dashboard-admin/lecturer.components.datatable.column.phone")</th>
         <th class="th-sm">@lang("dashboard-admin/lecturer.components.datatable.column.last-login")</th>
+        <th class="th-sm">@lang("dashboard-admin/lecturer.components.datatable.column.state")</th>
         <th class="th-sm"></th>
     </tr>
     </thead>
@@ -40,30 +39,24 @@
     @foreach($lecturers as $lecturer)
         <tr>
             <td>{{$lecturer->id}}</td>
-            <td>{{$lecturer->name}}</td>
-            <td>{{$lecturer->email}}</td>
-            <td>{{$lecturer->phone}}</td>
+            <td>
+                <a href="{{route("dashboard.admin.lecturers.show", ["lecturer" => $lecturer->id])}}" target="_blank">
+                    {{$lecturer->name}}
+                </a>
+            </td>
             <td>{{$lecturer->last_login ?? "---"}}</td>
+            <td>{{\App\Enum\LecturerState::getStateName($lecturer->state)}}</td>
             <td>
                 <div class="d-flex justify-content-center" data-content="{{$lecturer->id}}">
-                    <a class="btn-floating btn-sm secondary-color mx-2" data-action="btn-show">
+                    <a class="btn-floating btn-sm secondary-color mx-2" data-action="btn-info">
                         <i class="far fa-address-card"></i>
                     </a>
-                    <a class="btn-floating btn-sm info-color mx-2" href="{{route("dashboard.admin.lecturers.show",["lecturer" => $lecturer->id])}}">
+                    <a class="btn-floating btn-sm info-color mx-2" href="{{route("dashboard.admin.lecturers.show",["lecturer" => $lecturer->id])}}" target="_blank">
                         <i class="far fa-eye"></i>
                     </a>
-                    <a class="btn-floating btn-sm primary-color mx-2" href="{{route("dashboard.admin.lecturers.edit",["lecturer" => $lecturer->id])}}">
+                    <a class="btn-floating btn-sm primary-color mx-2" href="{{route("dashboard.admin.lecturers.edit",["lecturer" => $lecturer->id])}}" target="_blank">
                         <i class="far fa-edit"></i>
                     </a>
-                    @if($lecturer->state == \App\Enum\LecturerState::INACTIVE)
-                        <a class="btn-floating btn-sm danger-color mx-2" data-action="btn-change-state">
-                            <i class="fas fa-user-times"></i>
-                        </a>
-                    @else
-                        <a class="btn-floating btn-sm success-color mx-2" data-action="btn-change-state">
-                            <i class="fas fa-user-check"></i>
-                        </a>
-                    @endif
                 </div>
             </td>
         </tr>
@@ -73,57 +66,35 @@
 
 @section("extra-content")
     @parent
-    <div id="modal-show"></div>
-    <div id="modal-change-state"></div>
+    <div id="modal-info"></div>
 @endsection
 
 @section("script")
     @parent
     <script>
-        $('#lecturers').DataTable( {
+        $('#lecturers').DataTable({
             order: [],
-            columnDefs: [{targets: [5], orderable: false}],
+            columnDefs: [{targets: [4], orderable: false}],
             @if(app()->getLocale() == App\Enum\Language::ARABIC)
             'language': {'url': 'https://cdn.datatables.net/plug-ins/1.10.20/i18n/Arabic.json'},
             @endif
-        } );
-        $('[data-action="btn-show"]').on('click', function () {
-            let lecturer = $(this).parent().data('content');
-            $.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                type: 'post',
-                url: '/dashboard/admin/api/lecturers/show',
-                data: {lecturer: lecturer},
-                datatype: 'json',
-                encode: true,
-                success: function(result) {
-                    $('#modal-show').html(result.data.html)
-                },
-                error: function() {
-                    console.log('error');
-                } ,
-                complete : function() {
-                    $('#modal-show .modal').modal('show');
-                }
-            });
         });
-        $('[data-action="btn-change-state"]').on('click', function () {
+        $('[data-action="btn-info"]').on('click', function () {
             let lecturer = $(this).parent().data('content');
             $.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                type: 'post',
-                url: '/dashboard/admin/api/lecturers/change-state',
-                data: {lecturer: lecturer},
+                type: 'get',
+                url: '/dashboard/admin/lecturers/'+lecturer+'/info',
+                data: null,
                 datatype: 'json',
                 encode: true,
-                success: function(result) {
-                    $('#modal-change-state').html(result.data.html)
+                success: function(data) {
+                    $('#modal-info').html(data.html)
                 },
                 error: function() {
                     console.log('error');
                 } ,
                 complete : function() {
-                    $('#modal-change-state .modal').modal('show');
+                    $('#modal-info .modal').modal('show');
                 }
             });
         });

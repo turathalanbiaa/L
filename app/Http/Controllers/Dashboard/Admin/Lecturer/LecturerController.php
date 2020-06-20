@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Dashboard\Admin\Lecturer;
 
 use App\Enum\LecturerState;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashboard\ResponseTrait;
 use App\Http\Requests\Dashboard\Admin\CreateLecturerRequest;
 use App\Http\Requests\Dashboard\Admin\UpdateLecturerRequest;
 use App\Models\Lecturer;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -31,10 +35,10 @@ class LecturerController extends Controller
     {
         $state = request()->input("state");
         $lecturers = is_null($state)
-            ? Lecturer::select(["id", "name", "email", "phone", "last_login", "state"])
+            ? Lecturer::select(["id", "name", "last_login", "state"])
                 ->latest()
                 ->get()
-            : Lecturer::select(["id", "name", "email", "phone", "last_login", "state"])
+            : Lecturer::select(["id", "name", "last_login", "state"])
                 ->where("state", $state)
                 ->latest()
                 ->get();
@@ -153,9 +157,10 @@ class LecturerController extends Controller
                 break;
             default: $data = array();
         }
-        Lecturer::where("id", $lecturer->id)->update($data);
 
-        if (!$lecturer)
+        $success = Lecturer::where("id", $lecturer->id)->update($data);
+
+        if (!$success)
             return redirect()
                 ->back()
                 ->withInput()
@@ -181,6 +186,24 @@ class LecturerController extends Controller
     {
         abort(404);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param $lecturer
+     * @return JsonResponse
+     * @throws \Throwable
+     */
+    public function info($lecturer)
+    {
+        $lecturer = Lecturer::find($lecturer);
+        $view = view("dashboard.admin.lecturer.components.modal-info", compact("lecturer"))->render();
+        return \response()->json(["html" => $view]);
+    }
+
+
+
+
 
     /**
      * Change state for the specified resource in storage.

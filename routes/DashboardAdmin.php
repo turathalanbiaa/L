@@ -44,12 +44,8 @@ Route::namespace("Dashboard\\Admin")
 
             // Lecturers
             Route::namespace("Lecturer")->group(function () {
-                // Resources
                 Route::resource("lecturers", "LecturerController");
-                Route::post("lecturers/change-state","LecturerController@changeState");
-                // Api
-                Route::post("api/lecturers/show","ApiLecturerController@show");
-                Route::post("api/lecturers/change-state","ApiLecturerController@changeState");
+                Route::get("lecturers/{Lecturer}/info","LecturerController@info");
             });
 
 

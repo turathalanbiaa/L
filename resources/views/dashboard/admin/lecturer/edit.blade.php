@@ -7,10 +7,11 @@
         <div class="row justify-content-center" id="selector">
             <div class="col-sm-6">
                 <div class="alert alert-info text-center">
-                    <i class="far fa-user mx-1"></i>
-                    {{$lecturer->name}}
+                    <a href="{{route("dashboard.admin.lecturers.show", ["lecturer" => $lecturer->id])}}">
+                        <i class="far fa-user mx-1"></i>
+                        {{$lecturer->name}}
+                    </a>
                 </div>
-
                 <div class="row">
                     {{-- Change Info --}}
                     <div class="col-12">
@@ -131,7 +132,7 @@
                         </div>
 
                         <div class="collapse @if(old("update") == "image") show @endif border-top border-info" id="collapse-change-image" data-parent="#selector">
-                            <form method="post" action="{{route("dashboard.admin.lecturers.update", ["lecturer" => $lecturer->id])}}">
+                            <form method="post" action="{{route("dashboard.admin.lecturers.update", ["lecturer" => $lecturer->id])}}" enctype="multipart/form-data">
                                 @csrf()
                                 @method("PUT")
                                 <input type="hidden" name="update" value="image">

@@ -41,7 +41,7 @@ return [
 
     "update" => [
         "success" => "The lecturer account was updated successfully.",
-        "failed"  => "The lecturer account was not updated, try again."
+        "failed"  => "The lecturer account was not updated"
     ],
 
     "change-state" => [
@@ -60,9 +60,8 @@ return [
             "column"   => [
                 "number"     => "No.",
                 "name"       => "Name",
-                "email"      => "Email",
-                "phone"      => "Phone",
-                "last-login" => "Last login"
+                "last-login" => "Last login",
+                "state"      => "State",
             ]
         ],
 

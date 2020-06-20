@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Admin\Announcement;
 
 use App\Enum\AnnouncementState;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dashboard\ApiResponseTrait;
+use App\Http\Controllers\Dashboard\ResponseTrait;
 use App\Models\Announcement;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
@@ -12,7 +12,7 @@ use Throwable;
 
 class ApiAnnouncementController extends Controller
 {
-    use ApiResponseTrait;
+    use ResponseTrait;
 
     /**
      * Display the specified announcement.

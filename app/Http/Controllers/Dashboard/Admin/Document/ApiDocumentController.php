@@ -6,7 +6,7 @@ use App\Enum\DocumentState;
 use App\Enum\DocumentType;
 use App\Enum\Language;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Dashboard\ApiResponseTrait;
+use App\Http\Controllers\Dashboard\ResponseTrait;
 use App\Http\Requests\Request;
 use App\Models\Document;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ApiDocumentController extends Controller
 {
-    use ApiResponseTrait;
+    use ResponseTrait;
 
     /**
      * Store the document image in the storage disk.

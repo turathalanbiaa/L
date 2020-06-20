@@ -6,22 +6,30 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <ul class="nav nav-tabs p-0" id="myTab" role="tablist">
+                <ul class="nav nav-tabs nav-fill p-0" id="myTab" role="tablist">
+                    {{-- Profile Tab --}}
                     <li class="nav-item">
                         <a class="nav-link active text-capitalize" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">
                             @lang("dashboard-admin/lecturer.show.tab.profile")
                         </a>
                     </li>
-
+                    {{-- Course Tab --}}
                     <li class="nav-item">
                         <a class="nav-link text-capitalize" id="courses-tab" data-toggle="tab" href="#courses" role="tab" aria-controls="courses" aria-selected="false">
                             @lang("dashboard-admin/lecturer.show.tab.courses")
                         </a>
                     </li>
+                    {{-- State Account Tab --}}
+                    <li class="nav-item">
+                        <a class="nav-link text-capitalize" id="state-account-tab" data-toggle="tab" href="#state-account" role="tab" aria-controls="state-account" aria-selected="false">
+                            @lang("dashboard-admin/lecturer.show.tab.state-account")
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
+                    {{-- Profile Tab Content --}}
                     <div class="tab-pane fade show active pt-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             <div class="col-sm-4">
                                 <p>
                                     <strong>@lang("dashboard-admin/lecturer.label.name"): </strong>
@@ -60,10 +68,10 @@
                             </div>
                         </div>
                     </div>
-
+                    {{-- Course Tab Content --}}
                     <div class="tab-pane fade pt-4" id="courses" role="tabpanel" aria-labelledby="courses-tab">
-                        <div class="row">
-                            <div class="col-sm-6 text-center">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-4 text-center">
                                 <p class="heading">
                                     @lang("dashboard-admin/lecturer.show.courses-tab.header-study-courses")
                                 </p>
@@ -82,8 +90,7 @@
                                     </div>
                                 @endif
                             </div>
-
-                            <div class="col-sm-6 text-center">
+                            <div class="col-sm-4 text-center">
                                 <p class="heading">
                                     @lang("dashboard-admin/lecturer.show.courses-tab.header-general-courses")
                                 </p>
@@ -101,6 +108,18 @@
                                         @lang("dashboard-admin/lecturer.show.courses-tab.message")
                                     </div>
                                 @endif
+                            </div>
+                        </div>
+                    </div>
+                    {{-- State Account Tab Content --}}
+                    <div class="tab-pane fade pt-4" id="state-account" role="tabpanel" aria-labelledby="state-account-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-center p-4">
+                                    <div class="h5-responsive">
+                                        {{$message}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
