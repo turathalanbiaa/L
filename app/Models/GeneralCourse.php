@@ -20,8 +20,11 @@ class GeneralCourse extends Model
         "created_at"
     ];
 
-    public function generalCourseHeader()
-    {
+    public function lecturer() {
+        return $this->belongsTo("App\\Models\\Lecturer");
+    }
+
+    public function generalCourseHeader() {
         return $this->belongsTo("App\\Models\\GeneralCourseHeader");
     }
 

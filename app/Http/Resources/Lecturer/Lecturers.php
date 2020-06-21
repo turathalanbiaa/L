@@ -5,7 +5,7 @@ namespace App\Http\Resources\Lecturer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SimpleLecturer extends JsonResource
+class Lecturers extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,9 @@ class SimpleLecturer extends JsonResource
     {
         return [
             "id"          => $this->id,
-            "name"        => $this->name
+            "name"        => $this->name,
+            "description" => $this->description,
+            "image"       => $this->image
         ];
     }
 }

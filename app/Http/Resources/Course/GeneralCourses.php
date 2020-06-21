@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources\Course;
 
+use App\Http\Resources\Lecturer\SimpleLecturer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SimpleGeneralCourse extends JsonResource
+class GeneralCourses extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,6 +21,7 @@ class SimpleGeneralCourse extends JsonResource
             "name"              => $this->name,
             "description"       => $this->description,
             "image"             => $this->image,
+            "lecturer"          => new SimpleLecturer($this->lecturer),
             "header"            => is_null($this->general_course_header_id)
                 ? null
                 : new SimpleGeneralCourseHerder($this->generalCourseHeader),

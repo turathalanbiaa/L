@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Lecturer;
+namespace App\Http\Resources\Course;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SimpleLecturer extends JsonResource
+class SingleGeneralCourseHerder extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,9 @@ class SimpleLecturer extends JsonResource
     {
         return [
             "id"          => $this->id,
-            "name"        => $this->name
+            "title"       => $this->title,
+            "description" => $this->description,
+            "image"       => $this->image
         ];
     }
 }

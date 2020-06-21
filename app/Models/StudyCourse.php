@@ -20,7 +20,13 @@ class StudyCourse extends Model
         "created_at"
     ];
 
-    public function reviews() {
+    public function lecturer()
+    {
+        return $this->belongsTo("App\\Models\\Lecturer");
+    }
+
+    public function reviews()
+    {
         return $this->hasMany("App\\Models\\Review", "course_id")
             ->where("type", CourseType::STUDY);
     }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Course\SimpleGeneralCourse;
-use App\Http\Resources\Course\SimpleStudyCourse;
+use App\Http\Resources\Course\GeneralCourses;
+use App\Http\Resources\Course\StudyCourses;
+use App\Http\Resources\Lecturer\Lecturers;
 use App\Http\Resources\Lecturer\SingleLecturer;
-use App\Http\Resources\Lecturer\SimpleLecturer;
 use App\Models\Lecturer;
 
 class LecturerController extends Controller
@@ -20,11 +20,12 @@ class LecturerController extends Controller
             ? Lecturer::where("name", "like", "%$q%")->paginate(10)
             : Lecturer::paginate(10);
 
-        return $this->paginateResponse(SimpleLecturer::collection($lecturers), $lecturers);
+        return $this->paginateResponse(Lecturers::collection($lecturers), $lecturers);
     }
 
     public function show($lecturer) {
         $lecturer = Lecturer::find($lecturer);
+
         if (!$lecturer)
             return $this->simpleResponseWithError("not_found");
 
@@ -33,21 +34,23 @@ class LecturerController extends Controller
 
     public function studyCourses($lecturer) {
         $lecturer = Lecturer::find($lecturer);
+
         if (!$lecturer)
             return $this->simpleResponseWithError("not_found");
 
         return $this->simpleResponse($lecturer->availableStudyCourses->isEmpty()
             ? null
-            : SimpleStudyCourse::collection($lecturer->availableStudyCourses));
+            : StudyCourses::collection($lecturer->availableStudyCourses));
     }
 
     public function generalCourses($lecturer) {
         $lecturer = Lecturer::find($lecturer);
+
         if (!$lecturer)
             return $this->simpleResponseWithError("not_found");
 
         return $this->simpleResponse($lecturer->availableGeneralCourses->isEmpty()
             ? null
-            : SimpleGeneralCourse::collection($lecturer->availableGeneralCourses));
+            : GeneralCourses::collection($lecturer->availableGeneralCourses));
     }
 }
