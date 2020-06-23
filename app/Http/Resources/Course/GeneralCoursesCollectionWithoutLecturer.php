@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Lecturer;
+namespace App\Http\Resources\Course;
 
-use App\Http\Resources\Course\SimpleGeneralCourseHerder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GeneralCoursesCollection extends JsonResource
+class GeneralCoursesCollectionWithoutLecturer extends JsonResource
 {
     /**
      * Transform the resource into an array.

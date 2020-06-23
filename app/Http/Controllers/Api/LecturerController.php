@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Lecturer\GeneralCoursesCollection;
+use App\Http\Resources\Course\GeneralCoursesCollectionWithoutLecturer as GeneralCoursesCollection;
+use App\Http\Resources\Course\StudyCoursesCollectionWithoutLecturer as StudyCoursesCollection;
 use App\Http\Resources\Lecturer\LecturersCollection;
 use App\Http\Resources\Lecturer\SingleLecturer;
-use App\Http\Resources\Lecturer\StudyCoursesCollection;
 use App\Models\Lecturer;
 
 class LecturerController extends Controller
@@ -50,6 +50,4 @@ class LecturerController extends Controller
 
         return $this->simpleResponse(StudyCoursesCollection::collection($lecturer->availableStudyCourses));
     }
-
-
 }

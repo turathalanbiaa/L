@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Lecturer;
+namespace App\Http\Resources\Course;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StudyCoursesCollection extends JsonResource
+class StudyCoursesCollectionWithoutLecturer extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,6 +20,7 @@ class StudyCoursesCollection extends JsonResource
             "name"              => $this->name,
             "description"       => $this->description,
             "image"             => $this->image,
+            "stage"             => $this->stage,
             "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
             "no.of_lessons"     => 120,
         ];
