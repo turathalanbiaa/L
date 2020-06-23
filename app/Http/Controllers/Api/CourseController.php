@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enum\CourseState;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Course\GeneralCourses;
+use App\Http\Resources\Course\GeneralCoursesCollection;
 use App\Http\Resources\Course\SingleGeneralCourseHerder;
-use App\Http\Resources\Course\StudyCourses;
+use App\Http\Resources\Course\StudyCoursesCollection;
 use App\Models\GeneralCourse;
 use App\Models\GeneralCourseHeader;
 use App\Models\StudyCourse;
+use function Symfony\Component\String\s;
 
 class CourseController extends Controller
 {
@@ -18,9 +20,12 @@ class CourseController extends Controller
     {
         $q = request()->input("q");
         $generalCourses = (\request()->input("q"))
-            ? GeneralCourse::where("name", "like", "%$q%")->paginate(10)
-            : GeneralCourse::paginate(10);
-        GeneralCourses::collection($generalCourses);
+            ? GeneralCourse::where("name", "like", "%$q%")
+                ->where("state", CourseState::ACTIVE)
+                ->paginate(10)
+            : GeneralCourse::where("state", CourseState::ACTIVE)
+                ->paginate(10);
+        GeneralCoursesCollection::collection($generalCourses);
 
         return $this->paginateResponse($generalCourses);
     }
@@ -32,31 +37,34 @@ class CourseController extends Controller
         if (!$generalCourse)
             return $this->simpleResponseWithError("Not Found");
 
-        return $this->simpleResponse($generalCourse);
+        return $this->simpleResponse(new GeneralCoursesCollection($generalCourse));
     }
 
     public function studyCourses()
     {
         $q = request()->input("q");
         $studyCourses = (\request()->input("q"))
-            ? StudyCourse::where("name", "like", "%$q%")->paginate(10)
-            : StudyCourse::paginate(10);
-        StudyCourses::collection($studyCourses);
+            ? StudyCourse::where("name", "like", "%$q%")
+                ->where("state", CourseState::ACTIVE)
+                ->paginate(10)
+            : StudyCourse::where("state", CourseState::ACTIVE)
+                ->paginate(10);
+        StudyCoursesCollection::collection($studyCourses);
 
         return $this->paginateResponse($studyCourses);
     }
 
-    public function studyCourse($studyCourse)
+    public function singleStudyCourse($studyCourse)
     {
         $studyCourse = StudyCourse::find($studyCourse);
 
         if (!$studyCourse)
             return $this->simpleResponseWithError("Not Found");
 
-        return $this->simpleResponse($studyCourse);
+        return $this->simpleResponse(new StudyCoursesCollection($studyCourse));
     }
 
-    public function generalCourseHeader($generalCourseHeader)
+    public function singleGeneralCourseHeader($generalCourseHeader)
     {
         $generalCourseHeader = GeneralCourseHeader::find($generalCourseHeader);
 
@@ -73,8 +81,6 @@ class CourseController extends Controller
         if (!$generalCourseHeader)
             return $this->simpleResponseWithError("Not_Found");
 
-        return $this->simpleResponse(GeneralCourses::collection($generalCourseHeader->generalCourses));
+        return $this->simpleResponse(GeneralCoursesCollection::collection($generalCourseHeader->generalCourses));
     }
-
-
 }

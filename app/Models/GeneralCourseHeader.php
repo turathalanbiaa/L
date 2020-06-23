@@ -17,7 +17,8 @@ class GeneralCourseHeader extends Model
         "created_at"
     ];
 
-    public function generalCourses() {
+    public function generalCourses()
+    {
         return $this->hasMany("App\\Models\\GeneralCourse");
     }
 }

@@ -2,14 +2,15 @@
 
 namespace App\Http\Resources\Lecturer;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\GeneralCourseHeader as GeneralCourseHeaderResource;
+
 class SingleLecturer extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  Request $request
      * @return array
      */
     public function toArray($request)

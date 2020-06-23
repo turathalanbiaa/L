@@ -20,19 +20,23 @@ class GeneralCourse extends Model
         "created_at"
     ];
 
-    public function lecturer() {
+    public function lecturer()
+    {
         return $this->belongsTo("App\\Models\\Lecturer");
     }
 
-    public function generalCourseHeader() {
+    public function generalCourseHeader()
+    {
         return $this->belongsTo("App\\Models\\GeneralCourseHeader");
     }
 
-    public function enrollments() {
+    public function enrollments()
+    {
         return $this->hasMany("App\\Models\\Enrollment");
     }
 
-    public function reviews() {
+    public function reviews()
+    {
         return $this->hasMany("App\\Models\\Review", "course_id")
             ->where("type", CourseType::GENERAL);
     }
