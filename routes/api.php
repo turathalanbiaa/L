@@ -33,13 +33,14 @@ Route::post('single-announcment','AnnouncementController@show');
 
 
 // Lecturer
-Route::get("lecturers", "LecturerController@index");
-Route::get("lecturers/{lecturer}", "LecturerController@show");
+Route::get("lecturers", "LecturerController@all");
+Route::get("lecturers/{lecturer}", "LecturerController@single");
 Route::get("lecturers/{lecturer}/study-courses", "LecturerController@studyCourses");
 Route::get("lecturers/{lecturer}/general-courses", "LecturerController@GeneralCourses");
 
 // Study Course
-Route::get("general-courses", "courseController@generalCourses");
+Route::get("general-courses", "courseController@allGeneralCourses");
+Route::get("general-courses/{generalCourse}", "courseController@singleGeneralCourses");
 Route::get("study-courses", "courseController@studyCourses");
 Route::get("general-course-header/{generalCourseHeader}", "courseController@generalCourseHeader");
 Route::get("general-course-header/{generalCourseHeader}/general-courses", "courseController@generalCoursesByHeader");

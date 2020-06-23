@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+
 trait ResponseTrait{
     public function simpleResponse($data) {
         return response()->json([
-            'data'   => $data,
+            'data'   => ($data instanceof AnonymousResourceCollection && $data->isEmpty()) ? null : $data,
             'status' => true,
             'error'  => null
         ]);
@@ -19,8 +21,8 @@ trait ResponseTrait{
         ]);
     }
 
-    public function paginateResponse($data, $resource) {
-        $array = $resource->toArray();
+    public function paginateResponse($collection) {
+        $array = $collection->toArray();
         $data = empty($array["data"]) ? null : $array["data"];
         $currentPage = $array["current_page"];
         $maxPage = ceil($array["total"]/$array["per_page"]);

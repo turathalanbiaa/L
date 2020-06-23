@@ -14,25 +14,50 @@ class CourseController extends Controller
 {
     use ResponseTrait;
 
-    public function generalCourses() {
+    public function allGeneralCourses()
+    {
         $q = request()->input("q");
         $generalCourses = (\request()->input("q"))
             ? GeneralCourse::where("name", "like", "%$q%")->paginate(10)
             : GeneralCourse::paginate(10);
+        GeneralCourses::collection($generalCourses);
 
-        return $this->paginateResponse(GeneralCourses::collection($generalCourses), $generalCourses);
+        return $this->paginateResponse($generalCourses);
     }
 
-    public function studyCourses() {
+    public function singleGeneralCourse($generalCourse)
+    {
+        $generalCourse = GeneralCourse::find($generalCourse);
+
+        if (!$generalCourse)
+            return $this->simpleResponseWithError("Not Found");
+
+        return $this->simpleResponse($generalCourse);
+    }
+
+    public function studyCourses()
+    {
         $q = request()->input("q");
         $studyCourses = (\request()->input("q"))
             ? StudyCourse::where("name", "like", "%$q%")->paginate(10)
             : StudyCourse::paginate(10);
+        StudyCourses::collection($studyCourses);
 
-        return $this->paginateResponse(StudyCourses::collection($studyCourses), $studyCourses);
+        return $this->paginateResponse($studyCourses);
     }
 
-    public function generalCourseHeader($generalCourseHeader) {
+    public function studyCourse($studyCourse)
+    {
+        $studyCourse = StudyCourse::find($studyCourse);
+
+        if (!$studyCourse)
+            return $this->simpleResponseWithError("Not Found");
+
+        return $this->simpleResponse($studyCourse);
+    }
+
+    public function generalCourseHeader($generalCourseHeader)
+    {
         $generalCourseHeader = GeneralCourseHeader::find($generalCourseHeader);
 
         if (!$generalCourseHeader)
@@ -41,14 +66,15 @@ class CourseController extends Controller
         return $this->simpleResponse(new SingleGeneralCourseHerder($generalCourseHeader));
     }
 
-    public function generalCoursesByHeader($generalCourseHeader) {
+    public function generalCoursesByHeader($generalCourseHeader)
+    {
         $generalCourseHeader = GeneralCourseHeader::find($generalCourseHeader);
 
         if (!$generalCourseHeader)
             return $this->simpleResponseWithError("Not_Found");
 
-        return $this->simpleResponse($generalCourseHeader->generalCourses->isEmpty()
-            ? null
-            : GeneralCourses::collection($generalCourseHeader->generalCourses));
+        return $this->simpleResponse(GeneralCourses::collection($generalCourseHeader->generalCourses));
     }
+
+
 }
