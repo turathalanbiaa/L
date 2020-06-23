@@ -41,10 +41,8 @@ Route::get("lecturers/{lecturer}/general-courses", "LecturerController@GeneralCo
 // Courses
 Route::get("general-courses", "CourseController@allGeneralCourses");
 Route::get("general-courses/{generalCourse}", "CourseController@singleGeneralCourse");
-
 Route::get("study-courses", "CourseController@studyCourses");
 Route::get("study-courses/{studyCourse}", "CourseController@singleStudyCourse");
-
 Route::get("general-courses-header/{generalCourseHeader}", "CourseController@singleGeneralCourseHeader");
 Route::get("general-courses-header/{generalCourseHeader}/general-courses", "CourseController@generalCoursesByHeader");
 
