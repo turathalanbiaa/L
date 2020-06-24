@@ -22,7 +22,7 @@ class StudyCoursesCollection extends JsonResource
             "name"              => $this->name,
             "description"       => $this->description,
             "image"             => $this->image,
-            "level"             => Stage::getStageName($this->stage),
+            "stage"             => $this->stage,
             "lecturer"          => new SimpleLecturer($this->lecturer),
             "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
             "no.of_lessons"     => 120,
