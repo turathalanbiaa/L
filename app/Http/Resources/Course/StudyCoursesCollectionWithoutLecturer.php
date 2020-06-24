@@ -21,7 +21,7 @@ class StudyCoursesCollectionWithoutLecturer extends JsonResource
             "name"              => $this->name,
             "description"       => $this->description,
             "image"             => $this->image,
-            "stage"             => Stage::getStageName($this->stage),
+            "level"             => Stage::getStageName($this->stage),
             "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
             "no.of_lessons"     => 120,
         ];

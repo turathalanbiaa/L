@@ -45,3 +45,7 @@ Route::get("study-courses", "CourseController@studyCourses");
 Route::get("study-courses/{studyCourse}", "CourseController@singleStudyCourse");
 Route::get("general-courses-header/{generalCourseHeader}", "CourseController@singleGeneralCourseHeader");
 Route::get("general-courses-header/{generalCourseHeader}/general-courses", "CourseController@generalCoursesByHeader");
+
+// Enrollments
+Route::post("enrollments/subscribe", "EnrollmentController@subscribe");
+Route::post("enrollments/unsubscribe", "EnrollmentController@unsubscribe");
