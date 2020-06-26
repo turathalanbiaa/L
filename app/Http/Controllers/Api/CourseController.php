@@ -37,6 +37,9 @@ class CourseController extends Controller
         if (!$generalCourse)
             return $this->simpleResponseWithError("Not Found");
 
+        if ($generalCourse->state == CourseState::INACTIVE)
+            return $this->simpleResponseWithError("course_is_blocked");
+
         return $this->simpleResponse(new GeneralCoursesCollection($generalCourse));
     }
 
@@ -60,6 +63,9 @@ class CourseController extends Controller
 
         if (!$studyCourse)
             return $this->simpleResponseWithError("Not Found");
+
+        if ($studyCourse->state == CourseState::INACTIVE)
+            return $this->simpleResponseWithError("course_is_blocked");
 
         return $this->simpleResponse(new StudyCoursesCollection($studyCourse));
     }

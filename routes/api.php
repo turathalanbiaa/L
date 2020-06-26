@@ -47,5 +47,5 @@ Route::get("general-courses-header/{generalCourseHeader}", "CourseController@sin
 Route::get("general-courses-header/{generalCourseHeader}/general-courses", "CourseController@generalCoursesByHeader");
 
 // Enrollments
-Route::post("enrollments/subscribe", "EnrollmentController@subscribe");
-Route::post("enrollments/unsubscribe", "EnrollmentController@unsubscribe");
+Route::post("enrollments/create-or-update", "EnrollmentController@createOrUpdate");
+Route::get("enrollments/get-state", "EnrollmentController@getState");

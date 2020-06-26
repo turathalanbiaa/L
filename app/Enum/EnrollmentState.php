@@ -11,8 +11,8 @@ namespace App\Enum;
 
 class EnrollmentState
 {
+    const UNSUBSCRIBE = 0;
     const SUBSCRIBE = 1;
-    const UNSUBSCRIBE = 2;
 
     /**
      * Get all states.
