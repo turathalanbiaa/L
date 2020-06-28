@@ -14,6 +14,7 @@ $factory->define(Enrollment::class, function (Faker $faker) {
         "user_id"           => User::all()->random()->id,
         "general_course_id" => GeneralCourse::all()->random()->id,
         "state"             => EnrollmentState::getRandomState(),
-        "created_at"        => $faker->dateTimeBetween("-3 years", "now")
+        "created_at"        => $faker->dateTimeBetween("-4 years", "-2 years"),
+        "updated_at"        => $faker->dateTimeBetween("-1 years", "now")
     ];
 });

@@ -20,6 +20,7 @@ class CreateEnrollmentsTable extends Migration
             $table->unsignedInteger("general_course_id");
             $table->unsignedTinyInteger("state")->default(EnrollmentState::SUBSCRIBE);
             $table->date("created_at");
+            $table->date("updated_at");
         });
     }
 

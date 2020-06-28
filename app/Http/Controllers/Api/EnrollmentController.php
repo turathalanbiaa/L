@@ -36,15 +36,18 @@ class EnrollmentController extends Controller
         $enrollment = Enrollment::where("user_id", $user->id)
             ->where("general_course_id", $generalCourse->id)
             ->first();
+        $state = (\request()->input("state") == EnrollmentState::SUBSCRIBE)
+            ? EnrollmentState::SUBSCRIBE
+            : EnrollmentState::UNSUBSCRIBE;
 
         if ($enrollment) {
-            $enrollment->state = \request()->input("state");
+            $enrollment->state = $state;
             $enrollment->updated_at = date("Y-m-d");
         } else {
             $enrollment = new Enrollment();
             $enrollment->user_id = $user->id;
             $enrollment->general_course_id = $generalCourse->id;
-            $enrollment->state = \request()->input("state");
+            $enrollment->state = $state;
             $enrollment->created_at = date("Y-m-d");
             $enrollment->updated_at = date("Y-m-d");
         }
