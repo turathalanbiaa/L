@@ -17,6 +17,12 @@ class Review extends Model
         "rate",
         "comment",
         "state",
-        "created_at"
+        "created_at",
+        "updated_at"
     ];
+
+    public function user()
+    {
+        return $this->belongsTo("App\\Models\\User");
+    }
 }

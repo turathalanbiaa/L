@@ -23,6 +23,7 @@ class CreateReviewsTable extends Migration
             $table->string("comment");
             $table->unsignedTinyInteger("state")->default(ReviewState::VISIBLE);
             $table->date("created_at");
+            $table->date("created_at");
         });
     }
 

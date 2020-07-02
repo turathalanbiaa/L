@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Enrollment;
 use App\Models\GeneralCourse;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
 {
@@ -51,6 +50,7 @@ class EnrollmentController extends Controller
             $enrollment->created_at = date("Y-m-d");
             $enrollment->updated_at = date("Y-m-d");
         }
+
         $success = $enrollment->save();
 
         if (!$success)

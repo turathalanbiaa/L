@@ -49,3 +49,8 @@ Route::get("general-courses-header/{generalCourseHeader}/general-courses", "Cour
 // Enrollments
 Route::post("enrollments/create-or-update", "EnrollmentController@createOrUpdate");
 Route::get("enrollments/get-state", "EnrollmentController@getState");
+
+// Reviews
+Route::get("reviews", "ReviewController@all");
+Route::post("reviews/create-or-update", "ReviewController@createOrUpdate");
+Route::get("reviews/get-review", "ReviewController@getReview");
