@@ -17,7 +17,7 @@ $factory->define(Review::class, function (Faker $faker) {
         "rate"       => $faker->numberBetween(1, 5),
         "comment"    => $faker->sentence(10),
         "state"      => ReviewState::getRandomState(),
-        "created_at"        => $faker->dateTimeBetween("-4 years", "-2 years"),
-        "updated_at"        => $faker->dateTimeBetween("-1 years", "now")
+        "created_at" => $faker->dateTimeBetween("-4 years", "-2 years"),
+        "updated_at" => $faker->dateTimeBetween("-1 years", "now")
     ];
 });
