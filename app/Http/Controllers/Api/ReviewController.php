@@ -7,7 +7,6 @@ use App\Enum\CourseType;
 use App\Enum\UserState;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Review\ReviewsCollection;
-use App\Http\Resources\Review\SingleReview;
 use App\Models\GeneralCourse;
 use App\Models\Review;
 use App\Models\StudyCourse;
@@ -76,7 +75,7 @@ class ReviewController extends Controller
         if (!$success)
             return $this->simpleResponseWithError("try_again");
 
-        return $this->simpleResponse(new SingleReview($review));
+        return $this->simpleResponse(new ReviewsCollection($review));
     }
 
     public function getReview() {
@@ -85,6 +84,6 @@ class ReviewController extends Controller
             ->where("type",  request()->input("type"))
             ->first();
 
-        return $this->simpleResponse(new SingleReview($review));
+        return $this->simpleResponse(new ReviewsCollection($review));
     }
 }
