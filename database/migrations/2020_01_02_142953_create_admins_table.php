@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateAdminsTable extends Migration
@@ -16,11 +17,11 @@ class CreateAdminsTable extends Migration
         Schema::create("admins", function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->string("name");
-            $table->char("lang", 2);
             $table->string("username")->unique();
             $table->char("password", 32);
-            $table->date("created_at");
-            $table->date("last_login")->nullable();
+            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
+            $table->timestamp("last_login")->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
             $table->string("remember_token")->unique()->nullable();
         });
     }

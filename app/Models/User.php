@@ -24,6 +24,7 @@ class User extends Model
         "address",
         "certificate",
         "created_at",
+        "updated_at",
         "last_login",
         "state",
         "remember_token"

@@ -21,8 +21,7 @@ class AdminsRolesTableSeeder extends Seeder
             foreach ($roles as $role) {
                 factory(AdminRole::class)->create([
                     "admin_id"   => $admin->id,
-                    "role_id"    => $role->id,
-                    "created_at" => date("Y-m-d")
+                    "role_id"    => $role->id
                 ]);
             }
         }

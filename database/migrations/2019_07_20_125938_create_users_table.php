@@ -1,6 +1,7 @@
 <?php
 
 use App\Enum\UserState;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -28,8 +29,9 @@ class CreateUsersTable extends Migration
             $table->date("birth_date")->nullable();
             $table->string("address")->nullable();
             $table->unsignedTinyInteger("certificate")->nullable();
-            $table->date("created_at");
-            $table->date("last_login")->nullable();
+            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
+            $table->timestamp("last_login")->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
             $table->unsignedTinyInteger("state")->default(UserState::UNTRUSTED);
             $table->string("remember_token")->unique()->nullable();
         });

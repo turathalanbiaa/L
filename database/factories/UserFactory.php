@@ -28,7 +28,8 @@ $factory->define(User::class, function (Faker $faker) {
         "birth_date"     => ($type == UserType::STUDENT) ? $faker->date("Y-m-d","2002-01-01") : null,
         "address"        => ($type == UserType::STUDENT) ? $faker->address : null,
         "certificate"    => ($type == UserType::STUDENT) ? Certificate::getRandomCertificate() : null,
-        "created_at"     => $faker->dateTimeBetween("-3 years", "now"),
+        "created_at"     => $faker->dateTimeBetween("-4 years", "-2 years"),
+        "updated_at"     => $faker->dateTimeBetween("-1 years", "now"),
         "last_login"     => null,
         "state"          => UserState::getRandomState(),
         "remember_token" => null
