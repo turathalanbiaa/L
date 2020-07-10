@@ -12,10 +12,10 @@ class Admin extends Model
     protected $fillable = [
         "id",
         "name",
-        "lang",
         "username",
         "password",
         "created_at",
+        "updated_at",
         "last_login",
         "remember_token"
     ];

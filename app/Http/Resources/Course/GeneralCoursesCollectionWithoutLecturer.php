@@ -20,7 +20,7 @@ class GeneralCoursesCollectionWithoutLecturer extends JsonResource
             "name"              => $this->name,
             "description"       => $this->description,
             "image"             => $this->image,
-            "header"            => new SimpleGeneralCourseHerder($this->generalCourseHeader),
+            "header"            => new SingleGeneralCourseHerder($this->generalCourseHeader),
             "no.of_enrollments" => $this->enrollments->count(),
             "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
             "no.of_lessons"     => 120,

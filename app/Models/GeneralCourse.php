@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enum\CourseType;
+use App\Enum\EnrollmentState;
 use Illuminate\Database\Eloquent\Model;
 
 class GeneralCourse extends Model
@@ -33,6 +34,15 @@ class GeneralCourse extends Model
     public function enrollments()
     {
         return $this->hasMany("App\\Models\\Enrollment");
+    }
+
+    public function isEnrolled()
+    {
+        $enrollment = Enrollment::where("general_course_id", $this->id)
+            ->where("user_id", request()->input("user"))
+            ->first();
+
+        return $enrollment->state ?? EnrollmentState::UNSUBSCRIBE;
     }
 
     public function reviews()

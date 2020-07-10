@@ -6,8 +6,10 @@ use App\Enum\CourseState;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Course\GeneralCoursesCollection;
 use App\Http\Resources\Course\GeneralCoursesCollectionWithoutHeader;
+use App\Http\Resources\Course\SingleGeneralCourse;
 use App\Http\Resources\Course\SingleGeneralCourseHerder;
 use App\Http\Resources\Course\StudyCoursesCollection;
+use App\Models\Enrollment;
 use App\Models\GeneralCourse;
 use App\Models\GeneralCourseHeader;
 use App\Models\StudyCourse;
@@ -40,7 +42,7 @@ class CourseController extends Controller
         if ($generalCourse->state == CourseState::INACTIVE)
             return $this->simpleResponseWithError("course_is_blocked");
 
-        return $this->simpleResponse(new GeneralCoursesCollection($generalCourse));
+        return $this->simpleResponse(new SingleGeneralCourse($generalCourse));
     }
 
     public function studyCourses()
@@ -68,16 +70,6 @@ class CourseController extends Controller
             return $this->simpleResponseWithError("course_is_blocked");
 
         return $this->simpleResponse(new StudyCoursesCollection($studyCourse));
-    }
-
-    public function singleGeneralCourseHeader($generalCourseHeader)
-    {
-        $generalCourseHeader = GeneralCourseHeader::find($generalCourseHeader);
-
-        if (!$generalCourseHeader)
-            return $this->simpleResponseWithError("Not_Found");
-
-        return $this->simpleResponse(new SingleGeneralCourseHerder($generalCourseHeader));
     }
 
     public function generalCoursesByHeader($generalCourseHeader)

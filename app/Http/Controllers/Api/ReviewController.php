@@ -57,7 +57,6 @@ class ReviewController extends Controller
         if ($review) {
             $review->rate = request()->input("rate");
             $review->comment = request()->input("comment");
-            $review->updated_at = date("Y-m-d");
         } else {
             $review = new Review();
             $review->user_id = request()->input("user");
@@ -66,8 +65,6 @@ class ReviewController extends Controller
             $review->rate = request()->input("rate");
             $review->comment = request()->input("comment");
             $review->state = CourseState::ACTIVE;
-            $review->created_at = date("Y-m-d");
-            $review->updated_at = date("Y-m-d");
         }
 
         $success = $review->save();

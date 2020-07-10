@@ -58,17 +58,4 @@ class EnrollmentController extends Controller
 
         return $this->simpleResponse($enrollment);
     }
-
-    public function getState()
-    {
-        $enrollment = Enrollment::where("user_id", \request()->input("user"))
-            ->where("general_course_id",  \request()->input("generalCourse"))
-            ->first();
-
-        if ($enrollment && $enrollment->state == EnrollmentState::SUBSCRIBE) {
-            return $this->simpleResponse(["state" => EnrollmentState::SUBSCRIBE]);
-        } else {
-            return $this->simpleResponse(["state" => EnrollmentState::UNSUBSCRIBE]);
-        }
-    }
 }
