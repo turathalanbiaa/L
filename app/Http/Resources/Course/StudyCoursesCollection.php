@@ -25,7 +25,7 @@ class StudyCoursesCollection extends JsonResource
             "stage"             => Stage::getStageName($this->stage),
             "lecturer"          => new SimpleLecturer($this->lecturer),
             "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
-            "no.of_lessons"     => 120,
+            "no.of_lessons"     => $this->lessons->count()
         ];
     }
 }

@@ -23,7 +23,7 @@ class GeneralCoursesCollectionWithoutLecturer extends JsonResource
             "header"            => new SingleGeneralCourseHerder($this->generalCourseHeader),
             "no.of_enrollments" => $this->enrollments->count(),
             "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
-            "no.of_lessons"     => 120,
+            "no.of_lessons"     => $this->lessons->count()
         ];
     }
 }

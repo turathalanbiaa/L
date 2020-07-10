@@ -50,4 +50,10 @@ class GeneralCourse extends Model
         return $this->hasMany("App\\Models\\Review", "course_id")
             ->where("type", CourseType::GENERAL);
     }
+
+    public function lessons()
+    {
+        return $this->hasMany("App\\Models\\Lesson", "course_id")
+            ->where("type", CourseType::GENERAL);
+    }
 }
