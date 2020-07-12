@@ -11,13 +11,7 @@ class LessonController extends Controller
 {
     use ResponseTrait;
 
-    public function all()
-    {
-        $lessons = Lesson::where("course_id", \request()->input("course"))
-            ->where("type", request()->input("type"))
-            ->orderBy("order")
-            ->get();
+    public function x() {
 
-        return $this->simpleResponse(LessonsCollection::collection($lessons));
     }
 }

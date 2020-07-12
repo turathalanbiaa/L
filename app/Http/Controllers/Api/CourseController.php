@@ -7,9 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Course\GeneralCoursesCollection;
 use App\Http\Resources\Course\GeneralCoursesCollectionWithoutHeader;
 use App\Http\Resources\Course\SingleGeneralCourse;
-use App\Http\Resources\Course\SingleGeneralCourseHerder;
+use App\Http\Resources\Course\SingleStudyCourse;
 use App\Http\Resources\Course\StudyCoursesCollection;
-use App\Models\Enrollment;
 use App\Models\GeneralCourse;
 use App\Models\GeneralCourseHeader;
 use App\Models\StudyCourse;
@@ -69,7 +68,7 @@ class CourseController extends Controller
         if ($studyCourse->state == CourseState::INACTIVE)
             return $this->simpleResponseWithError("course_is_blocked");
 
-        return $this->simpleResponse(new StudyCoursesCollection($studyCourse));
+        return $this->simpleResponse(new SingleStudyCourse($studyCourse));
     }
 
     public function generalCoursesByHeader($generalCourseHeader)

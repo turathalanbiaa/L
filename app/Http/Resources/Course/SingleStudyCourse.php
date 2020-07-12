@@ -2,14 +2,13 @@
 
 namespace App\Http\Resources\Course;
 
+use App\Enum\Stage;
 use App\Http\Resources\Lecturer\SimpleLecturer;
 use App\Http\Resources\Lesson\LessonsCollection;
-use App\Models\Enrollment;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use phpDocumentor\Reflection\Types\This;
 
-class SingleGeneralCourse extends JsonResource
+class SingleStudyCourse extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -24,10 +23,8 @@ class SingleGeneralCourse extends JsonResource
             "name"              => $this->name,
             "description"       => $this->description,
             "image"             => $this->image,
+            "stage"             => Stage::getStageName($this->stage),
             "lecturer"          => new SimpleLecturer($this->lecturer),
-            "header"            => new SingleGeneralCourseHerder($this->generalCourseHeader),
-            "is_enrolled"        => $this->isEnrolled(),
-            "no.of_enrollments" => $this->enrollments->count(),
             "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
             "no.of_lessons"     => $this->lessons->count(),
             "lessons"           => LessonsCollection::collection($this->lessons)

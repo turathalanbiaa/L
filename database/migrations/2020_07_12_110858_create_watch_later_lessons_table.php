@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFavoriteLessonsTable extends Migration
+class CreateWatchLaterLessonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateFavoriteLessonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('favorite_lessons', function (Blueprint $table) {
+        Schema::create('watch_later_lessons', function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->unsignedInteger("user_id");
             $table->unsignedInteger("lesson_id");
@@ -30,6 +30,6 @@ class CreateFavoriteLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorite_lessons');
+        Schema::dropIfExists('watch_later_lessons');
     }
 }

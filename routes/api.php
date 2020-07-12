@@ -54,8 +54,6 @@ Route::post("reviews/create-or-update", "ReviewController@createOrUpdate");
 Route::get("reviews/get-review", "ReviewController@getReview");
 
 // Lessons
-Route::get("lessons", "LessonController@all");
-
-// Watched Lessons
-Route::post("favorite-lessons/store", "FavoriteLessonController@store");
-Route::post("favorite-lessons/delete", "FavoriteLessonController@delete");
+Route::post("watch-later-lessons/all", "LessonController@all");
+Route::post("watch-later-lessons/store", "LessonController@store");
+Route::post("watch-later-lessons/delete", "LessonController@delete");
