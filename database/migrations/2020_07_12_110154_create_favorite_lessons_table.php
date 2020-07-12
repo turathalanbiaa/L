@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLessonsTable extends Migration
+class CreateFavoriteLessonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +14,10 @@ class CreateLessonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lessons', function (Blueprint $table) {
+        Schema::create('favorite_lessons', function (Blueprint $table) {
             $table->integerIncrements("id");
-            $table->string("title");
-            $table->text("description")->nullable();
-            $table->unsignedInteger("lecturer_id");
-            $table->unsignedInteger("course_id");
-            $table->unsignedTinyInteger("type");
-            $table->string("youtube_video");
-            $table->time("video_length");
-            $table->unsignedTinyInteger("order");
+            $table->unsignedInteger("user_id");
+            $table->unsignedInteger("lesson_id");
             $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
@@ -36,6 +30,6 @@ class CreateLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessons');
+        Schema::dropIfExists('favorite_lessons');
     }
 }

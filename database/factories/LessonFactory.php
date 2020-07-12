@@ -16,6 +16,7 @@ $factory->define(Lesson::class, function (Faker $faker) {
         "course_id"     => $faker->numberBetween(1, 100),
         "type"          => CourseType::getRandomType(),
         "youtube_video" => "wDirpDqb4J0",
+        "video_length"  => $faker->time(),
         "order"         => 0
     ];
 });

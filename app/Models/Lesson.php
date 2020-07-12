@@ -17,8 +17,14 @@ class Lesson extends Model
         "course_id",
         "type",
         "youtube_video",
+        "video_length",
         "order",
         "created_at",
         "updated_at"
     ];
+
+    public function lecturer()
+    {
+        return $this->belongsTo("App\\Models\\Lecturer");
+    }
 }

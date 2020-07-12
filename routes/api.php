@@ -52,3 +52,10 @@ Route::post("enrollments/create-or-update", "EnrollmentController@createOrUpdate
 Route::get("reviews", "ReviewController@all");
 Route::post("reviews/create-or-update", "ReviewController@createOrUpdate");
 Route::get("reviews/get-review", "ReviewController@getReview");
+
+// Lessons
+Route::get("lessons", "LessonController@all");
+
+// Watched Lessons
+Route::post("favorite-lessons/store", "FavoriteLessonController@store");
+Route::post("favorite-lessons/delete", "FavoriteLessonController@delete");
