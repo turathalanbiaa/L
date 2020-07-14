@@ -7,17 +7,17 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 trait ResponseTrait{
     public function simpleResponse($data) {
         return response()->json([
-            'data'   => ($data instanceof AnonymousResourceCollection && $data->isEmpty()) ? null : $data,
-            'status' => true,
-            'error'  => null
+            'data'    => ($data instanceof AnonymousResourceCollection && $data->isEmpty()) ? null : $data,
+            'status'  => true,
+            'message' => null
         ]);
     }
 
     public function simpleResponseWithError($error) {
         return response()->json([
-            'data'   => null,
-            'status' => false,
-            'error'  => $error
+            'data'    => null,
+            'status'  => false,
+            'message' => $error
         ]);
     }
 
@@ -34,7 +34,7 @@ trait ResponseTrait{
             "current_page" => $currentPage,
             "max_page"     => $maxPage,
             'status'       => $status,
-            'error'        => $error
+            'message'      => $error
         ]);
     }
 
@@ -44,7 +44,7 @@ trait ResponseTrait{
             "current_page" => 1,
             "max_page"     => 0,
             'status'       => false,
-            'error'        => $error
+            'message'      => $error
         ]);
     }
 }
