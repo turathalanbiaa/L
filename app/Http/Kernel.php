@@ -42,8 +42,8 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
-            \App\Http\Middleware\Api\AuthKey::class,
-            \App\Http\Middleware\Api\SetLocale::class
+//            \App\Http\Middleware\Api\AuthKey::class,
+//            \App\Http\Middleware\Api\SetLocale::class
         ],
     ];
 
