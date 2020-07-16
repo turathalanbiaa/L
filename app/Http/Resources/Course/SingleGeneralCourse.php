@@ -26,7 +26,7 @@ class SingleGeneralCourse extends JsonResource
             "image"             => $this->image,
             "lecturer"          => new SimpleLecturer($this->lecturer),
             "header"            => new SingleGeneralCourseHerder($this->generalCourseHeader),
-            "is_enrolled"        => $this->isEnrolled(),
+            "is_enrolled"       => $this->isEnrolled(),
             "no.of_enrollments" => $this->enrollments->count(),
             "rating"            => round($this->reviews->avg("rate"), 2) ?? 0,
             "no.of_lessons"     => $this->lessons->count(),

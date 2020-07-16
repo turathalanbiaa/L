@@ -39,7 +39,7 @@ class GeneralCourse extends Model
     public function isEnrolled()
     {
         $enrollment = Enrollment::where("general_course_id", $this->id)
-            ->where("user_id", request()->input("user"))
+            ->where("user_id", request()->header("token"))
             ->first();
 
         return $enrollment->state ?? EnrollmentState::UNSUBSCRIBE;
