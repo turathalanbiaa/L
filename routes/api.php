@@ -58,6 +58,5 @@ Route::get("watch-later-lessons", "LessonController@watchLaterLessons");
 Route::post("watch-later-lessons/store", "LessonController@addLessonToWatchLater");
 Route::post("watch-later-lessons/delete", "LessonController@deleteLessonFromWatchLater");
 
-
 Route::get("timetables/today-lessons", "LessonController@todayLessons");
 Route::get("timetables/missed-lessons", "LessonController@missedlessons");

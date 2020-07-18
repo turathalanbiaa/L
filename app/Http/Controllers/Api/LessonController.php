@@ -15,7 +15,7 @@ class LessonController extends Controller
 
     public function watchLaterLessons()
     {
-        $lessons_id = WatchLaterLesson::where("user_id", request()->input("user"))
+        $lessons_id = WatchLaterLesson::where("user_id", request()->header("token"))
             ->pluck("lesson_id")
             ->toArray();
 
@@ -28,7 +28,7 @@ class LessonController extends Controller
     public function addLessonToWatchLater()
     {
         $success = WatchLaterLesson::updateOrCreate([
-            "user_id"    => request()->input("user"),
+            "user_id"    => request()->header("token"),
             "lesson_id"  => request()->input("lesson")
         ], [
             "updated_at" => date("Y-m-d h:i:s")
@@ -42,7 +42,7 @@ class LessonController extends Controller
 
     public function deleteLessonFromWatchLater()
     {
-        $success = WatchLaterLesson::where("user_id", request()->input("user"))
+        $success = WatchLaterLesson::where("user_id", request()->header("token"))
             ->where("lesson_id", request()->input("lesson"))
             ->delete();
 
