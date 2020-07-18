@@ -15,11 +15,12 @@ $factory->define(StudyCourse::class, function (Faker $faker) {
     return [
         "name"        => $faker->sentence,
         "lang"        => $lang,
-        "stage"       => Stage::getRandomStage(),
-        "lecturer_id" => Lecturer::all()->random()->id,
         "description" => $faker->randomElement(array(null, $faker->text)),
         "image"       => $faker->imageUrl(),
+        "stage"       => Stage::getRandomStage(),
         "state"       => CourseState::getRandomState(),
-        "created_at"  => $faker->dateTimeBetween("-3 years", "now")
+        "lecturer_id" => Lecturer::all()->random()->id,
+        "created_at"  => $faker->dateTimeBetween("-4 years", "-2 years"),
+        "updated_at"  => $faker->dateTimeBetween("-1 years", "now")
     ];
 });

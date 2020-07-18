@@ -11,13 +11,15 @@ class StudyCourse extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "name",
         "lang",
-        "stage",
-        "lecturer_id",
         "description",
-        "created_at"
+        "image",
+        "stage",
+        "state",
+        "lecturer_id",
+        "created_at",
+        "updated_at"
     ];
 
     public function lecturer()

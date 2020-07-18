@@ -11,6 +11,7 @@ $factory->define(GeneralCourseHeader::class, function (Faker $faker) {
         "title"       => $faker->sentence,
         "description" => $faker->randomElement(array(null, $faker->text)),
         "image"       => $faker->imageUrl(),
-        "created_at"  => $faker->dateTimeBetween("-3 years", "now")
+        "created_at"  => $faker->dateTimeBetween("-4 years", "-2 years"),
+        "updated_at"  => $faker->dateTimeBetween("-1 years", "now")
     ];
 });

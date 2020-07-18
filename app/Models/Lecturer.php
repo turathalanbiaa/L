@@ -11,16 +11,17 @@ class Lecturer extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "name",
         "email",
         "phone",
         "password",
         "description",
         "image",
-        "created_at",
+        "state",
+        "token",
         "last_login",
-        "remember_token"
+        "created_at",
+        "updated_at",
     ];
 
     public function generalCourses()

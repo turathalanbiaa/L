@@ -3,6 +3,7 @@
 use App\Enum\LecturerState;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateLecturersTable extends Migration
@@ -22,10 +23,11 @@ class CreateLecturersTable extends Migration
             $table->char("password", 32);
             $table->string("description")->nullable();
             $table->string("image");
-            $table->date("created_at");
-            $table->date("last_login")->nullable();
             $table->unsignedTinyInteger("state")->default(LecturerState::ACTIVE);
-            $table->string("remember_token")->unique()->nullable();
+            $table->string("token")->unique()->nullable();
+            $table->timestamp("last_login")->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
+            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }
 

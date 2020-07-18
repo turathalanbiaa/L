@@ -17,6 +17,11 @@ class CourseController extends Controller
 {
     use ResponseTrait;
 
+    public function __construct()
+    {
+        $this->middleware("getCurrentUser")->only(["singleGeneralCourse"]);
+    }
+
     public function allGeneralCourses()
     {
         $q = request()->input("q");
@@ -36,10 +41,10 @@ class CourseController extends Controller
         $generalCourse = GeneralCourse::find($generalCourse);
 
         if (!$generalCourse)
-            return $this->simpleResponseWithError("Not Found");
+            return $this->simpleResponseWithMessage(false, "general course not found");
 
         if ($generalCourse->state == CourseState::INACTIVE)
-            return $this->simpleResponseWithError("course_is_blocked");
+            return $this->simpleResponseWithMessage(false, "general course is blocked");
 
         return $this->simpleResponse(new SingleGeneralCourse($generalCourse));
     }
@@ -63,10 +68,10 @@ class CourseController extends Controller
         $studyCourse = StudyCourse::find($studyCourse);
 
         if (!$studyCourse)
-            return $this->simpleResponseWithError("Not Found");
+            return $this->simpleResponseWithMessage(false, "study course not found");
 
         if ($studyCourse->state == CourseState::INACTIVE)
-            return $this->simpleResponseWithError("course_is_blocked");
+            return $this->simpleResponseWithMessage(false, "study course is blocked");
 
         return $this->simpleResponse(new SingleStudyCourse($studyCourse));
     }
@@ -76,7 +81,7 @@ class CourseController extends Controller
         $generalCourseHeader = GeneralCourseHeader::find($generalCourseHeader);
 
         if (!$generalCourseHeader)
-            return $this->simpleResponseWithError("Not_Found");
+            return $this->simpleResponseWithMessage(false, "course header not found");
 
         return $this->simpleResponse(GeneralCoursesCollectionWithoutHeader::collection($generalCourseHeader->generalCourses));
     }

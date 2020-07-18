@@ -2,12 +2,15 @@
 
 namespace App\Http\Middleware\Api;
 
+use App\Enum\UserState;
+use App\Http\Controllers\Api\ResponseTrait;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
 class GetCurrentUser
 {
+    use ResponseTrait;
     /**
      * Handle an incoming request.
      *
@@ -19,9 +22,13 @@ class GetCurrentUser
     {
         $user = User::where("token", $request->header('token'))->first();
 
-        $request->request->add(['user' => $user]);
+        if (!$user)
+            return $this->simpleResponseWithMessage(false, "user not found");
 
-        return response()->json($request->user);
+        if ($user->state == UserState::DISABLE)
+            return $this->simpleResponseWithMessage(false, "user is blocked");
+
+        $request->request->add(['user' => $user]);
 
         return $next($request);
     }

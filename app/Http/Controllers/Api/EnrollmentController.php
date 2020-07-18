@@ -4,35 +4,32 @@ namespace App\Http\Controllers\Api;
 
 use App\Enum\CourseState;
 use App\Enum\EnrollmentState;
-use App\Enum\UserState;
 use App\Http\Controllers\Controller;
 use App\Models\Enrollment;
 use App\Models\GeneralCourse;
-use App\Models\User;
 
 class EnrollmentController extends Controller
 {
     use ResponseTrait;
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware("getCurrentUser")->only(["createOrUpdate"]);
+        $this->user = request()->user;
+    }
 
     public function createOrUpdate()
     {
-        $user = User::find(\request()->input("user"));
-
-        if (!$user)
-            return $this->simpleResponseWithError("user_not_found");
-
-        if ($user->state == UserState::DISABLE)
-            return $this->simpleResponseWithError("user_is_Blocked");
-
         $generalCourse = GeneralCourse::find(\request()->input("generalCourse"));
 
         if (!$generalCourse)
-            return $this->simpleResponseWithError("course_not_found");
+            return $this->simpleResponseWithMessage(false, "general course not found");
 
         if ($generalCourse->state == CourseState::INACTIVE)
-            return $this->simpleResponseWithError("course_is_Blocked");
+            return $this->simpleResponseWithMessage(false, "general course is blocked");
 
-        $enrollment = Enrollment::where("user_id", $user->id)
+        $enrollment = Enrollment::where("user_id", $this->user->id)
             ->where("general_course_id", $generalCourse->id)
             ->first();
         $state = (\request()->input("state") == EnrollmentState::SUBSCRIBE)

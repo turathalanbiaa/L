@@ -28,7 +28,7 @@ class LecturerController extends Controller
         $lecturer = Lecturer::find($lecturer);
 
         if (!$lecturer)
-            return $this->simpleResponseWithError("not_found");
+            return $this->simpleResponseWithMessage(false, "lecturer not found");
 
         return $this->simpleResponse(new SingleLecturer($lecturer));
     }
@@ -37,7 +37,7 @@ class LecturerController extends Controller
         $lecturer = Lecturer::find($lecturer);
 
         if (!$lecturer)
-            return $this->simpleResponseWithError("not_found");
+            return $this->simpleResponseWithMessage(false, "lecturer not found");
 
         return $this->simpleResponse(GeneralCoursesCollection::collection($lecturer->availableGeneralCourses));
     }
@@ -46,7 +46,7 @@ class LecturerController extends Controller
         $lecturer = Lecturer::find($lecturer);
 
         if (!$lecturer)
-            return $this->simpleResponseWithError("not_found");
+            return $this->simpleResponseWithMessage(false, "lecturer not found");
 
         return $this->simpleResponse(StudyCoursesCollection::collection($lecturer->availableStudyCourses));
     }

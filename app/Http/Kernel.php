@@ -42,8 +42,7 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
             \App\Http\Middleware\Api\AuthKey::class,
-            \App\Http\Middleware\Api\SetLocale::class,
-            \App\Http\Middleware\Api\GetCurrentUser::class
+            \App\Http\Middleware\Api\SetLocale::class
         ],
     ];
 
@@ -68,6 +67,7 @@ class Kernel extends HttpKernel
         'filter' => \App\Http\Middleware\Dashboard\Filter::class,
         'dashboard.auth' => \App\Http\Middleware\Dashboard\Auth::class,
         'dashboard.role' => \App\Http\Middleware\Dashboard\Role::class,
+        'getCurrentUser' =>\App\Http\Middleware\Api\GetCurrentUser::class
     ];
 
     /**

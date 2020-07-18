@@ -10,11 +10,11 @@ class GeneralCourseHeader extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "title",
-        "lang",
         "description",
-        "created_at"
+        "image",
+        "created_at",
+        "updated_at"
     ];
 
     public function generalCourses()

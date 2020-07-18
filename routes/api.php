@@ -43,7 +43,7 @@ Route::get("general-courses", "CourseController@allGeneralCourses");
 Route::get("general-courses/{generalCourse}", "CourseController@singleGeneralCourse");
 Route::get("study-courses", "CourseController@studyCourses");
 Route::get("study-courses/{studyCourse}", "CourseController@singleStudyCourse");
-Route::get("general-courses-header/{generalCourseHeader}/general-courses", "CourseController@generalCoursesByHeader");
+Route::get("general-course-headers/{generalCourseHeader}/general-courses", "CourseController@generalCoursesByHeader");
 
 // Enrollments
 Route::post("enrollments/create-or-update", "EnrollmentController@createOrUpdate");

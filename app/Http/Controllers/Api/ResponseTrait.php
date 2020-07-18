@@ -13,11 +13,11 @@ trait ResponseTrait{
         ]);
     }
 
-    public function simpleResponseWithError($error) {
+    public function simpleResponseWithMessage($status, $message) {
         return response()->json([
             'data'    => null,
-            'status'  => false,
-            'message' => $error
+            'status'  => $status,
+            'message' => $message
         ]);
     }
 
@@ -38,13 +38,13 @@ trait ResponseTrait{
         ]);
     }
 
-    public function paginateResponseWithError($error) {
+    public function paginateResponseWithMessage($status, $message) {
         return response()->json([
             'data'         => null,
             "current_page" => 1,
             "max_page"     => 0,
-            'status'       => false,
-            'message'      => $error
+            'status'       => $status,
+            'message'      => $message
         ]);
     }
 }
