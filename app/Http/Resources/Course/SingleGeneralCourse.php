@@ -38,9 +38,9 @@ class SingleGeneralCourse extends JsonResource
     private function isEnrolled($user)
     {
         $enrollment = Enrollment::where("general_course_id", $this->id)
-            ->where("user_id", \request()->user->id)
+            ->where("user_id", $user->id)
             ->first();
 
-        return $enrollment->state ?? EnrollmentState::UNSUBSCRIBE;
+        return (boolean)($enrollment->state ?? EnrollmentState::UNSUBSCRIBE);
     }
 }
