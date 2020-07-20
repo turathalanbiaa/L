@@ -81,7 +81,7 @@ class CourseController extends Controller
         $generalCourseHeader = GeneralCourseHeader::find($generalCourseHeader);
 
         if (!$generalCourseHeader)
-            return $this->simpleResponseWithMessage(false, "course header not found");
+            return $this->simpleResponseWithMessage(false, "general course header not found");
 
         return $this->simpleResponse(GeneralCoursesCollectionWithoutHeader::collection($generalCourseHeader->generalCourses));
     }
