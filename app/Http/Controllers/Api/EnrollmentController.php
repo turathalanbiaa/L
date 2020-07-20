@@ -27,13 +27,11 @@ class EnrollmentController extends Controller
         if ($generalCourse->state == CourseState::INACTIVE)
             return $this->simpleResponseWithMessage(false, "general course is blocked");
 
-        $user = request()->user;
-
         $enrolled = Enrollment::updateOrCreate([
-            "user_id" => $user->id,
+            "user_id"           => request()->user->id,
             "general_course_id" => $generalCourse->id
         ], [
-            "state" => (\request()->input("state") == EnrollmentState::SUBSCRIBE)
+            "state"             => (\request()->input("state") == EnrollmentState::SUBSCRIBE)
                 ? EnrollmentState::SUBSCRIBE
                 : EnrollmentState::UNSUBSCRIBE
         ]);

@@ -10,7 +10,6 @@ class Review extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "user_id",
         "course_id",
         "type",
