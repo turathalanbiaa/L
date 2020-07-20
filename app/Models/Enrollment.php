@@ -10,10 +10,10 @@ class Enrollment extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "user_id",
         "general_course_id",
         "state",
-        "created_at"
+        "created_at",
+        "updated_at"
     ];
 }
