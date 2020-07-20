@@ -25,7 +25,7 @@ class ReviewController extends Controller
 
     public function all() {
         $reviews = Review::where("course_id", request()->input("course"))
-            ->where("type",  request()->input("type"))
+            ->where("course_type",  request()->input("type"))
             ->paginate(10);
         ReviewsCollection::collection($reviews);
 
@@ -48,25 +48,25 @@ class ReviewController extends Controller
             return $this->simpleResponseWithMessage(false, "course is blocked");
 
         $review = Review::updateOrCreate([
-            "user_id"   => request()->user->id,
-            "course_id" => $course->id,
-            "type"      => $type
+            "user_id"     => request()->user->id,
+            "course_id"   => $course->id,
+            "course_type" => $type
         ], [
-            "rate"      => request()->input("rate"),
-            "comment"   => request()->input("comment"),
-            "state"     => ReviewState::VISIBLE
+            "rate"        => request()->input("rate"),
+            "comment"     => request()->input("comment"),
+            "state"       => ReviewState::VISIBLE
         ]);
 
         if (!$review)
             return $this->simpleResponseWithMessage(false, "try again");
 
-        return $this->simpleResponseWithMessage(true, "success review");
+        return $this->simpleResponseWithMessage(true, "success");
     }
 
     public function getReview() {
         $review = Review::where("user_id", request()->user->id)
             ->where("course_id", request()->input("course"))
-            ->where("type",  request()->input("type"))
+            ->where("course_type",  request()->input("type"))
             ->first();
 
         if (!$review)

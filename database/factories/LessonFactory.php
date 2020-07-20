@@ -12,11 +12,12 @@ $factory->define(Lesson::class, function (Faker $faker) {
     return [
         "title"         => $faker->sentence(10),
         "description"   => $faker->randomElement(array(null, $faker->realText(1000))),
-        "lecturer_id"   => $faker->numberBetween(1, 370),
-        "course_id"     => $faker->numberBetween(1, 100),
-        "type"          => CourseType::getRandomType(),
         "youtube_video" => "wDirpDqb4J0",
         "video_length"  => $faker->time(),
-        "order"         => 0
+        "order"         => $faker->numberBetween(1, 100),
+        "seen"          => $faker->numberBetween(1, 100),
+        "lecturer_id"   => $faker->numberBetween(1, 500),
+        "course_id"     => $faker->numberBetween(1, 100),
+        "course_type"   => CourseType::getRandomType()
     ];
 });

@@ -11,13 +11,13 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Review::class, function (Faker $faker) {
     return [
-        "user_id"    => User::all()->random()->id,
-        "course_id"  => $faker->numberBetween(1, 100),
-        "type"       => CourseType::getRandomType(),
-        "rate"       => $faker->numberBetween(1, 5),
-        "comment"    => $faker->sentence(10),
-        "state"      => ReviewState::getRandomState(),
-        "created_at" => $faker->dateTimeBetween("-4 years", "-2 years"),
-        "updated_at" => $faker->dateTimeBetween("-1 years", "now")
+        "user_id"     => User::all()->random()->id,
+        "course_id"   => $faker->numberBetween(1, 100),
+        "course_type" => CourseType::getRandomType(),
+        "rate"        => $faker->numberBetween(1, 5),
+        "comment"     => $faker->sentence(10),
+        "state"       => ReviewState::getRandomState(),
+        "created_at"  => $faker->dateTimeBetween("-4 years", "-2 years"),
+        "updated_at"  => $faker->dateTimeBetween("-1 years", "now")
     ];
 });

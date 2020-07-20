@@ -19,7 +19,7 @@ class CreateReviewsTable extends Migration
             $table->integerIncrements("id");
             $table->unsignedInteger("user_id");
             $table->unsignedInteger("course_id");
-            $table->unsignedTinyInteger("type");
+            $table->unsignedTinyInteger("course_type");
             $table->unsignedTinyInteger("rate");
             $table->string("comment");
             $table->unsignedTinyInteger("state")->default(ReviewState::VISIBLE);

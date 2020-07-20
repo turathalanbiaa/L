@@ -10,7 +10,6 @@ class WatchLaterLesson extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "user_id",
         "lesson_id",
         "created_at",

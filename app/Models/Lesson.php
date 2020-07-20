@@ -10,15 +10,15 @@ class Lesson extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "title",
         "description",
-        "lecturer_id",
-        "course_id",
-        "type",
         "youtube_video",
         "video_length",
         "order",
+        "seen",
+        "lecturer_id",
+        "course_id",
+        "course_type",
         "created_at",
         "updated_at"
     ];

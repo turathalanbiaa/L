@@ -19,6 +19,7 @@ class GeneralCourseHeader extends Model
 
     public function generalCourses()
     {
-        return $this->hasMany("App\\Models\\GeneralCourse");
+        return $this->hasMany("App\\Models\\GeneralCourse")
+            ->orderBy("id");
     }
 }

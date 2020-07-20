@@ -30,12 +30,14 @@ class StudyCourse extends Model
     public function reviews()
     {
         return $this->hasMany("App\\Models\\Review", "course_id")
-            ->where("type", CourseType::STUDY);
+            ->where("course_type", CourseType::STUDY)
+            ->orderBy("id");
     }
 
     public function lessons()
     {
         return $this->hasMany("App\\Models\\Lesson", "course_id")
-            ->where("type", CourseType::STUDY);
+            ->where("course_type", CourseType::STUDY)
+            ->orderBy("order");
     }
 }

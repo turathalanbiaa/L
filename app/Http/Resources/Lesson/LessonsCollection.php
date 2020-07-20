@@ -19,9 +19,11 @@ class LessonsCollection extends JsonResource
         return [
             "id"            => $this->id,
             "title"         => $this->title,
-            "order"         => $this->order,
+            "description"   => $this->title,
             "youtube_video" => $this->youtube_video,
-            "video_length"  => $this->video_length
+            "video_length"  => $this->video_length,
+            "order"         => $this->order,
+            "seen"          => $this->seen
         ];
     }
 }
