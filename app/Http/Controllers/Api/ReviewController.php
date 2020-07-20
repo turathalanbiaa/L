@@ -69,6 +69,9 @@ class ReviewController extends Controller
             ->where("type",  request()->input("type"))
             ->first();
 
+        if (!$review)
+            return $this->simpleResponseWithMessage(false, "review not found");
+
         return $this->simpleResponse(new ReviewsCollection($review));
     }
 }
