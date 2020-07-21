@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\WatchTimetable;
+use App\Models\WatchedTimetable;
 use Illuminate\Database\Seeder;
 
-class WatchTimetablesTableSeeder extends Seeder
+class WatchedTimetablesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class WatchTimetablesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(WatchTimetable::class, 1000)->create();
+        factory(WatchedTimetable::class, 1000)->create();
     }
 }

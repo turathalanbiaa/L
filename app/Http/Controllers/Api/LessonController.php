@@ -7,6 +7,7 @@ use App\Http\Resources\Lesson\LessonsCollection;
 use App\Models\Lesson;
 use App\Models\Timetable;
 use App\Models\WatchLaterLesson;
+use App\Models\WatchedTimetable;
 use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
@@ -63,12 +64,12 @@ class LessonController extends Controller
 
     public function todayLessons()
     {
-        $lessons_id = Timetable::where("stage", request()->user->stage)
+        $lessonsId = Timetable::where("stage", request()->user->stage)
             ->where("publish_date", date("Y-m-d"))
             ->pluck("lesson_id")
             ->toArray();
 
-        $lessons = Lesson::whereIn("id", $lessons_id)
+        $lessons = Lesson::whereIn("id", $lessonsId)
             ->get();
 
         return $this->simpleResponse(LessonsCollection::collection($lessons));
@@ -76,22 +77,20 @@ class LessonController extends Controller
 
     public function missedLessons()
     {
-        // User;;;;;
-        $timetableLessons = Timetable::where("stage", request()->input("stage"))
-            ->where("publish_date","<=", date("Y-m-d"))
+        $timetablesId = Timetable::where("stage", request()->user->stage)
+            ->pluck("id")
+            ->toArray();
+
+        $watchedTimetablesId = WatchedTimetable::where("user_id", request()->user->id)
+            ->whereIn("timetable_id", $timetablesId)
+            ->pluck("timetable_id")
+            ->toArray();
+
+        $lessonsId = Timetable::whereIn("id", array_values(array_diff($timetablesId, $watchedTimetablesId)))
             ->pluck("lesson_id")
             ->toArray();
 
-        $watchedLessons = WatchedLesson::where("user_id", request()->input("user"))
-            ->whereIn("lesson_id", $timetableLessons)
-            ->pluck("lesson_id")
-            ->toArray();
-
-        return [$timetableLessons, $watchedLessons, array_diff($timetableLessons, $watchedLessons)];
-
-
-
-        $lessons = Lesson::whereIn("id", $lessons_id)
+        $lessons = Lesson::whereIn("id", $lessonsId)
             ->get();
 
         return $this->simpleResponse(LessonsCollection::collection($lessons));

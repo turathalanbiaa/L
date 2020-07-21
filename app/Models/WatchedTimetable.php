@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WatchTimetable extends Model
+class WatchedTimetable extends Model
 {
-    protected $table = "watch_timetables";
+    protected $table = "watched_timetables";
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [

@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWatchTimetablesTable extends Migration
+class CreateWatchedTimetablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateWatchTimetablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('watch_timetables', function (Blueprint $table) {
+        Schema::create('watched_timetables', function (Blueprint $table) {
             $table->integerIncrements("id");
             $table->unsignedInteger("user_id");
             $table->unsignedInteger("timetable_id");
@@ -30,6 +30,6 @@ class CreateWatchTimetablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watch_timetables');
+        Schema::dropIfExists('watched_timetables');
     }
 }
