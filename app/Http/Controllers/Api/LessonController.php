@@ -22,7 +22,7 @@ class LessonController extends Controller
         Lesson::where("id", request()->input("lesson"))
             ->update(["seen" => DB::raw("seen +1")]);
 
-        return true;
+        return $this->simpleResponseWithMessage(true, "success");
     }
 
     public function watchLaterLessons()
@@ -61,25 +61,9 @@ class LessonController extends Controller
         return $this->simpleResponseWithMessage(true, "success");
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function todayLessons()
     {
-        $lessons_id = Timetable::where("stage", request()->input("stage"))
+        $lessons_id = Timetable::where("stage", request()->user->stage)
             ->where("publish_date", date("Y-m-d"))
             ->pluck("lesson_id")
             ->toArray();

@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTimetablesTable extends Migration
+class CreateWatchTimetablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,10 @@ class CreateTimetablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('timetables', function (Blueprint $table) {
+        Schema::create('watch_timetables', function (Blueprint $table) {
             $table->integerIncrements("id");
-            $table->unsignedInteger("lesson_id");
-            $table->unsignedTinyInteger("stage");
-            $table->date("publish_date");
+            $table->unsignedInteger("user_id");
+            $table->unsignedInteger("timetable_id");
             $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
@@ -31,6 +30,6 @@ class CreateTimetablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timetables');
+        Schema::dropIfExists('watch_timetables');
     }
 }

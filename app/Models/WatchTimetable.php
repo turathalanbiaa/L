@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Timetable extends Model
+class WatchTimetable extends Model
 {
-    protected $table = "timetables";
+    protected $table = "watch_timetables";
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "lesson_id",
-        "stage",
-        "publish_date",
+        "user_id",
+        "timetable_id",
         "created_at",
         "updated_at"
     ];
