@@ -20,12 +20,13 @@ class ReviewController extends Controller
 
     public function __construct()
     {
-        $this->middleware("getCurrentUser")->only(["createOrUpdate", "getReview"]);
+        $this->middleware("getCurrentUser")->except(["all"]);
     }
 
     public function all() {
         $reviews = Review::where("course_id", request()->input("course"))
             ->where("course_type",  request()->input("type"))
+            ->orderByDesc("id")
             ->paginate(10);
         ReviewsCollection::collection($reviews);
 

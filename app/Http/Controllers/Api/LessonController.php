@@ -19,9 +19,24 @@ class LessonController extends Controller
         $this->middleware("getCurrentUser");
     }
 
-    public function incrementSeen() {
-        Lesson::where("id", request()->input("lesson"))
+    public function watchedLesson($lesson)
+    {
+        $user = request()->user;
+
+        Lesson::where("id", $lesson)
             ->update(["seen" => DB::raw("seen +1")]);
+
+        $timetable = Timetable::where("lesson_id", $lesson)
+            ->where("stage", $user->stage)
+            ->first();
+
+        if ($timetable)
+            WatchedTimetable::updateOrCreate([
+                "user_id"      => $user->id,
+                "timetable_id" => $timetable->id
+            ], [
+                "updated_at"   => date("Y-m-d  h:i:s")
+            ]);
 
         return $this->simpleResponseWithMessage(true, "success");
     }
@@ -29,6 +44,7 @@ class LessonController extends Controller
     public function watchLaterLessons()
     {
         $lessons_id = WatchLaterLesson::where("user_id", request()->user->id)
+            ->orderByDesc("id")
             ->pluck("lesson_id")
             ->toArray();
 
@@ -39,9 +55,11 @@ class LessonController extends Controller
 
     public function addLessonToWatchLater()
     {
-        $watchLaterLesson = WatchLaterLesson::create([
+        $watchLaterLesson = WatchLaterLesson::updateOrCreate([
             "user_id"    => request()->user->id,
             "lesson_id"  => request()->input("lesson")
+        ], [
+            "updated_at" => date("Y-m-d  h:i:s")
         ]);
 
         if (!$watchLaterLesson)
@@ -66,6 +84,7 @@ class LessonController extends Controller
     {
         $lessonsId = Timetable::where("stage", request()->user->stage)
             ->where("publish_date", date("Y-m-d"))
+            ->orderBy("id")
             ->pluck("lesson_id")
             ->toArray();
 
@@ -87,6 +106,7 @@ class LessonController extends Controller
             ->toArray();
 
         $lessonsId = Timetable::whereIn("id", array_values(array_diff($timetablesId, $watchedTimetablesId)))
+            ->orderBy("id")
             ->pluck("lesson_id")
             ->toArray();
 

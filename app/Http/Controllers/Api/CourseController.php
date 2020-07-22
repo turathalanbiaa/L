@@ -28,8 +28,10 @@ class CourseController extends Controller
         $generalCourses = (\request()->input("q"))
             ? GeneralCourse::where("name", "like", "%$q%")
                 ->where("state", CourseState::ACTIVE)
+                ->orderByDesc("id")
                 ->paginate(10)
             : GeneralCourse::where("state", CourseState::ACTIVE)
+                ->orderByDesc("id")
                 ->paginate(10);
         GeneralCoursesCollection::collection($generalCourses);
 
@@ -55,8 +57,10 @@ class CourseController extends Controller
         $studyCourses = (\request()->input("q"))
             ? StudyCourse::where("name", "like", "%$q%")
                 ->where("state", CourseState::ACTIVE)
+                ->orderByDesc("id")
                 ->paginate(10)
             : StudyCourse::where("state", CourseState::ACTIVE)
+                ->orderByDesc("id")
                 ->paginate(10);
         StudyCoursesCollection::collection($studyCourses);
 

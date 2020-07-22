@@ -14,7 +14,7 @@ class EnrollmentController extends Controller
 
     public function __construct()
     {
-        $this->middleware("getCurrentUser")->only(["createOrUpdate"]);
+        $this->middleware("getCurrentUser");
     }
 
     public function createOrUpdate()

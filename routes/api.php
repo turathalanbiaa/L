@@ -54,11 +54,9 @@ Route::post("reviews/create-or-update", "ReviewController@createOrUpdate");
 Route::get("reviews/get-review", "ReviewController@getReview");
 
 // Lessons
-Route::post("lessons/increment-seen", "LessonController@incrementSeen");
-
+Route::get("lessons/{lesson}/watched", "LessonController@watchedLesson");
 Route::get("watch-later-lessons", "LessonController@watchLaterLessons");
 Route::post("watch-later-lessons/store", "LessonController@addLessonToWatchLater");
 Route::post("watch-later-lessons/delete", "LessonController@deleteLessonFromWatchLater");
-
 Route::get("timetables/today-lessons", "LessonController@todayLessons");
 Route::get("timetables/missed-lessons", "LessonController@missedlessons");

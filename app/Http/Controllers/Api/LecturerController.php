@@ -17,8 +17,11 @@ class LecturerController extends Controller
     {
         $q = request()->input("q");
         $lecturers = (\request()->input("q"))
-            ? Lecturer::where("name", "like", "%$q%")->paginate(10)
-            : Lecturer::paginate(10);
+            ? Lecturer::where("name", "like", "%$q%")
+                ->orderByDesc("id")
+                ->paginate(10)
+            : Lecturer::orderByDesc("id")
+                ->paginate(10);
         LecturersCollection::collection($lecturers);
 
         return $this->paginateResponse($lecturers);

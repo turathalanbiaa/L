@@ -27,26 +27,26 @@ class Lecturer extends Model
     public function generalCourses()
     {
         return $this->hasMany("App\\Models\\GeneralCourse")
-            ->orderBy("id");
+            ->orderByDesc("id");
     }
 
     public function availableGeneralCourses()
     {
         return $this->hasMany("App\\Models\\GeneralCourse")
             ->where("state", CourseState::ACTIVE)
-            ->orderBy("id");
+            ->orderByDesc("id");
     }
 
     public function studyCourses()
     {
         return $this->hasMany("App\\Models\\StudyCourse")
-            ->orderBy("id");
+            ->orderByDesc("id");
     }
 
     public function availableStudyCourses()
     {
         return $this->hasMany("App\\Models\\StudyCourse")
             ->where("state", CourseState::ACTIVE)
-            ->orderBy("id");
+            ->orderByDesc("id");
     }
 }

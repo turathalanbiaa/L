@@ -31,7 +31,7 @@ class StudyCourse extends Model
     {
         return $this->hasMany("App\\Models\\Review", "course_id")
             ->where("course_type", CourseType::STUDY)
-            ->orderBy("id");
+            ->orderByDesc("id");
     }
 
     public function lessons()
