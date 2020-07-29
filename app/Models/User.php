@@ -27,7 +27,7 @@ class User extends Model
         "updated_at",
         "last_login",
         "state",
-        "remember_token"
+        "token"
     ];
 
     public function documents()

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\Stage;
 use App\Enum\UserState;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string("name");
             $table->unsignedTinyInteger("type");
             $table->char("lang", 2);
-            $table->unsignedTinyInteger("stage")->nullable();
+            $table->unsignedTinyInteger("stage")->nullable()->default(Stage::BEGINNER_STAGE);
             $table->string("email")->unique();
             $table->string("phone")->unique();
             $table->char("password", 32);
