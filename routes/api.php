@@ -11,10 +11,16 @@
 /
 */
 
-//User
 use Illuminate\Support\Facades\Route;
 
-Route::get('users','UserController@index');
+Route::get("static", "StaticController@index");
+// User
+Route::post('users/store','UserController@store');
+
+
+
+
+
 Route::get('user/{id}','UserController@show');
 Route::post('listener-account','UserController@listener_store');
 Route::post('student-account','UserController@student_store');

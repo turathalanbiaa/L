@@ -3,24 +3,27 @@
 namespace App\Http\Controllers\Api;
 
 use App\Enum\Certificate;
+use App\Enum\Gender;
 use App\Enum\Stage;
 use App\Enum\UserState;
 use App\Enum\UserType;
 use App\Http\Resources\User as UserResource;
-use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Carbon\Carbon;
-use Carbon\Traits\Date;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use PeterColes\Countries\CountriesFacade as Countries;
 
 class  UserController extends Controller
 {
-    use SimpleResponseTrait;
+    use ResponseTrait;
+
+    public function store()
+    {
+
+    }
+
 
     /**
      * Display a listing of the resource.
