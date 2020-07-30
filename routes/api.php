@@ -14,8 +14,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get("static", "StaticController@index");
+
 // User
-Route::post('users/register','UserController@register');
+Route::post("users/register","UserController@register");
+Route::post("users/login","UserController@login");
+
 
 
 

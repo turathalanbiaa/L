@@ -67,7 +67,7 @@ class  UserController extends Controller
         $validation = Validator::make($request->all(), $rules, $messages ?? []);
 
         if (!$validation->passes())
-            return $this->simpleResponseWithMessage(false, $validation->errors());
+            return $this->simpleResponseWithMessage(false, $validation->errors()->all());
 
         $request->merge([
             "password" => md5($request->input("password")),
@@ -78,6 +78,19 @@ class  UserController extends Controller
             return $this->simpleResponseWithMessage(false, "try again");
 
         return $this->simpleResponse(new SingleUser(User::where("email", $request->input("email"))->first()));
+    }
+
+    public function login()
+    {
+        $username = "";
+        if (filter_var("some@address.com", FILTER_VALIDATE_EMAIL)) {
+            // valid address
+        }
+        else {
+            // invalid address
+        }
+
+        $user = User::where("phone");
     }
 
 
