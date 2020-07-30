@@ -67,7 +67,7 @@ class  UserController extends Controller
         $validation = Validator::make($request->all(), $rules, $messages ?? []);
 
         if (!$validation->passes())
-            return $this->simpleResponseWithMessage(false, $validation->errors()->all());
+            return $this->simpleResponseWithMessage(false, implode(",", $validation->errors()->all()) );
 
         $request->merge([
             "password" => md5($request->input("password")),
