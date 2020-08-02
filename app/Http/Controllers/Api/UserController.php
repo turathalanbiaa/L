@@ -7,6 +7,7 @@ use App\Enum\Gender;
 use App\Enum\Language;
 use App\Enum\UserType;
 use App\Http\Resources\User\SingleUser;
+use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -68,7 +69,7 @@ class  UserController extends Controller
 
         $request->merge([
             "password" => md5($request->input("password")),
-            "token"    => hash_hmac("sha256", microtime(), bcrypt(mt_rand()))
+            "token"    => self::generateToken()
             ]);
 
         if (!User::create($request->all()))
@@ -108,7 +109,22 @@ class  UserController extends Controller
         if (!$validation->passes())
             return $this->simpleResponseWithMessage(false, implode(",", $validation->errors()->all()));
 
-        $user = "User::";
-        return "OK";
+        $user = User::where(["email" => $username, "password" => $password])
+            ->orWhere(["phone" => $username, "password" => $password])
+            ->first();
+
+        if (!$user)
+            return $this->simpleResponseWithMessage(false, "login failed");
+
+        $user->last_login = date("Y-m-d h:s:m");
+        $user->token = self::generateToken();
+        $user->save();
+
+        return New SingleUser($user);
+    }
+
+    public static function generateToken()
+    {
+        return hash_hmac("sha256", microtime(), bcrypt(mt_rand()));
     }
 }

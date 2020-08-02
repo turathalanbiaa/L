@@ -6,6 +6,7 @@ use App\Enum\Certificate;
 use App\Enum\Gender;
 use App\Enum\Stage;
 use App\Enum\UserState;
+use App\Enum\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use PeterColes\Countries\CountriesFacade as Countries;
@@ -22,7 +23,9 @@ class SingleUser extends JsonResource
     {
         return [
             "name"        => $this->name,
-            "stage"       => Stage::getStageName($this->stage),
+            "stage"       => ($this->type == UserType::STUDENT)
+                ? Stage::getStageName($this->stage)
+                : $this->stage,
             "email"       => $this->email,
             "phone"       => $this->phone,
             "gender"      => Gender::getGenderName($this->gender),
