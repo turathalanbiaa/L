@@ -109,20 +109,16 @@ class  UserController extends Controller
         if (!$validation->passes())
             return $this->simpleResponseWithMessage(false, implode(",", $validation->errors()->all()));
 
-        $user = User::where(["email" => $username, "password" => $password])
-            ->orWhere(["phone" => $username, "password" => $password])
+        $user = User::orwhere(["email" => $username, "phone" => $username])
+            ->where(["password" => $password])
             ->first();
 
         if (!$user)
             return $this->simpleResponseWithMessage(false, "login failed");
 
-        return $user;
-
         $user->last_login = date("Y-m-d h:s:m");
         $user->token = self::generateToken();
         $user->save();
-
-        return $user;
 
         return $this->simpleResponse(New SingleUser($user));
     }
