@@ -85,10 +85,11 @@ class  UserController extends Controller
 
         if (is_null($username))
             $usernameRules = ["required"];
-        elseif (is_numeric($username))
-            $usernameRules = ["required", "exists:users,phone"];
-        else
+        elseif (str_contains($username, "@"))
             $usernameRules = ["required", "email", "exists:users,email"];
+        else
+            $usernameRules = ["required", "exists:users,phone"];
+
 
         $rules = [
             "username" => $usernameRules,
