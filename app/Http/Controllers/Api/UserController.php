@@ -120,7 +120,9 @@ class  UserController extends Controller
         $user->token = self::generateToken();
         $user->save();
 
-        return New SingleUser($user);
+        return $user;
+
+        return $this->simpleResponse(New SingleUser($user));
     }
 
     public static function generateToken()

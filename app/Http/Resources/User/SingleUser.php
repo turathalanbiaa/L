@@ -32,7 +32,9 @@ class SingleUser extends JsonResource
             "country"     => Countries::getValue(app()->getLocale(), $this->country),
             "birth_date"  => $this->birth_date,
             "address"     => $this->address,
-            "certificate" => Certificate::getCertificateName($this->certificate),
+            "certificate" => ($this->type == UserType::STUDENT)
+                ? Certificate::getCertificateName($this->certificate)
+                : $this->certificate,
             "state"       => UserState::getStateName($this->state),
             "token"       => $this->token
         ];
