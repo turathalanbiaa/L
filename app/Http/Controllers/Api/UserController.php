@@ -116,11 +116,13 @@ class  UserController extends Controller
         if (!$user)
             return $this->simpleResponseWithMessage(false, "login failed");
 
+        return $user;
+
         $user->last_login = date("Y-m-d h:s:m");
         $user->token = self::generateToken();
         $user->save();
 
-        return $request;
+        return $user;
 
         return $this->simpleResponse(New SingleUser($user));
     }
