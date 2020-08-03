@@ -23,18 +23,14 @@ class SingleUser extends JsonResource
     {
         return [
             "name"        => $this->name,
-            "stage"       => ($this->type == UserType::STUDENT)
-                ? Stage::getStageName($this->stage)
-                : $this->stage,
+            "stage"       => $this->stage,
             "email"       => $this->email,
             "phone"       => $this->phone,
-            "gender"      => Gender::getGenderName($this->gender),
+            "gender"      => $this->gender,
             "country"     => Countries::getValue(app()->getLocale(), $this->country),
             "birth_date"  => $this->birth_date,
             "address"     => $this->address,
-            "certificate" => ($this->type == UserType::STUDENT)
-                ? Certificate::getCertificateName($this->certificate)
-                : $this->certificate,
+            "certificate" => $this->certificate,
             "state"       => UserState::getStateName($this->state),
             "token"       => $this->token
         ];

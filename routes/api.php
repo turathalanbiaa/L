@@ -30,11 +30,13 @@ Route::post("users/login","UserController@login");
 //Route::put('update-user/{id}','UserController@update');
 //Route::delete('delete-user/{id}','UserController@destroy');
 //Route::post('credentials','UserController@credentials');
+
 //Route::post('image-store','ImageController@store');
 //Route::post('image-update','ImageController@updateimage');
 //Route::post('my-images','ImageController@allimages');
 //Route::post('get-countries','UserController@countries');
 //Route::post('get-certificates','UserController@certificate');
+
 //Route::post('last-announcement','AnnouncementController@lastAnnouncments');
 //Route::post('get-all-announcment','AnnouncementController@getallAnnouncment');
 //Route::post('single-announcment','AnnouncementController@show');
