@@ -10,7 +10,6 @@ class User extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "name",
         "type",
         "lang",

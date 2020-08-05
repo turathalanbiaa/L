@@ -7,7 +7,6 @@ use App\Enum\Gender;
 use App\Enum\Language;
 use App\Enum\UserType;
 use App\Http\Resources\User\SingleUser;
-use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

@@ -19,23 +19,18 @@ Route::get("static", "StaticController@index");
 Route::post("users/register","UserController@register");
 Route::post("users/login","UserController@login");
 
+// Documents
+Route::post("documents/create-or-update","DocumentController@createOrUpdate");
 
 
 
 
-//
-//Route::get('user/{id}','UserController@show');
-//Route::post('listener-account','UserController@listener_store');
-//Route::post('student-account','UserController@student_store');
-//Route::put('update-user/{id}','UserController@update');
-//Route::delete('delete-user/{id}','UserController@destroy');
-//Route::post('credentials','UserController@credentials');
 
-//Route::post('image-store','ImageController@store');
-//Route::post('image-update','ImageController@updateimage');
-//Route::post('my-images','ImageController@allimages');
-//Route::post('get-countries','UserController@countries');
-//Route::post('get-certificates','UserController@certificate');
+
+
+//Route::post('image-store','DocumentController@store');
+//Route::post('image-update','DocumentController@updateimage');
+//Route::post('my-images','DocumentController@allimages');
 
 //Route::post('last-announcement','AnnouncementController@lastAnnouncments');
 //Route::post('get-all-announcment','AnnouncementController@getallAnnouncment');
