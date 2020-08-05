@@ -2,11 +2,8 @@
 
 namespace App\Http\Resources\User;
 
-use App\Enum\Certificate;
-use App\Enum\Gender;
-use App\Enum\Stage;
 use App\Enum\UserState;
-use App\Enum\UserType;
+use App\Http\Resources\Document\DocumentsCollection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use PeterColes\Countries\CountriesFacade as Countries;
@@ -32,7 +29,8 @@ class SingleUser extends JsonResource
             "address"     => $this->address,
             "certificate" => $this->certificate,
             "state"       => UserState::getStateName($this->state),
-            "token"       => $this->token
+            "token"       => $this->token,
+            "documents"   => DocumentsCollection::collection($this->documents)
         ];
     }
 }
