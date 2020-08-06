@@ -20,8 +20,8 @@ class DocumentsCollection extends JsonResource
     {
         return [
             "image" => Storage::url($this->image),
-            "type"  => DocumentType::getTypeName($this->type),
-            "state" => DocumentState::getStateName($this->state)
+            "type"  => $this->type,
+            "state" => $this->state
         ];
     }
 }
