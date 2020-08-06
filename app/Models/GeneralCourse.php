@@ -41,14 +41,14 @@ class GeneralCourse extends Model
     public function reviews()
     {
         return $this->hasMany("App\\Models\\Review", "course_id")
-            ->where("course_type", CourseType::GENERAL)
+            ->where("course_type", "=", CourseType::GENERAL)
             ->orderByDesc("id");
     }
 
     public function lessons()
     {
         return $this->hasMany("App\\Models\\Lesson", "course_id")
-            ->where("course_type", CourseType::GENERAL)
+            ->where("course_type", "=", CourseType::GENERAL)
             ->orderBy("order");
     }
 }

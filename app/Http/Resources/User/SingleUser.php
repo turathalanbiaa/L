@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\User;
 
+use App\Enum\DocumentType;
 use App\Enum\UserState;
 use App\Http\Resources\Document\DocumentsCollection;
 use Illuminate\Http\Request;
@@ -29,8 +30,7 @@ class SingleUser extends JsonResource
             "address"     => $this->address,
             "certificate" => $this->certificate,
             "state"       => UserState::getStateName($this->state),
-            "token"       => $this->token,
-            "documents"   => DocumentsCollection::collection($this->documents)
+            "token"       => $this->token
         ];
     }
 }

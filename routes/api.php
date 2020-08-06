@@ -21,22 +21,7 @@ Route::post("users/login","UserController@login");
 
 // Documents
 Route::post("documents/create-or-update","DocumentController@createOrUpdate");
-
-
-
-
-
-
-
-//Route::post('image-store','DocumentController@store');
-//Route::post('image-update','DocumentController@updateimage');
-//Route::post('my-images','DocumentController@allimages');
-
-//Route::post('last-announcement','AnnouncementController@lastAnnouncments');
-//Route::post('get-all-announcment','AnnouncementController@getallAnnouncment');
-//Route::post('single-announcment','AnnouncementController@show');
-
-
+Route::get("documents/my-documents","DocumentController@myDocuments");
 
 // Lecturers
 Route::get("lecturers", "LecturerController@all");

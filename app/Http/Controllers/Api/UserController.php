@@ -74,7 +74,9 @@ class  UserController extends Controller
         if (!User::create($request->all()))
             return $this->simpleResponseWithMessage(false, "try again");
 
-        return $this->simpleResponse(new SingleUser(User::where("email", $request->input("email"))->first()));
+        $user = User::where("email", $request->input("email"))->first();
+
+        return $this->simpleResponse(new SingleUser($user));
     }
 
     public function login(Request $request)

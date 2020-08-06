@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\DocumentType;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
@@ -33,5 +34,33 @@ class User extends Model
     {
         return $this->hasMany("App\\Models\\Document")
             ->orderBy("type");
+    }
+
+    public function personalIdentificationDocument()
+    {
+        return $this->documents()
+            ->where("type", "=", DocumentType::PERSONAL_IDENTIFICATION)
+            ->first();
+    }
+
+    public function religiousRecommendationDocument()
+    {
+        return $this->documents()
+            ->where("type", "=", DocumentType::RELIGIOUS_RECOMMENDATION)
+            ->first();
+    }
+
+    public function certificateDocument()
+    {
+        return $this->documents()
+            ->where("type", "=", DocumentType::CERTIFICATE)
+            ->first();
+    }
+
+    public function personalImageDocument()
+    {
+        return $this->documents()
+            ->where("type", "=", DocumentType::PERSONAL_IMAGE)
+            ->first();
     }
 }

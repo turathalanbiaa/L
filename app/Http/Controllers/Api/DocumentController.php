@@ -6,12 +6,12 @@ use App\Enum\DocumentState;
 use App\Enum\DocumentType;
 use App\Enum\Language;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Document\DocumentsCollection;
 use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use function Symfony\Component\String\u;
 
 class DocumentController extends Controller
 {
@@ -44,7 +44,7 @@ class DocumentController extends Controller
 
         $user = $request->user;
 
-        $document = $user->documents
+        $document = $user->documents()
             ->where("type", $request->input("type"))
             ->first();
 
@@ -53,7 +53,6 @@ class DocumentController extends Controller
             if ($document->state == DocumentState::ACCEPT)
                 return $this->simpleResponseWithMessage(false, "can not update document because is accepted");
         }
-
 
         $document = Document::updateOrCreate([
             "user_id" => $user->id,
@@ -67,5 +66,16 @@ class DocumentController extends Controller
             return $this->simpleResponseWithMessage(false, "try again");
 
         return $this->simpleResponseWithMessage(true, "success");
+    }
+
+    public function myDocuments() {
+        $user = \request()->user;
+
+        return $this->simpleResponse([
+            ($user->personalIdentificationDocument()) ? new DocumentsCollection($user->personalIdentificationDocument()) : null,
+            ($user->religiousRecommendationDocument()) ? new DocumentsCollection($user->religiousRecommendationDocument()) : null,
+            ($user->certificateDocument()) ? new DocumentsCollection($user->certificateDocument()) : null,
+            ($user->personalImageDocument()) ? new DocumentsCollection($user->personalImageDocument()) : null
+        ]);
     }
 }

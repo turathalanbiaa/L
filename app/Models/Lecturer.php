@@ -32,8 +32,8 @@ class Lecturer extends Model
 
     public function availableGeneralCourses()
     {
-        return $this->hasMany("App\\Models\\GeneralCourse")
-            ->where("state", CourseState::ACTIVE)
+        return $this->generalCourses()
+            ->where("state", "=", CourseState::ACTIVE)
             ->orderByDesc("id");
     }
 
@@ -45,8 +45,8 @@ class Lecturer extends Model
 
     public function availableStudyCourses()
     {
-        return $this->hasMany("App\\Models\\StudyCourse")
-            ->where("state", CourseState::ACTIVE)
+        return $this->studyCourses()
+            ->where("state","=", CourseState::ACTIVE)
             ->orderByDesc("id");
     }
 }
