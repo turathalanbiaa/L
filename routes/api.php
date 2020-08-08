@@ -23,6 +23,9 @@ Route::post("users/login","UserController@login");
 Route::post("documents/create-or-update","DocumentController@createOrUpdate");
 Route::get("documents/my-documents","DocumentController@myDocuments");
 
+// Announcements
+Route::get("announcements","AnnouncementController@all");
+
 // Lecturers
 Route::get("lecturers", "LecturerController@all");
 Route::get("lecturers/{lecturer}", "LecturerController@single");

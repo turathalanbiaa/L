@@ -10,14 +10,14 @@ class Announcement extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
-        "lang",
         "title",
+        "lang",
         "description",
         "image",
         "youtube_video",
         "type",
         "state",
         "created_at",
+        "updated_at"
     ];
 }
