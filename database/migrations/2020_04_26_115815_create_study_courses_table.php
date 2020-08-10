@@ -19,7 +19,7 @@ class CreateStudyCoursesTable extends Migration
             $table->bigIncrements("id");
             $table->string("name");
             $table->char("lang", 2);
-            $table->string("description")->nullable();
+            $table->text("description")->nullable();
             $table->string("image");
             $table->unsignedTinyInteger("stage");
             $table->unsignedTinyInteger("state")->default(CourseState::ACTIVE);

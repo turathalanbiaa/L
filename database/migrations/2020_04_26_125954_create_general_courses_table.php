@@ -19,7 +19,7 @@ class CreateGeneralCoursesTable extends Migration
             $table->bigIncrements("id");
             $table->string("name");
             $table->char("lang", 2);
-            $table->string("description")->nullable();
+            $table->text("description")->nullable();
             $table->string("image");
             $table->unsignedTinyInteger("state")->default(CourseState::ACTIVE);
             $table->unsignedBigInteger("general_course_header_id")->nullable();

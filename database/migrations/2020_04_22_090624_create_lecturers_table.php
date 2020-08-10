@@ -21,7 +21,7 @@ class CreateLecturersTable extends Migration
             $table->string("email")->unique();
             $table->string("phone")->unique();
             $table->char("password", 32);
-            $table->string("description")->nullable();
+            $table->text("description")->nullable();
             $table->string("image");
             $table->unsignedTinyInteger("state")->default(LecturerState::ACTIVE);
             $table->timestamp("last_login")->default(DB::raw("CURRENT_TIMESTAMP"))->nullable();
