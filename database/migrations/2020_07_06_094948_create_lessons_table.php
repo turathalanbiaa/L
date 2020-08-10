@@ -14,18 +14,18 @@ class CreateLessonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lessons', function (Blueprint $table) {
-            $table->integerIncrements("id");
+        Schema::create("lessons", function (Blueprint $table) {
+            $table->bigIncrements("id");
             $table->string("title");
             $table->text("description")->nullable();
             $table->string("youtube_video");
             $table->time("video_length");
             $table->unsignedTinyInteger("order");
-            $table->unsignedTinyInteger("seen");
-            $table->unsignedInteger("lecturer_id");
-            $table->unsignedInteger("course_id");
+            $table->unsignedSmallInteger("seen");
+            $table->unsignedBigInteger("lecturer_id");
+            $table->unsignedBigInteger("course_id");
             $table->unsignedTinyInteger("course_type");
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }
@@ -37,6 +37,6 @@ class CreateLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessons');
+        Schema::dropIfExists("lessons");
     }
 }
