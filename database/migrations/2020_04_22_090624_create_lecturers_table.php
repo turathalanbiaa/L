@@ -16,7 +16,7 @@ class CreateLecturersTable extends Migration
     public function up()
     {
         Schema::create("lecturers", function (Blueprint $table) {
-            $table->integerIncrements("id");
+            $table->bigIncrements("id");
             $table->string("name");
             $table->string("email")->unique();
             $table->string("phone")->unique();
@@ -24,9 +24,9 @@ class CreateLecturersTable extends Migration
             $table->string("description")->nullable();
             $table->string("image");
             $table->unsignedTinyInteger("state")->default(LecturerState::ACTIVE);
+            $table->timestamp("last_login")->default(DB::raw("CURRENT_TIMESTAMP"))->nullable();
             $table->string("token")->unique()->nullable();
-            $table->timestamp("last_login")->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }

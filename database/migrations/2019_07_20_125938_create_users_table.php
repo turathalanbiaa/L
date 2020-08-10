@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create("users", function (Blueprint $table) {
-            $table->integerIncrements("id");
+            $table->bigIncrements("id");
             $table->string("name");
             $table->unsignedTinyInteger("type");
             $table->char("lang", 2);
@@ -30,11 +30,11 @@ class CreateUsersTable extends Migration
             $table->date("birth_date")->nullable();
             $table->string("address")->nullable();
             $table->unsignedTinyInteger("certificate")->nullable();
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
-            $table->timestamp("last_login")->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
             $table->unsignedTinyInteger("state")->default(UserState::UNTRUSTED);
-            $table->string("remember_token")->unique()->nullable();
+            $table->timestamp("last_login")->default(DB::raw("CURRENT_TIMESTAMP"))->nullable();
+            $table->string("token")->unique()->nullable();
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
+            $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }
 

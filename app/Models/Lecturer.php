@@ -18,8 +18,8 @@ class Lecturer extends Model
         "description",
         "image",
         "state",
-        "token",
         "last_login",
+        "token",
         "created_at",
         "updated_at",
     ];

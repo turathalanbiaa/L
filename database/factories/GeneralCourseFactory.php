@@ -11,10 +11,9 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(GeneralCourse::class, function (Faker $faker) {
-    $lang = Language::getRandomLanguage();
     return [
         "name"                     => $faker->sentence,
-        "lang"                     => $lang,
+        "lang"                     => Language::getRandomLanguage(),
         "description"              => $faker->randomElement(array(null, $faker->text)),
         "image"                    => $faker->imageUrl(),
         "state"                    => CourseState::getRandomState(),

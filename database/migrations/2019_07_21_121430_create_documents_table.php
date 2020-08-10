@@ -16,12 +16,12 @@ class CreateDocumentsTable extends Migration
     public function up()
     {
         Schema::create("documents", function (Blueprint $table) {
-            $table->integerIncrements("id");
-            $table->unsignedInteger("user_id");
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger("user_id");
             $table->string("image");
             $table->unsignedTinyInteger("type");
             $table->unsignedTinyInteger("state")->default(DocumentState::REVIEW);
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }

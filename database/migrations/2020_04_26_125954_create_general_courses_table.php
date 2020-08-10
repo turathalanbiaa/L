@@ -16,15 +16,15 @@ class CreateGeneralCoursesTable extends Migration
     public function up()
     {
         Schema::create("general_courses", function (Blueprint $table) {
-            $table->integerIncrements("id");
+            $table->bigIncrements("id");
             $table->string("name");
             $table->char("lang", 2);
             $table->string("description")->nullable();
             $table->string("image");
             $table->unsignedTinyInteger("state")->default(CourseState::ACTIVE);
-            $table->unsignedInteger("general_course_header_id")->nullable();
-            $table->unsignedInteger("lecturer_id");
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->unsignedBigInteger("general_course_header_id")->nullable();
+            $table->unsignedBigInteger("lecturer_id");
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }

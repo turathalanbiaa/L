@@ -16,11 +16,11 @@ class CreateEnrollmentsTable extends Migration
     public function up()
     {
         Schema::create("enrollments", function (Blueprint $table) {
-            $table->integerIncrements("id");
-            $table->unsignedInteger("user_id");
-            $table->unsignedInteger("general_course_id");
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("general_course_id");
             $table->unsignedTinyInteger("state")->default(EnrollmentState::SUBSCRIBE);
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }

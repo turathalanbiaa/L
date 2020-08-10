@@ -23,11 +23,11 @@ class User extends Model
         "birth_date",
         "address",
         "certificate",
-        "created_at",
-        "updated_at",
-        "last_login",
         "state",
-        "token"
+        "last_login",
+        "token",
+        "created_at",
+        "updated_at"
     ];
 
     public function documents()

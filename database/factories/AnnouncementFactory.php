@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Announcement::class, function (Faker $faker) {
     return [
-        "lang"          => Language::getRandomLanguage(),
         "title"         => $faker->sentence(10),
+        "lang"          => Language::getRandomLanguage(),
         "description"   => $faker->randomElement(array(null, $faker->realText(1000))),
         "image"         => $faker->randomElement(array(null, $faker->imageUrl())),
         "youtube_video" => $faker->randomElement(array(null, "C4kxS1ksqtw", "jbYBUXd0Otw")),
         "type"          => AnnouncementType::getRandomType(),
         "state"         => AnnouncementState::getRandomState(),
-        "created_at"     => $faker->dateTimeBetween("-4 years", "-2 years"),
-        "updated_at"     => $faker->dateTimeBetween("-1 years", "now")
+        "created_at"    => $faker->dateTimeBetween("-4 years", "-2 years"),
+        "updated_at"    => $faker->dateTimeBetween("-1 years", "now")
     ];
 });

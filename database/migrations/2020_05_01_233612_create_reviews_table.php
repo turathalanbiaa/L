@@ -16,14 +16,14 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create("reviews", function (Blueprint $table) {
-            $table->integerIncrements("id");
-            $table->unsignedInteger("user_id");
-            $table->unsignedInteger("course_id");
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("course_id");
             $table->unsignedTinyInteger("course_type");
             $table->unsignedTinyInteger("rate");
             $table->string("comment");
             $table->unsignedTinyInteger("state")->default(ReviewState::VISIBLE);
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }
