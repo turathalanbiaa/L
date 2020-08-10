@@ -17,9 +17,9 @@ class AnnouncementsCollection extends JsonResource
     public function toArray($request)
     {
         return [
-            "title" => $this->title,
-            "description" => $this->description,
-            "image" => Storage::url($this->image),
+            "title"         => $this->title,
+            "description"   => $this->description,
+            "image"         => $this->image,
             "youtube_video" => $this->youtube_video
         ];
     }
