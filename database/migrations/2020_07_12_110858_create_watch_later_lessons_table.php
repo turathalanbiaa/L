@@ -14,11 +14,11 @@ class CreateWatchLaterLessonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('watch_later_lessons', function (Blueprint $table) {
-            $table->integerIncrements("id");
-            $table->unsignedInteger("user_id");
-            $table->unsignedInteger("lesson_id");
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+        Schema::create("watch_later_lessons", function (Blueprint $table) {
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("lesson_id");
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }
@@ -30,6 +30,6 @@ class CreateWatchLaterLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watch_later_lessons');
+        Schema::dropIfExists("watch_later_lessons");
     }
 }

@@ -12,6 +12,6 @@ class WatchLaterLessonsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(WatchLaterLesson::class, 1000)->create();
+        factory(WatchLaterLesson::class, 5000)->create();
     }
 }

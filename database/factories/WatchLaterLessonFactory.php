@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(WatchLaterLesson::class, function (Faker $faker) {
     return [
-        "user_id"   => $faker->numberBetween(1, 1839),
-        "lesson_id" => $faker->numberBetween(1, 5000)
+        "user_id"   => User::all()->random()->id,
+        "lesson_id" => Lesson::all()->random()->id
     ];
 });

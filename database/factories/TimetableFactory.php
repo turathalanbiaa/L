@@ -13,6 +13,6 @@ $factory->define(Timetable::class, function (Faker $faker) {
     return [
         "lesson_id"    => Lesson::where("course_type", CourseType::STUDY)->get()->random()->id,
         "stage"        => Stage::getRandomStage(),
-        "publish_date" => $faker->dateTimeBetween("-4 weeks", "+4 weeks")
+        "publish_date" => $faker->dateTimeBetween("-10 weeks", "+10 weeks")
     ];
 });

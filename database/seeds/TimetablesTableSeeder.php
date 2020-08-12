@@ -12,6 +12,6 @@ class TimetablesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Timetable::class, 1000)->create();
+        factory(Timetable::class, 5000)->create();
     }
 }

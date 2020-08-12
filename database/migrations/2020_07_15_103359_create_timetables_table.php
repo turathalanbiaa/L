@@ -14,12 +14,12 @@ class CreateTimetablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('timetables', function (Blueprint $table) {
-            $table->integerIncrements("id");
-            $table->unsignedInteger("lesson_id");
+        Schema::create("timetables", function (Blueprint $table) {
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger("lesson_id");
             $table->unsignedTinyInteger("stage");
             $table->date("publish_date");
-            $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }
@@ -31,6 +31,6 @@ class CreateTimetablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('timetables');
+        Schema::dropIfExists("timetables");
     }
 }
