@@ -24,8 +24,8 @@ class CreateLecturersTable extends Migration
             $table->text("description")->nullable();
             $table->string("image");
             $table->unsignedTinyInteger("state")->default(LecturerState::ACTIVE);
-            $table->timestamp("last_login")->default(DB::raw("CURRENT_TIMESTAMP"))->nullable();
             $table->string("token")->unique()->nullable();
+            $table->timestamp("last_login")->default(DB::raw("CURRENT_TIMESTAMP"))->nullable();
             $table->timestamp("created_at")->default(DB::raw("CURRENT_TIMESTAMP"));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
