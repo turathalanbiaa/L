@@ -12,6 +12,6 @@ class GeneralCourseHeadersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(GeneralCourseHeader::class, 25)->create();
+        factory(GeneralCourseHeader::class, 20)->create();
     }
 }

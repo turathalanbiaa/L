@@ -58,6 +58,6 @@ function announcementImages() {
         "public/announcement/B7BHN0pHFUvyLq1KUeeKAYnE6pssUITwrm9g9pMZ.jpeg",
         "public/announcement/fFa6LGbDBB331CuhCg5na3dKgdEsNTZUzn7OrfXD.jpeg",
         "public/announcement/HYueJr238wRaoXGY7WYKpHyokhZ7c2VDOl9H01cG.jpeg",
-        "public/announcement/KnaWS2VJN6zxaewGALt8rnqL8AvRYGma3UoiwQra.jpeg",
+        "public/announcement/KnaWS2VJN6zxaewGALt8rnqL8AvRYGma3UoiwQra.jpeg"
     );
 }
