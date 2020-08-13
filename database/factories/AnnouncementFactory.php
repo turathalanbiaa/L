@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\Factory;
 $factory->define(Announcement::class, function (Faker $faker) {
     return [
         "title"         => (app()->getLocale() == Language::ARABIC)
-            ? $faker->randomElement(titles())
+            ? $faker->randomElement(announcementTitles())
             : $faker->sentence(10),
         "lang"          => app()->getLocale(),
         "description"   => $faker->optional(0.7)->realText(),
-        "image"         => $faker->optional(0.7)->randomElement(images()),
-        "youtube_video" => $faker->optional(0.7)->randomElement(youtubeVideos()),
+        "image"         => $faker->optional(0.7)->randomElement(announcementImages()),
+        "youtube_video" => $faker->optional(0.7)->randomElement(announcementYoutubeVideos()),
         "type"          => AnnouncementType::getRandomType(),
         "state"         => AnnouncementState::getRandomState(),
         "created_at"    => $faker->dateTimeBetween("-4 years", "-2 years"),
@@ -25,7 +25,7 @@ $factory->define(Announcement::class, function (Faker $faker) {
     ];
 });
 
-function titles() {
+function announcementTitles() {
     return array(
         "سيبدأ التسجيل عن قريب",
         "تم اعلان النتائج الامتحانية",
@@ -42,7 +42,7 @@ function titles() {
     );
 }
 
-function youtubeVideos() {
+function announcementYoutubeVideos() {
     return array(
         "C4kxS1ksqtw",
         "jbYBUXd0Otw",
@@ -53,7 +53,7 @@ function youtubeVideos() {
     );
 }
 
-function images() {
+function announcementImages() {
     return array(
         "public/announcement/B7BHN0pHFUvyLq1KUeeKAYnE6pssUITwrm9g9pMZ.jpeg",
         "public/announcement/fFa6LGbDBB331CuhCg5na3dKgdEsNTZUzn7OrfXD.jpeg",
