@@ -19,7 +19,7 @@ class DocumentsCollection extends JsonResource
     public function toArray($request)
     {
         return [
-            "image" => Storage::url($this->image),
+            "image" => asset(Storage::url($this->image)),
             "type"  => $this->type,
             "state" => $this->state
         ];

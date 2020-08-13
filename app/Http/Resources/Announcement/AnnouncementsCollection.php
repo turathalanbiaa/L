@@ -19,7 +19,7 @@ class AnnouncementsCollection extends JsonResource
         return [
             "title"         => $this->title,
             "description"   => $this->description,
-            "image"         => Storage::url($this->image),
+            "image"         => asset(Storage::url($this->image)),
             "youtube_video" => $this->youtube_video
         ];
     }
