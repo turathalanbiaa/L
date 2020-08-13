@@ -12,6 +12,6 @@ class AnnouncementsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Announcement::class, 250)->create();
+        factory(Announcement::class, 250)->create(["lang" => app()->getLocale()]);
     }
 }
