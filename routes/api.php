@@ -18,6 +18,8 @@ Route::get("static", "StaticController@index");
 // User
 Route::post("users/register","UserController@register");
 Route::post("users/login","UserController@login");
+Route::post("users/change-password","UserController@changePassword");
+
 
 // Documents
 Route::post("documents/create-or-update","DocumentController@createOrUpdate");

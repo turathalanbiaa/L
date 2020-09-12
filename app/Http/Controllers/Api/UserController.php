@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Enum\Certificate;
 use App\Enum\Gender;
 use App\Enum\Language;
+use App\Enum\UserState;
 use App\Enum\UserType;
 use App\Http\Resources\User\SingleUser;
 use App\Models\User;
@@ -17,6 +18,11 @@ use PeterColes\Countries\CountriesFacade as Countries;
 class  UserController extends Controller
 {
     use ResponseTrait;
+
+    public function __construct()
+    {
+        $this->middleware("getCurrentUser")->only(["changePassword"]);
+    }
 
     public function register(Request $request)
     {
@@ -68,6 +74,7 @@ class  UserController extends Controller
 
         $request->merge([
             "password" => md5($request->input("password")),
+            "state"    => UserState::TRUSTED,
             "token"    => self::generateToken()
             ]);
 
@@ -123,6 +130,40 @@ class  UserController extends Controller
         $user->save();
 
         return $this->simpleResponse(New SingleUser($user));
+    }
+
+    public function changePassword(Request $request)
+    {
+        $rules = [
+            "oldPassword" => ["required"],
+            "newPassword" => ["required", "min:8", "confirmed"]
+        ];
+
+        if (app()->getLocale() == Language::ARABIC)
+            $messages = [
+                "oldPassword.required"  => "حقل كلمة المرور القديمة مطلوب",
+                "newPassword.required"  => "حقل كلمة المرور الجديدة مطلوب",
+                "newPassword.min"       => "يجب أن تتكون كلمة المرور الجديدة من 8 أحرف على الأقل",
+                "newPassword.confirmed" => "كلمتا المرور غير متطابقتان"
+            ];
+
+        $validation = Validator::make($request->all(), $rules, $messages ?? []);
+
+        if (!$validation->passes())
+            return $this->simpleResponseWithMessage(false, implode(",", $validation->errors()->all()));
+
+        $user = $request->user;
+
+        if ($user->password != md5($request->input("oldPassword")))
+            return $this->simpleResponseWithMessage(false, "كلمة المرور القديمة خطا");
+
+        $user->password = md5($request->input("newPassword"));
+        $success = $user->save();
+
+        if (!$success)
+            return $this->simpleResponseWithMessage(false, "change password is failed");
+
+        return $this->simpleResponseWithMessage(true, "change password is success");
     }
 
     public static function generateToken()
