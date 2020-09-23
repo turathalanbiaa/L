@@ -10,8 +10,8 @@ class Role extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "name",
-        "created_at"
+        "created_at",
+        "updated_at"
     ];
 }

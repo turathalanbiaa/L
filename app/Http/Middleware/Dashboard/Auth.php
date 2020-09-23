@@ -22,17 +22,17 @@ class Auth
     {
         //For admin
         if (request()->is("dashboard/admin*")) {
-            if (!Cookie::has("ETA-Admin") && !session()->has("eta.admin.token"))
-                abort(302, "", ["Location" => "/dashboard/admin"]);
+            if (!Cookie::has("ETA-Admin"))
+                abort(302, "", ["Location" => route("dashboard.admin")]);
 
-            if (Cookie::has("ETA-Admin") && !session()->has("eta.admin.token")) {
-                $admin = Admin::where("remember_token", Cookie::get("ETA-Admin"))->first();
+            if (!session()->has("eta.admin.token")) {
+                $admin = Admin::where("token", Cookie::get("ETA-Admin"))->first();
 
                 if ($admin)
                     LoginController::generateSession($admin);
                 else {
                     LogoutController::removeCookie();
-                    abort(302, "", ["Location" => "/dashboard/admin"]);
+                    abort(302, "", ["Location" => route("dashboard.admin")]);
                 }
             }
         }

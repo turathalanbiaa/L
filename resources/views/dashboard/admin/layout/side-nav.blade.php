@@ -32,17 +32,20 @@
                     </div>
                     <div class="list-item-body collapse" id="collapse-users" aria-labelledby="heading-users" data-parent="#accordionSideNav">
                         <div class="sup-list">
-                            <a class="list-item" href="{{route("dashboard.admin.users.index",["type"=>App\Enum\UserType::STUDENT])}}">
+                            <a class="list-item" href="{{route("dashboard.admin.users.create", ["type" => App\Enum\UserType::STUDENT])}}">
+                                @lang("/dashboard-admin/layout.side-nav.block-users.add-student")
+                            </a>
+                            <a class="list-item" href="{{route("dashboard.admin.users.create", ["type" => App\Enum\UserType::LISTENER])}}">
+                                @lang("/dashboard-admin/layout.side-nav.block-users.add-listener")
+                            </a>
+                            <a class="list-item" href="{{route("dashboard.admin.users.index", ["type" => App\Enum\UserType::STUDENT])}}">
                                 @lang("/dashboard-admin/layout.side-nav.block-users.students")
                             </a>
-                            <a class="list-item" href="{{route("dashboard.admin.users.index",["type"=>App\Enum\UserType::LISTENER])}}">
+                            <a class="list-item" href="{{route("dashboard.admin.users.index", ["type" => App\Enum\UserType::LISTENER])}}">
                                 @lang("/dashboard-admin/layout.side-nav.block-users.listeners")
                             </a>
                             <a class="list-item" href="{{route("dashboard.admin.documents.index")}}">
                                 @lang("/dashboard-admin/layout.side-nav.block-users.documents")
-                            </a>
-                            <a class="list-item">
-                                @lang("/dashboard-admin/layout.side-nav.block-users.change-account")
                             </a>
                         </div>
                     </div>

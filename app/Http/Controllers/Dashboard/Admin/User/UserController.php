@@ -12,6 +12,8 @@ use App\Http\Requests\Dashboard\Admin\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\View\View;
 use PeterColes\Countries\CountriesFacade as Countries;
 
@@ -32,23 +34,22 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $type = request()->input("type");
-        $state = request()->input("state");
-        $users = is_null($state)
-            ? User::select(["id", "name", "email", "phone", "last_login", "state"])
-                ->where("type", $type)
-                ->where("lang", app()->getLocale())
-                ->latest()
+        $type = $request->input("type");
+        $state = $request->input("state");
+
+        $users = ($state)
+            ? User::select(["id", "name", "email", "phone", "state", "last_login"])
+                ->where(["type" => $type, "lang" => app()->getLocale(), "state" => $state])
+                ->orderBy("created_at", "desc")
                 ->get()
-            : User::select(["id", "name", "email", "phone", "last_login", "state"])
-                ->where("type", $type)
-                ->where("state", $state)
-                ->where("lang", app()->getLocale())
-                ->latest()
+            : User::select(["id", "name", "email", "phone", "state", "last_login"])
+                ->where(["type" => $type, "lang" => app()->getLocale()])
+                ->orderBy("created_at", "desc")
                 ->get();
 
         return view("dashboard.admin.user.index")->with([
@@ -61,12 +62,13 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return Factory|View
      */
-    public function create()
+    public function create(Request $request)
     {
         return view("dashboard.admin.user.create")->with([
-            "type" => request()->input("type")
+            "type" => $request->input("type")
         ]);
     }
 

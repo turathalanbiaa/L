@@ -34,7 +34,7 @@
             margin: 0;
         }
         .full-height {
-            height: 100vh;
+            height: calc(100vh - 56px);
         }
         .links > a {
             color: #636b6f;
@@ -53,26 +53,26 @@
                     </h4>
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            @if(session("error"))
-                                <div class="alert alert-danger animated fadeIn">
-                                    {{ session("error") }}
+                            @error("login-failed")
+                                <div class="text-danger text-center animated fadeIn">
+                                    {{$message}}
                                 </div>
-                            @endif
+                            @enderror
 
                             <form method="post" action="{{route("dashboard.admin.login")}}">
                                 @csrf()
                                 <div class="form-group">
                                     <label class="control-label" for="username">
-                                        @lang("dashboard-admin/login.label-username")
+                                        @lang("dashboard-admin/login.label.username")
                                     </label>
-                                    <input type="text" class="form-control form-control-sm" name="username" id="username" value="{{old("username")}}">
+                                    <input type="text" class="form-control" name="username" id="username" value="{{old("username")}}">
                                     @error("username") <div class="text-danger">{{$message}}</div> @enderror
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="password">
-                                        @lang("dashboard-admin/login.label-password")
+                                        @lang("dashboard-admin/login.label.password")
                                     </label>
-                                    <input type="password" class="form-control form-control-sm" name="password" id="password" value="">
+                                    <input type="password" class="form-control" name="password" id="password" value="">
                                     @error("password") <div class="text-danger">{{$message}}</div> @enderror
                                 </div>
                                 <div class="form-group pt-2">
@@ -84,8 +84,8 @@
                         </div>
                     </div>
                     <div class="links text-center pt-3">
-                        <a href="{{route("dashboard.admin")}}?locale={{\App\Enum\Language::ARABIC}}">العربية</a>
-                        <a href="{{route("dashboard.admin")}}?locale={{\App\Enum\Language::ENGLISH}}">English</a>
+                        <a href="{{route("dashboard.admin", ["locale" => \App\Enum\Language::ARABIC])}}">العربية</a>
+                        <a href="{{route("dashboard.admin", ["locale" => \App\Enum\Language::ENGLISH])}}">English</a>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
     </div>
     <footer class="page-footer unique-color-dark">
         <div class="footer-copyright py-3 text-center" dir="ltr">
-            © 2016 Copyright:
+            © 2020 Copyright:
             <a href="https://www.turathalanbiaa.com" target="_blank">
                 <strong> turathalanbiaa.com</strong>
             </a>

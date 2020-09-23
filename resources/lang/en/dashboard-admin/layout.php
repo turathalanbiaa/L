@@ -11,11 +11,12 @@ return [
         ],
 
         "block-users" => [
-            "header"         => "Users Management",
-            "students"       => "Students",
-            "listeners"      => "Listeners",
-            "documents"      => "Documents",
-            "change-account" => "Change Account"
+            "header"       => "Users Management",
+            "add-student"  => "Add Student",
+            "add-listener" => "Add Listener",
+            "students"     => "All Students",
+            "listeners"    => "All Listeners",
+            "documents"    => "Documents"
         ],
 
         "block-other" => [

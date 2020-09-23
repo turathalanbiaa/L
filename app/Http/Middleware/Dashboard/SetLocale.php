@@ -19,6 +19,7 @@ class SetLocale
         //For admin
         if (request()->is("dashboard/admin*")) {
             $locale = request()->input("locale");
+
             if (in_array($locale, Language::getLanguages())) {
                 session()->put("eta.admin.lang", $locale);
                 session()->save();

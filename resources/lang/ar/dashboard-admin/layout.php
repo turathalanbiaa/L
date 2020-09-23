@@ -11,11 +11,12 @@ return [
         ],
 
         "block-users" => [
-            "header"         => "إدارة المستخدمين",
-            "students"       => "الطلاب",
-            "listeners"      => "المستمعين",
-            "documents"      => "المستمسكات",
-            "change-account" => "تغير الحساب"
+            "header"       => "إدارة المستخدمين",
+            "add-student"  => "اضافة طالب",
+            "add-listener" => "اضافة مستمع",
+            "students"     => "جميع الطلاب",
+            "listeners"    => "جميع المستمعين",
+            "documents"    => "المستمسكات"
         ],
 
         "block-other" => [

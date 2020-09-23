@@ -18,8 +18,7 @@ class Role
     public function handle($request, Closure $next, $role)
     {
         //For admin
-        if (request()->is("dashboard/admin*"))
-        {
+        if (request()->is("dashboard/admin*")) {
             $roles = session()->get("eta.admin.roles");
             if (!in_array($role, $roles))
                 abort(403, __("dashboard-admin/middleware.auth"));

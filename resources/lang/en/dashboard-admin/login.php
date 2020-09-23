@@ -1,10 +1,14 @@
 <?php
 
 return [
-    "title"          => "Admin Dashboard",
-    "header"         => "Login",
-    "label-username" => "Username",
-    "label-password" => "Password",
-    "btn-login"      => "Login",
-    "error-message"  => "Username or Password is wrong."
+    "title"     => "Dashboard Login",
+    "header"    => "Dashboard",
+    "btn-login" => "Login",
+
+    "label" => [
+        "username" => "Username",
+        "password" => "Password",
+    ],
+
+    "failed-message"  => "Login failed"
 ];

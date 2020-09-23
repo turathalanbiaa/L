@@ -10,14 +10,6 @@ use Illuminate\View\View;
 class MainController extends Controller
 {
     /**
-     * MainController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware("setLocale")->only(["index"]);
-    }
-
-    /**
      * Show the admin page or go to the login page.
      *
      * @return Factory|View

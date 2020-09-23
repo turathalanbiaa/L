@@ -14,32 +14,27 @@ class RolesTableSeeder extends Seeder
     {
         // Admin role
         factory(Role::class)->create([
-            "name"        => "Admin"
+            "name" => "Admin"
         ]);
 
         // User role
         factory(Role::class)->create([
-            "name"        => "User"
+            "name" => "User"
         ]);
 
         // Document role
         factory(Role::class)->create([
-            "name"        => "Document"
-        ]);
-
-        // Convert account type role
-        factory(Role::class)->create([
-            "name"        => "Convert Account Type"
+            "name" => "Document"
         ]);
 
         // Announcement role
         factory(Role::class)->create([
-            "name"        => "Announcement"
+            "name" => "Announcement"
         ]);
 
         // Lecturer role
         factory(Role::class)->create([
-            "name"        => "Lecturer"
+            "name" => "Lecturer"
         ]);
     }
 }

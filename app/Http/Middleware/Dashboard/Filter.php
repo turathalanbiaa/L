@@ -21,21 +21,22 @@ class Filter
     public function handle($request, Closure $next, $parameter)
     {
         //For admin
-        if (request()->is("dashboard/admin*"))
-        {
+        if (request()->is("dashboard/admin*")) {
             switch ($parameter) {
+                // User
                 case "user-type":
                     if (!in_array(request()->input("type"), UserType::getTypes()))
-                        abort(403, __("dashboard-admin/middleware.filter.user-type"));
+                        abort(403, __("dashboard-admin/middleware.filter.user.type"));
                     break;
                 case "user-state":
                     if (!is_null(request()->input("state")) && !in_array(request()->input("state"), UserState::getStates()))
-                        abort(403, __("dashboard-admin/middleware.filter.user-state"));
+                        abort(403, __("dashboard-admin/middleware.filter.user.state"));
                     break;
                 case "user-update":
                     if (!in_array(request()->input("update"), array("info", "pass")))
-                        abort(403, __("dashboard-admin/middleware.filter.user-update"));
+                        abort(403, __("dashboard-admin/middleware.filter.user.update"));
                     break;
+
                 case "document-type":
                     if (!is_null(request()->input("type")) && !in_array(request()->input("type"), DocumentType::getTypes()))
                         abort(403, __("dashboard-admin/middleware.filter.document-type"));

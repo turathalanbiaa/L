@@ -20,8 +20,8 @@ class AdminsRolesTableSeeder extends Seeder
         foreach ($admins as $admin) {
             foreach ($roles as $role) {
                 factory(AdminRole::class)->create([
-                    "admin_id"   => $admin->id,
-                    "role_id"    => $role->id
+                    "admin_id" => $admin->id,
+                    "role_id"  => $role->id
                 ]);
             }
         }

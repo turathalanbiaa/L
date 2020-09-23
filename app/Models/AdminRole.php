@@ -10,9 +10,9 @@ class AdminRole extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        "id",
         "admin_id",
         "role_id",
-        "created_at"
+        "created_at",
+        "updated_at"
     ];
 }

@@ -15,14 +15,14 @@ class CreateAdminsTable extends Migration
     public function up()
     {
         Schema::create("admins", function (Blueprint $table) {
-            $table->integerIncrements("id");
+            $table->bigIncrements("id");
             $table->string("name");
             $table->string("username")->unique();
             $table->char("password", 32);
+            $table->timestamp("last_login")->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
+            $table->string("token")->unique()->nullable();
             $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
-            $table->timestamp("last_login")->default(DB::raw('CURRENT_TIMESTAMP'))->nullable();
-            $table->string("remember_token")->unique()->nullable();
         });
     }
 

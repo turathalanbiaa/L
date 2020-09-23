@@ -15,10 +15,11 @@ class CreateAdminRoleTable extends Migration
     public function up()
     {
         Schema::create("admin_role", function (Blueprint $table) {
-            $table->integerIncrements("id");
-            $table->unsignedInteger("admin_id");
-            $table->unsignedInteger("role_id");
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger("admin_id");
+            $table->unsignedBigInteger("role_id");
             $table->timestamp("created_at")->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp("updated_at")->default(DB::raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
         });
     }
 

@@ -18,15 +18,14 @@ class LoginController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $admin = Admin::where("username", $request->input("username"))
-            ->where("password", md5($request->input("password")))
+        $admin = Admin::where(["username" => $request->input("username"), "password" => md5($request->input("password"))])
             ->first();
 
         if (!$admin)
             return redirect()
                 ->back()
                 ->withInput()
-                ->with(["error" => __("dashboard-admin/login.error-message")]);
+                ->withErrors(["login-failed" => __("dashboard-admin/login.failed-message")]);
 
         self::generateSession($admin);
         self::generateCookie($admin);
@@ -40,11 +39,8 @@ class LoginController extends Controller
      */
     public static function generateSession(Admin $admin) {
         self::updateLoginDate($admin);
-        session()->put("eta.admin.id", $admin->id);
-        session()->put("eta.admin.name", $admin->name);
-        session()->put("eta.admin.lang", $admin->lang);
-        session()->put("eta.admin.username", $admin->username);
-        session()->put("eta.admin.token", $admin->remember_token);
+        session()->put("eta.admin.lang", app()->getLocale());
+        session()->put("eta.admin.token", $admin->token);
         session()->put("eta.admin.roles", $admin->roles
             ->pluck("name")
             ->toArray()
@@ -59,9 +55,9 @@ class LoginController extends Controller
      */
     public static function updateLoginDate(Admin $admin)
     {
-        if (is_null($admin->remember_token))
-            $admin->remember_token = hash_hmac("sha256",md5(microtime(true).mt_Rand()),bcrypt($admin->email));
-        $admin->last_login = date("Y-m-d");
+        if (is_null($admin->token))
+            $admin->token = hash_hmac("sha256",md5(microtime(true).mt_Rand()),bcrypt($admin->email));
+        $admin->last_login = date("Y-m-d H:i:s");
         $admin->save();
     }
 
@@ -71,6 +67,6 @@ class LoginController extends Controller
      * @param Admin $admin
      */
     public static function generateCookie(Admin $admin) {
-        Cookie::queue(cookie()->forever("ETA-Admin", $admin->remember_token));
+        Cookie::queue(cookie()->forever("ETA-Admin", $admin->token));
     }
 }

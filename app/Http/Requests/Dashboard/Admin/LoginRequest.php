@@ -25,8 +25,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            "username" => "required",
-            "password" => "required"
+            "username" => ["required", "exists:admins,username"],
+            "password" => ["required"]
         ];
     }
 
@@ -40,6 +40,7 @@ class LoginRequest extends FormRequest
         if(app()->getLocale() == Language::ARABIC)
             return [
                 "username.required" => "حقل اسم المستخدم مطلوب",
+                "username.exists"   => "اسم المستخدم غير موجود",
                 "password.required" => "حقل كلمة المرور مطلوب",
             ];
 
