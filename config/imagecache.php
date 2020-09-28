@@ -51,6 +51,7 @@ return array(
     */
 
     'templates' => array(
+        'square' => 'Intervention\Image\Templates\Square',
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',

@@ -33,7 +33,7 @@ class Filter
                         abort(403, __("dashboard-admin/middleware.filter.user.state"));
                     break;
                 case "user-update":
-                    if (!in_array(request()->input("update"), array("info", "pass")))
+                    if (!in_array(request()->input("update"), array("info", "phone", "email", "pass")))
                         abort(403, __("dashboard-admin/middleware.filter.user.update"));
                     break;
 

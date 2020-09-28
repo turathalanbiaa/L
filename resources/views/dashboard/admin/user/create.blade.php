@@ -28,7 +28,7 @@
                                    placeholder="@lang("dashboard-admin/user.placeholder.email")">
                             @error("email") <div class="text-danger">{{$message}}</div> @enderror
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <label class="col-form-label" for="phone" >
                                 @lang("dashboard-admin/user.label.phone")
                                 <span class="text-danger">*</span>
@@ -37,7 +37,7 @@
                                    placeholder="@lang("dashboard-admin/user.placeholder.phone")">
                             @error("phone") <div class="text-danger">{{$message}}</div> @enderror
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <label class="col-form-label" for="country" >
                                 @lang("dashboard-admin/user.label.country")
                                 <span class="text-danger">*</span>
@@ -53,6 +53,27 @@
                                     @foreach(Countries::lookup(app()->getLocale()) as $key => $country)
                                         <div class="dropdown-item" data-value="{{$key}}">
                                             {{$country}}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-form-label" for="lang">
+                                @lang("dashboard-admin/user.label.lang")
+                                <span class="text-danger">*</span>
+                            </label>
+                            <div class="dropdown">
+                                <input type="text" class="form-control" id="lang" autocomplete="off"
+                                       value="{{\App\Enum\Language::getLanguageName(old("lang"))}}"
+                                       placeholder="@lang("dashboard-admin/user.placeholder.lang")"
+                                       data-toggle="dropdown" data-action="search" aria-haspopup="true" aria-expanded="false">
+                                <input type="hidden" name="lang" value="{{old("lang")}}">
+                                @error("lang") <div class="text-danger">{{$message}}</div> @enderror
+                                <div class="dropdown-menu dropdown-default w-100" aria-labelledby="lang">
+                                    @foreach(\App\Enum\Language::getLanguages() as $language)
+                                        <div class="dropdown-item" data-value="{{$language}}">
+                                            {{App\Enum\Language::getLanguageName($language)}}
                                         </div>
                                     @endforeach
                                 </div>
@@ -127,7 +148,7 @@
                                            data-toggle="dropdown" data-action="search" aria-haspopup="true" aria-expanded="false">
                                     <input type="hidden" name="certificate" value="{{old("certificate")}}">
                                     @error("certificate") <div class="text-danger">{{ $message }}</div> @enderror
-                                    <div class="dropdown-menu dropdown-default w-100" aria-labelledby="stage">
+                                    <div class="dropdown-menu dropdown-default w-100" aria-labelledby="certificate">
                                         @foreach(\App\Enum\Certificate::getCertificates() as $certificate)
                                             <div class="dropdown-item" data-value="{{$certificate}}">
                                                 {{App\Enum\Certificate::getCertificateName($certificate)}}
@@ -167,6 +188,7 @@
 @endsection
 
 @section("script")
+    @parent
     <script>
         $('.dropdown-menu .dropdown-item').on('click', function () {
             $(this).parent().parent().find('input[type="text"]').val($(this).html().trim());
@@ -183,7 +205,6 @@
                     item.classList.add('d-block');
             });
         });
-
         @if(session()->has("message"))
             $.toast({
                 title: '{{session()->get("message")}}',

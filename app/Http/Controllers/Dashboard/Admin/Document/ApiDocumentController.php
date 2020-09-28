@@ -22,7 +22,7 @@ class ApiDocumentController extends Controller
      * Store the document image in the storage disk.
      *
      * @param Request $request
-     * @return ResponseFactory|Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request) {
         $rules = [
@@ -42,7 +42,7 @@ class ApiDocumentController extends Controller
         Storage::delete($request->input("prev_image"));
         $image = Storage::put("public/user/temp", $request->file("image"));
 
-        return $this->apiResponse([
+        return $this->response([
             "image" => [
                 "url"  => asset("images/large" . Storage::url($image)),
                 "path" => $image

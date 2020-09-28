@@ -80,24 +80,12 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        $user = User::create([
-            "name"           => $request->input("name"),
-            "type"           => $request->input("type"),
-            "lang"           => app()->getLocale(),
-            "stage"          => $request->input("stage", null),
-            "email"          => $request->input("email"),
-            "phone"          => $request->input("phone"),
-            "password"       => md5($request->input("password")),
-            "gender"         => $request->input("gender"),
-            "country"        => $request->input("country"),
-            "birth_date"     => $request->input("birth_date", null),
-            "address"        => $request->input("address", null),
-            "certificate"    => $request->input("certificate", null),
-            "created_at"     => date("Y-m-d"),
-            "last_login"     => null,
-            "state"          => UserState::UNTRUSTED,
-            "remember_token" => null
+        $request->merge([
+            "stage"      => $request->input("stage"),
+            "password"   => md5($request->input("password")),
+            "last_login" => null
         ]);
+        $user = User::create($request->all());
 
         if (!$user)
             return redirect()
@@ -105,7 +93,7 @@ class UserController extends Controller
                 ->withInput()
                 ->with([
                     "message" => __("dashboard-admin/user.store.failed"),
-                    "type"    => "warning"
+                    "type"    => "error"
                 ]);
 
         return redirect()
@@ -124,7 +112,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        self::checkView($user);
         return view("dashboard.admin.user.show")->with([
             "user" => $user
         ]);
@@ -138,7 +125,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        self::checkView($user);
         return view("dashboard.admin.user.edit")->with([
             "user" => $user
         ]);
@@ -153,37 +139,39 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        self::checkView($user);
         switch ($request->input("update")) {
             case "info":
                 $data = [
                     "name"        => $request->input("name"),
-                    "stage"       => $request->input("stage", null),
-                    "email"       => $request->input("email"),
-                    "phone"       => $request->input("phone"),
-                    "gender"      => $request->input("gender"),
                     "country"     => $request->input("country"),
+                    "gender"      => $request->input("gender"),
+                    "stage"       => $request->input("stage", null),
+                    "certificate" => $request->input("certificate", null),
                     "birth_date"  => $request->input("birth_date", null),
-                    "address"     => $request->input("address", null),
-                    "certificate" => $request->input("certificate", null)
+                    "address"     => $request->input("address", null)
                 ];
                 break;
+            case "phone":
+                $data = ["phone" => $request->input("phone")];
+                break;
+            case "email":
+                $data = ["email" => $request->input("email")];
+                break;
             case "pass":
-                $data = [
-                    "password" => md5($request->input("password"))
-                ];
+                $data = ["password" => md5($request->input("password"))];
                 break;
             default: $data = array();
         }
-        User::where("id", $user->id)->update($data);
 
-        if (!$user)
+        $success = User::where("id", $user->id)->update($data);
+
+        if (!$success)
             return redirect()
                 ->back()
                 ->withInput()
                 ->with([
-                    "message" => __("dashboard-admin/user.update.failed"),
-                    "type"    => "warning"
+                    "message" => __("dashboard-admin/user.update.info"),
+                    "type"    => "info"
                 ]);
 
         return redirect()
