@@ -38,10 +38,7 @@ class MainController extends Controller
 //            ->withAndroidConfig([
 //                "notification"=> [
 //                    "click_action"=> "SHOW_ITEM_INFO",
-//                    "channel_id"=> "3000",
-//                    "default_sound"=> true,
-//                    "default_vibrate_timings"=> true,
-//                    "default_light_settings"=> true
+//                    "channel_id"=> "3000"
 //                ],
 //                "priority"=> "high"
 //            ]);

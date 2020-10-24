@@ -63,4 +63,10 @@ class User extends Model
             ->where("type", "=", DocumentType::PERSONAL_IMAGE)
             ->first();
     }
+
+    public function enrolledGeneralCourses()
+    {
+        $ids = $this->hasMany("App\\Models\\Enrollment")->pluck("general_course_id")->toArray();
+        return GeneralCourse::whereIn("id", $ids)->get();
+    }
 }

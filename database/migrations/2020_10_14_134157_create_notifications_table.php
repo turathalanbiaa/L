@@ -15,11 +15,10 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->string("topic");
             $table->string("title");
             $table->string("body");
-            $table->unsignedBigInteger("sender_id");
-            $table->unsignedTinyInteger("sender_type");
+            $table->string("sender");
+            $table->string("receiver");
             $table->dateTime("datetime");
         });
     }
