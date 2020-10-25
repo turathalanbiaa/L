@@ -45,6 +45,7 @@ class MainController extends Controller
 //
 //        $messaging->send($message);
 
+
         return view("dashboard.admin.main");
     }
 }

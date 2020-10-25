@@ -21,6 +21,7 @@ class SingleUser extends JsonResource
     {
         return [
             "name"        => $this->name,
+            "type"        => $this->type,
             "stage"       => $this->stage,
             "email"       => $this->email,
             "phone"       => $this->phone,

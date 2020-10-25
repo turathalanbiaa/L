@@ -29,7 +29,7 @@ class NotificationController extends Controller
             "user_".$user->id,
             ($user->enrolledGeneralCourses()->isEmpty())
                 ? null
-                : $user->enrolledGeneralCourses()->map(function ($generalCourse) {return "general_course_".$generalCourse->id;})
+                : $user->enrolledGeneralCourses()->filter(function ($generalCourse) {return "general_course_".$generalCourse->id;})
         ])->paginate(20);
         NotificationsCollection::collection($notifications);
 
