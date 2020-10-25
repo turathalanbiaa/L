@@ -2,9 +2,7 @@
 
 namespace App\Http\Resources\User;
 
-use App\Enum\DocumentType;
 use App\Enum\UserState;
-use App\Http\Resources\Document\DocumentsCollection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use PeterColes\Countries\CountriesFacade as Countries;
