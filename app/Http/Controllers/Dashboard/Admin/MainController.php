@@ -14,22 +14,22 @@ class MainController extends Controller
     /**
      * Show the admin page or go to the login page.
      *
+     * @param Messaging $messaging
      * @return Factory|View
      */
     public function index(Messaging $messaging)
     {
-        if (!Cookie::has("ETA-Admin"))
-            return view("dashboard.admin.login");
-
-//        $topic = 'all';
+//        if (!Cookie::has("ETA-Admin"))
+//            return view("dashboard.admin.login");
+//
+//        $topic = 'users';
 //        $data = [
-//            "Id" => "9079",
-//            "From" => "الفصول الفرع الرئيسي",
-//            "Vendor" => "1"
+//            "Id" => "12",
+//            "From" => "12"
 //        ];
 //        $notification = [
-//            "title" =>"NewsMagazine.com",
-//            "body" => "This is tez."
+//            "title" =>"معهد تراث النبياء (ع)",
+//            "body" => "تم افتتاح دورة التل الزينبي"
 //        ];
 //
 //        $message = CloudMessage::withTarget('topic', $topic)
@@ -37,14 +37,15 @@ class MainController extends Controller
 //            ->withData($data) // optional
 //            ->withAndroidConfig([
 //                "notification"=> [
-//                    "click_action"=> "SHOW_ITEM_INFO",
+//                    "click_action"=> "SHOW_INFO",
 //                    "channel_id"=> "3000"
 //                ],
 //                "priority"=> "high"
 //            ]);
 //
-//        $messaging->send($message);
-
+//        $x = $messaging->send($message);
+//
+//        dd($x);
 
         return view("dashboard.admin.main");
     }
